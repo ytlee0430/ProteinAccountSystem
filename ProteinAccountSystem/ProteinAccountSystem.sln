@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProteinAccountSystem", "ProteinAccountSystem\ProteinAccountSystem.csproj", "{8A4B1C9C-39B9-40B0-993F-245C0675C1EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A4B1C9C-39B9-40B0-993F-245C0675C1EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A4B1C9C-39B9-40B0-993F-245C0675C1EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A4B1C9C-39B9-40B0-993F-245C0675C1EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A4B1C9C-39B9-40B0-993F-245C0675C1EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C6B2AA0B-605B-4EEF-816D-0A0FE9617533}
+	EndGlobalSection
+EndGlobal
