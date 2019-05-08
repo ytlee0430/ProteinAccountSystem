@@ -11,6 +11,11 @@ namespace SystemController
 {
     public class ShopeeController : IController
     {
+        public bool UpdateWebsiteStorage(string itemCode, int storage)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool UpdateDBStorage(string itemCode, int storage)
         {
             throw new NotImplementedException();
