@@ -10,6 +10,5 @@ namespace Common.Enum
     {
         Chocolate = 0,
         NatureChocolate = 1,
-
     }
 }

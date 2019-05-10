@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,16 @@ namespace SystemController
         }
 
         public bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Item> GetItems(BrandEnum brand, FlavorEnum flavor, ProductionType type, ProductionDetail detail)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool ImportExcel(FileStream fileStream)
         {
             throw new NotImplementedException();
         }

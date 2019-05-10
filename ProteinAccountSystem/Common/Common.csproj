@@ -121,10 +121,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Entity\Item.cs" />
+    <Compile Include="Enum\ProductionDetail.cs" />
     <Compile Include="Enum\ProductionType.cs" />
     <Compile Include="Enum\BrandEnum.cs" />
     <Compile Include="Enum\FlavorEnum.cs" />
     <Compile Include="Interface\IController.cs" />
+    <Compile Include="Utils\TimestampConverter.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Common.rd.xml" />

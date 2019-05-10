@@ -9,8 +9,7 @@ namespace Common.Enum
     public enum ProductionType
     {
         WheyProtein = 0,
-        IsolateWheyProtein = 1,
         ProtectiveGear = 2,
-        IsolateSoyProtein = 3,
+        Other = 3,
     }
 }
