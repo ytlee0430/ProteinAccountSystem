@@ -31,6 +31,12 @@ namespace Common.Entity
         public int TransferMoney { get; set; }
 
         /// <summary>
+        /// 購買商品
+        /// </summary>
+        public List<PhuraseProductModel> Products { get; set; }
+
+
+        /// <summary>
         /// 運費(未稅)
         /// </summary>
         public int TransferMoneyWithoutTax { get; set; }
@@ -39,7 +45,7 @@ namespace Common.Entity
         /// 總稅金
         /// </summary>
         public int TotalTax { get; set; }
-    
+
         /// <summary>
         /// 訂單金額
         /// </summary>
