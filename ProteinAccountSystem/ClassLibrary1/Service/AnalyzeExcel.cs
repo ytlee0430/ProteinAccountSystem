@@ -17,7 +17,7 @@ namespace Controller.Service
         /// <param name="filePath"></param>
         public DataTable AnalyzeShipData(string filePath)
         {
-            var dt = new DataTable;
+            var dt = new DataTable();
             FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
             StreamReader sr = new StreamReader(fs, Encoding.UTF8);
             //StreamReader sr = new StreamReader(fs, encoding);
@@ -43,19 +43,19 @@ namespace Controller.Service
                     for (int i = 0; i < columnCount; i++)
                     {
                         tableHead[i] = tableHead[i].Replace("\"", "");
-                        DataColumn dc = new DataColumn(tableHead[i]);
-                        dt.Columns.Add(dc);
+                           DataColumn dc = new DataColumn(tableHead[i]);
+                          dt.Columns.Add(dc);
                     }
                 }
                 else
                 {
                     aryLine = strLine.Split(',');
-                    DataRow dr = dt.NewRow();
+                         DataRow dr = dt.NewRow();
                     for (int j = 0; j < columnCount; j++)
                     {
                         dr[j] = aryLine[j].Replace("\"", "");
                     }
-                    dt.Rows.Add(dr);
+                       dt.Rows.Add(dr);
                 }
             }
             if (aryLine != null && aryLine.Length > 0)
@@ -67,7 +67,7 @@ namespace Controller.Service
             fs.Dispose();
 
 
-            return dt;
+             return dt;
         }
     }
 }
