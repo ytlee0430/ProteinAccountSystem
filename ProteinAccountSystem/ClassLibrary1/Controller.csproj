@@ -41,10 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Service\AnalyzeExcel.cs" />
-    <Compile Include="Interface\IAnalyzeExcel.cs" />
+    <Compile Include="Controller\ShippmentController.cs" />
+    <Compile Include="Controller\StockController.cs" />
+    <Compile Include="Interface\IShippment.cs" />
+    <Compile Include="Interface\IStock.cs" />
+    <Compile Include="Service\ImportExcelSevice.cs" />
+    <Compile Include="Interface\IimportExcel.cs" />
     <Compile Include="Controller\ShopeeController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ShippmentService.cs" />
+    <Compile Include="Service\StockService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonUtility\CommonUtility.csproj">

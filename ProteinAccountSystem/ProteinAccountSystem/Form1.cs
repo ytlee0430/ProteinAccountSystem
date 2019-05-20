@@ -18,10 +18,15 @@ namespace ProteinAccountSystem
         {
             InitializeComponent();
         }
+        
+        /// <summary>
+        /// 匯入蝦皮excel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnImportExcel_Click(object sender, EventArgs e)
+        {
 
-
-
-
-
+        }
     }
 }

@@ -22,6 +22,11 @@ namespace Controller
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 匯入excel出貨資料
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public bool ImportExcel(string path)
         {
             throw new NotImplementedException();
