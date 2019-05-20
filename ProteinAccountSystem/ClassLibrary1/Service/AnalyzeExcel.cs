@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Controller.Interface;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SystemController.Interface;
 
-namespace SystemController.Service
+namespace Controller.Service
 {
     public class AnalyzeExcel : IAnalyzeExcel
     {
@@ -15,9 +15,9 @@ namespace SystemController.Service
         /// 更新需出貨excel
         /// </summary>
         /// <param name="filePath"></param>
-        public void AnalyzeShipData(string filePath)
+        public DataTable AnalyzeShipData(string filePath)
         {
-            var dt = new List<string>();
+            var dt = new DataTable;
             FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
             StreamReader sr = new StreamReader(fs, Encoding.UTF8);
             //StreamReader sr = new StreamReader(fs, encoding);
@@ -43,31 +43,31 @@ namespace SystemController.Service
                     for (int i = 0; i < columnCount; i++)
                     {
                         tableHead[i] = tableHead[i].Replace("\"", "");
-                        //   DataColumn dc = new DataColumn(tableHead[i]);
-                        //  dt.Columns.Add(dc);
+                        DataColumn dc = new DataColumn(tableHead[i]);
+                        dt.Columns.Add(dc);
                     }
                 }
                 else
                 {
                     aryLine = strLine.Split(',');
-                    //     DataRow dr = dt.NewRow();
+                    DataRow dr = dt.NewRow();
                     for (int j = 0; j < columnCount; j++)
                     {
-                        //dr[j] = aryLine[j].Replace("\"", "");
+                        dr[j] = aryLine[j].Replace("\"", "");
                     }
-                    //    dt.Rows.Add(dr);
+                    dt.Rows.Add(dr);
                 }
             }
             if (aryLine != null && aryLine.Length > 0)
             {
-                //dt.DefaultView.Sort = tableHead[2] + " " + "DESC";
+                dt.DefaultView.Sort = tableHead[2] + " " + "DESC";
             }
 
             sr.Dispose();
             fs.Dispose();
 
 
-            // return dt;
+            return dt;
         }
     }
 }

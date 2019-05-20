@@ -1,13 +1,14 @@
-﻿using System;
+﻿using CommonUtility.Entity;
+using CommonUtility.Enum;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.Entity;
-using Common.Enum;
 
-namespace Common.Interface
+
+namespace CommonUtility.Interface
 {
     public interface IController
     {

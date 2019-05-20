@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Common.Entity;
 using Common.Enum;
 using Common.Interface;
+using SystemController.Service;
 
 namespace SystemController
 {
@@ -32,9 +33,11 @@ namespace SystemController
             throw new NotImplementedException();
         }
 
-        public bool ImportExcel(FileStream fileStream)
+        public bool ImportExcel(string path)
         {
-            throw new NotImplementedException();
+            var a = new AnalyzeExcel();
+            a.AnalyzeShipData(path);
+            return true;
         }
 
         public List<Item> GetItems(BrandEnum brand, FlavorEnum flavor, ProductionType type)

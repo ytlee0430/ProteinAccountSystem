@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SystemController.Interface
+namespace Controller.Interface
 {
     public interface IAnalyzeExcel
     {
-        void AnalyzeShipData(string filePath);
+        DataTable AnalyzeShipData(string filePath);
     }
 }
