@@ -13,11 +13,6 @@ namespace Controller.Interface
         /// <summary>
         /// 產生寄件單
         /// </summary>
-        FileStream CreateShippmentTicket(PhuraseProductModel model);
-
-        /// <summary>
-        /// 批量產生寄件單
-        /// </summary>
-        FileStream CreateShippmentTicket(List<PhuraseProductModel> model);
+        bool CreateShippmentTicket(List<string> models);
     }
 }

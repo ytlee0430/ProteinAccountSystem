@@ -9,6 +9,6 @@ namespace Controller.Interface
 {
     public interface IAnalyzeExcel
     {
-        DataTable AnalyzeShipData(string filePath);
+        List<List<string>> AnalyzeShipData(string filePath);
     }
 }

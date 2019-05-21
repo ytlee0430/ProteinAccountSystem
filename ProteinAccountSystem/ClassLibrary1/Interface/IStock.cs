@@ -9,6 +9,8 @@ namespace Controller.Interface
 {
     public interface IStock
     {
+        bool UpdateDBStorage(List<string> stockData);
 
+        bool AddClientPhuraseRecord(List<string> stockData);
     }
 }

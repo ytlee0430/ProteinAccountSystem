@@ -34,8 +34,11 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnImportExcel = new System.Windows.Forms.Button();
             this.btnCreateShippmentTicket = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnExportStockExcel = new System.Windows.Forms.Button();
             this.tabController.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabController
@@ -64,6 +67,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnExportStockExcel);
             this.tabPage2.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabPage2.Location = new System.Drawing.Point(4, 26);
             this.tabPage2.Name = "tabPage2";
@@ -85,22 +89,36 @@
             // 
             // btnImportExcel
             // 
-            this.btnImportExcel.Location = new System.Drawing.Point(527, 173);
+            this.btnImportExcel.Location = new System.Drawing.Point(403, 110);
             this.btnImportExcel.Name = "btnImportExcel";
             this.btnImportExcel.Size = new System.Drawing.Size(262, 48);
             this.btnImportExcel.TabIndex = 0;
-            this.btnImportExcel.Text = "匯入蝦皮出貨資料";
+            this.btnImportExcel.Text = "匯入蝦皮出貨資料並更新庫存";
             this.btnImportExcel.UseVisualStyleBackColor = true;
             this.btnImportExcel.Click += new System.EventHandler(this.btnImportExcel_Click);
             // 
             // btnCreateShippmentTicket
             // 
-            this.btnCreateShippmentTicket.Location = new System.Drawing.Point(527, 293);
+            this.btnCreateShippmentTicket.Location = new System.Drawing.Point(403, 215);
             this.btnCreateShippmentTicket.Name = "btnCreateShippmentTicket";
             this.btnCreateShippmentTicket.Size = new System.Drawing.Size(262, 48);
             this.btnCreateShippmentTicket.TabIndex = 1;
             this.btnCreateShippmentTicket.Text = "產生寄件資訊單";
             this.btnCreateShippmentTicket.UseVisualStyleBackColor = true;
+            this.btnCreateShippmentTicket.Click += new System.EventHandler(this.btnCreateShippmentTicket_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // btnExportStockExcel
+            // 
+            this.btnExportStockExcel.Location = new System.Drawing.Point(3, 3);
+            this.btnExportStockExcel.Name = "btnExportStockExcel";
+            this.btnExportStockExcel.Size = new System.Drawing.Size(262, 48);
+            this.btnExportStockExcel.TabIndex = 2;
+            this.btnExportStockExcel.Text = "匯出庫存成Excel";
+            this.btnExportStockExcel.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -112,6 +130,7 @@
             this.Name = "Form1";
             this.tabController.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -124,6 +143,8 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Button btnCreateShippmentTicket;
         private System.Windows.Forms.Button btnImportExcel;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btnExportStockExcel;
     }
 }
 

@@ -20,6 +20,6 @@ namespace CommonUtility.Interface
 
         List<Item> GetItems(BrandEnum brand, FlavorEnum flavor, ProductionType type, ProductionDetail detail);
 
-        bool ImportExcel(string path);
+        bool importShipDataProcess(string path);
     }
 }
