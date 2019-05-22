@@ -7,8 +7,16 @@ using System.Threading.Tasks;
 
 namespace CodeFirstORM
 {
-    public class BloggingContext : DbContext
+    public class ProteinContext : DbContext
     {
+        public ProteinContext()
+        {
+        }
+
+        public ProteinContext(string nameOrConnectionString) : base(nameOrConnectionString)
+        {
+        }
+
         public DbSet<ItemEntity> Items { get; set; }
         public DbSet<PhuraseDetailEntity> PhuraseDetails { get; set; }
         public DbSet<PhuraseProductEntity> PhuraseProducts { get; set; }
