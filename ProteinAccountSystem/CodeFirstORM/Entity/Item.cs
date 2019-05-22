@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CodeFirstORM
 {
-    public class Item
+    public class ItemEntity
     {
         [Key]
         public int Key{ get; set; }

@@ -9,6 +9,8 @@ namespace CodeFirstORM
 {
     public class BloggingContext : DbContext
     {
-        public DbSet<Item> Items { get; set; }
+        public DbSet<ItemEntity> Items { get; set; }
+        public DbSet<PhuraseDetailEntity> PhuraseDetails { get; set; }
+        public DbSet<PhuraseProductEntity> PhuraseProducts { get; set; }
     }
 }

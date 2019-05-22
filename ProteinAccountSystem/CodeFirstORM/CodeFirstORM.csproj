@@ -49,7 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
-    <Compile Include="Item.cs" />
+    <Compile Include="Entity\Item.cs" />
+    <Compile Include="Entity\PhuraseDetailModel.cs" />
+    <Compile Include="Entity\PhuraseProductModel.cs" />
     <Compile Include="Migrations\201905211708027_AddUrl.cs" />
     <Compile Include="Migrations\201905211708027_AddUrl.Designer.cs">
       <DependentUpon>201905211708027_AddUrl.cs</DependentUpon>
