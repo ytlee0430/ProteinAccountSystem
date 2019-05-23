@@ -13,6 +13,6 @@ namespace Controller.Interface
         /// <summary>
         /// 產生寄件單
         /// </summary>
-        bool CreateShippmentTicket(List<string> models);
+        bool CreateShippmentTicket(List<PhuraseDetailModel> models);
     }
 }

@@ -27,6 +27,7 @@ namespace ProteinAccountSystem
         /// <param name="e"></param>
         private void btnImportExcel_Click(object sender, EventArgs e)
         {
+            openFileDialog1.ShowDialog();
             var path = openFileDialog1.FileName;
             shopeeController.importShipDataProcess(path);
 

@@ -1,4 +1,5 @@
 ﻿using Controller.Interface;
+using Spire.Xls;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,59 +16,41 @@ namespace Controller.Service
         /// 更新需出貨excel
         /// </summary>
         /// <param name="filePath"></param>
-        public List<List<string>> AnalyzeShipData(string filePath)
+        public List<string> AnalyzeShipData(string filePath)
         {
-            var dt = new DataTable();
-            FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            //载入xls文档
+            Workbook workbook = new Workbook();
+            workbook.LoadFromFile(filePath);
+            //获取第一张工作表
+            Worksheet sheet = workbook.Worksheets[0];
+            //保存为csv格式
+            sheet.SaveToFile(@"C:\Users\王志偉\Desktop\123.csv", ",", Encoding.UTF8);
+
+            var result = new List<string>();
+            FileStream fs = new FileStream(@"C:\Users\王志偉\Desktop\123.csv", FileMode.Open, FileAccess.Read);
             StreamReader sr = new StreamReader(fs, Encoding.UTF8);
-            //StreamReader sr = new StreamReader(fs, encoding);
-            //string fileContent = sr.ReadToEnd();
-            //記錄每次讀取的一行記錄
-            string strLine = "";
+          
             //記錄每行記錄中的各字段內容
-            string[] aryLine = null;
-            string[] tableHead = null;
-            //標示列數
-            int columnCount = 0;
-            //標示是否是讀取的第一行
             bool IsFirst = true;
-            //逐行讀取CSV中的數據
-            while ((strLine = sr.ReadLine()) != null)
+            while (!sr.EndOfStream)
             {
                 if (IsFirst == true)
                 {
-                    tableHead = strLine.Split(',');
                     IsFirst = false;
-                    columnCount = tableHead.Length;
-                    //創建列
-                    for (int i = 0; i < columnCount; i++)
-                    {
-                        tableHead[i] = tableHead[i].Replace("\"", "");
-                        DataColumn dc = new DataColumn(tableHead[i]);
-                        dt.Columns.Add(dc);
-                    }
                 }
                 else
                 {
-                    aryLine = strLine.Split(',');
-                    DataRow dr = dt.NewRow();
-                    for (int j = 0; j < columnCount; j++)
-                    {
-                        dr[j] = aryLine[j].Replace("\"", "");
-                    }
-                    dt.Rows.Add(dr);
+                    var line = sr.ReadLine();
+                    result.Add(line);
                 }
             }
-            if (aryLine != null && aryLine.Length > 0)
-            {
-                dt.DefaultView.Sort = tableHead[2] + " " + "DESC";
-            }
+
 
             sr.Dispose();
             fs.Dispose();
 
 
-            return new List<List<string>>();
+            return result;
         }
     }
 }

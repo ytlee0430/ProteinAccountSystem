@@ -16,7 +16,7 @@ namespace Controller
         private ImportExcelSevice _ImportExcelSevice = new ImportExcelSevice();
         private StockService _stockService = new StockService();
         private ShippmentService _shippmentService = new ShippmentService();
-        private List<List<string>> _excelDatas = new List<List<string>>();
+        private List<PhuraseDetailModel> _phuraseDetailModels = new List<PhuraseDetailModel>();
         public bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "")
         {
             throw new NotImplementedException();
@@ -34,21 +34,21 @@ namespace Controller
         /// <returns></returns>
         public bool importShipDataProcess(string path)
         {
-            _excelDatas = _ImportExcelSevice.AnalyzeShipData(path);
-            _stockService.AddClientPhuraseRecord(_excelDatas[0]);
-            _stockService.UpdateDBStorage(_excelDatas[1]);
+            var datas = _ImportExcelSevice.AnalyzeShipData(path);
+            _phuraseDetailModels = _stockService.GetPhuraseDetailModels(datas);
+
+            _stockService.AddClientPhuraseRecord(_phuraseDetailModels);
+            _stockService.UpdateDBStorage(_phuraseDetailModels);
 
             return true;
         }
 
         public bool CreateShippmentTickets()
         {
-            if (!_excelDatas[2].Any())
+            if (!_phuraseDetailModels.Any())
                 return false;
 
-            _shippmentService.CreateShippmentTicket(_excelDatas[2]);
-
-            return true;
+            return _shippmentService.CreateShippmentTicket(_phuraseDetailModels);
         }
 
 

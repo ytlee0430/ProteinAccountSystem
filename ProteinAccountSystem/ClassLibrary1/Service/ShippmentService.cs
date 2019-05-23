@@ -18,9 +18,9 @@ namespace Controller.Service
         MSWord.Application wordApp = new MSWord.Application();//初始化
         object _savePath = "";//路徑變數 ，需使用object
 
-        public bool CreateShippmentTicket(List<string> models)
+        public bool CreateShippmentTicket(List<PhuraseDetailModel> models)
         {
-            var result = GetPhuraseDetailModels(models);
+            var result = models;
 
             wordApp.Visible = false;
             Object Nothing = Missing.Value;
