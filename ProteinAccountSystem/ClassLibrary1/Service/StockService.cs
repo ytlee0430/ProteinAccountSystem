@@ -1,4 +1,5 @@
-﻿using CommonUtility.Entity;
+﻿using CodeFirstORM;
+using CommonUtility.Entity;
 using Controller.Interface;
 using System;
 using System.Collections.Generic;

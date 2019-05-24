@@ -36,6 +36,11 @@ namespace CommonUtility.Entity
         public ProductionType ProductionType { get; set; }
 
         /// <summary>
+        /// 包裝
+        /// </summary>
+        public PackageEnum Package { get; set; }
+
+        /// <summary>
         /// 商品訂價
         /// </summary>
         public int NetPrice { get; set; }
@@ -44,16 +49,16 @@ namespace CommonUtility.Entity
         /// in precentage
         /// </summary>
         public double Discount { get; set; }
-        
+
         /// <summary>
         /// 商品成本
         /// </summary>
         public int Cost { get; set; }
-        
+
         /// <summary>
         /// 稅金
         /// </summary>
         public int Tax { get; set; }
-        
+
     }
 }

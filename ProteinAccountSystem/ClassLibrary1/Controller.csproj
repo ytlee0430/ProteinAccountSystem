@@ -67,6 +67,10 @@
     <Compile Include="Service\StockService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodeFirstORM\CodeFirstORM.csproj">
+      <Project>{39CAD8BE-A7B8-446C-8392-175303A8E78E}</Project>
+      <Name>CodeFirstORM</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CommonUtility\CommonUtility.csproj">
       <Project>{DD1F06DC-0FBA-40DB-BB49-FAB46E74EC22}</Project>
       <Name>CommonUtility</Name>

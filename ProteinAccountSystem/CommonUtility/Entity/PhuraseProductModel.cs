@@ -9,6 +9,11 @@ namespace CommonUtility.Entity
     public class PhuraseProductModel
     {
         /// <summary>
+        /// 商品編號
+        /// </summary>
+        public string ItemCode { get; set; }   
+        
+        /// <summary>
         /// 商品名稱
         /// </summary>
         public string ProductName { get; set; }
@@ -27,5 +32,6 @@ namespace CommonUtility.Entity
         /// 商品售價(未稅)
         /// </summary>
         public int ProductMoneyWithoutTax { get; set; }
+
     }
 }

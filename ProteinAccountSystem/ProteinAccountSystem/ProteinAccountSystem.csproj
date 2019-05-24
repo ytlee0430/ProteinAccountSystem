@@ -54,6 +54,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="新增銷售項目.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="新增銷售項目.Designer.cs">
+      <DependentUpon>新增銷售項目.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -66,6 +72,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="新增銷售項目.resx">
+      <DependentUpon>新增銷售項目.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -83,6 +92,10 @@
     <ProjectReference Include="..\ClassLibrary1\Controller.csproj">
       <Project>{8281E164-F60B-43DD-A01D-1CEA072D8C8E}</Project>
       <Name>Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonUtility\CommonUtility.csproj">
+      <Project>{DD1F06DC-0FBA-40DB-BB49-FAB46E74EC22}</Project>
+      <Name>CommonUtility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -37,5 +37,11 @@ namespace ProteinAccountSystem
         {
             var result = shopeeController.CreateShippmentTickets();
         }
+
+        private void btnCreateNewSale_Click(object sender, EventArgs e)
+        {
+            FromCreateNewSale a = new FromCreateNewSale();
+            a.ShowDialog();
+        }
     }
 }
