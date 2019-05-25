@@ -62,6 +62,10 @@
       <Project>{39cad8be-a7b8-446c-8392-175303a8e78e}</Project>
       <Name>CodeFirstORM</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CommonUtility\CommonUtility.csproj">
+      <Project>{DD1F06DC-0FBA-40DB-BB49-FAB46E74EC22}</Project>
+      <Name>CommonUtility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

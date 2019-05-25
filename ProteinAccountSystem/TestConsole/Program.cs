@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CodeFirstORM;
+using CodeFirstORM.DBLayer;
 
 namespace TestConsole
 {
@@ -12,6 +13,8 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
+            var testRepository = new ItemRepository();
+            var x = testRepository.GetList( i=> true );
             Test.TestAddItem();
         }
     }
