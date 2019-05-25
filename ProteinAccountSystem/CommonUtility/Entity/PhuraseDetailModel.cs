@@ -10,6 +10,9 @@ namespace CommonUtility.Entity
 {
     public class PhuraseDetailModel
     {
+
+        public int Key { get; set; }
+
         /// <summary>
         /// 訂單編號
         /// </summary>

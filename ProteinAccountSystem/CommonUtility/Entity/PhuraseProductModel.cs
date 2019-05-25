@@ -8,6 +8,9 @@ namespace CommonUtility.Entity
 {
     public class PhuraseProductModel
     {
+
+        public int Key { get; set; }
+
         /// <summary>
         /// 商品編號
         /// </summary>
