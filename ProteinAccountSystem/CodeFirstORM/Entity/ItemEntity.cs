@@ -57,5 +57,10 @@ namespace CodeFirstORM
         /// </summary>
         public int Tax { get; set; }
 
+
+        /// <summary>
+        /// 包裝
+        /// </summary>
+        public int Package { get; set; }
     }
 }

@@ -7,13 +7,13 @@ namespace CodeFirstORM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddUrl : IMigrationMetadata
+    public sealed partial class addnewdb : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddUrl));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addnewdb));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905211708027_AddUrl"; }
+            get { return "201905250950597_add new db"; }
         }
         
         string IMigrationMetadata.Source

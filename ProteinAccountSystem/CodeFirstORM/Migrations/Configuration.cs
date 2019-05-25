@@ -5,14 +5,14 @@ namespace CodeFirstORM.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<CodeFirstORM.ProteinContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<CodeFirstORM.ProteinDB>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(CodeFirstORM.ProteinContext context)
+        protected override void Seed(CodeFirstORM.ProteinDB context)
         {
             //  This method will be called after migrating to the latest version.
 

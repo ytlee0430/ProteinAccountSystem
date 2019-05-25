@@ -40,6 +40,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,33 +50,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context.cs" />
-    <Compile Include="Entity\Item.cs" />
-    <Compile Include="Entity\PhuraseDetailModel.cs" />
-    <Compile Include="Entity\PhuraseProductModel.cs" />
-    <Compile Include="Migrations\201905211708027_AddUrl.cs" />
-    <Compile Include="Migrations\201905211708027_AddUrl.Designer.cs">
-      <DependentUpon>201905211708027_AddUrl.cs</DependentUpon>
+    <Compile Include="DBLayer\ItemRepository.cs" />
+    <Compile Include="Entity\ItemEntity.cs" />
+    <Compile Include="Entity\PhuraseDetailEntity.cs" />
+    <Compile Include="Entity\PhuraseProductEntity.cs" />
+    <Compile Include="Migrations\201905250950597_add new db.cs" />
+    <Compile Include="Migrations\201905250950597_add new db.Designer.cs">
+      <DependentUpon>201905250950597_add new db.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905221556000_add entity.cs" />
-    <Compile Include="Migrations\201905221556000_add entity.Designer.cs">
-      <DependentUpon>201905221556000_add entity.cs</DependentUpon>
+    <Compile Include="Migrations\201905250959062_add new database.cs" />
+    <Compile Include="Migrations\201905250959062_add new database.Designer.cs">
+      <DependentUpon>201905250959062_add new database.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ProteinDB.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905211708027_AddUrl.resx">
-      <DependentUpon>201905211708027_AddUrl.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905250950597_add new db.resx">
+      <DependentUpon>201905250950597_add new db.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905221556000_add entity.resx">
-      <DependentUpon>201905221556000_add entity.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905250959062_add new database.resx">
+      <DependentUpon>201905250959062_add new database.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonUtility\CommonUtility.csproj">
+      <Project>{DD1F06DC-0FBA-40DB-BB49-FAB46E74EC22}</Project>
+      <Name>CommonUtility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,11 +3,27 @@ namespace CodeFirstORM.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class addentity : DbMigration
+    public partial class addnewdb : DbMigration
     {
         public override void Up()
         {
-            RenameTable(name: "dbo.Items", newName: "ItemEntities");
+            CreateTable(
+                "dbo.ItemEntities",
+                c => new
+                    {
+                        Key = c.Int(nullable: false, identity: true),
+                        Storage = c.Int(nullable: false),
+                        ItemCode = c.Int(nullable: false),
+                        Flavor = c.Int(nullable: false),
+                        Brand = c.Int(nullable: false),
+                        ProductionType = c.Int(nullable: false),
+                        NetPrice = c.Int(nullable: false),
+                        Discount = c.Double(nullable: false),
+                        Cost = c.Int(nullable: false),
+                        Tax = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Key);
+            
             CreateTable(
                 "dbo.PhuraseDetailEntities",
                 c => new
@@ -43,7 +59,7 @@ namespace CodeFirstORM.Migrations
         {
             DropTable("dbo.PhuraseProductEntities");
             DropTable("dbo.PhuraseDetailEntities");
-            RenameTable(name: "dbo.ItemEntities", newName: "Items");
+            DropTable("dbo.ItemEntities");
         }
     }
 }

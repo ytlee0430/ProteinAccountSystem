@@ -35,8 +35,6 @@ namespace ProteinAccountSystem
             Enum.TryParse(cbxPackages.SelectedItem.ToString(), out PackageEnum package);
             item.Package = package;
             items.Add(item);
-
-
         }
 
         private void btnCreateSale_Click(object sender, EventArgs e)

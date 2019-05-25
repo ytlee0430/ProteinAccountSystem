@@ -10,6 +10,8 @@ namespace CommonUtility.Entity
 {
     public class Item
     {
+        public int Key { get; set; }
+
         /// <summary>
         /// 庫存
         /// </summary>
