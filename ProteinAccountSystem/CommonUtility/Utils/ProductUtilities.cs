@@ -10,9 +10,9 @@ namespace CommonUtility.Utils
    public static class ProductUtilities
     {
 
-        public static string GetItemCodes(Item item)
+        public static int GetItemCodes(Item item)
         {
-            return "";
+            return 0;
         }
     }
 }

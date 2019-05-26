@@ -13,6 +13,11 @@ namespace CodeFirstORM
         public int Key { get; set; }
 
         /// <summary>
+        /// 商品編號
+        /// </summary>
+        public int ItemCode { get; set; }
+
+        /// <summary>
         /// 商品名稱
         /// </summary>
         public string ProductName { get; set; }

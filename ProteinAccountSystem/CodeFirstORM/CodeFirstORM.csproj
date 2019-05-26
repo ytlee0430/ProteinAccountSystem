@@ -71,6 +71,14 @@
     <Compile Include="Migrations\201905251129458_update d.Designer.cs">
       <DependentUpon>201905251129458_update d.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905261255201_add column.cs" />
+    <Compile Include="Migrations\201905261255201_add column.Designer.cs">
+      <DependentUpon>201905261255201_add column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905261722334_change itemcode type.cs" />
+    <Compile Include="Migrations\201905261722334_change itemcode type.Designer.cs">
+      <DependentUpon>201905261722334_change itemcode type.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProteinDB.cs" />
     <Compile Include="Test.cs" />
@@ -91,6 +99,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905251129458_update d.resx">
       <DependentUpon>201905251129458_update d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905261255201_add column.resx">
+      <DependentUpon>201905261255201_add column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905261722334_change itemcode type.resx">
+      <DependentUpon>201905261722334_change itemcode type.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

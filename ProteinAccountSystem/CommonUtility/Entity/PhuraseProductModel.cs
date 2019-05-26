@@ -14,7 +14,7 @@ namespace CommonUtility.Entity
         /// <summary>
         /// 商品編號
         /// </summary>
-        public string ItemCode { get; set; }   
+        public int ItemCode { get; set; }   
         
         /// <summary>
         /// 商品名稱

@@ -23,6 +23,9 @@ namespace Controller.Service
             workbook.LoadFromFile(filePath);
             //获取第一张工作表
             Worksheet sheet = workbook.Worksheets[0];
+
+            var cell = sheet.Rows[0].Cells.First();
+
             //保存为csv格式
             sheet.SaveToFile(@"C:\Users\王志偉\Desktop\123.csv", ",", Encoding.UTF8);
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodeFirstORM.DBLayer;
 
 namespace Controller.Service
 {
@@ -13,16 +14,33 @@ namespace Controller.Service
     {
         public bool AddClientPhuraseRecord(List<PhuraseDetailModel> stockData)
         {
-            throw new NotImplementedException();
+            var repo = new PhuraseDetailRepository();
+            return repo.AddItems(stockData);
         }
 
         public bool UpdateDBStorage(List<PhuraseDetailModel> stockData)
         {
-         
-            throw new NotImplementedException();
+            Dictionary<int, int> codeToNumDic = new Dictionary<int, int>();
+
+            foreach (var detail in stockData)
+                foreach (var product in detail.Products)
+                {
+                    if (!codeToNumDic.TryGetValue(product.ItemCode, out int num))
+                        codeToNumDic[product.ItemCode] = 1;
+                    else
+                        codeToNumDic[product.ItemCode] = num + 1;
+                }
+
+            var repo = new ItemRepository();
+            var items = repo.GetList(p => codeToNumDic.ContainsKey(p.ItemCode));
+
+            foreach (var item in items)
+                item.Storage -= codeToNumDic[item.ItemCode];
+
+            return repo.UpdateItems(items);
         }
 
-     
+
 
         /// <summary>
         /// 將excel資料轉成model
@@ -35,7 +53,7 @@ namespace Controller.Service
             foreach (var item in datas)
             {
                 var a = item.Split(',');
-               
+
                 //找出相同訂單號碼的資料
                 var sameOrderNumber = datas.Select(x => x.Split(',')[0] == a[0]).ToList();
                 var products = new List<PhuraseProductModel>();

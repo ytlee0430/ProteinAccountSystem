@@ -48,6 +48,38 @@ namespace CodeFirstORM.DBLayer
             return true;
         }
 
+        public bool AddItems(List<PhuraseDetailModel> details)
+        {
+            try
+            {
+                foreach (var detail in details)
+                {
+                    ProteinDbContext.PhuraseDetails.Add(
+                        new PhuraseDetailEntity()
+                        {
+                            Account = detail.Account,
+                            DeliveryNumber = detail.DeliveryNumber,
+                            OrderNumber = detail.OrderNumber,
+                            Plat = (int)detail.Plat,
+                            Products = JsonConvert.SerializeObject(detail.Products),
+                            TotalMoney = detail.TotalMoney,
+                            TotalTax = detail.TotalTax,
+                            TransferMoney = detail.TransferMoney,
+                            TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax
+                        }
+                    );
+                }
+                ProteinDbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
+            return true;
+        }
+
+
         public List<PhuraseDetailModel> GetList(Expression<Func<PhuraseDetailEntity, bool>> exp)
         {
             try
