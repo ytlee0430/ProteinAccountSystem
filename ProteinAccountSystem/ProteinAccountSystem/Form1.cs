@@ -18,6 +18,20 @@ namespace ProteinAccountSystem
         public Form1()
         {
             InitializeComponent();
+           // dgvStorage.ColumnCount = 13;
+            //dgvStorage.Columns[0].Name = "Key";
+            //dgvStorage.Columns[1].Name = "Storage";
+            //dgvStorage.Columns[2].Name = "ItemCode";
+            //dgvStorage.Columns[3].Name = "Flavor";
+            //dgvStorage.Columns[4].Name = "Brand";
+            //dgvStorage.Columns[5].Name = "ProductionType";
+            //dgvStorage.Columns[6].Name = "ProductionDetailType";
+            //dgvStorage.Columns[7].Name = "Package";
+            //dgvStorage.Columns[8].Name = "NetPrice";
+            //dgvStorage.Columns[9].Name = "Discount";
+            //dgvStorage.Columns[10].Name = "Cost";
+            //dgvStorage.Columns[11].Name = "Tax";
+            //dgvStorage.Columns[12].Name = "ExpiredDate";
         }
 
         /// <summary>
@@ -44,5 +58,12 @@ namespace ProteinAccountSystem
             a.ShowDialog();
         }
 
+        private void btnShowStorage_Click(object sender, EventArgs e)
+        {
+            var storages = _shopeeController.GetStorage();
+            dgvStorage.DataSource = storages;
+            dgvStorage.AutoResizeColumns(
+                DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+        }
     }
 }

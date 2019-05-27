@@ -70,5 +70,15 @@ namespace Controller
         {
             throw new NotImplementedException();
         }
+
+
+        /// <summary>
+        /// 取得庫存
+        /// </summary>
+        /// <returns></returns>
+        public List<Item> GetStorage()
+        {
+           return _stockService.GetStorage();
+        }
     }
 }

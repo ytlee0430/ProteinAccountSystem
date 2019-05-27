@@ -79,6 +79,14 @@
     <Compile Include="Migrations\201905261722334_change itemcode type.Designer.cs">
       <DependentUpon>201905261722334_change itemcode type.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905271417499_add expireddate.cs" />
+    <Compile Include="Migrations\201905271417499_add expireddate.Designer.cs">
+      <DependentUpon>201905271417499_add expireddate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905271458531_upate db.cs" />
+    <Compile Include="Migrations\201905271458531_upate db.Designer.cs">
+      <DependentUpon>201905271458531_upate db.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProteinDB.cs" />
     <Compile Include="Test.cs" />
@@ -105,6 +113,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905261722334_change itemcode type.resx">
       <DependentUpon>201905261722334_change itemcode type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905271417499_add expireddate.resx">
+      <DependentUpon>201905271417499_add expireddate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905271458531_upate db.resx">
+      <DependentUpon>201905271458531_upate db.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

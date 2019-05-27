@@ -12,8 +12,8 @@ namespace Test
         public void GetTest()
         {
             var testRepository = new ItemRepository();
-            var x = testRepository.GetList(i => i.Key == 1);
-            Assert.AreEqual(1,x.First().Key);
+            var x = testRepository.GetList(i => i.Storage > -1);
+            Assert.AreEqual(1, x.First().Key);
         }
     }
 }

@@ -42,13 +42,20 @@ namespace Controller.Service
                 }
 
             var repo = new ItemRepository();
-            var items = repo.GetList(p => codeToNumDic.ContainsKey(p.ItemCode));
-
+            var items = repo.GetList(p => codeToNumDic.ContainsKey(p.ItemCode)).OrderBy(o => o.ExpiredDate).GroupBy(g => g.ItemCode).Select(s => s.FirstOrDefault());
             foreach (var item in items)
                 item.Storage -= codeToNumDic[item.ItemCode];
-
             return repo.UpdateItems(items);
         }
 
+        /// <summary>
+        /// 取得庫存
+        /// </summary>
+        /// <returns></returns>
+        public List<Item> GetStorage()
+        {
+            var repo = new ItemRepository();
+            return repo.GetList(i => i.Storage > 0);
+        }
     }
 }

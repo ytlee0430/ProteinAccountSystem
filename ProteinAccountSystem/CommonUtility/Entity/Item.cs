@@ -67,5 +67,10 @@ namespace CommonUtility.Entity
         /// </summary>
         public int Tax { get; set; }
 
+        /// <summary>
+        /// 保存期限
+        /// </summary>
+        public DateTime ExpiredDate { get; set; }
+
     }
 }

@@ -36,6 +36,7 @@ namespace CodeFirstORM.DBLayer
                         ProductionType = (int)item.ProductionType,
                         Storage = item.Storage,
                         Tax = item.Tax,
+                        ExpiredDate = item.ExpiredDate
                     }
                     );
                 ProteinDbContext.SaveChanges();
@@ -65,6 +66,7 @@ namespace CodeFirstORM.DBLayer
                     ProductionType = (ProductionType)i.ProductionType,
                     Storage = i.Storage,
                     Tax = i.Tax,
+                    ExpiredDate = i.ExpiredDate
                 }).ToList();
             }
             catch (Exception e)
@@ -95,6 +97,8 @@ namespace CodeFirstORM.DBLayer
                 entity.ProductionType = (int)item.ProductionType;
                 entity.Storage = item.Storage;
                 entity.Tax = item.Tax;
+                entity.ExpiredDate = item.ExpiredDate;
+
                 return ProteinDbContext.SaveChanges() > 0;
             }
             catch (Exception e)
@@ -106,7 +110,7 @@ namespace CodeFirstORM.DBLayer
             return true;
         }
 
-        public bool UpdateItems(List<Item> updateItems)
+        public bool UpdateItems(IEnumerable<Item> updateItems)
         {
             try
             {
@@ -126,6 +130,7 @@ namespace CodeFirstORM.DBLayer
                     entity.ProductionType = (int)item.ProductionType;
                     entity.Storage = item.Storage;
                     entity.Tax = item.Tax;
+                    entity.ExpiredDate = item.ExpiredDate;
                 }
                 return ProteinDbContext.SaveChanges() > 0;
             }

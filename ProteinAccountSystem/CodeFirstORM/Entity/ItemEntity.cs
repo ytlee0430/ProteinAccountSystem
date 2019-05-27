@@ -20,6 +20,7 @@ namespace CodeFirstORM
         /// <summary>
         /// 商品編號
         /// </summary>
+        [Required]
         public string ItemCode { get; set; }
 
         /// <summary>
@@ -62,5 +63,10 @@ namespace CodeFirstORM
         /// 包裝
         /// </summary>
         public int Package { get; set; }
+
+        /// <summary>
+        /// 保存期限
+        /// </summary>
+        public DateTime ExpiredDate { get; set; }
     }
 }
