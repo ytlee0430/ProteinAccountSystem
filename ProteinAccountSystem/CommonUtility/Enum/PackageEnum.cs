@@ -8,9 +8,10 @@ namespace CommonUtility.Enum
 {
     public enum PackageEnum
     {
-        None=0,
-        OneKg = 1,
-        TwoHalfKg = 2,
-        FiveKg = 3,
+ 
+        OneKg = 01,
+        TwoHalfKg = 02,
+        FiveKg = 03,
+        NoPackage=06
     }
 }

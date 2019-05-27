@@ -8,8 +8,8 @@ namespace CommonUtility.Enum
 {
     public enum BrandEnum
     {
-        Myprotein = 0,
-        EatMe = 1,
-        RDX = 2,
+        Myprotein = 01,
+        EatMe = 02,
+        RDX = 02,
     }
 }

@@ -8,8 +8,8 @@ namespace CommonUtility.Enum
 {
     public enum ProductionType
     {
-        WheyProtein = 0,
-        ProtectiveGear = 2,
-        Other = 3,
+        WheyProtein = 01,
+        ProtectiveGear = 02,
+        Other = 03,
     }
 }

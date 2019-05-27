@@ -12,15 +12,25 @@ namespace Controller.Service
 {
     public class StockService : IStock
     {
-        public bool AddClientPhuraseRecord(List<PhuraseDetailModel> stockData)
+        /// <summary>
+        /// 加入用戶購買紀錄到資料庫
+        /// </summary>
+        /// <param name="stockData"></param>
+        /// <returns></returns>
+        public bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData)
         {
             var repo = new PhuraseDetailRepository();
             return repo.AddItems(stockData);
         }
 
+        /// <summary>
+        /// 更新db庫存數量
+        /// </summary>
+        /// <param name="stockData"></param>
+        /// <returns></returns>
         public bool UpdateDBStorage(List<PhuraseDetailModel> stockData)
         {
-            Dictionary<int, int> codeToNumDic = new Dictionary<int, int>();
+            Dictionary<string, int> codeToNumDic = new Dictionary<string, int>();
 
             foreach (var detail in stockData)
                 foreach (var product in detail.Products)
@@ -40,50 +50,5 @@ namespace Controller.Service
             return repo.UpdateItems(items);
         }
 
-
-
-        /// <summary>
-        /// 將excel資料轉成model
-        /// </summary>
-        /// <param name="datas"></param>
-        /// <returns></returns>
-        public List<PhuraseDetailModel> GetPhuraseDetailModels(List<string> datas)
-        {
-            var result = new List<PhuraseDetailModel>();
-            foreach (var item in datas)
-            {
-                var a = item.Split(',');
-
-                //找出相同訂單號碼的資料
-                var sameOrderNumber = datas.Select(x => x.Split(',')[0] == a[0]).ToList();
-                var products = new List<PhuraseProductModel>();
-                foreach (var str in sameOrderNumber)
-                {
-                    var b = item.Split(',');
-                    products.Add(new PhuraseProductModel()
-                    {
-                        ProductName = b[18],
-                        Count = Convert.ToInt32(b[19]),
-                        ProductMoney = Convert.ToInt32(b[5]),
-                        ProductMoneyWithoutTax = Convert.ToInt32(Convert.ToInt32(b[5]) / 1.05),
-                    });
-                }
-
-                result.Add(new PhuraseDetailModel()
-                {
-                    OrderNumber = a[0],
-                    Account = a[3],
-                    TransferMoney = Convert.ToInt32(a[6]),
-                    TotalMoney = Convert.ToInt32(a[7]),
-                    Products = products,
-                    TotalTax = Convert.ToInt32(Convert.ToInt32(a[7]) / 1.05),
-                    TransferMoneyWithoutTax = Convert.ToInt32(a[7]) - Convert.ToInt32(Convert.ToInt32(a[7]) / 1.05),
-                    DeliveryNumber = a[40],
-                    Remark = a[45],
-                });
-            }
-
-            return result;
-        }
     }
 }

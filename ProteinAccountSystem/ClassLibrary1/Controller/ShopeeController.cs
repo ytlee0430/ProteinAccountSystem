@@ -34,14 +34,23 @@ namespace Controller
         /// <returns></returns>
         public bool importShipDataProcess(string path)
         {
-            var datas = _ImportExcelSevice.AnalyzeShipData(path);
-            _phuraseDetailModels = _stockService.GetPhuraseDetailModels(datas);
-
-            _stockService.AddClientPhuraseRecord(_phuraseDetailModels);
+            _phuraseDetailModels = _ImportExcelSevice.AnalyzeShipData(path);
+            _stockService.AddDBlientPhuraseRecord(_phuraseDetailModels);
             _stockService.UpdateDBStorage(_phuraseDetailModels);
 
             return true;
         }
+
+        public bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData)
+        {
+
+            return _stockService.AddDBlientPhuraseRecord(stockData);
+        }
+        public bool UpdateDBStorage(List<PhuraseDetailModel> stockData)
+        {
+            return _stockService.UpdateDBStorage(stockData);
+        }
+
 
         public bool CreateShippmentTickets()
         {

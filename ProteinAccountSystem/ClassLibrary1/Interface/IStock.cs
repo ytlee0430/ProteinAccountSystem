@@ -12,8 +12,7 @@ namespace Controller.Interface
     {
         bool UpdateDBStorage(List<PhuraseDetailModel> stockData);
 
-        bool AddClientPhuraseRecord(List<PhuraseDetailModel> stockData);
+        bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData);
 
-        List<PhuraseDetailModel> GetPhuraseDetailModels(List<string> datas);
     }
 }

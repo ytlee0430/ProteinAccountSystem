@@ -1,4 +1,5 @@
-﻿using Controller.Interface;
+﻿using CommonUtility.Entity;
+using Controller.Interface;
 using Spire.Xls;
 using System;
 using System.Collections.Generic;
@@ -16,43 +17,41 @@ namespace Controller.Service
         /// 更新需出貨excel
         /// </summary>
         /// <param name="filePath"></param>
-        public List<string> AnalyzeShipData(string filePath)
+        public List<PhuraseDetailModel> AnalyzeShipData(string filePath)
         {
+            var result = new List<PhuraseDetailModel>();
+
             //载入xls文档
             Workbook workbook = new Workbook();
             workbook.LoadFromFile(filePath);
             //获取第一张工作表
             Worksheet sheet = workbook.Worksheets[0];
 
-            var cell = sheet.Rows[0].Cells.First();
+            var cell = sheet.Rows[1].Cells.First();
 
-            //保存为csv格式
-            sheet.SaveToFile(@"C:\Users\王志偉\Desktop\123.csv", ",", Encoding.UTF8);
-
-            var result = new List<string>();
-            FileStream fs = new FileStream(@"C:\Users\王志偉\Desktop\123.csv", FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs, Encoding.UTF8);
-          
-            //記錄每行記錄中的各字段內容
-            bool IsFirst = true;
-            while (!sr.EndOfStream)
+            for (int i = 2; i < sheet.Rows.Count(); i++)
             {
-                if (IsFirst == true)
-                {
-                    IsFirst = false;
-                }
-                else
-                {
-                    var line = sr.ReadLine();
-                    result.Add(line);
-                }
+                var cells = sheet.Rows[i].Cells;
+                var data = new PhuraseDetailModel();
+                data.OrderNumber = cells[0].DisplayedText;
+                data.Account = cells[3].DisplayedText;
+                data.TransferMoney = Convert.ToInt32(Convert.ToDouble(cells[6].DisplayedText));
+                data.TotalMoney = Convert.ToInt32(Convert.ToDouble(cells[7].DisplayedText));
+                data.TotalTax = Convert.ToInt32(Convert.ToDouble(cells[7].DisplayedText) / 1.05);
+                data.TransferMoneyWithoutTax = Convert.ToInt32(Convert.ToDouble(cells[6].DisplayedText) / 1.05);
+                data.Products = new List<PhuraseProductModel>(){
+                    new PhuraseProductModel()
+                    {
+                        ProductName=cells[23].DisplayedText, // 需要再蝦皮編輯商品貨號 
+                        Count=Convert.ToInt32(Convert.ToDouble( cells[24].DisplayedText)),
+                        ProductMoney=Convert.ToInt32(Convert.ToDouble( cells[5].DisplayedText)),
+                        ProductMoneyWithoutTax=Convert.ToInt32( Convert.ToDouble(cells[5].DisplayedText)/1.05),
+                        //ItemCode=cells[22].ToString()+cells[23].ToString()
+                    } };
+                data.DeliveryNumber = cells[40].DisplayedText;
+                data.Remark = "買家備註:" + cells[44].DisplayedText + "單備註" + cells[45].DisplayedText;
+                result.Add(data);
             }
-
-
-            sr.Dispose();
-            fs.Dispose();
-
-
             return result;
         }
     }

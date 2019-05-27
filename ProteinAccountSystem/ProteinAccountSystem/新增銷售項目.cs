@@ -1,6 +1,7 @@
 ﻿using CommonUtility.Entity;
 using CommonUtility.Enum;
 using CommonUtility.Utils;
+using Controller;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,9 +19,10 @@ namespace ProteinAccountSystem
         PhuraseDetailModel model;
         List<PhuraseProductModel> phurases = new List<PhuraseProductModel>();
         List<Item> items = new List<Item>();
-
-        public FromCreateNewSale()
+        ShopeeController _controller;
+        public FromCreateNewSale(ShopeeController controller)
         {
+            _controller = controller;
             InitializeComponent();
         }
 
@@ -52,11 +54,13 @@ namespace ProteinAccountSystem
 
             model.Products = phurases;
             model.TotalMoney = phurases.Sum(x => x.ProductMoney) + Convert.ToInt32(tbxTransferMoney);
-            model.TransferMoney= Convert.ToInt32(tbxTransferMoney);
+            model.TransferMoney = Convert.ToInt32(tbxTransferMoney);
             model.TotalTax = Convert.ToInt32((phurases.Sum(x => x.ProductMoney) + Convert.ToInt32(tbxTransferMoney)) * 0.05);
             model.ReceiptNumber = tbxReceipyNumber.Text;
 
-            
+            _controller.AddDBlientPhuraseRecord(new List<PhuraseDetailModel>() { model });
+            _controller.UpdateDBStorage(new List<PhuraseDetailModel>() { model });
+
         }
     }
 }

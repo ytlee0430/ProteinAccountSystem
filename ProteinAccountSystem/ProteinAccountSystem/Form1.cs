@@ -14,7 +14,7 @@ namespace ProteinAccountSystem
 {
     public partial class Form1 : Form
     {
-        ShopeeController shopeeController = new ShopeeController();
+        ShopeeController _shopeeController = new ShopeeController();
         public Form1()
         {
             InitializeComponent();
@@ -29,19 +29,20 @@ namespace ProteinAccountSystem
         {
             openFileDialog1.ShowDialog();
             var path = openFileDialog1.FileName;
-            shopeeController.importShipDataProcess(path);
+            _shopeeController.importShipDataProcess(path);
 
         }
 
         private void btnCreateShippmentTicket_Click(object sender, EventArgs e)
         {
-            var result = shopeeController.CreateShippmentTickets();
+            var result = _shopeeController.CreateShippmentTickets();
         }
 
         private void btnCreateNewSale_Click(object sender, EventArgs e)
         {
-            FromCreateNewSale a = new FromCreateNewSale();
+            FromCreateNewSale a = new FromCreateNewSale(_shopeeController);
             a.ShowDialog();
         }
+
     }
 }
