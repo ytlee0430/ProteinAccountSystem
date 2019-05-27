@@ -21,5 +21,12 @@ namespace CommonUtility.Interface
         List<Item> GetItems(BrandEnum brand, FlavorEnum flavor, ProductionType type, ProductionDetail detail);
 
         bool importShipDataProcess(string path);
+
+
+        bool CreateShippmentTickets();
+        List<Item> GetStorage(BrandEnum brand, FlavorEnum flavor, PackageEnum package, ProductionType productionType, ProductionDetail productionDetailType);
+
+        bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> phuraseDetailModels);
+        bool UpdateDBStorage(List<PhuraseDetailModel> list);
     }
 }

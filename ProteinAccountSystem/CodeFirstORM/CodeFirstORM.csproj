@@ -87,6 +87,10 @@
     <Compile Include="Migrations\201905271458531_upate db.Designer.cs">
       <DependentUpon>201905271458531_upate db.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905271802121_add item detia .cs" />
+    <Compile Include="Migrations\201905271802121_add item detia .Designer.cs">
+      <DependentUpon>201905271802121_add item detia .cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProteinDB.cs" />
     <Compile Include="Test.cs" />
@@ -119,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905271458531_upate db.resx">
       <DependentUpon>201905271458531_upate db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905271802121_add item detia .resx">
+      <DependentUpon>201905271802121_add item detia .cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

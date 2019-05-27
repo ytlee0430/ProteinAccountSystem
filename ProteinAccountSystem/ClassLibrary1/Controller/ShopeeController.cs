@@ -43,14 +43,12 @@ namespace Controller
 
         public bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData)
         {
-
             return _stockService.AddDBlientPhuraseRecord(stockData);
         }
         public bool UpdateDBStorage(List<PhuraseDetailModel> stockData)
         {
             return _stockService.UpdateDBStorage(stockData);
         }
-
 
         public bool CreateShippmentTickets()
         {
@@ -76,9 +74,9 @@ namespace Controller
         /// 取得庫存
         /// </summary>
         /// <returns></returns>
-        public List<Item> GetStorage()
+        public List<Item> GetStorage(BrandEnum brand, FlavorEnum flavor, PackageEnum package, ProductionType productionType, ProductionDetail productionDetailType)
         {
-           return _stockService.GetStorage();
+           return _stockService.GetStorage(brand,flavor,package, productionType, productionDetailType);
         }
     }
 }

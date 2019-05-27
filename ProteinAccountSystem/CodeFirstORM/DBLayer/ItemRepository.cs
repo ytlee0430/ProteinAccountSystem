@@ -164,5 +164,38 @@ namespace CodeFirstORM.DBLayer
 
         }
 
+
+        public Expression<Func<ItemEntity, bool>> GetItemExp(BrandEnum brand, FlavorEnum flavor, PackageEnum package, ProductionType productionType, ProductionDetail productionDetailType)
+        {
+            Expression<Func<ItemEntity, bool>> itemWhere = c => true;
+
+            if (brand != BrandEnum.Null)
+            {
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && c.Brand == (int)brand;
+            }
+            if (flavor != FlavorEnum.Null)
+            {
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && c.Flavor == (int)flavor;
+            }
+            if (package != PackageEnum.Null)
+            {
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && c.Package == (int)package;
+            }
+            if (productionType != ProductionType.Null)
+            {
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && c.ProductionType == (int)productionType;
+            }
+            if (productionDetailType != ProductionDetail.Null)
+            {
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && c.ProductionDetailType == (int)productionDetailType;
+            }
+
+            return itemWhere;
+        }
     }
 }

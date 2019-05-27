@@ -68,5 +68,12 @@ namespace CodeFirstORM
         /// 保存期限
         /// </summary>
         public DateTime ExpiredDate { get; set; }
+
+
+        /// <summary>
+        /// 商品細項分類
+        /// </summary>
+        public int ProductionDetailType { get; set; }
+
     }
 }

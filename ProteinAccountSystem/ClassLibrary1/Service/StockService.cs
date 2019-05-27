@@ -52,10 +52,11 @@ namespace Controller.Service
         /// 取得庫存
         /// </summary>
         /// <returns></returns>
-        public List<Item> GetStorage()
+        public List<Item> GetStorage(CommonUtility.Enum.BrandEnum brand, CommonUtility.Enum.FlavorEnum flavor, CommonUtility.Enum.PackageEnum package, CommonUtility.Enum.ProductionType productionType, CommonUtility.Enum.ProductionDetail productionDetailType)
         {
             var repo = new ItemRepository();
-            return repo.GetList(i => i.Storage > 0);
+            var ex = repo.GetItemExp(brand, flavor, package, productionType, productionDetailType);
+            return repo.GetList(ex);
         }
     }
 }

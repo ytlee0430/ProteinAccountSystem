@@ -59,5 +59,15 @@ namespace CodeFirstORM
         /// 購買平台 0:shopee 1:Rakuten
         /// </summary>
         public int Plat { get; set; } = 0;
+
+        /// <summary>
+        /// 備註
+        /// </summary>
+        public string Remark { get; set; }
+
+        /// <summary>
+        /// 發票號碼
+        /// </summary>
+        public string ReceiptNumber { get; set; }
     }
 }

@@ -35,7 +35,9 @@ namespace CodeFirstORM.DBLayer
                         TotalMoney = detail.TotalMoney,
                         TotalTax = detail.TotalTax,
                         TransferMoney = detail.TransferMoney,
-                        TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax
+                        TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax,
+                        Remark = detail.Remark,
+                        ReceiptNumber = detail.ReceiptNumber
                     }
                     );
                 ProteinDbContext.SaveChanges();
@@ -65,7 +67,9 @@ namespace CodeFirstORM.DBLayer
                             TotalMoney = detail.TotalMoney,
                             TotalTax = detail.TotalTax,
                             TransferMoney = detail.TransferMoney,
-                            TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax
+                            TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax,
+                            Remark = detail.Remark,
+                            ReceiptNumber = detail.ReceiptNumber
                         }
                     );
                 }
@@ -95,7 +99,9 @@ namespace CodeFirstORM.DBLayer
                     TotalMoney = detail.TotalMoney,
                     TotalTax = detail.TotalTax,
                     TransferMoney = detail.TransferMoney,
-                    TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax
+                    TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax,
+                    Remark = detail.Remark,
+                    ReceiptNumber = detail.ReceiptNumber
                 }).ToList();
             }
             catch (Exception e)
@@ -123,6 +129,8 @@ namespace CodeFirstORM.DBLayer
                 entity.TotalTax = detail.TotalTax;
                 entity.TransferMoney = detail.TransferMoney;
                 entity.TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax;
+                entity.Remark = detail.Remark;
+                entity.ReceiptNumber = detail.ReceiptNumber;
                 return ProteinDbContext.SaveChanges() > 0;
             }
             catch (Exception e)
@@ -150,6 +158,8 @@ namespace CodeFirstORM.DBLayer
                     entity.TotalTax = detail.TotalTax;
                     entity.TransferMoney = detail.TransferMoney;
                     entity.TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax;
+                    entity.Remark = detail.Remark;
+                    entity.ReceiptNumber = detail.ReceiptNumber;
                 }
                 return ProteinDbContext.SaveChanges() > 0;
             }

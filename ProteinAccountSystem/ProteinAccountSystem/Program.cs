@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Controller;
 
 namespace ProteinAccountSystem
 {
@@ -16,7 +17,10 @@ namespace ProteinAccountSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            //TODO: dirty work here , use DI
+
+            Application.Run(new MainForm(new ShopeeController()));
         }
     }
 }
