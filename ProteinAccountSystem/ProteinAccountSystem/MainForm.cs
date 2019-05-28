@@ -21,23 +21,37 @@ namespace ProteinAccountSystem
         private IController _controller;
 
         List<PhuraseProductModel> _phurases = new List<PhuraseProductModel>();
-        List<OrderDisplayItem>  _displayItems = new List<OrderDisplayItem>();
+        List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
 
         public MainForm(IController controller)
         {
             InitializeComponent();
             _controller = controller;
-
+            //get enum discirption
             foreach (var brand in Enum.GetValues(typeof(BrandEnum)))
+            {
                 cbxBrands.Items.Add(brand.ToString());
+            }
+
             foreach (var flavor in Enum.GetValues(typeof(FlavorEnum)))
+            {
                 cbxFlavors.Items.Add(flavor.ToString());
+            }
+
             foreach (var package in Enum.GetValues(typeof(PackageEnum)))
+            {
                 cbxPackages.Items.Add(package.ToString());
+            }
+
             foreach (var item in Enum.GetValues(typeof(ProductionDetail)))
+            {
                 cbxProductDetail.Items.Add(item.ToString());
+            }
+
             foreach (var item in Enum.GetValues(typeof(ProductionType)))
+            {
                 cbxType.Items.Add(item.ToString());
+            }
         }
 
         /// <summary>
@@ -59,12 +73,12 @@ namespace ProteinAccountSystem
 
         private void btnShowStorage_Click(object sender, EventArgs e)
         {
-            var Brand = (BrandEnum) cbxBrands.SelectedIndex;
-            var Flavor = (FlavorEnum) cbxFlavors.SelectedIndex;
-            var Package = (PackageEnum) cbxPackages.SelectedIndex;
-            var ProductionType = (ProductionType) cbxType.SelectedIndex;
-            var ProductionDetailType = (ProductionDetail) cbxProductDetail.SelectedIndex;
-            var storages = _controller.GetStorage(Brand,Flavor,Package, ProductionType, ProductionDetailType);
+            var Brand = (BrandEnum)cbxBrands.SelectedIndex;
+            var Flavor = (FlavorEnum)cbxFlavors.SelectedIndex;
+            var Package = (PackageEnum)cbxPackages.SelectedIndex;
+            var ProductionType = (ProductionType)cbxType.SelectedIndex;
+            var ProductionDetailType = (ProductionDetail)cbxProductDetail.SelectedIndex;
+            var storages = _controller.GetStorage(Brand, Flavor, Package, ProductionType, ProductionDetailType);
             dgvStorage.DataSource = storages;
             dgvStorage.AutoResizeColumns(
                 DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
@@ -112,8 +126,9 @@ namespace ProteinAccountSystem
             model.Products = _phurases;
             model.TotalMoney = _phurases.Sum(x => x.ProductMoney * x.Count) + Convert.ToInt32(tbxShippingFee);
             model.TransferMoney = Convert.ToInt32(tbxShippingFee);
-            model.TotalTax = Convert.ToInt32((_phurases.Sum(x => x.ProductMoneyWithoutTax*x.Count) + Convert.ToInt32(tbxShippingFee)) * 0.05);
+            model.TotalTax = Convert.ToInt32((_phurases.Sum(x => x.ProductMoneyWithoutTax * x.Count) + Convert.ToInt32(tbxShippingFee)) * 0.05);
             model.ReceiptNumber = tbxReceipyNumber.Text;
+            model.Plat = (PlatEnum)cbsSaleWays.SelectedIndex;
 
             _controller.AddDBlientPhuraseRecord(new List<PhuraseDetailModel>() { model });
             _controller.UpdateDBStorage(new List<PhuraseDetailModel>() { model });

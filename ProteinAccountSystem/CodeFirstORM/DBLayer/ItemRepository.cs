@@ -168,7 +168,7 @@ namespace CodeFirstORM.DBLayer
         public Expression<Func<ItemEntity, bool>> GetItemExp(BrandEnum brand, FlavorEnum flavor, PackageEnum package, ProductionType productionType, ProductionDetail productionDetailType)
         {
             Expression<Func<ItemEntity, bool>> itemWhere = c => true;
-
+            
             if (brand != BrandEnum.Null)
             {
                 var prefix = itemWhere.Compile();
