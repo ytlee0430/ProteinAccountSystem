@@ -40,8 +40,7 @@ namespace Controller.Service
                     data.Account = cells[3].DisplayedText;
                     data.TransferMoney = Convert.ToInt32(Convert.ToDouble(cells[6].DisplayedText));
                     data.TotalMoney = Convert.ToInt32(Convert.ToDouble(cells[7].DisplayedText));
-                    //TODO: 稅應該是*0.05吧 
-                    data.TotalTax = Convert.ToInt32(Convert.ToDouble(cells[7].DisplayedText) / 1.05);
+                    data.TotalTax = Convert.ToInt32(Convert.ToDouble(cells[7].DisplayedText) *0.05);
                     data.TransferMoneyWithoutTax = Convert.ToInt32(Convert.ToDouble(cells[6].DisplayedText) / 1.05);
                     data.Products = new List<PhuraseProductModel>(){
                     new PhuraseProductModel()

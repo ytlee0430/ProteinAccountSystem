@@ -69,5 +69,30 @@ namespace CodeFirstORM
         /// 發票號碼
         /// </summary>
         public string ReceiptNumber { get; set; }
+        
+        /// <summary>
+        /// 是否銷帳
+        /// </summary>
+        public bool IsWriteOffMoney { get; set; } = false;
+
+        /// <summary>
+        /// 銷售時間(訂單成立時間)
+        /// </summary>
+        public DateTime OrderCreateTime { get; set; }
+
+        /// <summary>
+        /// 經手人
+        /// </summary>
+        public string Manager { get; set; }
+
+        /// <summary>
+        /// 公司抬頭
+        /// </summary>
+        public string CompanyName { get; set; }
+
+        /// <summary>
+        /// 公司統一編號
+        /// </summary>
+        public string CompanyInvoiceNumber { get; set; }
     }
 }

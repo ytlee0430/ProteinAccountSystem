@@ -12,10 +12,6 @@ namespace CommonUtility.Interface
 {
     public interface IController
     {
-        bool UpdateWebsiteStorage(string itemCode, int storage);
-
-        bool UpdateDBStorage(string itemCode, int storage);
-
         bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "");
 
         List<Item> GetItems(BrandEnum brand, FlavorEnum flavor, ProductionType type, ProductionDetail detail);
@@ -24,9 +20,13 @@ namespace CommonUtility.Interface
 
 
         bool CreateShippmentTickets();
+
         List<Item> GetStorage(BrandEnum brand, FlavorEnum flavor, PackageEnum package, ProductionType productionType, ProductionDetail productionDetailType);
 
         bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> phuraseDetailModels);
+
         bool UpdateDBStorage(List<PhuraseDetailModel> list);
+        
+        List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel);
     }
 }

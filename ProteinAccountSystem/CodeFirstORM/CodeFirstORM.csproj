@@ -91,6 +91,18 @@
     <Compile Include="Migrations\201905271802121_add item detia .Designer.cs">
       <DependentUpon>201905271802121_add item detia .cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905281401043_AddUrl.cs" />
+    <Compile Include="Migrations\201905281401043_AddUrl.Designer.cs">
+      <DependentUpon>201905281401043_AddUrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905281438031_AddUrl1.cs" />
+    <Compile Include="Migrations\201905281438031_AddUrl1.Designer.cs">
+      <DependentUpon>201905281438031_AddUrl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905281447465_Addcompanydata.cs" />
+    <Compile Include="Migrations\201905281447465_Addcompanydata.Designer.cs">
+      <DependentUpon>201905281447465_Addcompanydata.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProteinDB.cs" />
     <Compile Include="Test.cs" />
@@ -126,6 +138,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905271802121_add item detia .resx">
       <DependentUpon>201905271802121_add item detia .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905281401043_AddUrl.resx">
+      <DependentUpon>201905281401043_AddUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905281438031_AddUrl1.resx">
+      <DependentUpon>201905281438031_AddUrl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905281447465_Addcompanydata.resx">
+      <DependentUpon>201905281447465_Addcompanydata.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

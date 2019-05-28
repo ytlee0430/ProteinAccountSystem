@@ -66,17 +66,6 @@ namespace Controller
 
         }
 
-        //TODO:移除
-        public bool UpdateDBStorage(string itemCode, int storage)
-        {
-            throw new NotImplementedException();
-        }
-
-        //TODO:移除
-        public bool UpdateWebsiteStorage(string itemCode, int storage)
-        {
-            throw new NotImplementedException();
-        }
 
 
         /// <summary>
@@ -86,6 +75,19 @@ namespace Controller
         public List<Item> GetStorage(BrandEnum brand, FlavorEnum flavor, PackageEnum package, ProductionType productionType, ProductionDetail productionDetailType)
         {
             return _stockService.GetStorage(brand, flavor, package, productionType, productionDetailType);
+        }
+
+        /// <summary>
+        /// 取得銷售紀錄
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="writeOffMoneyState"></param>
+        /// <returns></returns>
+        public List<PhuraseDetailModel> GetSalesRecords(SearchModel SearchModel)
+        {
+            throw new NotImplementedException();
         }
     }
 }

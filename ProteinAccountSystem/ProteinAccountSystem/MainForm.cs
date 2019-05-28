@@ -160,7 +160,34 @@ namespace ProteinAccountSystem
 
         private void btnExportStockExcel_Click(object sender, EventArgs e)
         {
+            SearchModel searchModel = new SearchModel();
+            searchModel.KeyWord = txtKeyWord.Text;
+            searchModel.StartTime = dtpStart.Value;
+            searchModel.EndTime = dtpEnd.Value;
+            searchModel.Brand = (BrandEnum)cbxBrands.SelectedIndex;
+            searchModel.Flavor = (FlavorEnum)cbxFlavors.SelectedIndex;
+            searchModel.Package = (PackageEnum)cbxPackages.SelectedIndex;
+            searchModel.ProductionType = (ProductionType)cbxType.SelectedIndex;
+            searchModel.ProductionDetailType = (ProductionDetail)cbxProductDetail.SelectedIndex;
+            var result = _controller.GetSalesRecords(searchModel);
+            //TODO:Create Excel
+        }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            SearchModel searchModel = new SearchModel();
+            searchModel.KeyWord = txtKeyWord.Text;
+            searchModel.StartTime = dtpStart.Value;
+            searchModel.EndTime = dtpEnd.Value;
+            searchModel.Brand = (BrandEnum)cbxBrands.SelectedIndex;
+            searchModel.Flavor = (FlavorEnum)cbxFlavors.SelectedIndex;
+            searchModel.Package = (PackageEnum)cbxPackages.SelectedIndex;
+            searchModel.ProductionType = (ProductionType)cbxType.SelectedIndex;
+            searchModel.ProductionDetailType = (ProductionDetail)cbxProductDetail.SelectedIndex;
+            var result = _controller.GetSalesRecords(searchModel);
+            dgvSaleRecords.DataSource = result;
+            dgvSaleRecords.AutoResizeColumns(
+                DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
         }
     }
 }

@@ -45,6 +45,7 @@
     <Compile Include="Entity\Item.cs" />
     <Compile Include="Entity\PhuraseDetailModel.cs" />
     <Compile Include="Entity\PhuraseProductModel.cs" />
+    <Compile Include="Entity\SearchModel.cs" />
     <Compile Include="Enum\BrandEnum.cs" />
     <Compile Include="Enum\FlavorEnum.cs" />
     <Compile Include="Enum\PackageEnum.cs" />
