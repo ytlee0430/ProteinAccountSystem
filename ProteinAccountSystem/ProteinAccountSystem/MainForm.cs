@@ -138,7 +138,6 @@ namespace ProteinAccountSystem
 
         private void btnCreateSale_Click(object sender, EventArgs e)
         {
-
             //TODO: 移到controller 開一個CreateSale處理
             var model = new PhuraseDetailModel();
             model.Products = _phurases;
@@ -185,7 +184,21 @@ namespace ProteinAccountSystem
             searchModel.ProductionType = (ProductionType)cbxType.SelectedIndex;
             searchModel.ProductionDetailType = (ProductionDetail)cbxProductDetail.SelectedIndex;
             var result = _controller.GetSalesRecords(searchModel);
+
             dgvSaleRecords.DataSource = result;
+
+            for (int i = 0; i < result.Count; i++)
+            {
+                DataGridViewButtonColumn btnWriteOffMoney = new DataGridViewButtonColumn();
+                btnWriteOffMoney.Name = "btnWriteOffMoney" + i.ToString();
+                btnWriteOffMoney.Text = "銷帳";
+                int columnIndex = i;
+                if (dgvSaleRecords.Columns["btnWriteOffMoney"] == null)
+                {
+                    dgvSaleRecords.Columns.Insert(columnIndex, btnWriteOffMoney);
+                }
+            }
+
             dgvSaleRecords.AutoResizeColumns(
                 DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
         }

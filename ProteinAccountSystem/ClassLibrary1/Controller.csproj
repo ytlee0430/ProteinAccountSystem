@@ -57,6 +57,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\CreateSaleController.cs" />
+    <Compile Include="Interface\ICreateSaleController.cs" />
     <Compile Include="Interface\IShippment.cs" />
     <Compile Include="Interface\IStock.cs" />
     <Compile Include="Service\ImportExcelSevice.cs" />

@@ -37,7 +37,12 @@ namespace CodeFirstORM.DBLayer
                         TransferMoney = detail.TransferMoney,
                         TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax,
                         Remark = detail.Remark,
-                        ReceiptNumber = detail.ReceiptNumber
+                        ReceiptNumber = detail.ReceiptNumber,
+                        IsWriteOffMoney = detail.IsWriteOffMoney,
+                        Manager = detail.Manager,
+                        OrderCreateTime = detail.OrderCreateTime,
+                        CompanyInvoiceNumber = detail.CompanyInvoiceNumber,
+                        CompanyName = detail.CompanyName
                     }
                     );
                 ProteinDbContext.SaveChanges();
@@ -69,7 +74,12 @@ namespace CodeFirstORM.DBLayer
                             TransferMoney = detail.TransferMoney,
                             TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax,
                             Remark = detail.Remark,
-                            ReceiptNumber = detail.ReceiptNumber
+                            ReceiptNumber = detail.ReceiptNumber,
+                            IsWriteOffMoney = detail.IsWriteOffMoney,
+                            Manager = detail.Manager,
+                            OrderCreateTime = detail.OrderCreateTime,
+                            CompanyInvoiceNumber = detail.CompanyInvoiceNumber,
+                            CompanyName = detail.CompanyName
                         }
                     );
                 }
@@ -101,7 +111,12 @@ namespace CodeFirstORM.DBLayer
                     TransferMoney = detail.TransferMoney,
                     TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax,
                     Remark = detail.Remark,
-                    ReceiptNumber = detail.ReceiptNumber
+                    ReceiptNumber = detail.ReceiptNumber,
+                    IsWriteOffMoney = detail.IsWriteOffMoney,
+                    Manager = detail.Manager,
+                    OrderCreateTime = detail.OrderCreateTime,
+                    CompanyInvoiceNumber = detail.CompanyInvoiceNumber,
+                    CompanyName = detail.CompanyName
                 }).ToList();
             }
             catch (Exception e)
@@ -131,6 +146,11 @@ namespace CodeFirstORM.DBLayer
                 entity.TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax;
                 entity.Remark = detail.Remark;
                 entity.ReceiptNumber = detail.ReceiptNumber;
+                entity.IsWriteOffMoney = detail.IsWriteOffMoney;
+                entity.Manager = detail.Manager;
+                entity.OrderCreateTime = detail.OrderCreateTime;
+                entity.CompanyInvoiceNumber = detail.CompanyInvoiceNumber;
+                entity.CompanyName = detail.CompanyName;
                 return ProteinDbContext.SaveChanges() > 0;
             }
             catch (Exception e)
@@ -160,6 +180,11 @@ namespace CodeFirstORM.DBLayer
                     entity.TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax;
                     entity.Remark = detail.Remark;
                     entity.ReceiptNumber = detail.ReceiptNumber;
+                    entity.IsWriteOffMoney = detail.IsWriteOffMoney;
+                    entity.Manager = detail.Manager;
+                    entity.OrderCreateTime = detail.OrderCreateTime;
+                    entity.CompanyInvoiceNumber = detail.CompanyInvoiceNumber;
+                    entity.CompanyName = detail.CompanyName;
                 }
                 return ProteinDbContext.SaveChanges() > 0;
             }
