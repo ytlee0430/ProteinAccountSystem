@@ -264,7 +264,7 @@
             // 
             this.cbsSaleWays.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbsSaleWays.FormattingEnabled = true;
-            this.cbsSaleWays.Location = new System.Drawing.Point(185, 132);
+            this.cbsSaleWays.Location = new System.Drawing.Point(185, 140);
             this.cbsSaleWays.Margin = new System.Windows.Forms.Padding(2);
             this.cbsSaleWays.Name = "cbsSaleWays";
             this.cbsSaleWays.Size = new System.Drawing.Size(120, 35);
@@ -274,7 +274,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label8.Location = new System.Drawing.Point(186, 98);
+            this.label8.Location = new System.Drawing.Point(180, 98);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(134, 27);

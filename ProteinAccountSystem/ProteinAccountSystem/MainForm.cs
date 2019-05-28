@@ -28,7 +28,7 @@ namespace ProteinAccountSystem
         {
             InitializeComponent();
             _controller = controller;
-            //get enum discirption
+
             foreach (BrandEnum brand in Enum.GetValues(typeof(BrandEnum)))
             {
                 var dis = brand.GetDescriptionText();
@@ -57,6 +57,12 @@ namespace ProteinAccountSystem
             {
                 var dis = item.GetDescriptionText();
                 cbxType.Items.Add(dis);
+            }
+
+            foreach (PlatEnum item in Enum.GetValues(typeof(PlatEnum)))
+            {
+                var dis = item.GetDescriptionText();
+                cbsSaleWays.Items.Add(dis);
             }
         }
 
