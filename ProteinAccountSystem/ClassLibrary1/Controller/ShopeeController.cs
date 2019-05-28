@@ -13,9 +13,13 @@ namespace Controller
 {
     public class ShopeeController : IController
     {
+        //TODO: 用介面 service自已開一個方案 interface 開在common裡
         private ImportExcelSevice _ImportExcelSevice = new ImportExcelSevice();
+        //TODO: 用介面 service自已開一個方案 interface 開在common裡
         private StockService _stockService = new StockService();
+        //TODO: 用介面 service自已開一個方案 interface 開在common裡S
         private ShippmentService _shippmentService = new ShippmentService();
+
         private List<PhuraseDetailModel> _phuraseDetailModels = new List<PhuraseDetailModel>();
         public bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "")
         {
@@ -55,15 +59,20 @@ namespace Controller
             if (!_phuraseDetailModels.Any())
                 return false;
 
-            return _shippmentService.CreateShippmentTicket(_phuraseDetailModels);
+            var result = _shippmentService.CreateShippmentTicket(_phuraseDetailModels);
+
+            _phuraseDetailModels.Clear();
+            return result;
+
         }
 
-
+        //TODO:移除
         public bool UpdateDBStorage(string itemCode, int storage)
         {
             throw new NotImplementedException();
         }
 
+        //TODO:移除
         public bool UpdateWebsiteStorage(string itemCode, int storage)
         {
             throw new NotImplementedException();
@@ -76,7 +85,7 @@ namespace Controller
         /// <returns></returns>
         public List<Item> GetStorage(BrandEnum brand, FlavorEnum flavor, PackageEnum package, ProductionType productionType, ProductionDetail productionDetailType)
         {
-           return _stockService.GetStorage(brand,flavor,package, productionType, productionDetailType);
+            return _stockService.GetStorage(brand, flavor, package, productionType, productionDetailType);
         }
     }
 }

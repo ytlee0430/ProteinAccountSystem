@@ -12,12 +12,11 @@ namespace CommonUtility.Utils
 
         public static string GetItemCodes(Item item)
         {
-            var type = (int)item.ProductionType < 10 ? "0" + ((int)item.ProductionType).ToString() : ((int)item.ProductionType).ToString();
-            var brand = (int)item.Brand < 10 ? "0" + ((int)item.Brand).ToString() : ((int)item.Brand).ToString();
-            var productionDetailType = (int)item.ProductionDetailType < 10 ? "0" + ((int)item.ProductionDetailType).ToString() : ((int)item.ProductionDetailType).ToString();
-            var package = (int)item.Package < 10 ? "0" + ((int)item.Package).ToString() : ((int)item.Package).ToString();
-            var flavor = (int)item.Flavor < 10 ? "0" + ((int)item.Flavor).ToString() : ((int)item.Flavor).ToString();
-
+            var type = ((int)item.ProductionType).ToString("00");
+            var brand = ((int)item.Brand).ToString("00");
+            var productionDetailType = ((int)item.ProductionDetailType).ToString("00");
+            var package = ((int)item.Package).ToString("00");
+            var flavor = ((int)item.Flavor).ToString("00");
             return type + brand + productionDetailType + package + flavor;
 
         }

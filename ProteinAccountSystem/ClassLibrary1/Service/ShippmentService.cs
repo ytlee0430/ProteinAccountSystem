@@ -16,10 +16,14 @@ namespace Controller.Service
         //Word應用程序變量 
         MSWord.Document wordDoc;                  //Word文檔變量
         MSWord.Application wordApp = new MSWord.Application();//初始化
+
+        //TODO: 路徑要給
         object _savePath = "";//路徑變數 ，需使用object
 
         public bool CreateShippmentTicket(List<PhuraseDetailModel> models)
         {
+            //TODO: 例外處理
+
             var result = models;
 
             wordApp.Visible = false;

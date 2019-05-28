@@ -21,7 +21,9 @@ namespace ProteinAccountSystem
     {
         private IController _controller;
 
+        //TODO:移至controller
         List<PhuraseProductModel> _phurases = new List<PhuraseProductModel>();
+
         List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
 
         public MainForm(IController controller)
@@ -108,6 +110,7 @@ namespace ProteinAccountSystem
             };
             item.ItemCode = ProductUtilities.GetItemCodes(item);
 
+            //TODO: 移到controller
             _phurases.Add(new PhuraseProductModel()
             {
                 ItemCode = item.ItemCode,
@@ -115,6 +118,7 @@ namespace ProteinAccountSystem
                 ProductMoney = Convert.ToInt32(tbxSalePrice),
                 ProductMoneyWithoutTax = Convert.ToInt32(Convert.ToInt32(tbxSalePrice) / 1.05),
             });
+
             _displayItems.Add(new OrderDisplayItem
             {
                 Brand = item.Brand,
@@ -134,6 +138,8 @@ namespace ProteinAccountSystem
 
         private void btnCreateSale_Click(object sender, EventArgs e)
         {
+
+            //TODO: 移到controller 開一個CreateSale處理
             var model = new PhuraseDetailModel();
             model.Products = _phurases;
             model.TotalMoney = _phurases.Sum(x => x.ProductMoney * x.Count) + Convert.ToInt32(tbxShippingFee);
