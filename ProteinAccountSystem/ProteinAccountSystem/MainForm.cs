@@ -13,6 +13,7 @@ using CommonUtility.Entity;
 using CommonUtility.Enum;
 using CommonUtility.Interface;
 using CommonUtility.Utils;
+using Common;
 
 namespace ProteinAccountSystem
 {
@@ -28,29 +29,34 @@ namespace ProteinAccountSystem
             InitializeComponent();
             _controller = controller;
             //get enum discirption
-            foreach (var brand in Enum.GetValues(typeof(BrandEnum)))
+            foreach (BrandEnum brand in Enum.GetValues(typeof(BrandEnum)))
             {
-                cbxBrands.Items.Add(brand.ToString());
+                var dis = brand.GetDescriptionText();
+                cbxBrands.Items.Add(dis);
             }
 
-            foreach (var flavor in Enum.GetValues(typeof(FlavorEnum)))
+            foreach (FlavorEnum flavor in Enum.GetValues(typeof(FlavorEnum)))
             {
-                cbxFlavors.Items.Add(flavor.ToString());
+                var dis = flavor.GetDescriptionText();
+                cbxFlavors.Items.Add(dis);
             }
 
-            foreach (var package in Enum.GetValues(typeof(PackageEnum)))
+            foreach (PackageEnum package in Enum.GetValues(typeof(PackageEnum)))
             {
-                cbxPackages.Items.Add(package.ToString());
+                var dis = package.GetDescriptionText();
+                cbxPackages.Items.Add(dis);
             }
 
-            foreach (var item in Enum.GetValues(typeof(ProductionDetail)))
+            foreach (ProductionDetail item in Enum.GetValues(typeof(ProductionDetail)))
             {
-                cbxProductDetail.Items.Add(item.ToString());
+                var dis = item.GetDescriptionText();
+                cbxProductDetail.Items.Add(dis);
             }
 
-            foreach (var item in Enum.GetValues(typeof(ProductionType)))
+            foreach (ProductionType item in Enum.GetValues(typeof(ProductionType)))
             {
-                cbxType.Items.Add(item.ToString());
+                var dis = item.GetDescriptionText();
+                cbxType.Items.Add(dis);
             }
         }
 

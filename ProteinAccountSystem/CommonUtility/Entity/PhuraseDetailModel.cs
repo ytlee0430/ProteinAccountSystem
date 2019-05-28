@@ -57,7 +57,7 @@ namespace CommonUtility.Entity
         /// <summary>
         /// 購買平台    
         /// </summary>
-        public PlatEnum Plat { get; set; } = PlatEnum.Shopee;
+        public PlatEnum Plat { get; set; } = PlatEnum.ShopeeSales;
 
         /// <summary>
         /// 備註
