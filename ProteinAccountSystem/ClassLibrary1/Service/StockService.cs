@@ -58,5 +58,71 @@ namespace Controller.Service
             var ex = repo.GetItemExp(brand, flavor, package, productionType, productionDetailType);
             return repo.GetList(ex);
         }
+
+        public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
+        {
+            var repo = new PhuraseDetailRepository();
+            var result = new List<PhuraseDetailModel>();
+            System.Linq.Expressions.Expression<Func<PhuraseDetailEntity, bool>> itemWhere = c => true;
+
+            if (searchModel.Brand != CommonUtility.Enum.BrandEnum.Null)
+            {
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && c.Products.Contains(((int)searchModel.Brand).ToString());
+            }
+
+            if (searchModel.StartTime != null)
+            {
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && c.OrderCreateTime >= searchModel.StartTime;
+            }
+
+            if (searchModel.EndTime != null)
+            {
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && c.OrderCreateTime <= searchModel.EndTime;
+            }
+
+            if (searchModel.Flavor != CommonUtility.Enum.FlavorEnum.Null)
+            {
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && c.Products.Contains(((int)searchModel.Flavor).ToString());
+            }
+
+            if (searchModel.Package != CommonUtility.Enum.PackageEnum.Null)
+            {
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && c.Products.Contains(((int)searchModel.Package).ToString());
+            }
+
+            if (searchModel.ProductionDetailType != CommonUtility.Enum.ProductionDetail.Null)
+            {
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && c.Products.Contains(((int)searchModel.ProductionDetailType).ToString());
+            }
+
+            if (searchModel.ProductionType != CommonUtility.Enum.ProductionType.Null)
+            {
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && c.Products.Contains(((int)searchModel.ProductionType).ToString());
+            }
+
+
+            if (searchModel.IsWriteOffMoney != -1)
+            {
+                var prefix = itemWhere.Compile();
+                var b = searchModel.IsWriteOffMoney == 1 ? true : false;
+                itemWhere = c => prefix(c) && c.IsWriteOffMoney == b;
+            }
+
+
+            //if (searchModel.KeyWord != "")
+            //{
+            //    var prefix = itemWhere.Compile();
+            //    itemWhere = c => prefix(c) && c.);
+            //}
+            //TODO:keyword
+           return repo.GetList(itemWhere);
+        }
     }
 }

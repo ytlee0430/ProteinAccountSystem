@@ -48,6 +48,7 @@ namespace Controller
         public bool importWirteOffMoneyDataProcess(string path)
         {
             var datas = _ImportExcelSevice.AnalyzeShipData(path);
+            //WriteOffMoney
             return true;
         }
 
@@ -92,8 +93,9 @@ namespace Controller
         /// <param name="endTime"></param>
         /// <param name="writeOffMoneyState"></param>
         /// <returns></returns>
-        public List<PhuraseDetailModel> GetSalesRecords(SearchModel SearchModel)
+        public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
         {
+            List<PhuraseDetailModel> a = _stockService.GetSalesRecords(searchModel);
             throw new NotImplementedException();
         }
     }

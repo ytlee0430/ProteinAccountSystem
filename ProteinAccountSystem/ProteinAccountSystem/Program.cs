@@ -20,7 +20,7 @@ namespace ProteinAccountSystem
 
             //TODO: dirty work here , use DI
 
-            Application.Run(new MainForm(new ShopeeController()));
+            Application.Run(new MainForm(new ShopeeController(), new CreateSaleController(), new AccountingController()));
         }
     }
 }

@@ -10,6 +10,6 @@ namespace Controller.Interface
     public interface IAccountingController
     {
         bool WriteOffMoney(List<PhuraseDetailModel> models);
-
+        bool importWirteOffMoneyDataProcess(string path);
     }
 }

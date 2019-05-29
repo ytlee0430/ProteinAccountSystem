@@ -14,5 +14,8 @@ namespace Controller.Interface
 
         bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData);
 
+        List<Item> GetStorage(CommonUtility.Enum.BrandEnum brand, CommonUtility.Enum.FlavorEnum flavor, CommonUtility.Enum.PackageEnum package, CommonUtility.Enum.ProductionType productionType, CommonUtility.Enum.ProductionDetail productionDetailType);
+
+        List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel);
     }
 }

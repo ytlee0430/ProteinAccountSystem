@@ -21,14 +21,18 @@ namespace ProteinAccountSystem
     public partial class MainForm : Form
     {
         private IController _controller;
-        private ICreateSaleController _createSaleController;
-
+        private ICreateSaleController _saleController;
+        private IAccountingController _accountingController;
         List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
 
-        public MainForm(IController controller, ICreateSaleController salecontroller)
+        public MainForm(IController controller, ICreateSaleController salecontroller, IAccountingController accountingController)
         {
             InitializeComponent();
             _controller = controller;
+            _saleController = salecontroller;
+            _accountingController = accountingController;
+         
+            #region Import Combox Enum
 
             foreach (BrandEnum brand in Enum.GetValues(typeof(BrandEnum)))
             {
@@ -65,6 +69,8 @@ namespace ProteinAccountSystem
                 var dis = item.GetDescriptionText();
                 cbsSaleWays.Items.Add(dis);
             }
+            #endregion
+
         }
 
         /// <summary>
@@ -109,7 +115,7 @@ namespace ProteinAccountSystem
             };
             item.ItemCode = ProductUtilities.GetItemCodes(item);
 
-            _createSaleController.AddPhuraseProduct(item.ItemCode, (int)nudCount.Value, Convert.ToInt32(tbxSalePrice));
+            _saleController.AddPhuraseProduct(item.ItemCode, (int)nudCount.Value, Convert.ToInt32(tbxSalePrice));
 
 
             _displayItems.Add(new OrderDisplayItem
@@ -131,7 +137,7 @@ namespace ProteinAccountSystem
 
         private void btnCreateSale_Click(object sender, EventArgs e)
         {
-            var model = _createSaleController.CreateSale(Convert.ToInt32(tbxShippingFee), tbxReceipyNumber.Text, (PlatEnum)cbsSaleWays.SelectedIndex);
+            var model = _saleController.CreateSale(Convert.ToInt32(tbxShippingFee), tbxReceipyNumber.Text, (PlatEnum)cbsSaleWays.SelectedIndex);
 
             _controller.AddDBlientPhuraseRecord(new List<PhuraseDetailModel>() { model });
             _controller.UpdateDBStorage(new List<PhuraseDetailModel>() { model });
@@ -183,10 +189,17 @@ namespace ProteinAccountSystem
                 {
                     dgvSaleRecords.Columns.Insert(columnIndex, btnWriteOffMoney);
                 }
+                dgvSaleRecords.CellClick += DgvSaleRecords_CellClick;
             }
 
             dgvSaleRecords.AutoResizeColumns(
                 DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+        }
+
+        private void DgvSaleRecords_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            throw new NotImplementedException();
         }
 
         private void btnImportExcelWirteOffMoney_Click(object sender, EventArgs e)
@@ -195,6 +208,7 @@ namespace ProteinAccountSystem
             openFileDialog1.ShowDialog();
             var path = openFileDialog1.FileName;
             _controller.importWirteOffMoneyDataProcess(path);
+            _accountingController.importWirteOffMoneyDataProcess(path);
         }
     }
 }
