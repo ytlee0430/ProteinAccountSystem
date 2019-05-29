@@ -45,6 +45,13 @@ namespace Controller
             return true;
         }
 
+        public bool importWirteOffMoneyDataProcess(string path)
+        {
+            var datas = _ImportExcelSevice.AnalyzeShipData(path);
+            return true;
+        }
+
+
         public bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData)
         {
             return _stockService.AddDBlientPhuraseRecord(stockData);

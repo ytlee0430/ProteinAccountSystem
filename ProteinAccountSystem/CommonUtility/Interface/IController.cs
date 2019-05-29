@@ -26,7 +26,9 @@ namespace CommonUtility.Interface
         bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> phuraseDetailModels);
 
         bool UpdateDBStorage(List<PhuraseDetailModel> list);
-        
+
         List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel);
+
+        bool importWirteOffMoneyDataProcess(string path);
     }
 }

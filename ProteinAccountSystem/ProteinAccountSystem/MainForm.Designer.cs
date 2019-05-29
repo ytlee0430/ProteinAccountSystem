@@ -72,6 +72,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.cbxType = new System.Windows.Forms.ComboBox();
             this.nudCount = new System.Windows.Forms.NumericUpDown();
+            this.btnImportExcelWirteOffMoney = new System.Windows.Forms.Button();
             this.tabStorage.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
@@ -245,6 +246,7 @@
             // 
             // tabSaleRecord
             // 
+            this.tabSaleRecord.Controls.Add(this.btnImportExcelWirteOffMoney);
             this.tabSaleRecord.Controls.Add(this.dgvSaleRecords);
             this.tabSaleRecord.Controls.Add(this.label13);
             this.tabSaleRecord.Controls.Add(this.dtpEnd);
@@ -274,7 +276,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label13.Location = new System.Drawing.Point(568, 20);
+            this.label13.Location = new System.Drawing.Point(551, 20);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(26, 27);
@@ -283,14 +285,14 @@
             // 
             // dtpEnd
             // 
-            this.dtpEnd.Location = new System.Drawing.Point(602, 20);
+            this.dtpEnd.Location = new System.Drawing.Point(584, 20);
             this.dtpEnd.Name = "dtpEnd";
             this.dtpEnd.Size = new System.Drawing.Size(200, 27);
             this.dtpEnd.TabIndex = 47;
             // 
             // dtpStart
             // 
-            this.dtpStart.Location = new System.Drawing.Point(353, 20);
+            this.dtpStart.Location = new System.Drawing.Point(344, 20);
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(200, 27);
             this.dtpStart.TabIndex = 46;
@@ -299,7 +301,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label12.Location = new System.Drawing.Point(279, 23);
+            this.label12.Location = new System.Drawing.Point(275, 23);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(62, 21);
@@ -329,9 +331,9 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnSearch.Location = new System.Drawing.Point(837, 19);
+            this.btnSearch.Location = new System.Drawing.Point(790, 16);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(203, 37);
+            this.btnSearch.Size = new System.Drawing.Size(181, 37);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "搜尋";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -340,9 +342,9 @@
             // btnCreateSaleRecord
             // 
             this.btnCreateSaleRecord.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnCreateSaleRecord.Location = new System.Drawing.Point(1057, 18);
+            this.btnCreateSaleRecord.Location = new System.Drawing.Point(1156, 16);
             this.btnCreateSaleRecord.Name = "btnCreateSaleRecord";
-            this.btnCreateSaleRecord.Size = new System.Drawing.Size(203, 37);
+            this.btnCreateSaleRecord.Size = new System.Drawing.Size(190, 37);
             this.btnCreateSaleRecord.TabIndex = 0;
             this.btnCreateSaleRecord.Text = "匯出Excel銷售紀錄";
             this.btnCreateSaleRecord.UseVisualStyleBackColor = true;
@@ -552,6 +554,17 @@
             this.nudCount.Size = new System.Drawing.Size(120, 22);
             this.nudCount.TabIndex = 43;
             // 
+            // btnImportExcelWirteOffMoney
+            // 
+            this.btnImportExcelWirteOffMoney.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnImportExcelWirteOffMoney.Location = new System.Drawing.Point(976, 16);
+            this.btnImportExcelWirteOffMoney.Name = "btnImportExcelWirteOffMoney";
+            this.btnImportExcelWirteOffMoney.Size = new System.Drawing.Size(175, 37);
+            this.btnImportExcelWirteOffMoney.TabIndex = 50;
+            this.btnImportExcelWirteOffMoney.Text = "匯入Excel銷帳";
+            this.btnImportExcelWirteOffMoney.UseVisualStyleBackColor = true;
+            this.btnImportExcelWirteOffMoney.Click += new System.EventHandler(this.btnImportExcelWirteOffMoney_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -641,6 +654,7 @@
         private System.Windows.Forms.Button btnCreateSaleRecord;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DataGridView dgvSaleRecords;
+        private System.Windows.Forms.Button btnImportExcelWirteOffMoney;
     }
 }
 

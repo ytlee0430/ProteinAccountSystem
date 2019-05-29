@@ -14,19 +14,18 @@ using CommonUtility.Enum;
 using CommonUtility.Interface;
 using CommonUtility.Utils;
 using Common;
+using Controller.Interface;
 
 namespace ProteinAccountSystem
 {
     public partial class MainForm : Form
     {
         private IController _controller;
-
-        //TODO:移至controller
-        List<PhuraseProductModel> _phurases = new List<PhuraseProductModel>();
+        private ICreateSaleController _createSaleController;
 
         List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
 
-        public MainForm(IController controller)
+        public MainForm(IController controller, ICreateSaleController salecontroller)
         {
             InitializeComponent();
             _controller = controller;
@@ -110,14 +109,8 @@ namespace ProteinAccountSystem
             };
             item.ItemCode = ProductUtilities.GetItemCodes(item);
 
-            //TODO: 移到controller
-            _phurases.Add(new PhuraseProductModel()
-            {
-                ItemCode = item.ItemCode,
-                Count = (int)nudCount.Value,
-                ProductMoney = Convert.ToInt32(tbxSalePrice),
-                ProductMoneyWithoutTax = Convert.ToInt32(Convert.ToInt32(tbxSalePrice) / 1.05),
-            });
+            _createSaleController.AddPhuraseProduct(item.ItemCode, (int)nudCount.Value, Convert.ToInt32(tbxSalePrice));
+
 
             _displayItems.Add(new OrderDisplayItem
             {
@@ -138,20 +131,13 @@ namespace ProteinAccountSystem
 
         private void btnCreateSale_Click(object sender, EventArgs e)
         {
-            //TODO: 移到controller 開一個CreateSale處理
-            var model = new PhuraseDetailModel();
-            model.Products = _phurases;
-            model.TotalMoney = _phurases.Sum(x => x.ProductMoney * x.Count) + Convert.ToInt32(tbxShippingFee);
-            model.TransferMoney = Convert.ToInt32(tbxShippingFee);
-            model.TotalTax = Convert.ToInt32((_phurases.Sum(x => x.ProductMoneyWithoutTax * x.Count) + Convert.ToInt32(tbxShippingFee)) * 0.05);
-            model.ReceiptNumber = tbxReceipyNumber.Text;
-            model.Plat = (PlatEnum)cbsSaleWays.SelectedIndex;
+            var model = _createSaleController.CreateSale(Convert.ToInt32(tbxShippingFee), tbxReceipyNumber.Text, (PlatEnum)cbsSaleWays.SelectedIndex);
 
             _controller.AddDBlientPhuraseRecord(new List<PhuraseDetailModel>() { model });
             _controller.UpdateDBStorage(new List<PhuraseDetailModel>() { model });
 
-            _phurases.Clear();
             _displayItems.Clear();
+
             dgvNewOrder.DataSource = _displayItems;
             dgvNewOrder.AutoResizeColumns(
                 DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
@@ -201,6 +187,14 @@ namespace ProteinAccountSystem
 
             dgvSaleRecords.AutoResizeColumns(
                 DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+        }
+
+        private void btnImportExcelWirteOffMoney_Click(object sender, EventArgs e)
+        {
+            // List<PhuraseDetailModel>
+            openFileDialog1.ShowDialog();
+            var path = openFileDialog1.FileName;
+            _controller.importWirteOffMoneyDataProcess(path);
         }
     }
 }

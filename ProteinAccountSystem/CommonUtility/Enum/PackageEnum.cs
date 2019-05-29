@@ -21,6 +21,8 @@ namespace CommonUtility.Enum
         [Description("600ml")]
         SixHundredMili = 05,
         [Description("無分包裝")]
-        NoPackage =06
+        NoPackage =06,
+        [Description("試用包")]
+        Sample =07,
     }
 }

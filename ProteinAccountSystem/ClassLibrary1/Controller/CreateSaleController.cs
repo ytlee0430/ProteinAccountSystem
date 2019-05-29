@@ -1,4 +1,5 @@
 ﻿using CommonUtility.Entity;
+using CommonUtility.Enum;
 using Controller.Interface;
 using System;
 using System.Collections.Generic;
@@ -11,21 +12,44 @@ namespace Controller
     public class CreateSaleController : ICreateSaleController
     {
         List<PhuraseProductModel> _phurases = new List<PhuraseProductModel>();
-        public void AddPhuraseProduct(Item model)
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="itemCode"></param>
+        /// <param name="count"></param>
+        /// <param name="saleMoney"></param>
+        public void AddPhuraseProduct(string itemCode, int count, int saleMoney)
         {
-            //_phurases.Add(new PhuraseProductModel()
-            //{
-            //    ItemCode = item.ItemCode,
-            //    Count = (int)nudCount.Value,
-            //    ProductMoney = Convert.ToInt32(tbxSalePrice),
-            //    ProductMoneyWithoutTax = Convert.ToInt32(Convert.ToInt32(tbxSalePrice) / 1.05),
-            //});
-            //_phurases.Add(model);
+            _phurases.Add(new PhuraseProductModel()
+            {
+                ItemCode = itemCode,
+                Count = count,
+                ProductMoney = saleMoney,
+                ProductMoneyWithoutTax = Convert.ToInt32(saleMoney / 1.05),
+            });
         }
 
-        public List<PhuraseDetailModel> CreateSale()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shoppeeFee"></param>
+        /// <param name="receiptnumber"></param>
+        /// <param name="saleWay"></param>
+        /// <returns></returns>
+        public PhuraseDetailModel CreateSale(int shoppeeFee, string receiptnumber, PlatEnum saleWay)
         {
-            throw new NotImplementedException();
+            var model = new PhuraseDetailModel();
+            var a = new List<PhuraseProductModel>();
+            a = _phurases;
+            model.Products = a;
+            model.TotalMoney = _phurases.Sum(x => x.ProductMoney * x.Count) + shoppeeFee;
+            model.TransferMoney = shoppeeFee;
+            model.TotalTax = Convert.ToInt32((_phurases.Sum(x => x.ProductMoneyWithoutTax * x.Count) + shoppeeFee) * 0.05);
+            model.ReceiptNumber = receiptnumber;
+            model.Plat = saleWay;
+            _phurases.Clear();
+            return model;
         }
     }
 }

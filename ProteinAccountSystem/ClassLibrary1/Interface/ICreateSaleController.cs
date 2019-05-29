@@ -1,4 +1,5 @@
 ﻿using CommonUtility.Entity;
+using CommonUtility.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace Controller.Interface
 {
     public interface ICreateSaleController
     {
-       void AddPhuraseProduct(Item model);
+        void AddPhuraseProduct(string itemCode, int count, int saleMoney);
 
-        List<PhuraseDetailModel> CreateSale();
+        PhuraseDetailModel CreateSale(int shoppeeFee, string receiptnumber, PlatEnum saleWay);
     }
 }
