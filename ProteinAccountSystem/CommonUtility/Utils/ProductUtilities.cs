@@ -1,11 +1,11 @@
-﻿using CommonUtility.Entity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Entity;
 
-namespace CommonUtility.Utils
+namespace Common.Utils
 {
     public static class ProductUtilities
     {

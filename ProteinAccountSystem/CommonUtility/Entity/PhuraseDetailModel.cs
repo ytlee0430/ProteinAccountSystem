@@ -1,12 +1,11 @@
-﻿
-using CommonUtility.Enum;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Enum;
 
-namespace CommonUtility.Entity
+namespace Common.Entity
 {
     public class PhuraseDetailModel
     {

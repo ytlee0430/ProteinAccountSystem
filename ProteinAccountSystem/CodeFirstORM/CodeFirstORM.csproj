@@ -56,12 +56,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBLayer\PhuraseProductRepository.cs" />
     <Compile Include="DBLayer\PhuraseDetailRepository.cs" />
     <Compile Include="DBLayer\ItemRepository.cs" />
     <Compile Include="Entity\ItemEntity.cs" />
     <Compile Include="Entity\PhuraseDetailEntity.cs" />
-    <Compile Include="Entity\PhuraseProductEntity.cs" />
     <Compile Include="Migrations\201905250950597_add new db.cs" />
     <Compile Include="Migrations\201905250950597_add new db.Designer.cs">
       <DependentUpon>201905250950597_add new db.cs</DependentUpon>
@@ -108,7 +106,6 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProteinDB.cs" />
-    <Compile Include="Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -153,9 +150,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommonUtility\CommonUtility.csproj">
+    <ProjectReference Include="..\CommonUtility\Common.csproj">
       <Project>{DD1F06DC-0FBA-40DB-BB49-FAB46E74EC22}</Project>
-      <Name>CommonUtility</Name>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

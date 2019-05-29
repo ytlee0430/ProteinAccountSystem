@@ -10,12 +10,12 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common
+namespace Common.Utils
 {
     public static class Utils
     {
         // 取得 Enum 列舉 Attribute Description 設定值
-        public static  string GetDescriptionText(this Enum source)
+        public static  string GetDescriptionText(this System.Enum source)
         {
             FieldInfo fi = source.GetType().GetField(source.ToString());
             DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(

@@ -6,8 +6,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using CommonUtility.Entity;
-using CommonUtility.Enum;
+using CodeFirstORM.Entity;
+using Common.Entity;
+using Common.Enum;
 
 namespace CodeFirstORM.DBLayer
 {

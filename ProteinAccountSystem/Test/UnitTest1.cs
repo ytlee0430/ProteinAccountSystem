@@ -4,7 +4,8 @@ using System.Linq;
 using AutoMapper;
 using CodeFirstORM;
 using CodeFirstORM.DBLayer;
-using CommonUtility.Entity;
+using CodeFirstORM.Entity;
+using Common.Entity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test
@@ -27,7 +28,7 @@ namespace Test
         {
             var item = new Item
             {
-                Flavor = CommonUtility.Enum.FlavorEnum.Banana
+                Flavor = Common.Enum.FlavorEnum.Banana
             };
             Mapper.Initialize(x => x.CreateMap<Item, ItemEntity>());
             var itemEntity = Mapper.Map<ItemEntity>(item);
@@ -40,7 +41,7 @@ namespace Test
             var items = new List<Item>{
             new Item
             {
-                Flavor = CommonUtility.Enum.FlavorEnum.Banana
+                Flavor = Common.Enum.FlavorEnum.Banana
             }};
 
             Mapper.Initialize(x => x.CreateMap<Item, ItemEntity>());

@@ -1,4 +1,6 @@
-﻿namespace CodeFirstORM
+﻿using CodeFirstORM.Entity;
+
+namespace CodeFirstORM
 {
     using System;
     using System.Data.Entity;
@@ -13,6 +15,5 @@
 
         public DbSet<ItemEntity> Items { get; set; }
         public DbSet<PhuraseDetailEntity> PhuraseDetails { get; set; }
-        public DbSet<PhuraseProductEntity> PhuraseProducts { get; set; }
     }
 }
