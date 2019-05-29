@@ -26,7 +26,6 @@ namespace Setup
             IShippmentService shippmentService = new ShippmentServiceService();
             ICreateSaleService createSaleService = new CreateSaleService();
 
-
             Application.Run(new MainForm(new ShopeeController(
                 analyzeExcelService, stockService, shippmentService, createSaleService)));
 

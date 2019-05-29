@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Service.AutoMapper
+namespace CodeFirstORM.AutoMapper
 {
     public class AutoMapperConfig
     {

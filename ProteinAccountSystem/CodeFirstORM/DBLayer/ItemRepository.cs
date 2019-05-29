@@ -25,9 +25,7 @@ namespace CodeFirstORM.DBLayer
         {
             try
             {
-                Mapper.Initialize(x => x.CreateMap<Item, ItemEntity>());
                 var itemEntity = Mapper.Map<ItemEntity>(item);
-
                 ProteinDbContext.Items.Add(itemEntity);
                 ProteinDbContext.SaveChanges();
             }
