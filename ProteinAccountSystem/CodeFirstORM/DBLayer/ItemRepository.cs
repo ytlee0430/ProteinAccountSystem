@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using CommonUtility.Entity;
 using CommonUtility.Enum;
 
@@ -23,22 +24,10 @@ namespace CodeFirstORM.DBLayer
         {
             try
             {
-                ProteinDbContext.Items.Add(
-                    new ItemEntity()
-                    {
-                        Brand = (int)item.Brand,
-                        Cost = item.Cost,
-                        Discount = item.Discount,
-                        Flavor = (int)item.Flavor,
-                        ItemCode = item.ItemCode,
-                        NetPrice = item.NetPrice,
-                        Package = (int)item.Package,
-                        ProductionType = (int)item.ProductionType,
-                        Storage = item.Storage,
-                        Tax = item.Tax,
-                        ExpiredDate = item.ExpiredDate
-                    }
-                    );
+                Mapper.Initialize(x => x.CreateMap<Item, ItemEntity>());
+                var itemEntity = Mapper.Map<ItemEntity>(item);
+
+                ProteinDbContext.Items.Add(itemEntity);
                 ProteinDbContext.SaveChanges();
             }
             catch (Exception e)
@@ -53,21 +42,10 @@ namespace CodeFirstORM.DBLayer
         {
             try
             {
-                return ProteinDbContext.Items.Where(exp).Select(i => new Item
-                {
-                    Key = i.Key,
-                    Brand = (BrandEnum)i.Brand,
-                    Cost = i.Cost,
-                    Discount = i.Discount,
-                    Flavor = (FlavorEnum)i.Flavor,
-                    ItemCode = i.ItemCode,
-                    NetPrice = i.NetPrice,
-                    Package = (PackageEnum)i.Package,
-                    ProductionType = (ProductionType)i.ProductionType,
-                    Storage = i.Storage,
-                    Tax = i.Tax,
-                    ExpiredDate = i.ExpiredDate
-                }).ToList();
+                var entitys = ProteinDbContext.Items.Where(exp);
+                Mapper.Initialize(x => x.CreateMap<List<ItemEntity>, List<Item>>());
+                var items = Mapper.Map<List<Item>>(entitys);
+                return items;
             }
             catch (Exception e)
             {
