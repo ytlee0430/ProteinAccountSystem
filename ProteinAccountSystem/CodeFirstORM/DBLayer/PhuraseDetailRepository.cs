@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using CodeFirstORM.Entity;
 using Common.Entity;
 using Common.Enum;
@@ -25,6 +26,7 @@ namespace CodeFirstORM.DBLayer
         {
             try
             {
+                var products = Mapper.Map<List<PhuraseProductEntity>>(detail.Products);
                 ProteinDbContext.PhuraseDetails.Add(
                     new PhuraseDetailEntity()
                     {
@@ -32,7 +34,7 @@ namespace CodeFirstORM.DBLayer
                         DeliveryNumber = detail.DeliveryNumber,
                         OrderNumber = detail.OrderNumber,
                         Plat = (int)detail.Plat,
-                        Products = JsonConvert.SerializeObject(detail.Products),
+                        Products = products,
                         TotalMoney = detail.TotalMoney,
                         TotalTax = detail.TotalTax,
                         TransferMoney = detail.TransferMoney,
@@ -62,6 +64,8 @@ namespace CodeFirstORM.DBLayer
             {
                 foreach (var detail in details)
                 {
+                    var products = Mapper.Map<List<PhuraseProductEntity>>(detail.Products);
+
                     ProteinDbContext.PhuraseDetails.Add(
                         new PhuraseDetailEntity()
                         {
@@ -69,7 +73,7 @@ namespace CodeFirstORM.DBLayer
                             DeliveryNumber = detail.DeliveryNumber,
                             OrderNumber = detail.OrderNumber,
                             Plat = (int)detail.Plat,
-                            Products = JsonConvert.SerializeObject(detail.Products),
+                            Products = products,
                             TotalMoney = detail.TotalMoney,
                             TotalTax = detail.TotalTax,
                             TransferMoney = detail.TransferMoney,
@@ -106,7 +110,7 @@ namespace CodeFirstORM.DBLayer
                     DeliveryNumber = detail.DeliveryNumber,
                     OrderNumber = detail.OrderNumber,
                     Plat = (PlatEnum)detail.Plat,
-                    Products = JsonConvert.DeserializeObject<List<PhuraseProductModel>>(detail.Products),
+                    Products = Mapper.Map<ICollection<PhuraseProductModel>>(detail.Products).ToList(),
                     TotalMoney = detail.TotalMoney,
                     TotalTax = detail.TotalTax,
                     TransferMoney = detail.TransferMoney,
@@ -140,7 +144,7 @@ namespace CodeFirstORM.DBLayer
                 entity.DeliveryNumber = detail.DeliveryNumber;
                 entity.OrderNumber = detail.OrderNumber;
                 entity.Plat = (int)detail.Plat;
-                entity.Products = JsonConvert.SerializeObject(detail.Products);
+                entity.Products = Mapper.Map<ICollection<PhuraseProductEntity>>(detail.Products).ToList();
                 entity.TotalMoney = detail.TotalMoney;
                 entity.TotalTax = detail.TotalTax;
                 entity.TransferMoney = detail.TransferMoney;
@@ -174,7 +178,7 @@ namespace CodeFirstORM.DBLayer
                     entity.DeliveryNumber = detail.DeliveryNumber;
                     entity.OrderNumber = detail.OrderNumber;
                     entity.Plat = (int)detail.Plat;
-                    entity.Products = JsonConvert.SerializeObject(detail.Products);
+                    entity.Products = Mapper.Map<ICollection<PhuraseProductEntity>>(detail.Products).ToList();
                     entity.TotalMoney = detail.TotalMoney;
                     entity.TotalTax = detail.TotalTax;
                     entity.TransferMoney = detail.TransferMoney;
@@ -194,7 +198,6 @@ namespace CodeFirstORM.DBLayer
                 Console.WriteLine(e);
                 return false;
             }
-            return true;
         }
 
         public bool DeleteItem(PhuraseDetailModel detail)
@@ -215,8 +218,6 @@ namespace CodeFirstORM.DBLayer
                 Console.WriteLine(e);
                 return false;
             }
-            return true;
-
         }
 
     }

@@ -66,7 +66,7 @@ namespace Service.Service
             if (searchModel.Brand != Common.Enum.BrandEnum.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Contains(((int)searchModel.Brand).ToString());
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.Brand == ((int)searchModel.Brand));
             }
 
             if (searchModel.StartTime != null)
@@ -84,27 +84,26 @@ namespace Service.Service
             if (searchModel.Flavor != Common.Enum.FlavorEnum.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Contains(((int)searchModel.Flavor).ToString());
+                itemWhere = c => prefix(c) && c.Products.Any(x =>x.Flavor == ((int)searchModel.Flavor));
             }
 
             if (searchModel.Package != Common.Enum.PackageEnum.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Contains(((int)searchModel.Package).ToString());
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.Package == ((int)searchModel.Package));
             }
 
             if (searchModel.ProductionDetailType != Common.Enum.ProductionDetail.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Contains(((int)searchModel.ProductionDetailType).ToString());
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.ProductionDetailType == ((int)searchModel.ProductionDetailType));
             }
 
             if (searchModel.ProductionType != Common.Enum.ProductionType.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Contains(((int)searchModel.ProductionType).ToString());
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.ProductionType == ((int)searchModel.ProductionType));
             }
-
 
             if (searchModel.IsWriteOffMoney != -1)
             {
