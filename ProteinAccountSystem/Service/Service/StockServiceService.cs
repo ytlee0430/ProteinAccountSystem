@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using CodeFirstORM.DBLayer;
 using CodeFirstORM.Entity;
 using Common.Entity;
@@ -18,7 +19,8 @@ namespace Service.Service
         public bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData)
         {
             var repo = new PhuraseDetailRepository();
-            return repo.AddItems(stockData);
+            
+            return repo.Add(Mapper.Map<List<PhuraseDetailEntity>>(stockData));
         }
 
         /// <summary>
@@ -40,10 +42,10 @@ namespace Service.Service
                 }
 
             var repo = new ItemRepository();
-            var items = repo.GetList(p => codeToNumDic.ContainsKey(p.ItemCode)).OrderBy(o => o.ExpiredDate).GroupBy(g => g.ItemCode).Select(s => s.FirstOrDefault());
+            var items = repo.Get(p => codeToNumDic.ContainsKey(p.ItemCode)).OrderBy(o => o.ExpiredDate).GroupBy(g => g.ItemCode).Select(s => s.FirstOrDefault());
             foreach (var item in items)
                 item.Storage -= codeToNumDic[item.ItemCode];
-            return repo.UpdateItems(items);
+            return repo.Update(items);
         }
 
         /// <summary>
@@ -54,7 +56,7 @@ namespace Service.Service
         {
             var repo = new ItemRepository();
             var ex = repo.GetItemExp(brand, flavor, package, productionType, productionDetailType);
-            return repo.GetList(ex);
+            return Mapper.Map< List<Item>>(repo.Get(ex));
         }
 
         public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
@@ -66,7 +68,7 @@ namespace Service.Service
             if (searchModel.Brand != Common.Enum.BrandEnum.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x => x.Brand == ((int)searchModel.Brand));
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.Brand == (searchModel.Brand));
             }
 
             if (searchModel.StartTime != null)
@@ -84,25 +86,25 @@ namespace Service.Service
             if (searchModel.Flavor != Common.Enum.FlavorEnum.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x =>x.Flavor == ((int)searchModel.Flavor));
+                itemWhere = c => prefix(c) && c.Products.Any(x =>x.Flavor == (searchModel.Flavor));
             }
 
             if (searchModel.Package != Common.Enum.PackageEnum.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x => x.Package == ((int)searchModel.Package));
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.Package == (searchModel.Package));
             }
 
             if (searchModel.ProductionDetailType != Common.Enum.ProductionDetail.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x => x.ProductionDetailType == ((int)searchModel.ProductionDetailType));
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.ProductionDetailType == (searchModel.ProductionDetailType));
             }
 
             if (searchModel.ProductionType != Common.Enum.ProductionType.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x => x.ProductionType == ((int)searchModel.ProductionType));
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.ProductionType == (searchModel.ProductionType));
             }
 
             if (searchModel.IsWriteOffMoney != -1)
@@ -112,14 +114,13 @@ namespace Service.Service
                 itemWhere = c => prefix(c) && c.IsWriteOffMoney == b;
             }
 
-
             //if (searchModel.KeyWord != "")
             //{
             //    var prefix = itemWhere.Compile();
             //    itemWhere = c => prefix(c) && c.);
             //}
             //TODO:keyword
-           return repo.GetList(itemWhere);
+           return Mapper.Map<List<PhuraseDetailModel>>(repo.Get(itemWhere));
         }
     }
 }

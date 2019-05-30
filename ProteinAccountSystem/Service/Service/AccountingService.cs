@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using AutoMapper;
 using CodeFirstORM.DBLayer;
 using CodeFirstORM.Entity;
 using Common.Entity;
@@ -26,18 +27,12 @@ namespace Service.Service
             var result = new List<PhuraseDetailModel>();
             foreach (var item in models)
             {
-                var ordernum = item.OrderNumber;
-
-                Expression<Func<PhuraseDetailEntity, bool>> itemWhere = c => true;
-
-                var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.OrderNumber == item.OrderNumber;
-                var a = repo.GetList(itemWhere).First();
-                a.IsWriteOffMoney = true;
-                result.Add(a);
+                var detail = repo.Get(c=>c.OrderNumber == item.OrderNumber).First();
+                detail.IsWriteOffMoney = true;
+                result.Add(Mapper.Map<PhuraseDetailModel>(detail));
             }
 
-            return repo.UpdateItems(result);
+            return repo.Update(Mapper.Map<List<PhuraseDetailEntity>>(result));
         }
 
         /// <summary>

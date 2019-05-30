@@ -2,7 +2,7 @@
 using CodeFirstORM.Entity;
 using Common.Entity;
 
-namespace CodeFirstORM.AutoMapper
+namespace Service.AutoMapper
 {
     public class PhuraseDetailEntityProfile : Profile
     {

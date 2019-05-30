@@ -1,9 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using CodeFirstORM.RepositoryBase;
+using Common.Enum;
 
 namespace CodeFirstORM.Entity
 {
-    public class ItemEntity
+    public class ItemEntity : IEntity
     {
         [Key]
         public int Key{ get; set; }
@@ -22,17 +24,17 @@ namespace CodeFirstORM.Entity
         /// <summary>
         /// 商品口味
         /// </summary>
-        public int Flavor { get; set; }
+        public FlavorEnum Flavor { get; set; }
 
         /// <summary>
         /// 商品品牌
         /// </summary>
-        public int Brand { get; set; }
+        public BrandEnum Brand { get; set; }
 
         /// <summary>
         /// 商品分類
         /// </summary>
-        public int ProductionType { get; set; }
+        public ProductionType ProductionType { get; set; }
 
         /// <summary>
         /// 商品訂價
@@ -58,7 +60,7 @@ namespace CodeFirstORM.Entity
         /// <summary>
         /// 包裝
         /// </summary>
-        public int Package { get; set; }
+        public PackageEnum Package { get; set; }
 
         /// <summary>
         /// 保存期限
@@ -69,7 +71,7 @@ namespace CodeFirstORM.Entity
         /// <summary>
         /// 商品細項分類
         /// </summary>
-        public int ProductionDetailType { get; set; }
+        public ProductionDetail ProductionDetailType { get; set; }
 
     }
 }

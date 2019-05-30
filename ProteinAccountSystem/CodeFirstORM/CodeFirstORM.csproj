@@ -59,14 +59,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoMapper\AutoMapperConfig.cs" />
-    <Compile Include="AutoMapper\ItemProfile.cs" />
-    <Compile Include="AutoMapper\PhuraseModelEntityProfile.cs" />
-    <Compile Include="AutoMapper\PhuraseDetailEntityProfile.cs" />
     <Compile Include="Config\PhuraseDetailEntityMapping.cs" />
     <Compile Include="DBLayer\PhuraseProductRepository.cs" />
     <Compile Include="DBLayer\PhuraseDetailRepository.cs" />
     <Compile Include="DBLayer\ItemRepository.cs" />
+    <Compile Include="Migrations\201905301706484_to-Enum.cs" />
+    <Compile Include="Migrations\201905301706484_to-Enum.Designer.cs">
+      <DependentUpon>201905301706484_to-Enum.cs</DependentUpon>
+    </Compile>
     <Compile Include="RepositoryBase\IDatabaseContext.cs" />
     <Compile Include="RepositoryBase\IEntity.cs" />
     <Compile Include="RepositoryBase\RepositoryBase.cs" />
@@ -174,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905300646584_add-mapping detail-product.resx">
       <DependentUpon>201905300646584_add-mapping detail-product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905301706484_to-Enum.resx">
+      <DependentUpon>201905301706484_to-Enum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

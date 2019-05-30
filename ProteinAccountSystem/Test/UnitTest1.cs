@@ -6,6 +6,7 @@ using CodeFirstORM;
 using CodeFirstORM.DBLayer;
 using CodeFirstORM.Entity;
 using Common.Entity;
+using Common.Enum;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test
@@ -17,9 +18,39 @@ namespace Test
         public void GetTest()
         {
             var testRepository = new ItemRepository();
-            var x = testRepository.GetList(i => i.Storage > -1);
+            var x = testRepository.Get(i => i.Storage > -1);
+            var y = testRepository.Get(1);
+            var z = testRepository.GetAll();
             Assert.AreEqual(1, x.First().Key);
+            Assert.AreEqual(1, z.First().Key);
+            Assert.AreEqual(1, y.Key);
+        }
 
+        [TestMethod]
+        public void AddTest()
+        {
+            var testRepository = new ItemRepository();
+            var x = testRepository.Add(new ItemEntity
+            {
+                Brand = BrandEnum.EatMe,
+                ItemCode = "1100",
+                ExpiredDate = new DateTime(2020,04,30)
+            });
+            Assert.AreEqual(true, x);
+        }
+
+        [TestMethod]
+        public void UpdateTest()
+        {
+            var testRepository = new ItemRepository();
+            var x = testRepository.Update(new ItemEntity
+            {
+                Key = 3,
+                Brand = BrandEnum.EatMe,
+                ItemCode = "110022",
+                ExpiredDate = new DateTime(2020, 04, 30)
+            });
+            Assert.AreEqual(true, x);
         }
 
 
@@ -32,7 +63,7 @@ namespace Test
             };
             Mapper.Initialize(x => x.CreateMap<Item, ItemEntity>());
             var itemEntity = Mapper.Map<ItemEntity>(item);
-            Assert.AreEqual(itemEntity.Flavor, (int)item.Flavor);
+            Assert.AreEqual(itemEntity.Flavor,item.Flavor);
         }
 
         [TestMethod]
@@ -46,7 +77,7 @@ namespace Test
 
             Mapper.Initialize(x => x.CreateMap<Item, ItemEntity>());
             var itemEntity = Mapper.Map< List<ItemEntity>>(items);
-            Assert.AreEqual(itemEntity.First().Flavor, (int)items.First().Flavor);
+            Assert.AreEqual(itemEntity.First().Flavor, items.First().Flavor);
         }
     }
 }

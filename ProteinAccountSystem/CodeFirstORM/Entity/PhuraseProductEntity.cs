@@ -4,10 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodeFirstORM.RepositoryBase;
+using Common.Enum;
 
 namespace CodeFirstORM.Entity
 {
-    public class PhuraseProductEntity
+    public class PhuraseProductEntity : IEntity
     {
         [Key]
         public int Key { get; set; }
@@ -44,27 +46,27 @@ namespace CodeFirstORM.Entity
         /// <summary>
         /// 商品口味
         /// </summary>
-        public int Flavor { get; set; }
+        public FlavorEnum Flavor { get; set; }
 
         /// <summary>
         /// 商品品牌
         /// </summary>
-        public int Brand { get; set; }
+        public BrandEnum Brand { get; set; }
 
         /// <summary>
         /// 商品分類
         /// </summary>
-        public int ProductionType { get; set; }
+        public ProductionType ProductionType { get; set; }
 
         /// <summary>
         /// 包裝
         /// </summary>
-        public int Package { get; set; }
+        public PackageEnum Package { get; set; }
 
         /// <summary>
         /// 商品細項分類
         /// </summary>
-        public int ProductionDetailType { get; set; }
+        public ProductionDetail ProductionDetailType { get; set; }
 
     }
 }
