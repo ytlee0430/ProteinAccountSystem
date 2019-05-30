@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CodeFirstORM.DBLayer
 {
-    public class RepositoryBase<T> where T : class
+    public class RepositoryBase<T> where T : class, IEntity
     {
         private readonly IDatabaseContext _database;
 
@@ -24,7 +24,7 @@ namespace CodeFirstORM.DBLayer
         public T Get(int id)
         {
             return _database.Set<T>()
-                .Single(p => p.Id == id);
+                .Single(p => p.Key == id);
         }
 
         public void Add(T entity)

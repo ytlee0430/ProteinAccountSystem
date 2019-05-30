@@ -68,6 +68,7 @@
     <Compile Include="DBLayer\PhuraseDetailRepository.cs" />
     <Compile Include="DBLayer\ItemRepository.cs" />
     <Compile Include="RepositoryBase\IDatabaseContext.cs" />
+    <Compile Include="RepositoryBase\IEntity.cs" />
     <Compile Include="RepositoryBase\RepositoryBase.cs" />
     <Compile Include="Entity\ItemEntity.cs" />
     <Compile Include="Entity\PhuraseDetailEntity.cs" />
