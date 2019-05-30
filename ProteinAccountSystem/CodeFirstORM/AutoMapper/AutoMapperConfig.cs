@@ -10,6 +10,7 @@ namespace CodeFirstORM.AutoMapper
             {
                 x.AddProfile<ItemProfile>();
                 x.AddProfile<PhuraseDetailEntityProfile>();
+                x.AddProfile<PhuraseModelEntityProfile>();
             });
 
         }

@@ -26,103 +26,38 @@ namespace CodeFirstORM.DBLayer
         {
             try
             {
-                var products = Mapper.Map<List<PhuraseProductEntity>>(detail.Products);
-                ProteinDbContext.PhuraseDetails.Add(
-                    new PhuraseDetailEntity()
-                    {
-                        Account = detail.Account,
-                        DeliveryNumber = detail.DeliveryNumber,
-                        OrderNumber = detail.OrderNumber,
-                        Plat = (int)detail.Plat,
-                        Products = products,
-                        TotalMoney = detail.TotalMoney,
-                        TotalTax = detail.TotalTax,
-                        TransferMoney = detail.TransferMoney,
-                        TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax,
-                        Remark = detail.Remark,
-                        ReceiptNumber = detail.ReceiptNumber,
-                        IsWriteOffMoney = detail.IsWriteOffMoney,
-                        Manager = detail.Manager,
-                        OrderCreateTime = detail.OrderCreateTime,
-                        CompanyInvoiceNumber = detail.CompanyInvoiceNumber,
-                        CompanyName = detail.CompanyName
-                    }
-                    );
-                ProteinDbContext.SaveChanges();
+                var detailEntity = Mapper.Map<PhuraseDetailEntity>(detail);
+                ProteinDbContext.PhuraseDetails.Add(detailEntity);
+                return ProteinDbContext.SaveChanges() > 0;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 return false;
             }
-            return true;
         }
 
         public bool AddItems(List<PhuraseDetailModel> details)
         {
             try
             {
-                foreach (var detail in details)
-                {
-                    var products = Mapper.Map<List<PhuraseProductEntity>>(detail.Products);
-
-                    ProteinDbContext.PhuraseDetails.Add(
-                        new PhuraseDetailEntity()
-                        {
-                            Account = detail.Account,
-                            DeliveryNumber = detail.DeliveryNumber,
-                            OrderNumber = detail.OrderNumber,
-                            Plat = (int)detail.Plat,
-                            Products = products,
-                            TotalMoney = detail.TotalMoney,
-                            TotalTax = detail.TotalTax,
-                            TransferMoney = detail.TransferMoney,
-                            TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax,
-                            Remark = detail.Remark,
-                            ReceiptNumber = detail.ReceiptNumber,
-                            IsWriteOffMoney = detail.IsWriteOffMoney,
-                            Manager = detail.Manager,
-                            OrderCreateTime = detail.OrderCreateTime,
-                            CompanyInvoiceNumber = detail.CompanyInvoiceNumber,
-                            CompanyName = detail.CompanyName
-                        }
-                    );
-                }
-                ProteinDbContext.SaveChanges();
+                var detailEntitys = Mapper.Map<List<PhuraseDetailEntity>>(details);
+                foreach (var detail in detailEntitys)
+                    ProteinDbContext.PhuraseDetails.Add(detail);
+                return ProteinDbContext.SaveChanges() > 0;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 return false;
             }
-            return true;
         }
-
 
         public List<PhuraseDetailModel> GetList(Expression<Func<PhuraseDetailEntity, bool>> exp)
         {
             try
             {
-                return ProteinDbContext.PhuraseDetails.Where(exp).Select(detail => new PhuraseDetailModel
-                {
-                    Key = detail.Key,
-                    Account = detail.Account,
-                    DeliveryNumber = detail.DeliveryNumber,
-                    OrderNumber = detail.OrderNumber,
-                    Plat = (PlatEnum)detail.Plat,
-                    Products = Mapper.Map<ICollection<PhuraseProductModel>>(detail.Products).ToList(),
-                    TotalMoney = detail.TotalMoney,
-                    TotalTax = detail.TotalTax,
-                    TransferMoney = detail.TransferMoney,
-                    TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax,
-                    Remark = detail.Remark,
-                    ReceiptNumber = detail.ReceiptNumber,
-                    IsWriteOffMoney = detail.IsWriteOffMoney,
-                    Manager = detail.Manager,
-                    OrderCreateTime = detail.OrderCreateTime,
-                    CompanyInvoiceNumber = detail.CompanyInvoiceNumber,
-                    CompanyName = detail.CompanyName
-                }).ToList();
+                return Mapper.Map<List<PhuraseDetailModel>>(ProteinDbContext.PhuraseDetails.Where(exp));
             }
             catch (Exception e)
             {
@@ -135,27 +70,25 @@ namespace CodeFirstORM.DBLayer
         {
             try
             {
-                var entity = ProteinDbContext.PhuraseDetails.FirstOrDefault(i => detail.Key == i.Key);
-                if (entity == null)
+                var itemEntity = Mapper.Map<PhuraseDetailEntity>(detail);
+                //Mapper 後判斷與調整實體狀態
+                var entry = ProteinDbContext.Entry(itemEntity);
+
+                if (entry.State == EntityState.Detached)
                 {
-                    return false;
+                    var set = ProteinDbContext.Set<PhuraseDetailEntity>();
+                    var attachedEntity = set.Find(itemEntity.Key);
+
+                    if (attachedEntity != null)
+                    {
+                        var attachedEntry = ProteinDbContext.Entry(attachedEntity);
+                        attachedEntry.CurrentValues.SetValues(itemEntity);
+                    }
+                    else
+                    {
+                        entry.State = EntityState.Modified;
+                    }
                 }
-                entity.Account = detail.Account;
-                entity.DeliveryNumber = detail.DeliveryNumber;
-                entity.OrderNumber = detail.OrderNumber;
-                entity.Plat = (int)detail.Plat;
-                entity.Products = Mapper.Map<ICollection<PhuraseProductEntity>>(detail.Products).ToList();
-                entity.TotalMoney = detail.TotalMoney;
-                entity.TotalTax = detail.TotalTax;
-                entity.TransferMoney = detail.TransferMoney;
-                entity.TransferMoneyWithoutTax = detail.TransferMoneyWithoutTax;
-                entity.Remark = detail.Remark;
-                entity.ReceiptNumber = detail.ReceiptNumber;
-                entity.IsWriteOffMoney = detail.IsWriteOffMoney;
-                entity.Manager = detail.Manager;
-                entity.OrderCreateTime = detail.OrderCreateTime;
-                entity.CompanyInvoiceNumber = detail.CompanyInvoiceNumber;
-                entity.CompanyName = detail.CompanyName;
                 return ProteinDbContext.SaveChanges() > 0;
             }
             catch (Exception e)
