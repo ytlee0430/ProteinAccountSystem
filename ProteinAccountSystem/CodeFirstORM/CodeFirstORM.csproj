@@ -59,10 +59,12 @@
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\ItemProfile.cs" />
     <Compile Include="AutoMapper\PhuraseDetailEntityProfile.cs" />
+    <Compile Include="Config\PhuraseDetailEntityMapping.cs" />
     <Compile Include="DBLayer\PhuraseDetailRepository.cs" />
     <Compile Include="DBLayer\ItemRepository.cs" />
     <Compile Include="Entity\ItemEntity.cs" />
     <Compile Include="Entity\PhuraseDetailEntity.cs" />
+    <Compile Include="Entity\PhuraseProductEntity.cs" />
     <Compile Include="Migrations\201905250950597_add new db.cs" />
     <Compile Include="Migrations\201905250950597_add new db.Designer.cs">
       <DependentUpon>201905250950597_add new db.cs</DependentUpon>
@@ -111,6 +113,10 @@
     <Compile Include="Migrations\201905291650496_delete-DB.Designer.cs">
       <DependentUpon>201905291650496_delete-DB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905300646584_add-mapping detail-product.cs" />
+    <Compile Include="Migrations\201905300646584_add-mapping detail-product.Designer.cs">
+      <DependentUpon>201905300646584_add-mapping detail-product.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProteinDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905291650496_delete-DB.resx">
       <DependentUpon>201905291650496_delete-DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300646584_add-mapping detail-product.resx">
+      <DependentUpon>201905300646584_add-mapping detail-product.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

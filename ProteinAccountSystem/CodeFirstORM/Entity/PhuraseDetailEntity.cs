@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace CodeFirstORM.Entity
@@ -32,7 +33,7 @@ namespace CodeFirstORM.Entity
         /// <summary>
         /// 購買商品
         /// </summary>
-        public string Products { get; set; }
+        public virtual ICollection<PhuraseProductEntity> Products { get; set; }
 
 
         /// <summary>

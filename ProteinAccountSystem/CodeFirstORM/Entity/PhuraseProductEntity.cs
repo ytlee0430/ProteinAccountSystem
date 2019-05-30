@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Entity
+namespace CodeFirstORM.Entity
 {
-    public class PhuraseProductModel
+    public class PhuraseProductEntity
     {
-
+        [Key]
         public int Key { get; set; }
 
         /// <summary>
@@ -36,6 +37,9 @@ namespace Common.Entity
         /// </summary>
         public int ProductMoneyWithoutTax { get; set; }
 
+        public int PhuraseDetailEntityKey { get; set; }
+
+        public PhuraseDetailEntity PhuraseDetail { get; set; }
 
         /// <summary>
         /// 商品口味
@@ -61,5 +65,6 @@ namespace Common.Entity
         /// 商品細項分類
         /// </summary>
         public int ProductionDetailType { get; set; }
+
     }
 }
