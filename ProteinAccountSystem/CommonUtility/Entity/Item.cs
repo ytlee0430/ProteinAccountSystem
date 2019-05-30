@@ -36,7 +36,7 @@ namespace Common.Entity
         /// 商品分類
         /// </summary>
         public ProductionType ProductionType { get; set; }
-        
+
         /// <summary>
         /// 商品細項分類
         /// </summary>
@@ -72,5 +72,9 @@ namespace Common.Entity
         /// </summary>
         public DateTime ExpiredDate { get; set; }
 
+        /// <summary>
+        ///產品中文名稱
+        /// </summary>
+        public string ProductName { get; set; }
     }
 }

@@ -43,6 +43,7 @@
             this.dgvNewOrder = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.tabSaleRecord = new System.Windows.Forms.TabPage();
+            this.btnImportExcelWirteOffMoney = new System.Windows.Forms.Button();
             this.dgvSaleRecords = new System.Windows.Forms.DataGridView();
             this.label13 = new System.Windows.Forms.Label();
             this.dtpEnd = new System.Windows.Forms.DateTimePicker();
@@ -72,7 +73,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.cbxType = new System.Windows.Forms.ComboBox();
             this.nudCount = new System.Windows.Forms.NumericUpDown();
-            this.btnImportExcelWirteOffMoney = new System.Windows.Forms.Button();
+            this.btnWriteOffSelectedMoney = new System.Windows.Forms.Button();
             this.tabStorage.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
@@ -196,7 +197,7 @@
             this.tabController.Location = new System.Drawing.Point(0, 180);
             this.tabController.Name = "tabController";
             this.tabController.SelectedIndex = 0;
-            this.tabController.Size = new System.Drawing.Size(1369, 586);
+            this.tabController.Size = new System.Drawing.Size(1369, 610);
             this.tabController.TabIndex = 0;
             // 
             // tabAddOrder
@@ -246,6 +247,7 @@
             // 
             // tabSaleRecord
             // 
+            this.tabSaleRecord.Controls.Add(this.btnWriteOffSelectedMoney);
             this.tabSaleRecord.Controls.Add(this.btnImportExcelWirteOffMoney);
             this.tabSaleRecord.Controls.Add(this.dgvSaleRecords);
             this.tabSaleRecord.Controls.Add(this.label13);
@@ -258,15 +260,26 @@
             this.tabSaleRecord.Controls.Add(this.btnCreateSaleRecord);
             this.tabSaleRecord.Location = new System.Drawing.Point(4, 26);
             this.tabSaleRecord.Name = "tabSaleRecord";
-            this.tabSaleRecord.Size = new System.Drawing.Size(1361, 556);
+            this.tabSaleRecord.Size = new System.Drawing.Size(1361, 580);
             this.tabSaleRecord.TabIndex = 4;
             this.tabSaleRecord.Text = "檢視銷貨紀錄";
             this.tabSaleRecord.UseVisualStyleBackColor = true;
             // 
+            // btnImportExcelWirteOffMoney
+            // 
+            this.btnImportExcelWirteOffMoney.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnImportExcelWirteOffMoney.Location = new System.Drawing.Point(976, 16);
+            this.btnImportExcelWirteOffMoney.Name = "btnImportExcelWirteOffMoney";
+            this.btnImportExcelWirteOffMoney.Size = new System.Drawing.Size(175, 37);
+            this.btnImportExcelWirteOffMoney.TabIndex = 50;
+            this.btnImportExcelWirteOffMoney.Text = "匯入Excel銷帳";
+            this.btnImportExcelWirteOffMoney.UseVisualStyleBackColor = true;
+            this.btnImportExcelWirteOffMoney.Click += new System.EventHandler(this.btnImportExcelWirteOffMoney_Click);
+            // 
             // dgvSaleRecords
             // 
             this.dgvSaleRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSaleRecords.Location = new System.Drawing.Point(11, 74);
+            this.dgvSaleRecords.Location = new System.Drawing.Point(11, 108);
             this.dgvSaleRecords.Name = "dgvSaleRecords";
             this.dgvSaleRecords.RowTemplate.Height = 24;
             this.dgvSaleRecords.Size = new System.Drawing.Size(1335, 465);
@@ -415,7 +428,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(850, 9);
+            this.label5.Location = new System.Drawing.Point(1035, 9);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 27);
@@ -426,7 +439,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(1016, 9);
+            this.label4.Location = new System.Drawing.Point(1199, 9);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(80, 27);
@@ -437,7 +450,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(352, 9);
+            this.label3.Location = new System.Drawing.Point(397, 9);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 27);
@@ -469,7 +482,7 @@
             // tbxSalePrice
             // 
             this.tbxSalePrice.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbxSalePrice.Location = new System.Drawing.Point(1020, 45);
+            this.tbxSalePrice.Location = new System.Drawing.Point(1203, 45);
             this.tbxSalePrice.Margin = new System.Windows.Forms.Padding(2);
             this.tbxSalePrice.Name = "tbxSalePrice";
             this.tbxSalePrice.Size = new System.Drawing.Size(120, 39);
@@ -479,7 +492,7 @@
             // 
             this.cbxPackages.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbxPackages.FormattingEnabled = true;
-            this.cbxPackages.Location = new System.Drawing.Point(352, 45);
+            this.cbxPackages.Location = new System.Drawing.Point(397, 45);
             this.cbxPackages.Margin = new System.Windows.Forms.Padding(2);
             this.cbxPackages.Name = "cbxPackages";
             this.cbxPackages.Size = new System.Drawing.Size(120, 35);
@@ -492,7 +505,7 @@
             this.cbxFlavors.Location = new System.Drawing.Point(185, 45);
             this.cbxFlavors.Margin = new System.Windows.Forms.Padding(2);
             this.cbxFlavors.Name = "cbxFlavors";
-            this.cbxFlavors.Size = new System.Drawing.Size(120, 35);
+            this.cbxFlavors.Size = new System.Drawing.Size(188, 35);
             this.cbxFlavors.TabIndex = 22;
             // 
             // cbxBrands
@@ -509,7 +522,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label6.Location = new System.Drawing.Point(518, 9);
+            this.label6.Location = new System.Drawing.Point(570, 9);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(80, 27);
@@ -520,17 +533,17 @@
             // 
             this.cbxProductDetail.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbxProductDetail.FormattingEnabled = true;
-            this.cbxProductDetail.Location = new System.Drawing.Point(519, 45);
+            this.cbxProductDetail.Location = new System.Drawing.Point(571, 45);
             this.cbxProductDetail.Margin = new System.Windows.Forms.Padding(2);
             this.cbxProductDetail.Name = "cbxProductDetail";
-            this.cbxProductDetail.Size = new System.Drawing.Size(120, 35);
+            this.cbxProductDetail.Size = new System.Drawing.Size(191, 35);
             this.cbxProductDetail.TabIndex = 39;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label10.Location = new System.Drawing.Point(684, 9);
+            this.label10.Location = new System.Drawing.Point(786, 9);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(80, 27);
@@ -541,35 +554,35 @@
             // 
             this.cbxType.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbxType.FormattingEnabled = true;
-            this.cbxType.Location = new System.Drawing.Point(686, 45);
+            this.cbxType.Location = new System.Drawing.Point(788, 45);
             this.cbxType.Margin = new System.Windows.Forms.Padding(2);
             this.cbxType.Name = "cbxType";
-            this.cbxType.Size = new System.Drawing.Size(120, 35);
+            this.cbxType.Size = new System.Drawing.Size(197, 35);
             this.cbxType.TabIndex = 41;
             // 
             // nudCount
             // 
-            this.nudCount.Location = new System.Drawing.Point(855, 45);
+            this.nudCount.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.nudCount.Location = new System.Drawing.Point(1040, 45);
             this.nudCount.Name = "nudCount";
-            this.nudCount.Size = new System.Drawing.Size(120, 22);
+            this.nudCount.Size = new System.Drawing.Size(120, 40);
             this.nudCount.TabIndex = 43;
             // 
-            // btnImportExcelWirteOffMoney
+            // btnWriteOffSelectedMoney
             // 
-            this.btnImportExcelWirteOffMoney.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnImportExcelWirteOffMoney.Location = new System.Drawing.Point(976, 16);
-            this.btnImportExcelWirteOffMoney.Name = "btnImportExcelWirteOffMoney";
-            this.btnImportExcelWirteOffMoney.Size = new System.Drawing.Size(175, 37);
-            this.btnImportExcelWirteOffMoney.TabIndex = 50;
-            this.btnImportExcelWirteOffMoney.Text = "匯入Excel銷帳";
-            this.btnImportExcelWirteOffMoney.UseVisualStyleBackColor = true;
-            this.btnImportExcelWirteOffMoney.Click += new System.EventHandler(this.btnImportExcelWirteOffMoney_Click);
+            this.btnWriteOffSelectedMoney.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnWriteOffSelectedMoney.Location = new System.Drawing.Point(14, 58);
+            this.btnWriteOffSelectedMoney.Name = "btnWriteOffSelectedMoney";
+            this.btnWriteOffSelectedMoney.Size = new System.Drawing.Size(181, 37);
+            this.btnWriteOffSelectedMoney.TabIndex = 51;
+            this.btnWriteOffSelectedMoney.Text = "銷帳已勾選帳號";
+            this.btnWriteOffSelectedMoney.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1381, 778);
+            this.ClientSize = new System.Drawing.Size(1381, 791);
             this.Controls.Add(this.nudCount);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.cbxType);
@@ -655,6 +668,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DataGridView dgvSaleRecords;
         private System.Windows.Forms.Button btnImportExcelWirteOffMoney;
+        private System.Windows.Forms.Button btnWriteOffSelectedMoney;
     }
 }
 

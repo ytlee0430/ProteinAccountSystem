@@ -71,5 +71,9 @@ namespace CodeFirstORM.Entity
         /// </summary>
         public int ProductionDetailType { get; set; }
 
+        /// <summary>
+        ///產品中文名稱
+        /// </summary>
+        public string ProductName { get; set; }
     }
 }

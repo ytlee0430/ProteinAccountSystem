@@ -54,6 +54,7 @@ namespace Controller.Controller
         {
             var datas = _analyzeExcelService.AnalyzeShipData(path);
             //WriteOffMoney
+            //_analyzeExcelService.
             return true;
         }
 
@@ -110,7 +111,7 @@ namespace Controller.Controller
         public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
         {
             List<PhuraseDetailModel> a = _stockService.GetSalesRecords(searchModel);
-            throw new NotImplementedException();
+            return a;
         }
     }
 }
