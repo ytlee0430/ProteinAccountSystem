@@ -60,9 +60,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\PhuraseDetailEntityMapping.cs" />
+    <Compile Include="DBLayer\EnumRepository.cs" />
     <Compile Include="DBLayer\PhuraseProductRepository.cs" />
     <Compile Include="DBLayer\PhuraseDetailRepository.cs" />
     <Compile Include="DBLayer\ItemRepository.cs" />
+    <Compile Include="Entity\EnumEntity.cs" />
     <Compile Include="Migrations\201905301706484_to-Enum.cs" />
     <Compile Include="Migrations\201905301706484_to-Enum.Designer.cs">
       <DependentUpon>201905301706484_to-Enum.cs</DependentUpon>
