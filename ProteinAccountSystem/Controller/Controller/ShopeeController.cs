@@ -32,10 +32,6 @@ namespace Controller.Controller
             throw new NotImplementedException();
         }
 
-        public List<Item> GetItems(BrandEnum brand, FlavorEnum flavor, ProductionType type, ProductionDetail detail)
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
         /// 匯入出貨資料流程
@@ -63,7 +59,7 @@ namespace Controller.Controller
             _createSaleService.AddPhuraseProduct(itemItemCode, count, saleMoney);
         }
 
-        public PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, PlatEnum plat)
+        public PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat)
         {
             return _createSaleService.CreateSale(shopeeFee, receiptnumber, plat);
         }

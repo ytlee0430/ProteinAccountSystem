@@ -7,6 +7,6 @@ namespace Common.Interface.Service
     {
         void AddPhuraseProduct(string itemCode, int count, int saleMoney);
 
-        PhuraseDetailModel CreateSale(int shoppeeFee, string receiptnumber, PlatEnum saleWay);
+        PhuraseDetailModel CreateSale(int shoppeeFee, string receiptnumber, int saleWay);
     }
 }

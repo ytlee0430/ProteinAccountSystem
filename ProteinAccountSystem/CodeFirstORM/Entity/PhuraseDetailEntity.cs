@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using CodeFirstORM.RepositoryBase;
 
 namespace CodeFirstORM.Entity
@@ -8,8 +9,8 @@ namespace CodeFirstORM.Entity
     public class PhuraseDetailEntity : IEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Key { get; set; }
-
 
         /// <summary>
         /// 訂單編號

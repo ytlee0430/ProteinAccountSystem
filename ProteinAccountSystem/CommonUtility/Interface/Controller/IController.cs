@@ -23,6 +23,6 @@ namespace Common.Interface.Controller
 
         bool importWirteOffMoneyDataProcess(string path);
         void AddPhuraseProduct(string itemItemCode, int count, int saleMoney);
-        PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, PlatEnum plat);
+        PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat);
     }
 }

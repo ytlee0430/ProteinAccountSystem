@@ -11,12 +11,12 @@ namespace CodeFirstORM.RepositoryBase
 {
     public interface IDatabaseContext
     {
-        IDbSet<ItemEntity> Items { get; set; }
-        IDbSet<PhuraseDetailEntity> PhuraseDetails { get; set; }
-        IDbSet<PhuraseProductEntity> PhuraseProducts { get; set; }
-        IDbSet<EnumEntity> EnumEntities { get; set; }
-        IDbSet<EnumClassEntity> EnumClassEntities { get; set; }
-        IDbSet<T> Set<T>() where T : class;
+        DbSet<ItemEntity> Items { get; set; }
+        DbSet<PhuraseDetailEntity> PhuraseDetails { get; set; }
+        DbSet<PhuraseProductEntity> PhuraseProducts { get; set; }
+        DbSet<EnumEntity> EnumEntities { get; set; }
+        DbSet<EnumClassEntity> EnumClassEntities { get; set; }
+        DbSet<T> Set<T>() where T : class;
 
         DbEntityEntry<T> Entry<T>(T entity) where T : class;
 

@@ -4,8 +4,8 @@ using System.Windows.Forms;
 using Common.Entity;
 using Common.Enum;
 using Common.Interface.Controller;
-using Common.Interface.Service;
 using Common.Utils;
+using CommonUtility.Enum;
 
 namespace View
 {
@@ -19,43 +19,26 @@ namespace View
             _controller = controller;
 
             InitializeComponent();
-         
             #region Import Combox Enum
-            foreach (BrandEnum brand in Enum.GetValues(typeof(BrandEnum)))
-            {
-                var dis = brand.GetDescriptionText();
-                cbxBrands.Items.Add(dis);
-            }
+            foreach (var pair in Enums.BrandEnum)
+                cbxBrands.Items.Add(pair.Value.Description);
 
-            foreach (FlavorEnum flavor in Enum.GetValues(typeof(FlavorEnum)))
-            {
-                var dis = flavor.GetDescriptionText();
-                cbxFlavors.Items.Add(dis);
-            }
+            foreach (var pair in Enums.FlavorEnum)
+                cbxFlavors.Items.Add(pair.Value.Description);
 
-            foreach (PackageEnum package in Enum.GetValues(typeof(PackageEnum)))
-            {
-                var dis = package.GetDescriptionText();
-                cbxPackages.Items.Add(dis);
-            }
+            foreach (var pair in Enums.PackageEnum)
+                cbxPackages.Items.Add(pair.Value.Description);
 
-            foreach (ProductionDetail item in Enum.GetValues(typeof(ProductionDetail)))
-            {
-                var dis = item.GetDescriptionText();
-                cbxProductDetail.Items.Add(dis);
-            }
+            foreach (var pair in Enums.ProductionDetailEnum)
+                cbxProductDetail.Items.Add(pair.Value.Description);
 
-            foreach (ProductionType item in Enum.GetValues(typeof(ProductionType)))
-            {
-                var dis = item.GetDescriptionText();
-                cbxType.Items.Add(dis);
-            }
+            foreach (var pair in Enums.ProductionEnum)
+                cbxType.Items.Add(pair.Value.Description);
 
-            foreach (PlatEnum item in Enum.GetValues(typeof(PlatEnum)))
-            {
-                var dis = item.GetDescriptionText();
-                cbsSaleWays.Items.Add(dis);
-            }
+
+            foreach (var pair in Enums.PlatEnum)
+                cbsSaleWays.Items.Add(pair.Value.Description);
+
             #endregion
         }
 
@@ -123,7 +106,7 @@ namespace View
 
         private void btnCreateSale_Click(object sender, EventArgs e)
         {
-            var model = _controller.CreateSale(Convert.ToInt32(tbxShippingFee), tbxReceipyNumber.Text, (PlatEnum)cbsSaleWays.SelectedIndex);
+            var model = _controller.CreateSale(Convert.ToInt32(tbxShippingFee), tbxReceipyNumber.Text, cbsSaleWays.SelectedIndex);
 
             _controller.AddDBlientPhuraseRecord(new List<PhuraseDetailModel>() { model });
             _controller.UpdateDBStorage(new List<PhuraseDetailModel>() { model });

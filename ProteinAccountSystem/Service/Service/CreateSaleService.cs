@@ -35,7 +35,7 @@ namespace Service.Service
         /// <param name="receiptnumber"></param>
         /// <param name="saleWay"></param>
         /// <returns></returns>
-        public PhuraseDetailModel CreateSale(int shoppeeFee, string receiptnumber, PlatEnum saleWay)
+        public PhuraseDetailModel CreateSale(int shoppeeFee, string receiptnumber, int saleWay)
         {
             var model = new PhuraseDetailModel();
             var a = new List<PhuraseProductModel>();

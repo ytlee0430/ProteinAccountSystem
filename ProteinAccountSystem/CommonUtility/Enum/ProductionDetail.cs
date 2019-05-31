@@ -9,8 +9,8 @@ namespace Common.Enum
 {
     public enum ProductionDetail
     {
-        [Description("其他")]
-        Null = 0,
+        [Description("全部")]
+        All = 0,
         [Description("濃縮")]
         WheyProtein = 1,
         [Description("分離")]

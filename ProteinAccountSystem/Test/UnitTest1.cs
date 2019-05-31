@@ -30,11 +30,16 @@ namespace Test
         public void AddTest()
         {
             var testRepository = new ItemRepository();
-            var x = testRepository.Add(new ItemEntity
+            var x = testRepository.Add(new List<ItemEntity>
             {
+                new ItemEntity{
                 Brand = 1,
                 ItemCode = "1100",
-                ExpiredDate = new DateTime(2020,04,30)
+                ExpiredDate = new DateTime(2020,04,30)},
+                new ItemEntity{
+                    Brand = 2,
+                    ItemCode = "110022",
+                    ExpiredDate = new DateTime(2020,05,30)}
             });
             Assert.AreEqual(true, x);
         }
@@ -63,7 +68,7 @@ namespace Test
             };
             Mapper.Initialize(x => x.CreateMap<Item, ItemEntity>());
             var itemEntity = Mapper.Map<ItemEntity>(item);
-            Assert.AreEqual(itemEntity.Flavor,item.Flavor);
+            Assert.AreEqual(itemEntity.Flavor, item.Flavor);
         }
 
         [TestMethod]
@@ -76,7 +81,7 @@ namespace Test
             }};
 
             Mapper.Initialize(x => x.CreateMap<Item, ItemEntity>());
-            var itemEntity = Mapper.Map< List<ItemEntity>>(items);
+            var itemEntity = Mapper.Map<List<ItemEntity>>(items);
             Assert.AreEqual(itemEntity.First().Flavor, items.First().Flavor);
         }
     }

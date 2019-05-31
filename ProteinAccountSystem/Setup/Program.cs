@@ -28,6 +28,12 @@ namespace Setup
             ICreateSaleService createSaleService = new CreateSaleService();
             IAccountingService accountingService = new AccountingService();
             AutoMapperConfig.Configure();
+
+            //first run
+            //EnumService.InitailizeDatabase();
+
+            EnumService.EnumInitialize();
+
             Application.Run(new MainForm(new ShopeeController(
                 analyzeExcelService, stockService, shippmentService, createSaleService, accountingService)));
 

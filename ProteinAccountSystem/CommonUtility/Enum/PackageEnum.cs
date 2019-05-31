@@ -9,7 +9,8 @@ namespace Common.Enum
 {
     public enum PackageEnum
     {
-        Null = 0,
+        [Description("全部")]
+        All = 0,
         [Description("1 kg")]
         OneKg = 01,
         [Description("2.5 kg")]

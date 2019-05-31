@@ -8,6 +8,7 @@ using Common.Entity;
 using Common.Enum;
 using Common.Interface.Service;
 using Common.Utils;
+using CommonUtility.Enum;
 using Service.AutoMapper;
 
 namespace Service.Service
@@ -134,52 +135,47 @@ namespace Service.Service
                     var name = item.ProductName.ToLower();
                     var itemcode = "";
 
-                    foreach (ProductionType code in Enum.GetValues(typeof(ProductionType)))
+                    foreach (var pair in Enums.ProductionEnum)
                     {
-                        var dis = code.GetDescriptionText();
-                        if (name.Contains(dis))
+                        if (name.Contains(pair.Value.KeyWord))
                         {
-                            itemcode += ((int)code).ToString("00");
+                            itemcode += ((int)pair.Key).ToString("00");
                             break;
                         }
                     }
 
-                    foreach (BrandEnum code in Enum.GetValues(typeof(BrandEnum)))
+                    foreach (var pair in Enums.BrandEnum)
                     {
-                        var dis = code.GetDescriptionText().ToLower();
-                        if (name.Contains(dis))
+                        if (name.Contains(pair.Value.KeyWord))
                         {
-                            itemcode += ((int)code).ToString("00");
+                            itemcode += ((int)pair.Key).ToString("00");
                             break;
                         }
                     }
 
-                    foreach (ProductionDetail b in Enum.GetValues(typeof(ProductionDetail)))
+                    foreach (var pair in Enums.ProductionDetailEnum)
                     {
-                        var dis = b.GetDescriptionText();
-                        if (name.Contains(dis))
+                        if (name.Contains(pair.Value.KeyWord))
                         {
-                            itemcode += ((int)b).ToString("00");
+                            itemcode += ((int)pair.Key).ToString("00");
                             break;
                         }
                     }
 
-                    foreach (PackageEnum b in Enum.GetValues(typeof(PackageEnum)))
+                    foreach (var pair in Enums.PackageEnum)
                     {
-                        var dis = b.GetDescriptionText();
-                        if (name.Contains(dis))
+                        if (name.Contains(pair.Value.KeyWord))
                         {
-                            itemcode += ((int)b).ToString("00");
+                            itemcode += ((int)pair.Key).ToString("00");
                             break;
                         }
                     }
 
-                    foreach (FlavorEnum b in Enum.GetValues(typeof(FlavorEnum)))
+                    foreach (var pair in Enums.FlavorEnum)
                     {
-                        var dis = b.GetDescriptionText();
-                        if (name.Contains(dis))
+                        if (name.Contains(pair.Value.KeyWord))
                         {
-                            itemcode += ((int)b).ToString("00");
+                            itemcode += ((int)pair.Key).ToString("00");
                             break;
                         }
                     }

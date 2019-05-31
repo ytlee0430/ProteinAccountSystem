@@ -9,8 +9,8 @@ namespace Common.Enum
 {
     public enum ProductionType
     {
-        [Description("無")]
-        Null = 0,
+        [Description("全部")]
+        All = 0,
         [Description("乳清")]
         WheyProtein = 01,
         [Description("健身配件")]

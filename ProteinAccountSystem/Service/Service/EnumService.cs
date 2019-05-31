@@ -9,55 +9,51 @@ using CodeFirstORM.Entity;
 using Common.Enum;
 using Common.Utils;
 using CommonUtility.Entity;
+using CommonUtility.Enum;
 
 namespace Service.Service
 {
     public class EnumService
     {
-        public static Dictionary<int, EnumModel> BrandEnum { get; set; }
-        public static Dictionary<int, EnumModel> FlavorEnum { get; set; }
-        public static Dictionary<int, EnumModel> PackageEnum { get; set; }
-        public static Dictionary<int, EnumModel> PlatEnum { get; set; }
-        public static Dictionary<int, EnumModel> ProductionDetailEnum { get; set; }
-        public static Dictionary<int, EnumModel> ProductionEnum { get; set; }
-
-
+       
         public static void EnumInitialize()
         {
-            var repo = new EnumRepository();
+            var repo = new EnumClassRepository();
             var enumEntitis = repo.GetAll();
             foreach (var enumEntity in enumEntitis)
             {
-                switch (enumEntity.EnumClass.EnumClassDescription)
+                Dictionary<int, EnumModel> dic = null;
+                switch (enumEntity.EnumClassDescription)
                 {
                     case "Brand":
-                        BrandEnum.Add(enumEntity.EnumValue, new EnumModel { Description = enumEntity.Description, EnumValue = enumEntity.EnumValue, KeyWord = enumEntity.KeyWord });
+                        dic = Enums.BrandEnum;
                         break;
                     case "Flavor":
-                        FlavorEnum.Add(enumEntity.EnumValue, new EnumModel { Description = enumEntity.Description, EnumValue = enumEntity.EnumValue, KeyWord = enumEntity.KeyWord });
+                        dic = Enums.FlavorEnum;
                         break;
                     case "Package":
-                        PackageEnum.Add(enumEntity.EnumValue, new EnumModel { Description = enumEntity.Description, EnumValue = enumEntity.EnumValue, KeyWord = enumEntity.KeyWord });
+                        dic = Enums.PackageEnum;
                         break;
                     case "Plat":
-                        PlatEnum.Add(enumEntity.EnumValue, new EnumModel { Description = enumEntity.Description, EnumValue = enumEntity.EnumValue, KeyWord = enumEntity.KeyWord });
+                        dic = Enums.PlatEnum;
                         break;
                     case "ProductionDetail":
-                        ProductionDetailEnum.Add(enumEntity.EnumValue, new EnumModel { Description = enumEntity.Description, EnumValue = enumEntity.EnumValue, KeyWord = enumEntity.KeyWord });
+                        dic = Enums.ProductionDetailEnum;
                         break;
                     case "Production":
-                        ProductionEnum.Add(enumEntity.EnumValue, new EnumModel { Description = enumEntity.Description, EnumValue = enumEntity.EnumValue, KeyWord = enumEntity.KeyWord });
+                        dic = Enums.ProductionEnum;
                         break;
                     default:
                         break;
                 }
+                foreach (var e in enumEntity.Enums)
+                    dic.Add(e.EnumValue, new EnumModel { Description = e.Description, EnumValue = e.EnumValue, KeyWord = e.KeyWord });
             }
         }
 
-        public static void UpdateDatabase()
+        public static void InitailizeDatabase()
         {
             var repoClass = new EnumClassRepository();
-
             List<EnumClassEntity> enumClasses = new List<EnumClassEntity>();
             var brandEnums = new List<EnumEntity>();
             foreach (BrandEnum brand in Enum.GetValues(typeof(BrandEnum)))
@@ -89,7 +85,7 @@ namespace Service.Service
                 var dis = brand.GetDescriptionText();
                 platEnums.Add(new EnumEntity { Description = dis, EnumValue = (int)brand, KeyWord = dis });
             }
-            enumClasses.Add(new EnumClassEntity { EnumClassDescription = "Plat" ,Enums = platEnums});
+            enumClasses.Add(new EnumClassEntity { EnumClassDescription = "Plat", Enums = platEnums });
 
             var productionDetailEnums = new List<EnumEntity>();
             foreach (ProductionDetail brand in Enum.GetValues(typeof(ProductionDetail)))
@@ -97,7 +93,7 @@ namespace Service.Service
                 var dis = brand.GetDescriptionText();
                 productionDetailEnums.Add(new EnumEntity { Description = dis, EnumValue = (int)brand, KeyWord = dis });
             }
-            enumClasses.Add(new EnumClassEntity { EnumClassDescription = "ProductionDetail", Enums = productionDetailEnums});
+            enumClasses.Add(new EnumClassEntity { EnumClassDescription = "ProductionDetail", Enums = productionDetailEnums });
 
             var productionEnums = new List<EnumEntity>();
             foreach (ProductionType brand in Enum.GetValues(typeof(ProductionType)))
@@ -105,7 +101,7 @@ namespace Service.Service
                 var dis = brand.GetDescriptionText();
                 productionEnums.Add(new EnumEntity { Description = dis, EnumValue = (int)brand, KeyWord = dis });
             }
-            enumClasses.Add(new EnumClassEntity { EnumClassDescription = "Production" , Enums = productionEnums });
+            enumClasses.Add(new EnumClassEntity { EnumClassDescription = "Production", Enums = productionEnums });
 
             repoClass.Add(enumClasses);
         }

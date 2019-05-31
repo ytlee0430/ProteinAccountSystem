@@ -9,11 +9,8 @@ namespace Common.Enum
 {
     public enum FlavorEnum
     {
-        /// <summary>
-        /// 無口味分類
-        /// </summary>
-         [Description("無口味")]
-        Null = 00,
+        [Description("全部")]
+        All = 0,
 
         /// <summary>
         ///  藍莓起司蛋糕
