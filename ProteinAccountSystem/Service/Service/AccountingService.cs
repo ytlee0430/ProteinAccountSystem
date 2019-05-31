@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using AutoMapper;
 using CodeFirstORM.DBLayer;
 using CodeFirstORM.Entity;
 using Common.Entity;
@@ -12,10 +11,6 @@ namespace Service.Service
 {
     public class AccountingService : IAccountingService
     {
-
-        private AnalyzeShopeeExcelSevice _analyzeShopeeExcelSevice;
-        private AccountingService _accountingservice;
-
         /// <summary>
         /// 取得匯入帳號訂單號碼，將銷帳紀錄改為已銷帳
         /// </summary>
@@ -27,23 +22,19 @@ namespace Service.Service
             var result = new List<PhuraseDetailModel>();
             foreach (var item in models)
             {
-                var detail = repo.Get(c=>c.OrderNumber == item.OrderNumber).First();
-                detail.IsWriteOffMoney = true;
-                result.Add(Mapper.Map<PhuraseDetailModel>(detail));
+                var ordernum = item.OrderNumber;
+
+                Expression<Func<PhuraseDetailEntity, bool>> itemWhere = c => true;
+
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && c.OrderNumber == item.OrderNumber;
+                var a = repo.GetList(itemWhere).First();
+                a.IsWriteOffMoney = true;
+                result.Add(a);
             }
 
-            return repo.Update(Mapper.Map<List<PhuraseDetailEntity>>(result));
+            return repo.UpdateItems(result);
         }
 
-        /// <summary>
-        /// 銷帳流程
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public bool importWirteOffMoneyDataProcess(string path)
-        {
-            var datas = _analyzeShopeeExcelSevice.AnalyzeShipData(path);
-            return WriteOffMoney(datas);
-        }
     }
 }

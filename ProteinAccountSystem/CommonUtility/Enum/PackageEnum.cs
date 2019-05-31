@@ -10,15 +10,15 @@ namespace Common.Enum
     public enum PackageEnum
     {
         Null = 0,
-        [Description("1公斤")]
+        [Description("1 kg")]
         OneKg = 01,
-        [Description("2.5公斤")]
+        [Description("2.5 kg")]
         TwoHalfKg = 02,
-        [Description("五公斤")]
+        [Description("5 kg")]
         FiveKg = 03,
-        [Description("400ml")]
+        [Description("400 ml")]
         FourHundredMili = 04,
-        [Description("600ml")]
+        [Description("600 ml")]
         SixHundredMili = 05,
         [Description("無分包裝")]
         NoPackage =06,

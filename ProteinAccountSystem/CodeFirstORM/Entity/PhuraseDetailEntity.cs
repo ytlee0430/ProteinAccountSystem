@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using CodeFirstORM.RepositoryBase;
 
 namespace CodeFirstORM.Entity
 {
-    public class PhuraseDetailEntity : IEntity
+    public class PhuraseDetailEntity
     {
         [Key]
         public int Key { get; set; }

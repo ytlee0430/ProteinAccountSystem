@@ -2,7 +2,7 @@
 using CodeFirstORM.Entity;
 using Common.Entity;
 
-namespace Service.AutoMapper
+namespace CodeFirstORM.AutoMapper
 {
     public class ItemProfile : Profile
     {

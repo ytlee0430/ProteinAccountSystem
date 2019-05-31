@@ -15,13 +15,14 @@ namespace Controller.Controller
         private IStockService _stockService;
         private IShippmentService _shippmentService;
         private ICreateSaleService _createSaleService;
-
-        public ShopeeController(IAnalyzeExcelService analyzeExcelService, IStockService stockService, IShippmentService shippmentService, ICreateSaleService createSaleService)
+        private IAccountingService _accountingService;
+        public ShopeeController(IAnalyzeExcelService analyzeExcelService, IStockService stockService, IShippmentService shippmentService, ICreateSaleService createSaleService, IAccountingService accountingService)
         {
             _analyzeExcelService = analyzeExcelService;
             _stockService = stockService;
             _shippmentService = shippmentService;
             _createSaleService = createSaleService;
+            _accountingService = accountingService;
         }
 
 
@@ -44,6 +45,7 @@ namespace Controller.Controller
         public bool importShipDataProcess(string path)
         {
             _phuraseDetailModels = _analyzeExcelService.AnalyzeShipData(path);
+            _phuraseDetailModels = _stockService.UpdateProductItemCode(_phuraseDetailModels);
             _stockService.AddDBlientPhuraseRecord(_phuraseDetailModels);
             _stockService.UpdateDBStorage(_phuraseDetailModels);
 
@@ -53,8 +55,7 @@ namespace Controller.Controller
         public bool importWirteOffMoneyDataProcess(string path)
         {
             var datas = _analyzeExcelService.AnalyzeShipData(path);
-            //WriteOffMoney
-            return true;
+            return _accountingService.WriteOffMoney(datas);
         }
 
         public void AddPhuraseProduct(string itemItemCode, int count, int saleMoney)
@@ -88,8 +89,6 @@ namespace Controller.Controller
 
         }
 
-
-
         /// <summary>
         /// 取得庫存
         /// </summary>
@@ -110,7 +109,7 @@ namespace Controller.Controller
         public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
         {
             List<PhuraseDetailModel> a = _stockService.GetSalesRecords(searchModel);
-            throw new NotImplementedException();
+            return a;
         }
     }
 }

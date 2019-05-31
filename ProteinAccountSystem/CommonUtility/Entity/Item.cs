@@ -36,7 +36,7 @@ namespace Common.Entity
         /// 商品分類
         /// </summary>
         public ProductionType ProductionType { get; set; }
-        
+
         /// <summary>
         /// 商品細項分類
         /// </summary>

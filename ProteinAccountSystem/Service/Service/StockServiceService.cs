@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
 using CodeFirstORM.DBLayer;
 using CodeFirstORM.Entity;
 using Common.Entity;
+using Common.Enum;
 using Common.Interface.Service;
+using Common.Utils;
 
 namespace Service.Service
 {
@@ -19,8 +20,7 @@ namespace Service.Service
         public bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData)
         {
             var repo = new PhuraseDetailRepository();
-            
-            return repo.Add(Mapper.Map<List<PhuraseDetailEntity>>(stockData));
+            return repo.AddItems(stockData);
         }
 
         /// <summary>
@@ -42,10 +42,10 @@ namespace Service.Service
                 }
 
             var repo = new ItemRepository();
-            var items = repo.Get(p => codeToNumDic.ContainsKey(p.ItemCode)).OrderBy(o => o.ExpiredDate).GroupBy(g => g.ItemCode).Select(s => s.FirstOrDefault());
+            var items = repo.GetList(p => codeToNumDic.ContainsKey(p.ItemCode)).OrderBy(o => o.ExpiredDate).GroupBy(g => g.ItemCode).Select(s => s.FirstOrDefault());
             foreach (var item in items)
                 item.Storage -= codeToNumDic[item.ItemCode];
-            return repo.Update(items);
+            return repo.UpdateItems(items);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Service.Service
         {
             var repo = new ItemRepository();
             var ex = repo.GetItemExp(brand, flavor, package, productionType, productionDetailType);
-            return Mapper.Map< List<Item>>(repo.Get(ex));
+            return repo.GetList(ex);
         }
 
         public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
@@ -68,7 +68,7 @@ namespace Service.Service
             if (searchModel.Brand != Common.Enum.BrandEnum.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x => x.Brand == (searchModel.Brand));
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.Brand == ((int)searchModel.Brand));
             }
 
             if (searchModel.StartTime != null)
@@ -86,25 +86,25 @@ namespace Service.Service
             if (searchModel.Flavor != Common.Enum.FlavorEnum.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x =>x.Flavor == (searchModel.Flavor));
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.Flavor == ((int)searchModel.Flavor));
             }
 
             if (searchModel.Package != Common.Enum.PackageEnum.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x => x.Package == (searchModel.Package));
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.Package == ((int)searchModel.Package));
             }
 
             if (searchModel.ProductionDetailType != Common.Enum.ProductionDetail.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x => x.ProductionDetailType == (searchModel.ProductionDetailType));
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.ProductionDetailType == ((int)searchModel.ProductionDetailType));
             }
 
             if (searchModel.ProductionType != Common.Enum.ProductionType.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x => x.ProductionType == (searchModel.ProductionType));
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.ProductionType == ((int)searchModel.ProductionType));
             }
 
             if (searchModel.IsWriteOffMoney != -1)
@@ -114,13 +114,77 @@ namespace Service.Service
                 itemWhere = c => prefix(c) && c.IsWriteOffMoney == b;
             }
 
-            //if (searchModel.KeyWord != "")
-            //{
-            //    var prefix = itemWhere.Compile();
-            //    itemWhere = c => prefix(c) && c.);
-            //}
-            //TODO:keyword
-           return Mapper.Map<List<PhuraseDetailModel>>(repo.Get(itemWhere));
+            if (searchModel.KeyWord != "")
+            {
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && (c.Account == searchModel.KeyWord || c.OrderNumber == searchModel.KeyWord);
+            }
+            return repo.GetList(itemWhere);
+        }
+
+        public List<PhuraseDetailModel> UpdateProductItemCode(List<PhuraseDetailModel> models)
+        {
+            foreach (var model in models)
+            {
+                var products = model.Products;
+                foreach (var item in products)
+                {
+                    var name = item.ProductName.ToLower();
+                    var itemcode = "";
+
+                    foreach (ProductionType code in Enum.GetValues(typeof(ProductionType)))
+                    {
+                        var dis = code.GetDescriptionText();
+                        if (name.Contains(dis))
+                        {
+                            itemcode += ((int)code).ToString("00");
+                            break;
+                        }
+                    }
+
+                    foreach (BrandEnum code in Enum.GetValues(typeof(BrandEnum)))
+                    {
+                        var dis = code.GetDescriptionText().ToLower();
+                        if (name.Contains(dis))
+                        {
+                            itemcode += ((int)code).ToString("00");
+                            break;
+                        }
+                    }
+
+                    foreach (ProductionDetail b in Enum.GetValues(typeof(ProductionDetail)))
+                    {
+                        var dis = b.GetDescriptionText();
+                        if (name.Contains(dis))
+                        {
+                            itemcode += ((int)b).ToString("00");
+                            break;
+                        }
+                    }
+
+                    foreach (PackageEnum b in Enum.GetValues(typeof(PackageEnum)))
+                    {
+                        var dis = b.GetDescriptionText();
+                        if (name.Contains(dis))
+                        {
+                            itemcode += ((int)b).ToString("00");
+                            break;
+                        }
+                    }
+
+                    foreach (FlavorEnum b in Enum.GetValues(typeof(FlavorEnum)))
+                    {
+                        var dis = b.GetDescriptionText();
+                        if (name.Contains(dis))
+                        {
+                            itemcode += ((int)b).ToString("00");
+                            break;
+                        }
+                    }
+                    item.ItemCode = itemcode;
+                }
+            }
+            return models;
         }
     }
 }

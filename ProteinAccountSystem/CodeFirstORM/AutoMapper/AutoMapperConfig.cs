@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Service.AutoMapper
+namespace CodeFirstORM.AutoMapper
 {
     public class AutoMapperConfig
     {
@@ -10,7 +10,6 @@ namespace Service.AutoMapper
             {
                 x.AddProfile<ItemProfile>();
                 x.AddProfile<PhuraseDetailEntityProfile>();
-                x.AddProfile<PhuraseModelEntityProfile>();
             });
 
         }
