@@ -10,7 +10,7 @@ namespace Common.Interface.Service
 
         bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData);
 
-        List<Item> GetStorage(BrandEnum brand, FlavorEnum flavor, PackageEnum package, ProductionType productionType, ProductionDetail productionDetailType);
+        List<Item> GetStorage(int brand, int flavor, int package, int productionType, int productionDetailType);
 
         List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel);
 

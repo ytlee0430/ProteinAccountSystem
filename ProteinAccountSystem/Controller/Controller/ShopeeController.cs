@@ -93,7 +93,7 @@ namespace Controller.Controller
         /// 取得庫存
         /// </summary>
         /// <returns></returns>
-        public List<Item> GetStorage(BrandEnum brand, FlavorEnum flavor, PackageEnum package, ProductionType productionType, ProductionDetail productionDetailType)
+        public List<Item> GetStorage(int brand, int flavor, int package, int productionType, int productionDetailType)
         {
             return _stockService.GetStorage(brand, flavor, package, productionType, productionDetailType);
         }

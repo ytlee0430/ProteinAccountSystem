@@ -78,11 +78,11 @@ namespace View
 
         private void btnShowStorage_Click(object sender, EventArgs e)
         {
-            var Brand = (BrandEnum)cbxBrands.SelectedIndex;
-            var Flavor = (FlavorEnum)cbxFlavors.SelectedIndex;
-            var Package = (PackageEnum)cbxPackages.SelectedIndex;
-            var ProductionType = (ProductionType)cbxType.SelectedIndex;
-            var ProductionDetailType = (ProductionDetail)cbxProductDetail.SelectedIndex;
+            var Brand = cbxBrands.SelectedIndex;
+            var Flavor = cbxFlavors.SelectedIndex;
+            var Package = cbxPackages.SelectedIndex;
+            var ProductionType = cbxType.SelectedIndex;
+            var ProductionDetailType = cbxProductDetail.SelectedIndex;
             var storages = _controller.GetStorage(Brand, Flavor, Package, ProductionType, ProductionDetailType);
             dgvStorage.DataSource = storages;
             dgvStorage.AutoResizeColumns(
@@ -93,11 +93,11 @@ namespace View
         {
             var item = new Item
             {
-                Brand = (BrandEnum)cbxBrands.SelectedIndex,
-                Flavor = (FlavorEnum)cbxFlavors.SelectedIndex,
-                Package = (PackageEnum)cbxPackages.SelectedIndex,
-                ProductionType = (ProductionType)cbxType.SelectedIndex,
-                ProductionDetailType = (ProductionDetail)cbxProductDetail.SelectedIndex,
+                Brand = cbxBrands.SelectedIndex,
+                Flavor = cbxFlavors.SelectedIndex,
+                Package = cbxPackages.SelectedIndex,
+                ProductionType = cbxType.SelectedIndex,
+                ProductionDetailType = cbxProductDetail.SelectedIndex,
             };
             item.ItemCode = ProductUtilities.GetItemCodes(item);
 
@@ -141,11 +141,11 @@ namespace View
             searchModel.KeyWord = txtKeyWord.Text;
             searchModel.StartTime = dtpStart.Value;
             searchModel.EndTime = dtpEnd.Value;
-            searchModel.Brand = (BrandEnum)cbxBrands.SelectedIndex;
-            searchModel.Flavor = (FlavorEnum)cbxFlavors.SelectedIndex;
-            searchModel.Package = (PackageEnum)cbxPackages.SelectedIndex;
-            searchModel.ProductionType = (ProductionType)cbxType.SelectedIndex;
-            searchModel.ProductionDetailType = (ProductionDetail)cbxProductDetail.SelectedIndex;
+            searchModel.Brand = cbxBrands.SelectedIndex;
+            searchModel.Flavor = cbxFlavors.SelectedIndex;
+            searchModel.Package = cbxPackages.SelectedIndex;
+            searchModel.ProductionType = cbxType.SelectedIndex;
+            searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
             var result = _controller.GetSalesRecords(searchModel);
             //TODO:Create Excel
         }
@@ -156,11 +156,11 @@ namespace View
             searchModel.KeyWord = txtKeyWord.Text;
             searchModel.StartTime = dtpStart.Value;
             searchModel.EndTime = dtpEnd.Value;
-            searchModel.Brand = (BrandEnum)cbxBrands.SelectedIndex;
-            searchModel.Flavor = (FlavorEnum)cbxFlavors.SelectedIndex;
-            searchModel.Package = (PackageEnum)cbxPackages.SelectedIndex;
-            searchModel.ProductionType = (ProductionType)cbxType.SelectedIndex;
-            searchModel.ProductionDetailType = (ProductionDetail)cbxProductDetail.SelectedIndex;
+            searchModel.Brand = cbxBrands.SelectedIndex;
+            searchModel.Flavor =cbxFlavors.SelectedIndex;
+            searchModel.Package = cbxPackages.SelectedIndex;
+            searchModel.ProductionType = cbxType.SelectedIndex;
+            searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
             var result = _controller.GetSalesRecords(searchModel);
 
             dgvSaleRecords.DataSource = result;

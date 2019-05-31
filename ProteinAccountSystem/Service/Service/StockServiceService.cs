@@ -54,7 +54,7 @@ namespace Service.Service
         /// 取得庫存
         /// </summary>
         /// <returns></returns>
-        public List<Item> GetStorage(Common.Enum.BrandEnum brand, Common.Enum.FlavorEnum flavor, Common.Enum.PackageEnum package, Common.Enum.ProductionType productionType, Common.Enum.ProductionDetail productionDetailType)
+        public List<Item> GetStorage(int brand, int flavor, int package, int productionType,int productionDetailType)
         {
             var repo = new ItemRepository();
             var ex = repo.GetItemExp(brand, flavor, package, productionType, productionDetailType);
@@ -67,7 +67,7 @@ namespace Service.Service
             var result = new List<PhuraseDetailModel>();
             System.Linq.Expressions.Expression<Func<PhuraseDetailEntity, bool>> itemWhere = c => true;
 
-            if (searchModel.Brand != Common.Enum.BrandEnum.Null)
+            if (searchModel.Brand != -1)
             {
                 var prefix = itemWhere.Compile();
                 itemWhere = c => prefix(c) && c.Products.Any(x => x.Brand == (searchModel.Brand));
@@ -85,25 +85,25 @@ namespace Service.Service
                 itemWhere = c => prefix(c) && c.OrderCreateTime <= searchModel.EndTime;
             }
 
-            if (searchModel.Flavor != Common.Enum.FlavorEnum.Null)
+            if (searchModel.Flavor != -1)
             {
                 var prefix = itemWhere.Compile();
                 itemWhere = c => prefix(c) && c.Products.Any(x =>x.Flavor == (searchModel.Flavor));
             }
 
-            if (searchModel.Package != Common.Enum.PackageEnum.Null)
+            if (searchModel.Package != -1)
             {
                 var prefix = itemWhere.Compile();
                 itemWhere = c => prefix(c) && c.Products.Any(x => x.Package == (searchModel.Package));
             }
 
-            if (searchModel.ProductionDetailType != Common.Enum.ProductionDetail.Null)
+            if (searchModel.ProductionDetailType != -1)
             {
                 var prefix = itemWhere.Compile();
                 itemWhere = c => prefix(c) && c.Products.Any(x => x.ProductionDetailType == (searchModel.ProductionDetailType));
             }
 
-            if (searchModel.ProductionType != Common.Enum.ProductionType.Null)
+            if (searchModel.ProductionType != -1)
             {
                 var prefix = itemWhere.Compile();
                 itemWhere = c => prefix(c) && c.Products.Any(x => x.ProductionType == (searchModel.ProductionType));

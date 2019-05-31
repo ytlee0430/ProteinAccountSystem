@@ -8,5 +8,12 @@ using System.Threading.Tasks;
 
 namespace CodeFirstORM.Config
 {
-    public class PhuraseProductEntityMapping : EntityTypeConfiguration<PhuraseProductEntity>    {        public PhuraseProductEntityMapping()        {            ToTable("PhuraseProducts");            HasRequired(x => x.PhuraseDetail).WithMany(s => s.Products).HasForeignKey(x => x.PhuraseDetailEntityKey).WillCascadeOnDelete(true);        }    }
+    public class PhuraseProductEntityMapping : EntityTypeConfiguration<PhuraseProductEntity>
+    {
+        public PhuraseProductEntityMapping()
+        {
+            ToTable("PhuraseProducts");
+            HasRequired(x => x.PhuraseDetail).WithMany(s => s.Products).HasForeignKey(x => x.PhuraseDetailEntityKey).WillCascadeOnDelete(true);
+        }
+    }
 }

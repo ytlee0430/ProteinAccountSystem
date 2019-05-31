@@ -10,9 +10,9 @@ using Newtonsoft.Json;
 
 namespace CodeFirstORM.DBLayer
 {
-    public class EnumRepository : RepositoryBase<EnumEntity>
+    public class EnumClassRepository : RepositoryBase<EnumClassEntity>
     {
-        public EnumRepository(): base(new ProteinDB())
+        public EnumClassRepository(): base(new ProteinDB())
         {
         }
     }

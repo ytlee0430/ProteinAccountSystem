@@ -19,6 +19,8 @@ namespace CodeFirstORM
         public IDbSet<ItemEntity> Items { get; set; }
         public IDbSet<PhuraseDetailEntity> PhuraseDetails { get; set; }
         public IDbSet<PhuraseProductEntity> PhuraseProducts { get; set; }
+        public IDbSet<EnumEntity> EnumEntities { get; set; }
+        public IDbSet<EnumClassEntity> EnumClassEntities { get; set; }
       
         public new IDbSet<T> Set<T>() where T : class
         {

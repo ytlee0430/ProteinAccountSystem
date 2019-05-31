@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=8.1.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.8.1.0\lib\net461\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -59,15 +56,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\EnumEntityMapping.cs" />
     <Compile Include="Config\PhuraseDetailEntityMapping.cs" />
+    <Compile Include="DBLayer\EnumClassRepository.cs" />
     <Compile Include="DBLayer\EnumRepository.cs" />
     <Compile Include="DBLayer\PhuraseProductRepository.cs" />
     <Compile Include="DBLayer\PhuraseDetailRepository.cs" />
     <Compile Include="DBLayer\ItemRepository.cs" />
+    <Compile Include="Entity\EnumClassEntity.cs" />
     <Compile Include="Entity\EnumEntity.cs" />
-    <Compile Include="Migrations\201905301706484_to-Enum.cs" />
-    <Compile Include="Migrations\201905301706484_to-Enum.Designer.cs">
-      <DependentUpon>201905301706484_to-Enum.cs</DependentUpon>
+    <Compile Include="Migrations\201905311359551_add enum.cs" />
+    <Compile Include="Migrations\201905311359551_add enum.Designer.cs">
+      <DependentUpon>201905311359551_add enum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311402262_addenum1.cs" />
+    <Compile Include="Migrations\201905311402262_addenum1.Designer.cs">
+      <DependentUpon>201905311402262_addenum1.cs</DependentUpon>
     </Compile>
     <Compile Include="RepositoryBase\IDatabaseContext.cs" />
     <Compile Include="RepositoryBase\IEntity.cs" />
@@ -177,15 +181,12 @@
     <EmbeddedResource Include="Migrations\201905300646584_add-mapping detail-product.resx">
       <DependentUpon>201905300646584_add-mapping detail-product.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905301706484_to-Enum.resx">
-      <DependentUpon>201905301706484_to-Enum.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905311359551_add enum.resx">
+      <DependentUpon>201905311359551_add enum.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CommonUtility\Common.csproj">
-      <Project>{DD1F06DC-0FBA-40DB-BB49-FAB46E74EC22}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Migrations\201905311402262_addenum1.resx">
+      <DependentUpon>201905311402262_addenum1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

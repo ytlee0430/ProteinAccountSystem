@@ -5,10 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using AutoMapper;
 using CodeFirstORM.Entity;
-using Common.Entity;
-using Common.Enum;
 using Z.EntityFramework.Plus;
 
 namespace CodeFirstORM.DBLayer
@@ -19,31 +16,31 @@ namespace CodeFirstORM.DBLayer
         {
         }
 
-        public Expression<Func<ItemEntity, bool>> GetItemExp(BrandEnum brand, FlavorEnum flavor, PackageEnum package, ProductionType productionType, ProductionDetail productionDetailType)
+        public Expression<Func<ItemEntity, bool>> GetItemExp(int brand, int flavor, int package, int productionType, int productionDetailType)
         {
             Expression<Func<ItemEntity, bool>> itemWhere = c => true;
 
-            if (brand != BrandEnum.Null)
+            if (brand != -1)
             {
                 var prefix = itemWhere.Compile();
                 itemWhere = c => prefix(c) && c.Brand == brand;
             }
-            if (flavor != FlavorEnum.Null)
+            if (flavor != -1)
             {
                 var prefix = itemWhere.Compile();
                 itemWhere = c => prefix(c) && c.Flavor == flavor;
             }
-            if (package != PackageEnum.Null)
+            if (package != -1)
             {
                 var prefix = itemWhere.Compile();
                 itemWhere = c => prefix(c) && c.Package == package;
             }
-            if (productionType != ProductionType.Null)
+            if (productionType != -1)
             {
                 var prefix = itemWhere.Compile();
                 itemWhere = c => prefix(c) && c.ProductionType == productionType;
             }
-            if (productionDetailType != ProductionDetail.Null)
+            if (productionDetailType != -1)
             {
                 var prefix = itemWhere.Compile();
                 itemWhere = c => prefix(c) && c.ProductionDetailType == productionDetailType;

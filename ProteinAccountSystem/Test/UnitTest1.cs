@@ -32,7 +32,7 @@ namespace Test
             var testRepository = new ItemRepository();
             var x = testRepository.Add(new ItemEntity
             {
-                Brand = BrandEnum.EatMe,
+                Brand = 1,
                 ItemCode = "1100",
                 ExpiredDate = new DateTime(2020,04,30)
             });
@@ -46,7 +46,7 @@ namespace Test
             var x = testRepository.Update(new ItemEntity
             {
                 Key = 3,
-                Brand = BrandEnum.EatMe,
+                Brand = 1,
                 ItemCode = "110022",
                 ExpiredDate = new DateTime(2020, 04, 30)
             });
@@ -59,7 +59,7 @@ namespace Test
         {
             var item = new Item
             {
-                Flavor = Common.Enum.FlavorEnum.Banana
+                Flavor = 14
             };
             Mapper.Initialize(x => x.CreateMap<Item, ItemEntity>());
             var itemEntity = Mapper.Map<ItemEntity>(item);
@@ -72,7 +72,7 @@ namespace Test
             var items = new List<Item>{
             new Item
             {
-                Flavor = Common.Enum.FlavorEnum.Banana
+                Flavor = 14
             }};
 
             Mapper.Initialize(x => x.CreateMap<Item, ItemEntity>());

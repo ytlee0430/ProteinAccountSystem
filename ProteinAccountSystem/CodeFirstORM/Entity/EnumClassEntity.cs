@@ -8,18 +8,13 @@ using CodeFirstORM.RepositoryBase;
 
 namespace CodeFirstORM.Entity
 {
-    public class EnumEntity : IEntity
+    public class EnumClassEntity : IEntity
     {
         [Key]
         public int Key { get; set; }
 
-        public EnumClassEntity EnumClass { get; set; }
+        public string EnumClassDescription { get; set; }
 
-        public int EnumValue { get; set; }
-
-        public string Description { get; set; }
-
-        public string KeyWord { get; set; }
-
+        public EnumEntity Enum{ get; set; }
     }
 }
