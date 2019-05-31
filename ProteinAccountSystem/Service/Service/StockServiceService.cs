@@ -8,6 +8,7 @@ using Common.Entity;
 using Common.Enum;
 using Common.Interface.Service;
 using Common.Utils;
+using Service.AutoMapper;
 
 namespace Service.Service
 {
@@ -21,7 +22,6 @@ namespace Service.Service
         public bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData)
         {
             var repo = new PhuraseDetailRepository();
-            
             return repo.Add(Mapper.Map<List<PhuraseDetailEntity>>(stockData));
         }
 

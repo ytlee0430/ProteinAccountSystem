@@ -22,11 +22,11 @@ namespace Service.Service
             workbook.LoadFromFile(filePath);
             //获取第一张工作表
             Worksheet sheet = workbook.Worksheets[0];
-            
+
             for (int i = 1; i < sheet.Rows.Count(); i++)
             {
                 var cells = sheet.Rows[i].Cells;
-                if (string.IsNullOrEmpty( cells[0].DisplayedText))
+                if (string.IsNullOrEmpty(cells[0].DisplayedText))
                     break;
                 var data = new PhuraseDetailModel();
                 data.OrderNumber = cells[0].DisplayedText;
@@ -35,6 +35,7 @@ namespace Service.Service
                 if (!result.TryGetValue(data.OrderNumber, out var currenData))
                 {
                     data.Account = cells[3].DisplayedText;
+                    data.OrderCreateTime = Convert.ToDateTime(cells[4].DisplayedText);
                     Double.TryParse(cells[6].DisplayedText, out Double money);
                     data.TransferMoney = (int)money;
                     data.TotalMoney = Convert.ToInt32(Convert.ToDouble(cells[7].DisplayedText));
