@@ -65,13 +65,13 @@
     <Compile Include="DBLayer\ItemRepository.cs" />
     <Compile Include="Entity\EnumClassEntity.cs" />
     <Compile Include="Entity\EnumEntity.cs" />
-    <Compile Include="Migrations\201905311359551_add enum.cs" />
-    <Compile Include="Migrations\201905311359551_add enum.Designer.cs">
-      <DependentUpon>201905311359551_add enum.cs</DependentUpon>
+    <Compile Include="Migrations\201905311525564_addenum.cs" />
+    <Compile Include="Migrations\201905311525564_addenum.Designer.cs">
+      <DependentUpon>201905311525564_addenum.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905311402262_addenum1.cs" />
-    <Compile Include="Migrations\201905311402262_addenum1.Designer.cs">
-      <DependentUpon>201905311402262_addenum1.cs</DependentUpon>
+    <Compile Include="Migrations\201905311559199_enum class mapping.cs" />
+    <Compile Include="Migrations\201905311559199_enum class mapping.Designer.cs">
+      <DependentUpon>201905311559199_enum class mapping.cs</DependentUpon>
     </Compile>
     <Compile Include="RepositoryBase\IDatabaseContext.cs" />
     <Compile Include="RepositoryBase\IEntity.cs" />
@@ -181,11 +181,11 @@
     <EmbeddedResource Include="Migrations\201905300646584_add-mapping detail-product.resx">
       <DependentUpon>201905300646584_add-mapping detail-product.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905311359551_add enum.resx">
-      <DependentUpon>201905311359551_add enum.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905311525564_addenum.resx">
+      <DependentUpon>201905311525564_addenum.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905311402262_addenum1.resx">
-      <DependentUpon>201905311402262_addenum1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905311559199_enum class mapping.resx">
+      <DependentUpon>201905311559199_enum class mapping.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

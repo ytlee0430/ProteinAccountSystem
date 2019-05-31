@@ -12,8 +12,8 @@ namespace CodeFirstORM.Config
     {
         public EnumEntityMapping()
         {
-            //ToTable("EnumEntities");
-            //HasOptional(x => x.EnumClass).WithRequired(s => s.Enum);
+            ToTable("EnumEntities");
+            HasRequired(x => x.EnumClass).WithMany(s => s.Enums).HasForeignKey(x => x.ForeignKey).WillCascadeOnDelete(true);
         }
     }
 }

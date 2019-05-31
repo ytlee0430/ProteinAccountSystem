@@ -7,13 +7,13 @@ namespace CodeFirstORM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class addenum : IMigrationMetadata
+    public sealed partial class enumclassmapping : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addenum));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(enumclassmapping));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905311359551_add enum"; }
+            get { return "201905311559199_enum class mapping"; }
         }
         
         string IMigrationMetadata.Source
