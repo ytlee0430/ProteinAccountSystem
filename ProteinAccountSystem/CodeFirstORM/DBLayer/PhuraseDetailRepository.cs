@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using CodeFirstORM.AutoMapper;
 using CodeFirstORM.Entity;
 using Common.Entity;
 using Common.Enum;
@@ -64,6 +65,9 @@ namespace CodeFirstORM.DBLayer
             {
                 foreach (var detail in details)
                 {
+                    //Mapper.Initialize(x => {
+                    //    x.AddProfile<PhuraseProductEntityProfile>();
+                    //});
                     var products = Mapper.Map<List<PhuraseProductEntity>>(detail.Products);
 
                     ProteinDbContext.PhuraseDetails.Add(
@@ -84,7 +88,7 @@ namespace CodeFirstORM.DBLayer
                             Manager = detail.Manager,
                             OrderCreateTime = detail.OrderCreateTime,
                             CompanyInvoiceNumber = detail.CompanyInvoiceNumber,
-                            CompanyName = detail.CompanyName
+                            CompanyName = detail.CompanyName,
                         }
                     );
                 }

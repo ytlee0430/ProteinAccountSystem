@@ -11,49 +11,49 @@ namespace Common.Enum
     {
         [Description("其他")]
         Null = 0,
-        [Description("乳清")]
-        WheyProtein = 2,
-        [Description("分離式乳清")]
-        IsolateWheyProtein = 3,
+        [Description("濃縮")]
+        WheyProtein = 1,
+        [Description("分離")]
+        IsolateWheyProtein = 2,
         [Description("分離式大豆蛋白")]
-        IsolateSoyProtein = 4,
+        IsolateSoyProtein = 3,
         [Description("餅乾")]
-        Cookie = 5,
+        Cookie = 4,
         [Description("一般腰帶")]
-        Belt = 6,
+        Belt = 5,
         [Description("快扣腰帶")]
-        PowerliftingBelt = 7,
+        PowerliftingBelt = 6,
         [Description("低階手套")]
-        LowClassGloves = 8,
+        LowClassGloves = 7,
         [Description("中階手套")]
-        MiddleClassGloves = 9,
+        MiddleClassGloves = 8,
         [Description("高階手套")]
-        HighClassGloves = 10,
+        HighClassGloves = 9,
         [Description("健身拉力勾")]
-        GymReverseHookStrap = 11,
+        GymReverseHookStrap = 10,
         [Description("健身拉力帶")]
-        GymStrapGel = 12,
+        GymStrapGel = 11,
         [Description("健身倍力帶")]
-        GymProHook = 13,
+        GymProHook = 12,
         [Description("健身護腕")]
-        GymWristWrap = 14,
+        GymWristWrap = 13,
         [Description("高蛋白燕麥棒")]
-        ProteinOatBar = 15,
+        ProteinOatBar = 14,
         [Description("巧克力布朗尼")]
-        ChocalateBrownie = 16,
-        [Description("巧克力花生醬")]
-        PeanutButter = 17,
+        ChocalateBrownie = 15,
+        [Description("花生醬")]
+        PeanutButter = 16,
         [Description("杏仁醬")]
-        AlmondButter = 18,
-        [Description("零卡餅乾")]
-        MyBarZero = 19,
+        AlmondButter = 17,
+        [Description("零卡高纖蛋白棒")]
+        MyBarZero = 18,
         [Description("遙遙杯")]
-        Sharker = 20,
-        [Description("鑄鐵遙遙杯")]
-        SteelSharker = 21,
+        Sharker = 19,
+        [Description("鋼材遙遙杯")]
+        SteelSharker = 20,
         [Description("握力器")]
-        Grip = 22,
+        Grip = 21,
         [Description("BCAA")]
-        BCAA =23
+        BCAA =22
     }
 }

@@ -22,30 +22,31 @@ namespace Service.Service
             workbook.LoadFromFile(filePath);
             //获取第一张工作表
             Worksheet sheet = workbook.Worksheets[0];
-
-            var cell = sheet.Rows[1].Cells.First();
-
-            for (int i = 2; i < sheet.Rows.Count(); i++)
+            
+            for (int i = 1; i < sheet.Rows.Count(); i++)
             {
                 var cells = sheet.Rows[i].Cells;
+                if (string.IsNullOrEmpty( cells[0].DisplayedText))
+                    break;
                 var data = new PhuraseDetailModel();
                 data.OrderNumber = cells[0].DisplayedText;
-
+                //[現貨] 英國官方授權經銷 MYPROTEIN 濃縮乳清蛋白 2.5 KG  開立發票、紙箱包裝  台肌店-口味:藍莓起司蛋糕
+                var name = string.IsNullOrEmpty(cells[19].DisplayedText) ? cells[18].DisplayedText + "-口味:無口味" : cells[18].DisplayedText + "-口味:" + cells[19].DisplayedText;
                 if (!result.TryGetValue(data.OrderNumber, out var currenData))
                 {
                     data.Account = cells[3].DisplayedText;
-                    data.TransferMoney = Convert.ToInt32(Convert.ToDouble(cells[6].DisplayedText));
+                    Double.TryParse(cells[6].DisplayedText, out Double money);
+                    data.TransferMoney = (int)money;
                     data.TotalMoney = Convert.ToInt32(Convert.ToDouble(cells[7].DisplayedText));
-                    data.TotalTax = Convert.ToInt32(Convert.ToDouble(cells[7].DisplayedText) *0.05);
+                    data.TotalTax = Convert.ToInt32(Convert.ToDouble(cells[7].DisplayedText) * 0.05);
                     data.TransferMoneyWithoutTax = Convert.ToInt32(Convert.ToDouble(cells[6].DisplayedText) / 1.05);
                     data.Products = new List<PhuraseProductModel>(){
                     new PhuraseProductModel()
                     {
-                        ProductName=cells[23].DisplayedText, // 需要再蝦皮編輯商品貨號 
-                        Count=Convert.ToInt32(Convert.ToDouble( cells[24].DisplayedText)),
+                        ProductName=name, // 需要再蝦皮編輯商品貨號 
+                        Count=Convert.ToInt32(cells[24].DisplayedText),
                         ProductMoney=Convert.ToInt32(Convert.ToDouble( cells[5].DisplayedText)),
                         ProductMoneyWithoutTax=Convert.ToInt32( Convert.ToDouble(cells[5].DisplayedText)/1.05),
-                        //ItemCode=cells[22].ToString()+cells[23].ToString()
                     } };
                     data.DeliveryNumber = cells[40].DisplayedText;
                     data.Remark = "買家備註:" + cells[44].DisplayedText + "單備註" + cells[45].DisplayedText;
@@ -55,7 +56,7 @@ namespace Service.Service
                 {
                     currenData.Products.Add(new PhuraseProductModel()
                     {
-                        ProductName = cells[23].DisplayedText, // 需要再蝦皮編輯商品貨號 
+                        ProductName = name, // 需要再蝦皮編輯商品貨號 
                         Count = Convert.ToInt32(Convert.ToDouble(cells[24].DisplayedText)),
                         ProductMoney = Convert.ToInt32(Convert.ToDouble(cells[5].DisplayedText)),
                         ProductMoneyWithoutTax = Convert.ToInt32(Convert.ToDouble(cells[5].DisplayedText) / 1.05),

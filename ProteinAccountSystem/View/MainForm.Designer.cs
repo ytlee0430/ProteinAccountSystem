@@ -43,6 +43,7 @@
             this.dgvNewOrder = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.tabSaleRecord = new System.Windows.Forms.TabPage();
+            this.btnWriteOffSelectedMoney = new System.Windows.Forms.Button();
             this.btnImportExcelWirteOffMoney = new System.Windows.Forms.Button();
             this.dgvSaleRecords = new System.Windows.Forms.DataGridView();
             this.label13 = new System.Windows.Forms.Label();
@@ -73,7 +74,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.cbxType = new System.Windows.Forms.ComboBox();
             this.nudCount = new System.Windows.Forms.NumericUpDown();
-            this.btnWriteOffSelectedMoney = new System.Windows.Forms.Button();
+            this.btnAddNewItem = new System.Windows.Forms.Button();
             this.tabStorage.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
@@ -93,6 +94,7 @@
             // tabStorage
             // 
             this.tabStorage.BackColor = System.Drawing.Color.LightGray;
+            this.tabStorage.Controls.Add(this.btnAddNewItem);
             this.tabStorage.Controls.Add(this.btnShowStorage);
             this.tabStorage.Controls.Add(this.panel2);
             this.tabStorage.Controls.Add(this.btnExportStockExcel);
@@ -100,7 +102,7 @@
             this.tabStorage.Location = new System.Drawing.Point(4, 26);
             this.tabStorage.Name = "tabStorage";
             this.tabStorage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabStorage.Size = new System.Drawing.Size(1361, 556);
+            this.tabStorage.Size = new System.Drawing.Size(1361, 580);
             this.tabStorage.TabIndex = 1;
             this.tabStorage.Text = "庫存";
             // 
@@ -109,7 +111,7 @@
             this.btnShowStorage.BackColor = System.Drawing.Color.White;
             this.btnShowStorage.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnShowStorage.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnShowStorage.Location = new System.Drawing.Point(1084, 6);
+            this.btnShowStorage.Location = new System.Drawing.Point(286, 6);
             this.btnShowStorage.Name = "btnShowStorage";
             this.btnShowStorage.Size = new System.Drawing.Size(271, 48);
             this.btnShowStorage.TabIndex = 6;
@@ -141,7 +143,7 @@
             this.btnExportStockExcel.BackColor = System.Drawing.Color.White;
             this.btnExportStockExcel.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnExportStockExcel.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnExportStockExcel.Location = new System.Drawing.Point(1084, 6);
+            this.btnExportStockExcel.Location = new System.Drawing.Point(563, 6);
             this.btnExportStockExcel.Name = "btnExportStockExcel";
             this.btnExportStockExcel.Size = new System.Drawing.Size(271, 48);
             this.btnExportStockExcel.TabIndex = 4;
@@ -157,7 +159,7 @@
             this.tabFunction.Location = new System.Drawing.Point(4, 26);
             this.tabFunction.Name = "tabFunction";
             this.tabFunction.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFunction.Size = new System.Drawing.Size(1361, 556);
+            this.tabFunction.Size = new System.Drawing.Size(1361, 580);
             this.tabFunction.TabIndex = 0;
             this.tabFunction.Text = "首頁";
             // 
@@ -208,7 +210,7 @@
             this.tabAddOrder.Controls.Add(this.button1);
             this.tabAddOrder.Location = new System.Drawing.Point(4, 26);
             this.tabAddOrder.Name = "tabAddOrder";
-            this.tabAddOrder.Size = new System.Drawing.Size(1361, 556);
+            this.tabAddOrder.Size = new System.Drawing.Size(1361, 580);
             this.tabAddOrder.TabIndex = 2;
             this.tabAddOrder.Text = "新增訂單";
             // 
@@ -264,6 +266,16 @@
             this.tabSaleRecord.TabIndex = 4;
             this.tabSaleRecord.Text = "檢視銷貨紀錄";
             this.tabSaleRecord.UseVisualStyleBackColor = true;
+            // 
+            // btnWriteOffSelectedMoney
+            // 
+            this.btnWriteOffSelectedMoney.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnWriteOffSelectedMoney.Location = new System.Drawing.Point(14, 58);
+            this.btnWriteOffSelectedMoney.Name = "btnWriteOffSelectedMoney";
+            this.btnWriteOffSelectedMoney.Size = new System.Drawing.Size(181, 37);
+            this.btnWriteOffSelectedMoney.TabIndex = 51;
+            this.btnWriteOffSelectedMoney.Text = "銷帳已勾選帳號";
+            this.btnWriteOffSelectedMoney.UseVisualStyleBackColor = true;
             // 
             // btnImportExcelWirteOffMoney
             // 
@@ -568,15 +580,17 @@
             this.nudCount.Size = new System.Drawing.Size(120, 40);
             this.nudCount.TabIndex = 43;
             // 
-            // btnWriteOffSelectedMoney
+            // btnAddNewItem
             // 
-            this.btnWriteOffSelectedMoney.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnWriteOffSelectedMoney.Location = new System.Drawing.Point(14, 58);
-            this.btnWriteOffSelectedMoney.Name = "btnWriteOffSelectedMoney";
-            this.btnWriteOffSelectedMoney.Size = new System.Drawing.Size(181, 37);
-            this.btnWriteOffSelectedMoney.TabIndex = 51;
-            this.btnWriteOffSelectedMoney.Text = "銷帳已勾選帳號";
-            this.btnWriteOffSelectedMoney.UseVisualStyleBackColor = true;
+            this.btnAddNewItem.BackColor = System.Drawing.Color.White;
+            this.btnAddNewItem.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
+            this.btnAddNewItem.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnAddNewItem.Location = new System.Drawing.Point(9, 6);
+            this.btnAddNewItem.Name = "btnAddNewItem";
+            this.btnAddNewItem.Size = new System.Drawing.Size(271, 48);
+            this.btnAddNewItem.TabIndex = 7;
+            this.btnAddNewItem.Text = "建立庫存";
+            this.btnAddNewItem.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 
@@ -669,6 +683,7 @@
         private System.Windows.Forms.DataGridView dgvSaleRecords;
         private System.Windows.Forms.Button btnImportExcelWirteOffMoney;
         private System.Windows.Forms.Button btnWriteOffSelectedMoney;
+        private System.Windows.Forms.Button btnAddNewItem;
     }
 }
 

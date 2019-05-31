@@ -12,7 +12,7 @@ namespace Common.Enum
         /// <summary>
         /// 無口味分類
         /// </summary>
-         [Description("")]
+         [Description("無口味")]
         Null = 00,
 
         /// <summary>

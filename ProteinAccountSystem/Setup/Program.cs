@@ -25,9 +25,9 @@ namespace Setup
             IStockService stockService = new StockServiceService();
             IShippmentService shippmentService = new ShippmentServiceService();
             ICreateSaleService createSaleService = new CreateSaleService();
-
+            IAccountingService accountingService = new AccountingService();
             Application.Run(new MainForm(new ShopeeController(
-                analyzeExcelService, stockService, shippmentService, createSaleService)));
+                analyzeExcelService, stockService, shippmentService, createSaleService, accountingService)));
 
         }
     }

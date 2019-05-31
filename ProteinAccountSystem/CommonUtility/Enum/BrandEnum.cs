@@ -10,10 +10,10 @@ namespace Common.Enum
     public enum BrandEnum
     {
         Null = 00,
-        [Description("Myprotein")]
-        Myprotein = 01,
         [Description("EatMe")]
-        EatMe = 02,
+        EatMe = 01,
+        [Description("Myprotein")]
+        Myprotein = 02,
         [Description("RDX")]
         RDX = 02,
     }

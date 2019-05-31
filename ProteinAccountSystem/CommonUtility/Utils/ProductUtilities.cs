@@ -20,5 +20,6 @@ namespace Common.Utils
             return type + brand + productionDetailType + package + flavor;
 
         }
+        
     }
 }

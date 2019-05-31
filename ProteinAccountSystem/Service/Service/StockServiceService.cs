@@ -4,7 +4,9 @@ using System.Linq;
 using CodeFirstORM.DBLayer;
 using CodeFirstORM.Entity;
 using Common.Entity;
+using Common.Enum;
 using Common.Interface.Service;
+using Common.Utils;
 
 namespace Service.Service
 {
@@ -84,7 +86,7 @@ namespace Service.Service
             if (searchModel.Flavor != Common.Enum.FlavorEnum.Null)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x =>x.Flavor == ((int)searchModel.Flavor));
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.Flavor == ((int)searchModel.Flavor));
             }
 
             if (searchModel.Package != Common.Enum.PackageEnum.Null)
@@ -112,14 +114,77 @@ namespace Service.Service
                 itemWhere = c => prefix(c) && c.IsWriteOffMoney == b;
             }
 
+            if (searchModel.KeyWord != "")
+            {
+                var prefix = itemWhere.Compile();
+                itemWhere = c => prefix(c) && (c.Account == searchModel.KeyWord || c.OrderNumber == searchModel.KeyWord);
+            }
+            return repo.GetList(itemWhere);
+        }
 
-            //if (searchModel.KeyWord != "")
-            //{
-            //    var prefix = itemWhere.Compile();
-            //    itemWhere = c => prefix(c) && c.);
-            //}
-            //TODO:keyword
-           return repo.GetList(itemWhere);
+        public List<PhuraseDetailModel> UpdateProductItemCode(List<PhuraseDetailModel> models)
+        {
+            foreach (var model in models)
+            {
+                var products = model.Products;
+                foreach (var item in products)
+                {
+                    var name = item.ProductName.ToLower();
+                    var itemcode = "";
+
+                    foreach (ProductionType code in Enum.GetValues(typeof(ProductionType)))
+                    {
+                        var dis = code.GetDescriptionText();
+                        if (name.Contains(dis))
+                        {
+                            itemcode += ((int)code).ToString("00");
+                            break;
+                        }
+                    }
+
+                    foreach (BrandEnum code in Enum.GetValues(typeof(BrandEnum)))
+                    {
+                        var dis = code.GetDescriptionText().ToLower();
+                        if (name.Contains(dis))
+                        {
+                            itemcode += ((int)code).ToString("00");
+                            break;
+                        }
+                    }
+
+                    foreach (ProductionDetail b in Enum.GetValues(typeof(ProductionDetail)))
+                    {
+                        var dis = b.GetDescriptionText();
+                        if (name.Contains(dis))
+                        {
+                            itemcode += ((int)b).ToString("00");
+                            break;
+                        }
+                    }
+
+                    foreach (PackageEnum b in Enum.GetValues(typeof(PackageEnum)))
+                    {
+                        var dis = b.GetDescriptionText();
+                        if (name.Contains(dis))
+                        {
+                            itemcode += ((int)b).ToString("00");
+                            break;
+                        }
+                    }
+
+                    foreach (FlavorEnum b in Enum.GetValues(typeof(FlavorEnum)))
+                    {
+                        var dis = b.GetDescriptionText();
+                        if (name.Contains(dis))
+                        {
+                            itemcode += ((int)b).ToString("00");
+                            break;
+                        }
+                    }
+                    item.ItemCode = itemcode;
+                }
+            }
+            return models;
         }
     }
 }

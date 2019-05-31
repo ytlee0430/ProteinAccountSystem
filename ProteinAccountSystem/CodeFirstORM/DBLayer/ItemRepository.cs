@@ -75,7 +75,6 @@ namespace CodeFirstORM.DBLayer
                 entity.Storage = item.Storage;
                 entity.Tax = item.Tax;
                 entity.ExpiredDate = item.ExpiredDate;
-                entity.ProductName = item.ProductName;
 
                 return ProteinDbContext.SaveChanges() > 0;
             }
@@ -109,7 +108,6 @@ namespace CodeFirstORM.DBLayer
                     entity.Storage = item.Storage;
                     entity.Tax = item.Tax;
                     entity.ExpiredDate = item.ExpiredDate;
-                    entity.ProductName = item.ProductName;
 
                 }
                 return ProteinDbContext.SaveChanges() > 0;
