@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common.Interface.Service;
 using Controller.Controller;
+using Service.AutoMapper;
 using Service.Service;
 using View;
 
@@ -26,6 +27,7 @@ namespace Setup
             IShippmentService shippmentService = new ShippmentServiceService();
             ICreateSaleService createSaleService = new CreateSaleService();
             IAccountingService accountingService = new AccountingService();
+            AutoMapperConfig.Configure();
             Application.Run(new MainForm(new ShopeeController(
                 analyzeExcelService, stockService, shippmentService, createSaleService, accountingService)));
 
