@@ -12,10 +12,6 @@ namespace Service.Service
 {
     public class AccountingService : IAccountingService
     {
-
-        private AnalyzeShopeeExcelSevice _analyzeShopeeExcelSevice;
-        private AccountingService _accountingservice;
-
         /// <summary>
         /// 取得匯入帳號訂單號碼，將銷帳紀錄改為已銷帳
         /// </summary>
@@ -35,15 +31,5 @@ namespace Service.Service
             return repo.Update(Mapper.Map<List<PhuraseDetailEntity>>(result));
         }
 
-        /// <summary>
-        /// 銷帳流程
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public bool importWirteOffMoneyDataProcess(string path)
-        {
-            var datas = _analyzeShopeeExcelSevice.AnalyzeShipData(path);
-            return WriteOffMoney(datas);
-        }
     }
 }

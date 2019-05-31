@@ -13,5 +13,7 @@ namespace Common.Interface.Service
         List<Item> GetStorage(BrandEnum brand, FlavorEnum flavor, PackageEnum package, ProductionType productionType, ProductionDetail productionDetailType);
 
         List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel);
+
+        List<PhuraseDetailModel> UpdateProductItemCode(List<PhuraseDetailModel> models);
     }
 }
