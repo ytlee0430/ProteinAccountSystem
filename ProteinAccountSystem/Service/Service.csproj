@@ -74,9 +74,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AccountingService.cs" />
     <Compile Include="Service\CreateSaleService.cs" />
-    <Compile Include="Service\DataBaseInitializer.cs" />
+    <Compile Include="DataBaseInitializer.cs" />
     <Compile Include="Service\EnumService.cs" />
-    <Compile Include="Service\ImportExcelSevice.cs" />
+    <Compile Include="Service\AnalyzeShopeeExcelSevice.cs" />
+    <Compile Include="Service\ExcelExportService.cs" />
     <Compile Include="Service\ShippmentServiceService.cs" />
     <Compile Include="Service\StockServiceService.cs" />
   </ItemGroup>

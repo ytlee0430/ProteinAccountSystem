@@ -30,9 +30,12 @@
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabStorage = new System.Windows.Forms.TabPage();
+            this.ckbShowCountZero = new System.Windows.Forms.CheckBox();
+            this.ckbEnableChange = new System.Windows.Forms.CheckBox();
+            this.btnUpdateItem = new System.Windows.Forms.Button();
+            this.dgvStorage = new System.Windows.Forms.DataGridView();
             this.btnAddNewItem = new System.Windows.Forms.Button();
             this.btnShowStorage = new System.Windows.Forms.Button();
-            this.dgvStorage = new System.Windows.Forms.DataGridView();
             this.btnExportStockExcel = new System.Windows.Forms.Button();
             this.tabFunction = new System.Windows.Forms.TabPage();
             this.btnCreateShippmentTicket = new System.Windows.Forms.Button();
@@ -74,9 +77,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.cbxType = new System.Windows.Forms.ComboBox();
             this.nudCount = new System.Windows.Forms.NumericUpDown();
-            this.btnUpdateItem = new System.Windows.Forms.Button();
-            this.ckbEnableChange = new System.Windows.Forms.CheckBox();
-            this.ckbShowCountZero = new System.Windows.Forms.CheckBox();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
             this.tabFunction.SuspendLayout();
@@ -110,6 +111,54 @@
             this.tabStorage.TabIndex = 1;
             this.tabStorage.Text = "庫存";
             // 
+            // ckbShowCountZero
+            // 
+            this.ckbShowCountZero.AutoSize = true;
+            this.ckbShowCountZero.Checked = true;
+            this.ckbShowCountZero.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbShowCountZero.Location = new System.Drawing.Point(1191, 32);
+            this.ckbShowCountZero.Name = "ckbShowCountZero";
+            this.ckbShowCountZero.Size = new System.Drawing.Size(155, 20);
+            this.ckbShowCountZero.TabIndex = 10;
+            this.ckbShowCountZero.Text = "顯示庫存為零品項";
+            this.ckbShowCountZero.UseVisualStyleBackColor = true;
+            // 
+            // ckbEnableChange
+            // 
+            this.ckbEnableChange.AutoSize = true;
+            this.ckbEnableChange.Location = new System.Drawing.Point(1191, 6);
+            this.ckbEnableChange.Name = "ckbEnableChange";
+            this.ckbEnableChange.Size = new System.Drawing.Size(107, 20);
+            this.ckbEnableChange.TabIndex = 9;
+            this.ckbEnableChange.Text = "可更新資料";
+            this.ckbEnableChange.UseVisualStyleBackColor = true;
+            this.ckbEnableChange.CheckedChanged += new System.EventHandler(this.ckbEnableChange_CheckedChanged);
+            // 
+            // btnUpdateItem
+            // 
+            this.btnUpdateItem.BackColor = System.Drawing.Color.White;
+            this.btnUpdateItem.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
+            this.btnUpdateItem.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnUpdateItem.Location = new System.Drawing.Point(914, 6);
+            this.btnUpdateItem.Name = "btnUpdateItem";
+            this.btnUpdateItem.Size = new System.Drawing.Size(271, 48);
+            this.btnUpdateItem.TabIndex = 8;
+            this.btnUpdateItem.Text = "更新庫存資料";
+            this.btnUpdateItem.UseVisualStyleBackColor = false;
+            this.btnUpdateItem.Click += new System.EventHandler(this.btnUpdateItem_Click);
+            // 
+            // dgvStorage
+            // 
+            this.dgvStorage.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvStorage.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvStorage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvStorage.Location = new System.Drawing.Point(9, 60);
+            this.dgvStorage.Name = "dgvStorage";
+            this.dgvStorage.ReadOnly = true;
+            this.dgvStorage.RowTemplate.Height = 24;
+            this.dgvStorage.Size = new System.Drawing.Size(1337, 607);
+            this.dgvStorage.TabIndex = 0;
+            // 
             // btnAddNewItem
             // 
             this.btnAddNewItem.BackColor = System.Drawing.Color.White;
@@ -121,6 +170,7 @@
             this.btnAddNewItem.TabIndex = 7;
             this.btnAddNewItem.Text = "建立庫存";
             this.btnAddNewItem.UseVisualStyleBackColor = false;
+            this.btnAddNewItem.Click += new System.EventHandler(this.btnAddNewItem_Click);
             // 
             // btnShowStorage
             // 
@@ -134,18 +184,6 @@
             this.btnShowStorage.Text = "顯示庫存";
             this.btnShowStorage.UseVisualStyleBackColor = false;
             this.btnShowStorage.Click += new System.EventHandler(this.btnShowStorage_Click);
-            // 
-            // dgvStorage
-            // 
-            this.dgvStorage.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvStorage.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dgvStorage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStorage.Location = new System.Drawing.Point(9, 60);
-            this.dgvStorage.Name = "dgvStorage";
-            this.dgvStorage.ReadOnly = true;
-            this.dgvStorage.RowTemplate.Height = 24;
-            this.dgvStorage.Size = new System.Drawing.Size(1337, 607);
-            this.dgvStorage.TabIndex = 0;
             // 
             // btnExportStockExcel
             // 
@@ -589,42 +627,6 @@
             this.nudCount.Size = new System.Drawing.Size(120, 40);
             this.nudCount.TabIndex = 43;
             // 
-            // btnUpdateItem
-            // 
-            this.btnUpdateItem.BackColor = System.Drawing.Color.White;
-            this.btnUpdateItem.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
-            this.btnUpdateItem.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnUpdateItem.Location = new System.Drawing.Point(914, 6);
-            this.btnUpdateItem.Name = "btnUpdateItem";
-            this.btnUpdateItem.Size = new System.Drawing.Size(271, 48);
-            this.btnUpdateItem.TabIndex = 8;
-            this.btnUpdateItem.Text = "更新庫存資料";
-            this.btnUpdateItem.UseVisualStyleBackColor = false;
-            this.btnUpdateItem.Click += new System.EventHandler(this.btnUpdateItem_Click);
-            // 
-            // ckbEnableChange
-            // 
-            this.ckbEnableChange.AutoSize = true;
-            this.ckbEnableChange.Location = new System.Drawing.Point(1191, 6);
-            this.ckbEnableChange.Name = "ckbEnableChange";
-            this.ckbEnableChange.Size = new System.Drawing.Size(107, 20);
-            this.ckbEnableChange.TabIndex = 9;
-            this.ckbEnableChange.Text = "可更新資料";
-            this.ckbEnableChange.UseVisualStyleBackColor = true;
-            this.ckbEnableChange.CheckedChanged += new System.EventHandler(this.ckbEnableChange_CheckedChanged);
-            // 
-            // ckbShowCountZero
-            // 
-            this.ckbShowCountZero.AutoSize = true;
-            this.ckbShowCountZero.Checked = true;
-            this.ckbShowCountZero.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbShowCountZero.Location = new System.Drawing.Point(1191, 32);
-            this.ckbShowCountZero.Name = "ckbShowCountZero";
-            this.ckbShowCountZero.Size = new System.Drawing.Size(155, 20);
-            this.ckbShowCountZero.TabIndex = 10;
-            this.ckbShowCountZero.Text = "顯示庫存為零品項";
-            this.ckbShowCountZero.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -719,6 +721,7 @@
         private System.Windows.Forms.CheckBox ckbEnableChange;
         private System.Windows.Forms.Button btnUpdateItem;
         private System.Windows.Forms.CheckBox ckbShowCountZero;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

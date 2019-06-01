@@ -56,12 +56,14 @@
     <Compile Include="Enum\ProductionDetail.cs" />
     <Compile Include="Enum\ProductionType.cs" />
     <Compile Include="Interface\Controller\IController.cs" />
+    <Compile Include="Interface\Service\IExcelExportService.cs" />
     <Compile Include="Interface\Service\IAccountingService.cs" />
     <Compile Include="Interface\Service\ICreateSaleService.cs" />
     <Compile Include="Interface\Service\IAnalyzeExcelService.cs" />
     <Compile Include="Interface\Service\IShippmentService.cs" />
     <Compile Include="Interface\Service\IStockService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\ProductUtilities.cs" />
     <Compile Include="Utils\TimestampConverter.cs" />
     <Compile Include="Utils\Utils.cs" />

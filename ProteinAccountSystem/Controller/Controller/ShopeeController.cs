@@ -16,13 +16,15 @@ namespace Controller.Controller
         private IShippmentService _shippmentService;
         private ICreateSaleService _createSaleService;
         private IAccountingService _accountingService;
-        public ShopeeController(IAnalyzeExcelService analyzeExcelService, IStockService stockService, IShippmentService shippmentService, ICreateSaleService createSaleService, IAccountingService accountingService)
+        private IExcelExportService _excelExportService;
+        public ShopeeController(IAnalyzeExcelService analyzeExcelService, IStockService stockService, IShippmentService shippmentService, ICreateSaleService createSaleService, IAccountingService accountingService, IExcelExportService excelExportService)
         {
             _analyzeExcelService = analyzeExcelService;
             _stockService = stockService;
             _shippmentService = shippmentService;
             _createSaleService = createSaleService;
             _accountingService = accountingService;
+            _excelExportService = excelExportService;
         }
 
 
@@ -67,6 +69,11 @@ namespace Controller.Controller
         public bool UpdateDBItems(List<ItemViewModel> list)
         {
             return _stockService.UpdateDBItems(list);
+        }
+
+        public bool ExportStockExcel(List<ItemViewModel> storages, string path)
+        {
+            return _excelExportService.ExportExcel(storages, path);
         }
 
         public bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData)

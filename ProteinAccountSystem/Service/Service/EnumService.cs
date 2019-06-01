@@ -15,7 +15,6 @@ namespace Service.Service
 {
     public class EnumService
     {
-       
         public static void EnumInitialize()
         {
             var repo = new EnumClassRepository();

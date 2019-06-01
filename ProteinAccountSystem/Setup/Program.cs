@@ -27,6 +27,8 @@ namespace Setup
             IShippmentService shippmentService = new ShippmentServiceService();
             ICreateSaleService createSaleService = new CreateSaleService();
             IAccountingService accountingService = new AccountingService();
+            IExcelExportService excelExportService = new ExcelExportService();
+
             AutoMapperConfig.Configure();
 
             //first run
@@ -37,7 +39,9 @@ namespace Setup
             //DataBaseInitializer.InitializeItemsDataBase();
 
             Application.Run(new MainForm(new ShopeeController(
-                analyzeExcelService, stockService, shippmentService, createSaleService, accountingService)));
+                analyzeExcelService, stockService, 
+                shippmentService, createSaleService, accountingService,
+                excelExportService)));
 
         }
     }

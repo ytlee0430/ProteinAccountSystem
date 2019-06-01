@@ -122,17 +122,22 @@ namespace View
 
         private void btnExportStockExcel_Click(object sender, EventArgs e)
         {
-            SearchModel searchModel = new SearchModel();
-            searchModel.KeyWord = txtKeyWord.Text;
-            searchModel.StartTime = dtpStart.Value;
-            searchModel.EndTime = dtpEnd.Value;
-            searchModel.Brand = cbxBrands.SelectedIndex;
-            searchModel.Flavor = cbxFlavors.SelectedIndex;
-            searchModel.Package = cbxPackages.SelectedIndex;
-            searchModel.ProductionType = cbxType.SelectedIndex;
-            searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
-            var result = _controller.GetSalesRecords(searchModel);
-            //TODO:Create Excel
+            saveFileDialog1.ShowDialog();
+            var path = saveFileDialog1.FileName;
+
+            var Brand = cbxBrands.SelectedIndex;
+            var Flavor = cbxFlavors.SelectedIndex;
+            var Package = cbxPackages.SelectedIndex;
+            var ProductionType = cbxType.SelectedIndex;
+            var ProductionDetailType = cbxProductDetail.SelectedIndex;
+            var showZero = ckbShowCountZero.Checked;
+            var storages = _controller.GetStorage(Brand, Flavor, Package, ProductionType, ProductionDetailType, showZero);
+            var result = _controller.ExportStockExcel(storages, path);
+            if (!result)
+            {
+                MessageBox.Show("匯出失敗!");
+            }
+            MessageBox.Show("匯出成功!");
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -198,6 +203,11 @@ namespace View
         private void ckbEnableChange_CheckedChanged(object sender, EventArgs e)
         {
             dgvStorage.ReadOnly = !ckbEnableChange.Checked;
+        }
+
+        private void btnAddNewItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
