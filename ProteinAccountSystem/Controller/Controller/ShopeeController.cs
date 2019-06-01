@@ -64,6 +64,11 @@ namespace Controller.Controller
             return _createSaleService.CreateSale(shopeeFee, receiptnumber, plat);
         }
 
+        public bool UpdateDBItems(List<ItemViewModel> list)
+        {
+            return _stockService.UpdateDBItems(list);
+        }
+
         public bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData)
         {
             return _stockService.AddDBlientPhuraseRecord(stockData);
@@ -89,9 +94,9 @@ namespace Controller.Controller
         /// 取得庫存
         /// </summary>
         /// <returns></returns>
-        public List<Item> GetStorage(int brand, int flavor, int package, int productionType, int productionDetailType)
+        public List<ItemViewModel> GetStorage(int brand, int flavor, int package, int productionType, int productionDetailType, bool showZero)
         {
-            return _stockService.GetStorage(brand, flavor, package, productionType, productionDetailType);
+            return _stockService.GetStorage(brand, flavor, package, productionType, productionDetailType,showZero);
         }
 
         /// <summary>

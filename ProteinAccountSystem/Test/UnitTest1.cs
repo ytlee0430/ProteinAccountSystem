@@ -7,7 +7,10 @@ using CodeFirstORM.DBLayer;
 using CodeFirstORM.Entity;
 using Common.Entity;
 using Common.Enum;
+using CommonUtility.Enum;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Service.AutoMapper;
+using Service.Service;
 
 namespace Test
 {
@@ -62,6 +65,7 @@ namespace Test
         [TestMethod]
         public void MapperTest()
         {
+
             var item = new Item
             {
                 Flavor = 14
@@ -70,6 +74,38 @@ namespace Test
             var itemEntity = Mapper.Map<ItemEntity>(item);
             Assert.AreEqual(itemEntity.Flavor, item.Flavor);
         }
+
+
+        [TestMethod]
+        public void ServiceMapperTest()
+        {
+            AutoMapperConfig.Configure();
+            var item = new Item
+            {
+                Flavor = 14
+            };
+            var itemEntity = AutoMapperConfig.Test<Item, ItemEntity>(item);
+            Assert.AreEqual(itemEntity.Flavor, item.Flavor);
+        }
+
+        [TestMethod]
+        public void ViewModelMapperTest()
+        {
+            EnumService.EnumInitialize();
+            AutoMapperConfig.Configure();
+            var item = new ItemEntity
+            {
+                Flavor = 14,
+                Cost =  10
+            };
+            var itemEntity = AutoMapperConfig.Test<ItemEntity, ItemViewModel>(item);
+
+            var test = AutoMapperConfig.Test<ItemViewModel, ItemEntity>(itemEntity);
+
+            Assert.AreEqual(item.Flavor, test.Flavor);
+        }
+
+
 
         [TestMethod]
         public void MapperListTest()

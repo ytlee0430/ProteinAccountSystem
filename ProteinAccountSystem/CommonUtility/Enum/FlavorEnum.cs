@@ -148,6 +148,12 @@ namespace Common.Enum
         /// 咖啡
         /// </summary>
         [Description("咖啡")]
-        Coffee = 24
+        Coffee = 24,
+
+        /// <summary>
+        /// 巧克力
+        /// </summary>
+        [Description("巧克力")]
+        Chocalate = 25,
     }
 }

@@ -13,7 +13,7 @@ namespace Common.Interface.Controller
 
         bool CreateShippmentTickets();
 
-        List<Item> GetStorage(int brand, int flavor, int package, int productionType, int productionDetailType);
+        List<ItemViewModel> GetStorage(int brand, int flavor, int package, int productionType, int productionDetailType, bool showZero);
 
         bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> phuraseDetailModels);
 
@@ -24,5 +24,6 @@ namespace Common.Interface.Controller
         bool importWirteOffMoneyDataProcess(string path);
         void AddPhuraseProduct(string itemItemCode, int count, int saleMoney);
         PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat);
+        bool UpdateDBItems(List<ItemViewModel> list);
     }
 }

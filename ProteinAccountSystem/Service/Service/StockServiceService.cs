@@ -55,11 +55,11 @@ namespace Service.Service
         /// 取得庫存
         /// </summary>
         /// <returns></returns>
-        public List<Item> GetStorage(int brand, int flavor, int package, int productionType,int productionDetailType)
+        public List<ItemViewModel> GetStorage(int brand, int flavor, int package, int productionType, int productionDetailType,bool showZero)
         {
             var repo = new ItemRepository();
-            var ex = repo.GetItemExp(brand, flavor, package, productionType, productionDetailType);
-            return Mapper.Map< List<Item>>(repo.Get(ex));
+            var ex = repo.GetItemExp(brand, flavor, package, productionType, productionDetailType, showZero);
+            return Mapper.Map<List<ItemViewModel>>(repo.Get(ex));
         }
 
         public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
@@ -89,7 +89,7 @@ namespace Service.Service
             if (searchModel.Flavor != -1)
             {
                 var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x =>x.Flavor == (searchModel.Flavor));
+                itemWhere = c => prefix(c) && c.Products.Any(x => x.Flavor == (searchModel.Flavor));
             }
 
             if (searchModel.Package != -1)
@@ -135,7 +135,7 @@ namespace Service.Service
                     var name = item.ProductName.ToLower();
                     var itemcode = "";
 
-                    foreach (var pair in Enums.ProductionEnum)
+                    foreach (var pair in Enums.ProductionEnum.OrderByDescending(p => p.Value.KeyWord.Length))
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
@@ -144,7 +144,7 @@ namespace Service.Service
                         }
                     }
 
-                    foreach (var pair in Enums.BrandEnum)
+                    foreach (var pair in Enums.BrandEnum.OrderByDescending(p => p.Value.KeyWord.Length))
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
@@ -153,7 +153,7 @@ namespace Service.Service
                         }
                     }
 
-                    foreach (var pair in Enums.ProductionDetailEnum)
+                    foreach (var pair in Enums.ProductionDetailEnum.OrderByDescending(p => p.Value.KeyWord.Length))
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
@@ -162,7 +162,7 @@ namespace Service.Service
                         }
                     }
 
-                    foreach (var pair in Enums.PackageEnum)
+                    foreach (var pair in Enums.PackageEnum.OrderByDescending(p => p.Value.KeyWord.Length))
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
@@ -171,7 +171,7 @@ namespace Service.Service
                         }
                     }
 
-                    foreach (var pair in Enums.FlavorEnum)
+                    foreach (var pair in Enums.FlavorEnum.OrderByDescending(p => p.Value.KeyWord.Length))
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
@@ -183,6 +183,21 @@ namespace Service.Service
                 }
             }
             return models;
+        }
+
+        public bool UpdateDBItems(List<ItemViewModel> list)
+        {
+            var repo = new ItemRepository();
+            var updateList = new List<ItemEntity>();
+            try
+            {
+                updateList = Mapper.Map<List<ItemEntity>>(list);
+            }
+            catch 
+            {
+                throw new ArgumentException("請勿輸入錯誤格式!");
+            }
+            return repo.Update(updateList);
         }
     }
 }

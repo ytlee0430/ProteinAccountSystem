@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Entity\EnumModel.cs" />
     <Compile Include="Entity\Item.cs" />
+    <Compile Include="Entity\ItemViewModel.cs" />
     <Compile Include="Entity\OrderDisplayItem.cs" />
     <Compile Include="Entity\PhuraseDetailModel.cs" />
     <Compile Include="Entity\PhuraseProductModel.cs" />

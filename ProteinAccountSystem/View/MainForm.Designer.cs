@@ -30,8 +30,8 @@
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabStorage = new System.Windows.Forms.TabPage();
+            this.btnAddNewItem = new System.Windows.Forms.Button();
             this.btnShowStorage = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.dgvStorage = new System.Windows.Forms.DataGridView();
             this.btnExportStockExcel = new System.Windows.Forms.Button();
             this.tabFunction = new System.Windows.Forms.TabPage();
@@ -74,9 +74,10 @@
             this.label10 = new System.Windows.Forms.Label();
             this.cbxType = new System.Windows.Forms.ComboBox();
             this.nudCount = new System.Windows.Forms.NumericUpDown();
-            this.btnAddNewItem = new System.Windows.Forms.Button();
+            this.btnUpdateItem = new System.Windows.Forms.Button();
+            this.ckbEnableChange = new System.Windows.Forms.CheckBox();
+            this.ckbShowCountZero = new System.Windows.Forms.CheckBox();
             this.tabStorage.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
             this.tabFunction.SuspendLayout();
             this.tabController.SuspendLayout();
@@ -94,9 +95,12 @@
             // tabStorage
             // 
             this.tabStorage.BackColor = System.Drawing.Color.LightGray;
+            this.tabStorage.Controls.Add(this.ckbShowCountZero);
+            this.tabStorage.Controls.Add(this.ckbEnableChange);
+            this.tabStorage.Controls.Add(this.btnUpdateItem);
+            this.tabStorage.Controls.Add(this.dgvStorage);
             this.tabStorage.Controls.Add(this.btnAddNewItem);
             this.tabStorage.Controls.Add(this.btnShowStorage);
-            this.tabStorage.Controls.Add(this.panel2);
             this.tabStorage.Controls.Add(this.btnExportStockExcel);
             this.tabStorage.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabStorage.Location = new System.Drawing.Point(4, 26);
@@ -105,6 +109,18 @@
             this.tabStorage.Size = new System.Drawing.Size(1361, 580);
             this.tabStorage.TabIndex = 1;
             this.tabStorage.Text = "庫存";
+            // 
+            // btnAddNewItem
+            // 
+            this.btnAddNewItem.BackColor = System.Drawing.Color.White;
+            this.btnAddNewItem.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
+            this.btnAddNewItem.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnAddNewItem.Location = new System.Drawing.Point(9, 6);
+            this.btnAddNewItem.Name = "btnAddNewItem";
+            this.btnAddNewItem.Size = new System.Drawing.Size(271, 48);
+            this.btnAddNewItem.TabIndex = 7;
+            this.btnAddNewItem.Text = "建立庫存";
+            this.btnAddNewItem.UseVisualStyleBackColor = false;
             // 
             // btnShowStorage
             // 
@@ -119,23 +135,16 @@
             this.btnShowStorage.UseVisualStyleBackColor = false;
             this.btnShowStorage.Click += new System.EventHandler(this.btnShowStorage_Click);
             // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.White;
-            this.panel2.Controls.Add(this.dgvStorage);
-            this.panel2.Location = new System.Drawing.Point(9, 60);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1346, 650);
-            this.panel2.TabIndex = 5;
-            // 
             // dgvStorage
             // 
+            this.dgvStorage.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvStorage.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvStorage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStorage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvStorage.Location = new System.Drawing.Point(0, 0);
+            this.dgvStorage.Location = new System.Drawing.Point(9, 60);
             this.dgvStorage.Name = "dgvStorage";
+            this.dgvStorage.ReadOnly = true;
             this.dgvStorage.RowTemplate.Height = 24;
-            this.dgvStorage.Size = new System.Drawing.Size(1346, 650);
+            this.dgvStorage.Size = new System.Drawing.Size(1337, 607);
             this.dgvStorage.TabIndex = 0;
             // 
             // btnExportStockExcel
@@ -580,17 +589,41 @@
             this.nudCount.Size = new System.Drawing.Size(120, 40);
             this.nudCount.TabIndex = 43;
             // 
-            // btnAddNewItem
+            // btnUpdateItem
             // 
-            this.btnAddNewItem.BackColor = System.Drawing.Color.White;
-            this.btnAddNewItem.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
-            this.btnAddNewItem.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnAddNewItem.Location = new System.Drawing.Point(9, 6);
-            this.btnAddNewItem.Name = "btnAddNewItem";
-            this.btnAddNewItem.Size = new System.Drawing.Size(271, 48);
-            this.btnAddNewItem.TabIndex = 7;
-            this.btnAddNewItem.Text = "建立庫存";
-            this.btnAddNewItem.UseVisualStyleBackColor = false;
+            this.btnUpdateItem.BackColor = System.Drawing.Color.White;
+            this.btnUpdateItem.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
+            this.btnUpdateItem.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnUpdateItem.Location = new System.Drawing.Point(914, 6);
+            this.btnUpdateItem.Name = "btnUpdateItem";
+            this.btnUpdateItem.Size = new System.Drawing.Size(271, 48);
+            this.btnUpdateItem.TabIndex = 8;
+            this.btnUpdateItem.Text = "更新庫存資料";
+            this.btnUpdateItem.UseVisualStyleBackColor = false;
+            this.btnUpdateItem.Click += new System.EventHandler(this.btnUpdateItem_Click);
+            // 
+            // ckbEnableChange
+            // 
+            this.ckbEnableChange.AutoSize = true;
+            this.ckbEnableChange.Location = new System.Drawing.Point(1191, 6);
+            this.ckbEnableChange.Name = "ckbEnableChange";
+            this.ckbEnableChange.Size = new System.Drawing.Size(107, 20);
+            this.ckbEnableChange.TabIndex = 9;
+            this.ckbEnableChange.Text = "可更新資料";
+            this.ckbEnableChange.UseVisualStyleBackColor = true;
+            this.ckbEnableChange.CheckedChanged += new System.EventHandler(this.ckbEnableChange_CheckedChanged);
+            // 
+            // ckbShowCountZero
+            // 
+            this.ckbShowCountZero.AutoSize = true;
+            this.ckbShowCountZero.Checked = true;
+            this.ckbShowCountZero.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbShowCountZero.Location = new System.Drawing.Point(1191, 32);
+            this.ckbShowCountZero.Name = "ckbShowCountZero";
+            this.ckbShowCountZero.Size = new System.Drawing.Size(155, 20);
+            this.ckbShowCountZero.TabIndex = 10;
+            this.ckbShowCountZero.Text = "顯示庫存為零品項";
+            this.ckbShowCountZero.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -621,7 +654,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.tabStorage.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.tabStorage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).EndInit();
             this.tabFunction.ResumeLayout(false);
             this.tabController.ResumeLayout(false);
@@ -639,7 +672,6 @@
         #endregion
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TabPage tabStorage;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnExportStockExcel;
         private System.Windows.Forms.TabPage tabFunction;
         private System.Windows.Forms.Button btnCreateShippmentTicket;
@@ -684,6 +716,9 @@
         private System.Windows.Forms.Button btnImportExcelWirteOffMoney;
         private System.Windows.Forms.Button btnWriteOffSelectedMoney;
         private System.Windows.Forms.Button btnAddNewItem;
+        private System.Windows.Forms.CheckBox ckbEnableChange;
+        private System.Windows.Forms.Button btnUpdateItem;
+        private System.Windows.Forms.CheckBox ckbShowCountZero;
     }
 }
 

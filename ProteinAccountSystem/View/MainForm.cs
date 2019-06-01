@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Common.Entity;
 using Common.Enum;
@@ -66,7 +67,8 @@ namespace View
             var Package = cbxPackages.SelectedIndex;
             var ProductionType = cbxType.SelectedIndex;
             var ProductionDetailType = cbxProductDetail.SelectedIndex;
-            var storages = _controller.GetStorage(Brand, Flavor, Package, ProductionType, ProductionDetailType);
+            var showZero = ckbShowCountZero.Checked;
+            var storages = _controller.GetStorage(Brand, Flavor, Package, ProductionType, ProductionDetailType, showZero);
             dgvStorage.DataSource = storages;
             dgvStorage.AutoResizeColumns(
                 DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
@@ -140,7 +142,7 @@ namespace View
             searchModel.StartTime = dtpStart.Value;
             searchModel.EndTime = dtpEnd.Value;
             searchModel.Brand = cbxBrands.SelectedIndex;
-            searchModel.Flavor =cbxFlavors.SelectedIndex;
+            searchModel.Flavor = cbxFlavors.SelectedIndex;
             searchModel.Package = cbxPackages.SelectedIndex;
             searchModel.ProductionType = cbxType.SelectedIndex;
             searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
@@ -167,7 +169,7 @@ namespace View
 
         private void DgvSaleRecords_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             throw new NotImplementedException();
         }
 
@@ -177,6 +179,25 @@ namespace View
             openFileDialog1.ShowDialog();
             var path = openFileDialog1.FileName;
             _controller.importWirteOffMoneyDataProcess(path);
+        }
+
+        private void btnUpdateItem_Click(object sender, EventArgs e)
+        {
+            var list = (List<ItemViewModel>)dgvStorage.DataSource;
+            try
+            {
+                _controller.UpdateDBItems(list);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+            MessageBox.Show("更新完成!");
+        }
+
+        private void ckbEnableChange_CheckedChanged(object sender, EventArgs e)
+        {
+            dgvStorage.ReadOnly = !ckbEnableChange.Checked;
         }
     }
 }

@@ -30,9 +30,11 @@ namespace Setup
             AutoMapperConfig.Configure();
 
             //first run
-            //EnumService.InitailizeDatabase();
-
+            //DataBaseInitializer.InitailizeEnumDatabase();
             EnumService.EnumInitialize();
+
+            //first run
+            //DataBaseInitializer.InitializeItemsDataBase();
 
             Application.Run(new MainForm(new ShopeeController(
                 analyzeExcelService, stockService, shippmentService, createSaleService, accountingService)));
