@@ -85,12 +85,12 @@ namespace Controller.Controller
             return _stockService.UpdateDBStorage(stockData);
         }
 
-        public bool CreateShippmentTickets()
+        public bool CreateShippmentTickets(string path)
         {
             if (!_phuraseDetailModels.Any())
                 return false;
 
-            var result = _shippmentService.CreateShippmentTicket(_phuraseDetailModels);
+            var result = _shippmentService.CreateShippmentTicket(_phuraseDetailModels,path);
 
             _phuraseDetailModels.Clear();
             return result;

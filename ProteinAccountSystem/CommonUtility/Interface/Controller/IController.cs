@@ -11,7 +11,7 @@ namespace Common.Interface.Controller
         bool importShipDataProcess(string path);
 
 
-        bool CreateShippmentTickets();
+        bool CreateShippmentTickets(string path);
 
         List<ItemViewModel> GetStorage(int brand, int flavor, int package, int productionType, int productionDetailType, bool showZero);
 

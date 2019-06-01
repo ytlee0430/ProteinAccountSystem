@@ -8,6 +8,6 @@ namespace Common.Interface.Service
         /// <summary>
         /// 產生寄件單
         /// </summary>
-        bool CreateShippmentTicket(List<PhuraseDetailModel> models);
+        bool CreateShippmentTicket(List<PhuraseDetailModel> models,string path);
     }
 }

@@ -57,7 +57,14 @@ namespace View
 
         private void btnCreateShippmentTicket_Click(object sender, EventArgs e)
         {
-            var result = _controller.CreateShippmentTickets();
+            saveFileDialog1.ShowDialog();
+            var path = saveFileDialog1.FileName;
+            var result = _controller.CreateShippmentTickets(path);
+            if (!result)
+            {
+                MessageBox.Show("匯出失敗!");
+            }
+            MessageBox.Show("匯出成功!");
         }
 
         private void btnShowStorage_Click(object sender, EventArgs e)

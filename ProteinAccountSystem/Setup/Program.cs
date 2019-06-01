@@ -24,7 +24,7 @@ namespace Setup
             //TODO: dirty work here , use DI
             IAnalyzeExcelService analyzeExcelService = new AnalyzeShopeeExcelSevice();
             IStockService stockService = new StockServiceService();
-            IShippmentService shippmentService = new ShippmentServiceService();
+            IShippmentService shippmentService = new ShippmentService();
             ICreateSaleService createSaleService = new CreateSaleService();
             IAccountingService accountingService = new AccountingService();
             IExcelExportService excelExportService = new ExcelExportService();
