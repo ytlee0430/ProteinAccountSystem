@@ -26,5 +26,6 @@ namespace Common.Interface.Controller
         PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat);
         bool UpdateDBItems(List<ItemViewModel> list);
         bool ExportStockExcel(List<ItemViewModel> storages, string path);
+        bool AddStorage(Item item);
     }
 }

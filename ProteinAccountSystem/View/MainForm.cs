@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using System.Linq;
 using System.Windows.Forms;
 using Common.Entity;
-using Common.Enum;
 using Common.Interface.Controller;
 using Common.Utils;
 using CommonUtility.Enum;
@@ -38,7 +37,7 @@ namespace View
 
 
             foreach (var pair in Enums.PlatEnum)
-                cbsSaleWays.Items.Add(pair.Value.Description);
+                cbxSaleWays.Items.Add(pair.Value.Description);
 
             #endregion
         }
@@ -93,30 +92,27 @@ namespace View
             };
             item.ItemCode = ProductUtilities.GetItemCodes(item);
 
-            _controller.AddPhuraseProduct(item.ItemCode, (int)nudCount.Value, Convert.ToInt32(tbxSalePrice));
+            _controller.AddPhuraseProduct(item.ItemCode, (int)nudCount.Value, Convert.ToInt32(tbxSalePrice.Text));
 
 
             _displayItems.Add(new OrderDisplayItem
             {
-                Brand = item.Brand,
-                Flavor = item.Flavor,
-                Package = item.Package,
-                ProductionType = item.ProductionType,
-                ProductionDetailType = item.ProductionDetailType,
+                Brand = Enums.BrandEnum[item.Brand].Description,
+                Flavor = Enums.FlavorEnum[item.Flavor].Description,
+                Package = Enums.PackageEnum[item.Package].Description,
+                ProductionType = Enums.ProductionEnum[item.ProductionType].Description,
+                ProductionDetailType = Enums.ProductionDetailEnum[item.ProductionDetailType].Description,
                 ItemCode = item.ItemCode,
                 Count = (int)nudCount.Value,
-                Price = Convert.ToInt32(tbxSalePrice),
+                Price = Convert.ToInt32(tbxSalePrice.Text),
             });
-
-            dgvNewOrder.DataSource = _displayItems;
-            dgvNewOrder.AutoResizeColumns(
-                DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+            dgvNewOrder.DataSource = _displayItems.ToList();
         }
 
         private void btnCreateSale_Click(object sender, EventArgs e)
         {
-            var model = _controller.CreateSale(Convert.ToInt32(tbxShippingFee), tbxReceipyNumber.Text, cbsSaleWays.SelectedIndex);
-
+            var model = _controller.CreateSale(Convert.ToInt32(tbxShippingFee.Text), tbxReceipyNumber.Text, cbxSaleWays.SelectedIndex);
+            model.OrderCreateTime = DateTime.Now;
             _controller.AddDBlientPhuraseRecord(new List<PhuraseDetailModel>() { model });
             _controller.UpdateDBStorage(new List<PhuraseDetailModel>() { model });
 
@@ -213,6 +209,41 @@ namespace View
         }
 
         private void btnAddNewItem_Click(object sender, EventArgs e)
+        {
+            var Brand = cbxBrands.SelectedIndex;
+            var Flavor = cbxFlavors.SelectedIndex;
+            var Package = cbxPackages.SelectedIndex;
+            var ProductionType = cbxType.SelectedIndex;
+            var ProductionDetailType = cbxProductDetail.SelectedIndex;
+            var count = (int)nudCount.Value;
+            var price = Convert.ToInt32(tbxSalePrice.Text) ;
+            var discount = Convert.ToDouble(tbxDiscount.Text);
+            var cost = Convert.ToInt32(tbxCost.Text);
+            var expireDate = dtpExpireDate.Value;
+            var item = new Item
+            {
+                Brand = Brand,
+                Flavor = Flavor,
+                Package = Package,
+                ProductionType = ProductionType,
+                ProductionDetailType = ProductionDetailType,
+                Storage = count,
+                NetPrice = price,
+                Discount = discount,
+                Cost = cost,
+                ExpiredDate = expireDate,
+            };
+            item.ItemCode = ProductUtilities.GetItemCodes(item);
+
+            _controller.AddStorage(item);
+        }
+
+        private void btnWriteOffSelectedMoney_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCreateSaleRecord_Click(object sender, EventArgs e)
         {
 
         }

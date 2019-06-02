@@ -37,7 +37,7 @@ namespace CodeFirstORM.DBLayer
             {
                 itemWhere = itemWhere.AndAlso(c => c.ProductionType == productionType);
             }
-            if (productionDetailType != -1)
+            if (productionDetailType > 0)
             {
                 itemWhere = itemWhere.AndAlso(c => c.ProductionDetailType == productionDetailType);
             }

@@ -38,9 +38,7 @@ namespace Service.Service
         public PhuraseDetailModel CreateSale(int shoppeeFee, string receiptnumber, int saleWay)
         {
             var model = new PhuraseDetailModel();
-            var a = new List<PhuraseProductModel>();
-            a = _phurases;
-            model.Products = a;
+            model.Products = _phurases.ToList();
             model.TotalMoney = _phurases.Sum(x => x.ProductMoney * x.Count) + shoppeeFee;
             model.TransferMoney = shoppeeFee;
             model.TotalTax = Convert.ToInt32((_phurases.Sum(x => x.ProductMoneyWithoutTax * x.Count) + shoppeeFee) * 0.05);

@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using CodeFirstORM.Entity;
+using CodeFirstORM.Utils;
 
 namespace CodeFirstORM.DBLayer
 {
@@ -56,6 +57,44 @@ namespace CodeFirstORM.DBLayer
                 }
                 return base.Add(entitis);
             }
+        }
+
+        public Expression<Func<PhuraseDetailEntity, bool>> GetDetailExp(int brand, int flavor, int package, int productionType,
+            int productionDetailType, int isWriteOffMoney, string keyWord)
+        {
+            Expression<Func<PhuraseDetailEntity, bool>> itemWhere = c => true;
+
+            if (brand > 0)
+            {
+                itemWhere = itemWhere.AndAlso(c => c.Products.Any(x => x.Brand == brand));
+            }
+            if (flavor > 0)
+            {
+                itemWhere = itemWhere.AndAlso(c => c.Products.Any(x => x.Flavor == flavor));
+            }
+            if (package > 0)
+            {
+                itemWhere = itemWhere.AndAlso(c => c.Products.Any(x => x.Package == package));
+            }
+            if (productionType > 0)
+            {
+                itemWhere = itemWhere.AndAlso(c => c.Products.Any(x => x.ProductionType == productionType));
+            }
+            if (productionDetailType > 0)
+            {
+                itemWhere = itemWhere.AndAlso(c => c.Products.Any(x => x.ProductionDetailType == productionDetailType));
+            }
+
+            if (isWriteOffMoney != -1)
+            {
+                itemWhere = itemWhere.AndAlso(c => c.IsWriteOffMoney == (isWriteOffMoney == 1));
+            }
+
+            if (keyWord != "")
+            {
+                itemWhere = itemWhere.AndAlso(c => (c.Account == keyWord || c.OrderNumber == keyWord));
+            }
+            return itemWhere;
         }
 
     }

@@ -25,5 +25,15 @@ namespace Common.Enum
         NoPackage =06,
         [Description("試用包")]
         Sample =07,
+        [Description("XS")]
+        XS = 08,
+        [Description("S")]
+        S = 09,
+        [Description("M")]
+        M = 10,
+        [Description("L")]
+        L = 11,
+        [Description("XL")]
+        XL = 12,
     }
 }

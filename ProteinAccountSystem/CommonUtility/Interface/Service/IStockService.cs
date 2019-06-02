@@ -16,5 +16,6 @@ namespace Common.Interface.Service
 
         List<PhuraseDetailModel> UpdateProductItemCode(List<PhuraseDetailModel> models);
         bool UpdateDBItems(List<ItemViewModel> list);
+        bool AddStorage(Item item);
     }
 }

@@ -60,7 +60,7 @@
             this.tbxShippingFee = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tbxReceipyNumber = new System.Windows.Forms.TextBox();
-            this.cbsSaleWays = new System.Windows.Forms.ComboBox();
+            this.cbxSaleWays = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -78,6 +78,12 @@
             this.cbxType = new System.Windows.Forms.ComboBox();
             this.nudCount = new System.Windows.Forms.NumericUpDown();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tbxDiscount = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tbxCost = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.dtpExpireDate = new System.Windows.Forms.DateTimePicker();
             this.tabStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
             this.tabFunction.SuspendLayout();
@@ -116,7 +122,7 @@
             this.ckbShowCountZero.AutoSize = true;
             this.ckbShowCountZero.Checked = true;
             this.ckbShowCountZero.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbShowCountZero.Location = new System.Drawing.Point(1191, 32);
+            this.ckbShowCountZero.Location = new System.Drawing.Point(1189, 34);
             this.ckbShowCountZero.Name = "ckbShowCountZero";
             this.ckbShowCountZero.Size = new System.Drawing.Size(155, 20);
             this.ckbShowCountZero.TabIndex = 10;
@@ -126,7 +132,7 @@
             // ckbEnableChange
             // 
             this.ckbEnableChange.AutoSize = true;
-            this.ckbEnableChange.Location = new System.Drawing.Point(1191, 6);
+            this.ckbEnableChange.Location = new System.Drawing.Point(1189, 6);
             this.ckbEnableChange.Name = "ckbEnableChange";
             this.ckbEnableChange.Size = new System.Drawing.Size(107, 20);
             this.ckbEnableChange.TabIndex = 9;
@@ -139,7 +145,7 @@
             this.btnUpdateItem.BackColor = System.Drawing.Color.White;
             this.btnUpdateItem.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnUpdateItem.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnUpdateItem.Location = new System.Drawing.Point(914, 6);
+            this.btnUpdateItem.Location = new System.Drawing.Point(912, 6);
             this.btnUpdateItem.Name = "btnUpdateItem";
             this.btnUpdateItem.Size = new System.Drawing.Size(271, 48);
             this.btnUpdateItem.TabIndex = 8;
@@ -177,7 +183,7 @@
             this.btnShowStorage.BackColor = System.Drawing.Color.White;
             this.btnShowStorage.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnShowStorage.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnShowStorage.Location = new System.Drawing.Point(286, 6);
+            this.btnShowStorage.Location = new System.Drawing.Point(284, 6);
             this.btnShowStorage.Name = "btnShowStorage";
             this.btnShowStorage.Size = new System.Drawing.Size(271, 48);
             this.btnShowStorage.TabIndex = 6;
@@ -190,7 +196,7 @@
             this.btnExportStockExcel.BackColor = System.Drawing.Color.White;
             this.btnExportStockExcel.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnExportStockExcel.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnExportStockExcel.Location = new System.Drawing.Point(563, 6);
+            this.btnExportStockExcel.Location = new System.Drawing.Point(561, 6);
             this.btnExportStockExcel.Name = "btnExportStockExcel";
             this.btnExportStockExcel.Size = new System.Drawing.Size(271, 48);
             this.btnExportStockExcel.TabIndex = 4;
@@ -275,6 +281,7 @@
             // 
             // dgvNewOrder
             // 
+            this.dgvNewOrder.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvNewOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNewOrder.Location = new System.Drawing.Point(3, 70);
             this.dgvNewOrder.Name = "dgvNewOrder";
@@ -317,12 +324,13 @@
             // btnWriteOffSelectedMoney
             // 
             this.btnWriteOffSelectedMoney.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnWriteOffSelectedMoney.Location = new System.Drawing.Point(14, 58);
+            this.btnWriteOffSelectedMoney.Location = new System.Drawing.Point(1156, 59);
             this.btnWriteOffSelectedMoney.Name = "btnWriteOffSelectedMoney";
-            this.btnWriteOffSelectedMoney.Size = new System.Drawing.Size(181, 37);
+            this.btnWriteOffSelectedMoney.Size = new System.Drawing.Size(190, 37);
             this.btnWriteOffSelectedMoney.TabIndex = 51;
             this.btnWriteOffSelectedMoney.Text = "銷帳已勾選帳號";
             this.btnWriteOffSelectedMoney.UseVisualStyleBackColor = true;
+            this.btnWriteOffSelectedMoney.Click += new System.EventHandler(this.btnWriteOffSelectedMoney_Click);
             // 
             // btnImportExcelWirteOffMoney
             // 
@@ -420,11 +428,12 @@
             this.btnCreateSaleRecord.TabIndex = 0;
             this.btnCreateSaleRecord.Text = "匯出Excel銷售紀錄";
             this.btnCreateSaleRecord.UseVisualStyleBackColor = true;
+            this.btnCreateSaleRecord.Click += new System.EventHandler(this.btnCreateSaleRecord_Click);
             // 
             // tbxShippingFee
             // 
             this.tbxShippingFee.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbxShippingFee.Location = new System.Drawing.Point(357, 132);
+            this.tbxShippingFee.Location = new System.Drawing.Point(328, 132);
             this.tbxShippingFee.Margin = new System.Windows.Forms.Padding(2);
             this.tbxShippingFee.Name = "tbxShippingFee";
             this.tbxShippingFee.Size = new System.Drawing.Size(120, 39);
@@ -435,7 +444,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label9.Location = new System.Drawing.Point(352, 98);
+            this.label9.Location = new System.Drawing.Point(328, 98);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(80, 27);
@@ -451,21 +460,21 @@
             this.tbxReceipyNumber.Size = new System.Drawing.Size(120, 39);
             this.tbxReceipyNumber.TabIndex = 36;
             // 
-            // cbsSaleWays
+            // cbxSaleWays
             // 
-            this.cbsSaleWays.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.cbsSaleWays.FormattingEnabled = true;
-            this.cbsSaleWays.Location = new System.Drawing.Point(185, 136);
-            this.cbsSaleWays.Margin = new System.Windows.Forms.Padding(2);
-            this.cbsSaleWays.Name = "cbsSaleWays";
-            this.cbsSaleWays.Size = new System.Drawing.Size(120, 35);
-            this.cbsSaleWays.TabIndex = 35;
+            this.cbxSaleWays.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.cbxSaleWays.FormattingEnabled = true;
+            this.cbxSaleWays.Location = new System.Drawing.Point(173, 136);
+            this.cbxSaleWays.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxSaleWays.Name = "cbxSaleWays";
+            this.cbxSaleWays.Size = new System.Drawing.Size(120, 35);
+            this.cbxSaleWays.TabIndex = 35;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label8.Location = new System.Drawing.Point(180, 98);
+            this.label8.Location = new System.Drawing.Point(173, 98);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(134, 27);
@@ -476,7 +485,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label7.Location = new System.Drawing.Point(20, 98);
+            this.label7.Location = new System.Drawing.Point(18, 98);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(134, 27);
@@ -627,20 +636,85 @@
             this.nudCount.Size = new System.Drawing.Size(120, 40);
             this.nudCount.TabIndex = 43;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label14.Location = new System.Drawing.Point(483, 98);
+            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(117, 27);
+            this.label14.TabIndex = 31;
+            this.label14.Text = "折扣(%) :";
+            // 
+            // tbxDiscount
+            // 
+            this.tbxDiscount.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbxDiscount.Location = new System.Drawing.Point(483, 132);
+            this.tbxDiscount.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxDiscount.Name = "tbxDiscount";
+            this.tbxDiscount.Size = new System.Drawing.Size(120, 39);
+            this.tbxDiscount.TabIndex = 30;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label15.Location = new System.Drawing.Point(638, 98);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(80, 27);
+            this.label15.TabIndex = 33;
+            this.label15.Text = "成本 :";
+            // 
+            // tbxCost
+            // 
+            this.tbxCost.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbxCost.Location = new System.Drawing.Point(638, 132);
+            this.tbxCost.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxCost.Name = "tbxCost";
+            this.tbxCost.Size = new System.Drawing.Size(120, 39);
+            this.tbxCost.TabIndex = 32;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label16.Location = new System.Drawing.Point(793, 98);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(134, 27);
+            this.label16.TabIndex = 45;
+            this.label16.Text = "有效期限 :";
+            // 
+            // dtpExpireDate
+            // 
+            this.dtpExpireDate.Location = new System.Drawing.Point(798, 144);
+            this.dtpExpireDate.Name = "dtpExpireDate";
+            this.dtpExpireDate.Size = new System.Drawing.Size(200, 22);
+            this.dtpExpireDate.TabIndex = 47;
+            this.dtpExpireDate.Value = new System.DateTime(2019, 6, 3, 0, 45, 27, 0);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1381, 791);
+            this.Controls.Add(this.dtpExpireDate);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.nudCount);
+            this.Controls.Add(this.tbxCost);
             this.Controls.Add(this.label10);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.tbxDiscount);
             this.Controls.Add(this.cbxType);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cbxProductDetail);
             this.Controls.Add(this.tbxShippingFee);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.tbxReceipyNumber);
-            this.Controls.Add(this.cbsSaleWays);
+            this.Controls.Add(this.cbxSaleWays);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
@@ -684,7 +758,7 @@
         private System.Windows.Forms.TextBox tbxShippingFee;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox tbxReceipyNumber;
-        private System.Windows.Forms.ComboBox cbsSaleWays;
+        private System.Windows.Forms.ComboBox cbxSaleWays;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
@@ -722,6 +796,12 @@
         private System.Windows.Forms.Button btnUpdateItem;
         private System.Windows.Forms.CheckBox ckbShowCountZero;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox tbxCost;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox tbxDiscount;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.DateTimePicker dtpExpireDate;
     }
 }
 

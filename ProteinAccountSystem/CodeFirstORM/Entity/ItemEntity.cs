@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using CodeFirstORM.RepositoryBase;
 
 namespace CodeFirstORM.Entity
@@ -64,6 +65,7 @@ namespace CodeFirstORM.Entity
         /// <summary>
         /// 保存期限
         /// </summary>
+        [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime ExpiredDate { get; set; }
 
 

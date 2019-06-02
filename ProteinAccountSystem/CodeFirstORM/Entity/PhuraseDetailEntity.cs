@@ -76,7 +76,8 @@ namespace CodeFirstORM.Entity
         /// <summary>
         /// 銷售時間(訂單成立時間)
         /// </summary>
-        public DateTime OrderCreateTime { get; set; }
+        [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public DateTime OrderCreateTime { get; set; } 
 
         /// <summary>
         /// 經手人

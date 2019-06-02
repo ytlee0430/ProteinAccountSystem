@@ -45,7 +45,7 @@ namespace Service.Service
                 }
 
             var repo = new ItemRepository();
-            var items = repo.Get(p => codeToNumDic.ContainsKey(p.ItemCode)).OrderBy(o => o.ExpiredDate).GroupBy(g => g.ItemCode).Select(s => s.FirstOrDefault());
+            var items = repo.Get(p => codeToNumDic.Keys.Contains(p.ItemCode)).OrderBy(o => o.ExpiredDate).GroupBy(g => g.ItemCode).Select(s => s.FirstOrDefault());
             foreach (var item in items)
                 item.Storage -= codeToNumDic[item.ItemCode];
             return repo.Update(items);
@@ -59,69 +59,15 @@ namespace Service.Service
         {
             var repo = new ItemRepository();
             var ex = repo.GetItemExp(brand, flavor, package, productionType, productionDetailType, showZero);
-            return Mapper.Map<List<ItemViewModel>>(repo.Get(ex));
+            return Mapper.Map<List<ItemViewModel>>(repo.Get(ex).OrderByDescending(o => o.Key));
         }
 
         public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
         {
             var repo = new PhuraseDetailRepository();
-            var result = new List<PhuraseDetailModel>();
-            System.Linq.Expressions.Expression<Func<PhuraseDetailEntity, bool>> itemWhere = c => true;
-
-            if (searchModel.Brand != -1)
-            {
-                var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x => x.Brand == (searchModel.Brand));
-            }
-
-            if (searchModel.StartTime != null)
-            {
-                var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.OrderCreateTime >= searchModel.StartTime;
-            }
-
-            if (searchModel.EndTime != null)
-            {
-                var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.OrderCreateTime <= searchModel.EndTime;
-            }
-
-            if (searchModel.Flavor != -1)
-            {
-                var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x => x.Flavor == (searchModel.Flavor));
-            }
-
-            if (searchModel.Package != -1)
-            {
-                var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x => x.Package == (searchModel.Package));
-            }
-
-            if (searchModel.ProductionDetailType != -1)
-            {
-                var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x => x.ProductionDetailType == (searchModel.ProductionDetailType));
-            }
-
-            if (searchModel.ProductionType != -1)
-            {
-                var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && c.Products.Any(x => x.ProductionType == (searchModel.ProductionType));
-            }
-
-            if (searchModel.IsWriteOffMoney != -1)
-            {
-                var prefix = itemWhere.Compile();
-                var b = searchModel.IsWriteOffMoney == 1 ? true : false;
-                itemWhere = c => prefix(c) && c.IsWriteOffMoney == b;
-            }
-
-            if (searchModel.KeyWord != "")
-            {
-                var prefix = itemWhere.Compile();
-                itemWhere = c => prefix(c) && (c.Account == searchModel.KeyWord || c.OrderNumber == searchModel.KeyWord);
-            }
+            var itemWhere = repo.GetDetailExp(searchModel.Brand, searchModel.Package, searchModel.Package,
+                searchModel.ProductionType, searchModel.ProductionDetailType,
+                searchModel.IsWriteOffMoney, searchModel.KeyWord);
             return Mapper.Map<List<PhuraseDetailModel>>(repo.Get(itemWhere));
         }
 
@@ -198,6 +144,12 @@ namespace Service.Service
                 throw new ArgumentException("請勿輸入錯誤格式!");
             }
             return repo.Update(updateList);
+        }
+
+        public bool AddStorage(Item item)
+        {
+            var repo = new ItemRepository();
+            return repo.Add(Mapper.Map<ItemEntity>(item));
         }
     }
 }

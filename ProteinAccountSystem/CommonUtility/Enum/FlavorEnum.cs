@@ -109,6 +109,12 @@ namespace Common.Enum
         NaturalVanilla = 16,
 
         /// <summary>
+        /// 無口味
+        /// </summary>
+        [Description("無口味")]
+        Null = 17,
+
+        /// <summary>
         /// 摩卡
         /// </summary>
         [Description("摩卡")]

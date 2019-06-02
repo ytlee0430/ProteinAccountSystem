@@ -76,6 +76,11 @@ namespace Controller.Controller
             return _excelExportService.ExportExcel(storages, path);
         }
 
+        public bool AddStorage(Item item)
+        {
+            return _stockService.AddStorage(item);
+        }
+
         public bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData)
         {
             return _stockService.AddDBlientPhuraseRecord(stockData);

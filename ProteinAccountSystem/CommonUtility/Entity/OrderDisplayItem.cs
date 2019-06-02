@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,41 +14,49 @@ namespace Common.Entity
         /// <summary>
         /// 商品編號
         /// </summary>
+        [DisplayName("商品編號")]
         public string ItemCode { get; set; }
 
         /// <summary>
         /// 商品口味
         /// </summary>
-        public int Flavor { get; set; }
+        [DisplayName("商品口味")]
+        public string Flavor { get; set; }
 
         /// <summary>
         /// 商品品牌
         /// </summary>
-        public int Brand { get; set; }
+        [DisplayName("商品品牌")]
+        public string Brand { get; set; }
 
         /// <summary>
         /// 商品分類
         /// </summary>
-        public int ProductionType { get; set; }
+        [DisplayName("商品分類")]
+        public string ProductionType { get; set; }
         
         /// <summary>
         /// 商品細項分類
         /// </summary>
-        public int ProductionDetailType { get; set; }
+        [DisplayName("商品細項分類")]
+        public string ProductionDetailType { get; set; }
 
         /// <summary>
         /// 包裝
         /// </summary>
-        public int Package { get; set; }
+        [DisplayName("包裝")]
+        public string Package { get; set; }
 
         /// <summary>
         /// 商品訂價
         /// </summary>
+        [DisplayName("商品訂價")]
         public int Price { get; set; }
 
         /// <summary>
         /// 幾個
         /// </summary>
+        [DisplayName("商品數量")]
         public int Count { get; set; }
     }
 }

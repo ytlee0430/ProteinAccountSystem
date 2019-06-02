@@ -78,6 +78,22 @@
     <Compile Include="Migrations\201905311731058_change forignkey .Designer.cs">
       <DependentUpon>201905311731058_change forignkey .cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906021631289_SetDateDefault.cs" />
+    <Compile Include="Migrations\201906021631289_SetDateDefault.Designer.cs">
+      <DependentUpon>201906021631289_SetDateDefault.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906021742509_setInt.cs" />
+    <Compile Include="Migrations\201906021742509_setInt.Designer.cs">
+      <DependentUpon>201906021742509_setInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906021743454_removeIdentity.cs" />
+    <Compile Include="Migrations\201906021743454_removeIdentity.Designer.cs">
+      <DependentUpon>201906021743454_removeIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906021754187_setDBdatetime.cs" />
+    <Compile Include="Migrations\201906021754187_setDBdatetime.Designer.cs">
+      <DependentUpon>201906021754187_setDBdatetime.cs</DependentUpon>
+    </Compile>
     <Compile Include="RepositoryBase\IDatabaseContext.cs" />
     <Compile Include="RepositoryBase\IEntity.cs" />
     <Compile Include="RepositoryBase\RepositoryBase.cs" />
@@ -199,6 +215,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905311731058_change forignkey .resx">
       <DependentUpon>201905311731058_change forignkey .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021631289_SetDateDefault.resx">
+      <DependentUpon>201906021631289_SetDateDefault.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021742509_setInt.resx">
+      <DependentUpon>201906021742509_setInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021743454_removeIdentity.resx">
+      <DependentUpon>201906021743454_removeIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021754187_setDBdatetime.resx">
+      <DependentUpon>201906021754187_setDBdatetime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
