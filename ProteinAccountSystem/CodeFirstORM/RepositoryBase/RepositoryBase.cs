@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using CodeFirstORM.Entity;
+using Z.EntityFramework.Plus;
 
 namespace CodeFirstORM.DBLayer
 {
@@ -33,6 +34,14 @@ namespace CodeFirstORM.DBLayer
         {
             return _database.Set<T>().Where(exp);
         }
+
+
+        public virtual bool Update(Expression<Func<T, bool>> exp, Expression<Func<T, T>> updateFactory)
+        {
+            return _database.Set<T>().Where(exp).Update(updateFactory) > 0;
+        }
+
+
 
         public virtual bool Update(T entity)
         {
@@ -80,7 +89,7 @@ namespace CodeFirstORM.DBLayer
             return _database.SaveChanges() > 0;
         }
 
-        public virtual  bool Add(T entity)
+        public virtual bool Add(T entity)
         {
             _database.Set<T>().Add(entity);
             return _database.SaveChanges() > 0;

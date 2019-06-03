@@ -14,6 +14,8 @@ namespace Common.Interface.Service
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        bool WriteOffMoney(List<PhuraseDetailModel> models);
+        bool WriteOffMoney(List<string> orderNumbers);
+
+        bool WriteOffMoney(List<PhuraseDetailModel> details);
     }
 }

@@ -13,7 +13,6 @@ namespace View
     {
         private IController _controller;
         List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
-        List<int> _offList = new List<int>();
 
         public MainForm(IController controller)
         {
@@ -36,7 +35,6 @@ namespace View
             foreach (var pair in Enums.ProductionEnum)
                 cbxType.Items.Add(pair.Value.Description);
 
-
             foreach (var pair in Enums.PlatEnum)
                 cbxSaleWays.Items.Add(pair.Value.Description);
 
@@ -52,7 +50,7 @@ namespace View
         {
             openFileDialog1.ShowDialog();
             var path = openFileDialog1.FileName;
-            _controller.importShipDataProcess(path);
+            _controller.ImportShipDataProcess(path);
         }
 
         private void btnCreateShippmentTicket_Click(object sender, EventArgs e)
@@ -180,14 +178,13 @@ namespace View
         {
             var y =e.RowIndex;
             var list = (List<PhuraseDetailModel>)dgvSaleRecords.DataSource;
-            _offList.Add(list[y].Key);
+            list[y].IsWriteOffMoney = !list[y].IsWriteOffMoney;
             //TODO:ui變化
 
         }
 
         private void btnImportExcelWirteOffMoney_Click(object sender, EventArgs e)
         {
-            // List<PhuraseDetailModel>
             openFileDialog1.ShowDialog();
             var path = openFileDialog1.FileName;
             _controller.importWirteOffMoneyDataProcess(path);
@@ -239,18 +236,14 @@ namespace View
             };
             item.ItemCode = ProductUtilities.GetItemCodes(item);
 
-            _controller.AddStorage(item);
+            _controller.AddDBStorage(item);
             MessageBox.Show("更新完成!");
         }
 
         private void btnWriteOffSelectedMoney_Click(object sender, EventArgs e)
         {
-            //TODO:
-            //_controller.WriteOffSelectedMoney(_offList);
-
+            _controller.WriteOffSelectedMoney((List<PhuraseDetailModel>)dgvSaleRecords.DataSource);
             //TODO:ui變化
-
-            _offList.Clear();
         }
 
         private void btnCreateSaleRecord_Click(object sender, EventArgs e)

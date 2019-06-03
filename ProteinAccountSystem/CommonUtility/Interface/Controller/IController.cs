@@ -8,7 +8,7 @@ namespace Common.Interface.Controller
     {
         bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "");
 
-        bool importShipDataProcess(string path);
+        bool ImportShipDataProcess(string path);
 
 
         bool CreateShippmentTickets(string path);
@@ -22,10 +22,17 @@ namespace Common.Interface.Controller
         List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel);
 
         bool importWirteOffMoneyDataProcess(string path);
+
         void AddPhuraseProduct(string itemItemCode, int count, int saleMoney);
+
         PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat);
+
         bool UpdateDBItems(List<ItemViewModel> list);
+
         bool ExportStockExcel(List<ItemViewModel> storages, string path);
-        bool AddStorage(Item item);
+
+        bool AddDBStorage(Item item);
+
+        bool WriteOffSelectedMoney(List<PhuraseDetailModel> dataSource);
     }
 }

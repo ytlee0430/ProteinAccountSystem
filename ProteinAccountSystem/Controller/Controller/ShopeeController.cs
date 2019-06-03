@@ -40,7 +40,7 @@ namespace Controller.Controller
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        public bool importShipDataProcess(string path)
+        public bool ImportShipDataProcess(string path)
         {
             _phuraseDetailModels = _analyzeExcelService.AnalyzeShipData(path);
             _phuraseDetailModels = _stockService.UpdateProductItemCode(_phuraseDetailModels);
@@ -53,7 +53,7 @@ namespace Controller.Controller
         public bool importWirteOffMoneyDataProcess(string path)
         {
             var datas = _analyzeExcelService.AnalyzeShipData(path);
-            return _accountingService.WriteOffMoney(datas);
+            return _accountingService.WriteOffMoney(datas.Select(s => s.OrderNumber).ToList());
         }
 
         public void AddPhuraseProduct(string itemItemCode, int count, int saleMoney)
@@ -76,15 +76,16 @@ namespace Controller.Controller
             return _excelExportService.ExportExcel(storages, path);
         }
 
-        public bool AddStorage(Item item)
+        public bool AddDBStorage(Item item)
         {
-            return _stockService.AddStorage(item);
+            return _stockService.AddDBStorage(item);
         }
 
         public bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData)
         {
             return _stockService.AddDBlientPhuraseRecord(stockData);
         }
+
         public bool UpdateDBStorage(List<PhuraseDetailModel> stockData)
         {
             return _stockService.UpdateDBStorage(stockData);
@@ -95,7 +96,7 @@ namespace Controller.Controller
             if (!_phuraseDetailModels.Any())
                 return false;
 
-            var result = _shippmentService.CreateShippmentTicket(_phuraseDetailModels,path);
+            var result = _shippmentService.CreateShippmentTicket(_phuraseDetailModels, path);
 
             _phuraseDetailModels.Clear();
             return result;
@@ -108,7 +109,7 @@ namespace Controller.Controller
         /// <returns></returns>
         public List<ItemViewModel> GetStorage(int brand, int flavor, int package, int productionType, int productionDetailType, bool showZero)
         {
-            return _stockService.GetStorage(brand, flavor, package, productionType, productionDetailType,showZero);
+            return _stockService.GetDBStorage(brand, flavor, package, productionType, productionDetailType, showZero);
         }
 
         /// <summary>
@@ -122,6 +123,11 @@ namespace Controller.Controller
         public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
         {
             return _stockService.GetSalesRecords(searchModel);
+        }
+
+        public bool WriteOffSelectedMoney(List<PhuraseDetailModel> dataSource)
+        {
+            return _accountingService.WriteOffMoney(dataSource);
         }
     }
 }

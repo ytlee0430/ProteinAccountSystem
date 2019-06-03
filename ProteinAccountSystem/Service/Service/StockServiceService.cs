@@ -55,7 +55,7 @@ namespace Service.Service
         /// 取得庫存
         /// </summary>
         /// <returns></returns>
-        public List<ItemViewModel> GetStorage(int brand, int flavor, int package, int productionType, int productionDetailType,bool showZero)
+        public List<ItemViewModel> GetDBStorage(int brand, int flavor, int package, int productionType, int productionDetailType,bool showZero)
         {
             var repo = new ItemRepository();
             var ex = repo.GetItemExp(brand, flavor, package, productionType, productionDetailType, showZero);
@@ -146,7 +146,7 @@ namespace Service.Service
             return repo.Update(updateList);
         }
 
-        public bool AddStorage(Item item)
+        public bool AddDBStorage(Item item)
         {
             var repo = new ItemRepository();
             return repo.Add(Mapper.Map<ItemEntity>(item));

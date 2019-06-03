@@ -17,19 +17,16 @@ namespace Service.Service
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public bool WriteOffMoney(List<PhuraseDetailModel> models)
+        public bool WriteOffMoney(List<string> orderNumbers)
         {
             var repo = new PhuraseDetailRepository();
-            var result = new List<PhuraseDetailModel>();
-            foreach (var item in models)
-            {
-                var detail = repo.Get(c=>c.OrderNumber == item.OrderNumber).First();
-                detail.IsWriteOffMoney = true;
-                result.Add(Mapper.Map<PhuraseDetailModel>(detail));
-            }
-
-            return repo.Update(Mapper.Map<List<PhuraseDetailEntity>>(result));
+            return repo.Update(r => orderNumbers.Contains(r.OrderNumber), u => new PhuraseDetailEntity { IsWriteOffMoney = true });
         }
 
+        public bool WriteOffMoney(List<PhuraseDetailModel> details)
+        {
+            var repo = new PhuraseDetailRepository();
+            return repo.Update(Mapper.Map<PhuraseDetailEntity>(details));
+        }
     }
 }

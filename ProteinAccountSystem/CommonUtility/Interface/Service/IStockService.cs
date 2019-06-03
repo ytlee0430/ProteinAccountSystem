@@ -10,12 +10,14 @@ namespace Common.Interface.Service
 
         bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData);
 
-        List<ItemViewModel> GetStorage(int brand, int flavor, int package, int productionType, int productionDetailType, bool showZero);
+        List<ItemViewModel> GetDBStorage(int brand, int flavor, int package, int productionType, int productionDetailType, bool showZero);
 
         List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel);
 
         List<PhuraseDetailModel> UpdateProductItemCode(List<PhuraseDetailModel> models);
+
         bool UpdateDBItems(List<ItemViewModel> list);
-        bool AddStorage(Item item);
+
+        bool AddDBStorage(Item item);
     }
 }
