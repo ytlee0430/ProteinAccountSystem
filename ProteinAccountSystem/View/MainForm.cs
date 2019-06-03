@@ -13,6 +13,7 @@ namespace View
     {
         private IController _controller;
         List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
+        List<int> _offList = new List<int>();
 
         public MainForm(IController controller)
         {
@@ -168,8 +169,8 @@ namespace View
                 {
                     dgvSaleRecords.Columns.Insert(columnIndex, btnWriteOffMoney);
                 }
-                dgvSaleRecords.CellClick += DgvSaleRecords_CellClick;
             }
+            dgvSaleRecords.CellClick += DgvSaleRecords_CellClick;
 
             dgvSaleRecords.AutoResizeColumns(
                 DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
@@ -177,8 +178,11 @@ namespace View
 
         private void DgvSaleRecords_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            var y =e.RowIndex;
+            var list = (List<PhuraseDetailModel>)dgvSaleRecords.DataSource;
+            _offList.Add(list[y].Key);
+            //TODO:ui變化
 
-            throw new NotImplementedException();
         }
 
         private void btnImportExcelWirteOffMoney_Click(object sender, EventArgs e)
@@ -236,16 +240,22 @@ namespace View
             item.ItemCode = ProductUtilities.GetItemCodes(item);
 
             _controller.AddStorage(item);
+            MessageBox.Show("更新完成!");
         }
 
         private void btnWriteOffSelectedMoney_Click(object sender, EventArgs e)
         {
+            //TODO:
+            //_controller.WriteOffSelectedMoney(_offList);
 
+            //TODO:ui變化
+
+            _offList.Clear();
         }
 
         private void btnCreateSaleRecord_Click(object sender, EventArgs e)
         {
-
+            //TODO: 參考 btnExportStockExcel_Click
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Setup
 
             //first run
             //DataBaseInitializer.InitailizeEnumDatabase();
+
             EnumService.EnumInitialize();
 
             //first run

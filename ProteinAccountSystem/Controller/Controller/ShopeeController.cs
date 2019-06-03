@@ -121,8 +121,7 @@ namespace Controller.Controller
         /// <returns></returns>
         public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
         {
-            List<PhuraseDetailModel> a = _stockService.GetSalesRecords(searchModel);
-            throw new NotImplementedException();
+            return _stockService.GetSalesRecords(searchModel);
         }
     }
 }
