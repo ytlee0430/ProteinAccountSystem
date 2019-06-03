@@ -46,7 +46,7 @@ namespace Service.Service
                         break;
                 }
                 foreach (var e in enumEntity.Enums)
-                    dic.Add(e.EnumValue, new EnumModel { Description = e.Description, EnumValue = e.EnumValue, KeyWord = e.KeyWord });
+                    dic.Add(e.EnumValue, new EnumModel { Description = e.Description, EnumValue = e.EnumValue, KeyWord = e.KeyWord, ParentType = e.ParentType });
             }
         }
 

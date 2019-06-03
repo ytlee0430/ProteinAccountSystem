@@ -42,6 +42,7 @@ namespace View
 
             dtpStart.Value = DateTime.Now.AddMonths(-1);
             dtpEnd.Value = DateTime.Now; ;
+            dtpExpireDate.Value = DateTime.Now.AddYears(1);
         }
 
         /// <summary>
@@ -53,7 +54,7 @@ namespace View
         {
             openFileDialog1.ShowDialog();
             var path = openFileDialog1.FileName;
-            _controller.ImportShipDataProcess(path);
+            MessageBox.Show(!_controller.ImportShipDataProcess(path) ? "匯入失敗!" : "匯入成功!");
         }
 
         private void btnCreateShippmentTicket_Click(object sender, EventArgs e)
@@ -61,10 +62,7 @@ namespace View
             saveFileDialog1.ShowDialog();
             var path = saveFileDialog1.FileName;
             var result = _controller.CreateShippmentTickets(path);
-            if (!result)
-                MessageBox.Show("匯出失敗!");
-            else
-                MessageBox.Show("匯出成功!");
+            MessageBox.Show(!result ? "匯出失敗!" : "匯出成功!");
         }
 
         private void btnShowStorage_Click(object sender, EventArgs e)
@@ -156,12 +154,29 @@ namespace View
             searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
             var result = _controller.GetSalesRecords(searchModel);
 
-            dgvSaleRecords.DataSource = result;
+            dgvSaleRecords.DataSource = result.OrderByDescending(r=>r.OrderCreateTime).ToList();
 
             dgvSaleRecords.CellClick += DgvSaleRecords_CellClick;
 
             dgvSaleRecords.AutoResizeColumns(
                 DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+
+            var minWidth = 100;
+            var maxWidth = 200;
+            foreach (DataGridViewColumn c in dgvSaleRecords.Columns)
+            {
+                if (c.Width > maxWidth)
+                {
+                    c.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    c.Width = maxWidth;
+                }
+                else if (c.Width < minWidth)
+                {
+                    c.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    c.Width = minWidth;
+                }
+            }
+
         }
 
         private void DgvSaleRecords_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -272,7 +287,7 @@ namespace View
             var list = new List<Item>();
             foreach (var flavor in Enums.FlavorEnum.Where(x => x.Value.ParentType == 1))
             {
-                list.Add(new Item
+                var item = new Item
                 {
                     Brand = Brand,
                     Flavor = flavor.Key,
@@ -284,7 +299,9 @@ namespace View
                     Discount = discount,
                     Cost = cost,
                     ExpiredDate = expireDate,
-                });
+                };
+                item.ItemCode = ProductUtilities.GetItemCodes(item);
+                list.Add(item);
             }
             _controller.AddDBStorages(list);
             MessageBox.Show("更新完成!");

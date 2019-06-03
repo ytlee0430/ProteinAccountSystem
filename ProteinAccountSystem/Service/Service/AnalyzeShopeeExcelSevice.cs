@@ -50,7 +50,11 @@ namespace Service.Service
                         ProductMoneyWithoutTax=Convert.ToInt32( Convert.ToDouble(cells[5].DisplayedText)/1.05),
                     } };
                     data.DeliveryNumber = cells[40].DisplayedText;
-                    data.Remark = "買家備註:" + cells[44].DisplayedText + "單備註" + cells[45].DisplayedText;
+                    var remark = string.IsNullOrEmpty(cells[44].DisplayedText)
+                        ? string.Empty
+                        : $"買家:{cells[44].DisplayedText} ;";
+                    remark = string.IsNullOrEmpty(cells[45].DisplayedText) ? remark : $"{remark}賣家:{cells[45].DisplayedText}";
+                    data.Remark = remark;
                     result.Add(data.OrderNumber, data);
                 }
                 else

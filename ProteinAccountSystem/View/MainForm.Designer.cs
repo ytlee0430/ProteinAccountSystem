@@ -361,7 +361,8 @@
             // 
             // dgvSaleRecords
             // 
-            this.dgvSaleRecords.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSaleRecords.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvSaleRecords.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvSaleRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSaleRecords.Location = new System.Drawing.Point(11, 108);
             this.dgvSaleRecords.Name = "dgvSaleRecords";
@@ -676,6 +677,7 @@
             this.tbxDiscount.Name = "tbxDiscount";
             this.tbxDiscount.Size = new System.Drawing.Size(120, 39);
             this.tbxDiscount.TabIndex = 30;
+            this.tbxDiscount.Text = "0";
             // 
             // label15
             // 
@@ -696,6 +698,7 @@
             this.tbxCost.Name = "tbxCost";
             this.tbxCost.Size = new System.Drawing.Size(120, 39);
             this.tbxCost.TabIndex = 32;
+            this.tbxCost.Text = "0";
             // 
             // label16
             // 

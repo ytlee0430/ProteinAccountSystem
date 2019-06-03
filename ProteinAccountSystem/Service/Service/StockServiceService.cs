@@ -155,7 +155,7 @@ namespace Service.Service
         public bool AddDBStorages(List<Item> list)
         {
             var repo = new ItemRepository();
-            return repo.Add(Mapper.Map<ItemEntity>(list));
+            return repo.Add(Mapper.Map< List<ItemEntity>>(list));
 
         }
     }
