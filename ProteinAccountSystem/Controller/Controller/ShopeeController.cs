@@ -34,7 +34,6 @@ namespace Controller.Controller
             throw new NotImplementedException();
         }
 
-
         /// <summary>
         /// 匯入出貨資料流程
         /// </summary>
@@ -128,6 +127,16 @@ namespace Controller.Controller
         public bool WriteOffSelectedMoney(List<PhuraseDetailModel> dataSource)
         {
             return _accountingService.WriteOffMoney(dataSource);
+        }
+
+        public bool AddDBStorages(List<Item> list)
+        {
+            return _stockService.AddDBStorages(list);
+        }
+
+        public bool ExportSaleRecordExcel(List<PhuraseDetailModel> list, string path)
+        {
+            return _excelExportService.ExportExcel(list, path);
         }
     }
 }

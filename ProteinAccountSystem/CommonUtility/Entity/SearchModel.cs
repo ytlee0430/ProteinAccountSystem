@@ -37,18 +37,17 @@ namespace Common.Entity
         /// <summary>
         /// 起始時間
         /// </summary>
-        public DateTime StartTime { get; set; }
+        public DateTime StartTime { get; set; } = DateTime.MinValue;
 
         /// <summary>
         /// 結束時間
         /// </summary>
-        public DateTime EndTime { get; set; }
+        public DateTime EndTime { get; set; } = DateTime.MaxValue;
 
         /// <summary>
         /// -1全部 0未銷帳 1已銷帳 
         /// </summary>
-        public int IsWriteOffMoney { get; set; }
-        
+        public int IsWriteOffMoney { get; set; } = -1;
         /// <summary>
         /// 帳號/姓名
         /// </summary>

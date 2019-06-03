@@ -39,9 +39,9 @@ namespace Service.Service
                 foreach (var product in detail.Products)
                 {
                     if (!codeToNumDic.TryGetValue(product.ItemCode, out int num))
-                        codeToNumDic[product.ItemCode] = 1;
+                        codeToNumDic[product.ItemCode] = product.Count;
                     else
-                        codeToNumDic[product.ItemCode] = num + 1;
+                        codeToNumDic[product.ItemCode] = num + product.Count;
                 }
 
             var repo = new ItemRepository();
@@ -67,7 +67,7 @@ namespace Service.Service
             var repo = new PhuraseDetailRepository();
             var itemWhere = repo.GetDetailExp(searchModel.Brand, searchModel.Package, searchModel.Package,
                 searchModel.ProductionType, searchModel.ProductionDetailType,
-                searchModel.IsWriteOffMoney, searchModel.KeyWord);
+                searchModel.IsWriteOffMoney, searchModel.KeyWord,searchModel.StartTime, searchModel.EndTime);
             return Mapper.Map<List<PhuraseDetailModel>>(repo.Get(itemWhere));
         }
 
@@ -150,6 +150,13 @@ namespace Service.Service
         {
             var repo = new ItemRepository();
             return repo.Add(Mapper.Map<ItemEntity>(item));
+        }
+
+        public bool AddDBStorages(List<Item> list)
+        {
+            var repo = new ItemRepository();
+            return repo.Add(Mapper.Map<ItemEntity>(list));
+
         }
     }
 }

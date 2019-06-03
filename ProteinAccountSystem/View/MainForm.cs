@@ -39,6 +39,9 @@ namespace View
                 cbxSaleWays.Items.Add(pair.Value.Description);
 
             #endregion
+
+            dtpStart.Value = DateTime.Now.AddMonths(-1);
+            dtpEnd.Value = DateTime.Now; ;
         }
 
         /// <summary>
@@ -59,10 +62,9 @@ namespace View
             var path = saveFileDialog1.FileName;
             var result = _controller.CreateShippmentTickets(path);
             if (!result)
-            {
                 MessageBox.Show("匯出失敗!");
-            }
-            MessageBox.Show("匯出成功!");
+            else
+                MessageBox.Show("匯出成功!");
         }
 
         private void btnShowStorage_Click(object sender, EventArgs e)
@@ -136,10 +138,9 @@ namespace View
             var storages = _controller.GetStorage(Brand, Flavor, Package, ProductionType, ProductionDetailType, showZero);
             var result = _controller.ExportStockExcel(storages, path);
             if (!result)
-            {
                 MessageBox.Show("匯出失敗!");
-            }
-            MessageBox.Show("匯出成功!");
+            else
+                MessageBox.Show("匯出成功!");
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -157,17 +158,6 @@ namespace View
 
             dgvSaleRecords.DataSource = result;
 
-            for (int i = 0; i < result.Count; i++)
-            {
-                DataGridViewButtonColumn btnWriteOffMoney = new DataGridViewButtonColumn();
-                btnWriteOffMoney.Name = "btnWriteOffMoney" + i.ToString();
-                btnWriteOffMoney.Text = "銷帳";
-                int columnIndex = i;
-                if (dgvSaleRecords.Columns["btnWriteOffMoney"] == null)
-                {
-                    dgvSaleRecords.Columns.Insert(columnIndex, btnWriteOffMoney);
-                }
-            }
             dgvSaleRecords.CellClick += DgvSaleRecords_CellClick;
 
             dgvSaleRecords.AutoResizeColumns(
@@ -176,11 +166,11 @@ namespace View
 
         private void DgvSaleRecords_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var y =e.RowIndex;
+            if (e.ColumnIndex != 11 || e.RowIndex < 0)
+                return;
+            var y = e.RowIndex;
             var list = (List<PhuraseDetailModel>)dgvSaleRecords.DataSource;
             list[y].IsWriteOffMoney = !list[y].IsWriteOffMoney;
-            //TODO:ui變化
-
         }
 
         private void btnImportExcelWirteOffMoney_Click(object sender, EventArgs e)
@@ -217,7 +207,7 @@ namespace View
             var ProductionType = cbxType.SelectedIndex;
             var ProductionDetailType = cbxProductDetail.SelectedIndex;
             var count = (int)nudCount.Value;
-            var price = Convert.ToInt32(tbxSalePrice.Text) ;
+            var price = Convert.ToInt32(tbxSalePrice.Text);
             var discount = Convert.ToDouble(tbxDiscount.Text);
             var cost = Convert.ToInt32(tbxCost.Text);
             var expireDate = dtpExpireDate.Value;
@@ -248,12 +238,56 @@ namespace View
 
         private void btnCreateSaleRecord_Click(object sender, EventArgs e)
         {
-            //TODO: 參考 btnExportStockExcel_Click
+            saveFileDialog1.ShowDialog();
+            var path = saveFileDialog1.FileName;
+
+            SearchModel searchModel = new SearchModel();
+            searchModel.KeyWord = txtKeyWord.Text;
+            searchModel.StartTime = dtpStart.Value;
+            searchModel.EndTime = dtpEnd.Value;
+            searchModel.Brand = cbxBrands.SelectedIndex;
+            searchModel.Flavor = cbxFlavors.SelectedIndex;
+            searchModel.Package = cbxPackages.SelectedIndex;
+            searchModel.ProductionType = cbxType.SelectedIndex;
+            searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
+            var list = _controller.GetSalesRecords(searchModel);
+            var result = _controller.ExportSaleRecordExcel(list, path);
+            if (!result)
+                MessageBox.Show("匯出失敗!");
+            else
+                MessageBox.Show("匯出成功!");
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private void btnBulkStorage_Click(object sender, EventArgs e)
         {
-
+            var Brand = cbxBrands.SelectedIndex;
+            var Package = cbxPackages.SelectedIndex;
+            var ProductionType = cbxType.SelectedIndex;
+            var ProductionDetailType = cbxProductDetail.SelectedIndex;
+            var count = (int)nudCount.Value;
+            var price = Convert.ToInt32(tbxSalePrice.Text);
+            var discount = Convert.ToDouble(tbxDiscount.Text);
+            var cost = Convert.ToInt32(tbxCost.Text);
+            var expireDate = dtpExpireDate.Value;
+            var list = new List<Item>();
+            foreach (var flavor in Enums.FlavorEnum.Where(x => x.Value.ParentType == 1))
+            {
+                list.Add(new Item
+                {
+                    Brand = Brand,
+                    Flavor = flavor.Key,
+                    Package = Package,
+                    ProductionType = ProductionType,
+                    ProductionDetailType = ProductionDetailType,
+                    Storage = count,
+                    NetPrice = price,
+                    Discount = discount,
+                    Cost = cost,
+                    ExpiredDate = expireDate,
+                });
+            }
+            _controller.AddDBStorages(list);
+            MessageBox.Show("更新完成!");
         }
     }
 }

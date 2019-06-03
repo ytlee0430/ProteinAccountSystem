@@ -49,7 +49,7 @@ namespace CodeFirstORM.DBLayer
 
             if (entry.State == EntityState.Detached)
             {
-                var set = _database.Set<ItemEntity>();
+                var set = _database.Set<T>();
                 var attachedEntity = set.Find(entity.Key);
 
                 if (attachedEntity != null)
@@ -72,7 +72,7 @@ namespace CodeFirstORM.DBLayer
                 var entry = _database.Entry(entity);
                 if (entry.State == EntityState.Detached)
                 {
-                    var set = _database.Set<ItemEntity>();
+                    var set = _database.Set<T>();
                     var attachedEntity = set.Find(entity.Key);
 
                     if (attachedEntity != null)

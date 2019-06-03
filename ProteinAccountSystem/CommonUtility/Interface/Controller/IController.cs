@@ -34,5 +34,7 @@ namespace Common.Interface.Controller
         bool AddDBStorage(Item item);
 
         bool WriteOffSelectedMoney(List<PhuraseDetailModel> dataSource);
+        bool AddDBStorages(List<Item> list);
+        bool ExportSaleRecordExcel(List<PhuraseDetailModel> list, string path);
     }
 }

@@ -26,7 +26,7 @@ namespace Service.Service
         public bool WriteOffMoney(List<PhuraseDetailModel> details)
         {
             var repo = new PhuraseDetailRepository();
-            return repo.Update(Mapper.Map<PhuraseDetailEntity>(details));
+            return repo.Update(Mapper.Map< List<PhuraseDetailEntity>>(details));
         }
     }
 }

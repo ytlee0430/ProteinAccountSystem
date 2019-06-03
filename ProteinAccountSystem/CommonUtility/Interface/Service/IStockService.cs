@@ -19,5 +19,6 @@ namespace Common.Interface.Service
         bool UpdateDBItems(List<ItemViewModel> list);
 
         bool AddDBStorage(Item item);
+        bool AddDBStorages(List<Item> list);
     }
 }

@@ -60,7 +60,7 @@ namespace CodeFirstORM.DBLayer
         }
 
         public Expression<Func<PhuraseDetailEntity, bool>> GetDetailExp(int brand, int flavor, int package, int productionType,
-            int productionDetailType, int isWriteOffMoney, string keyWord)
+            int productionDetailType, int isWriteOffMoney, string keyWord, DateTime startTime, DateTime endTime)
         {
             Expression<Func<PhuraseDetailEntity, bool>> itemWhere = c => true;
 
@@ -93,6 +93,16 @@ namespace CodeFirstORM.DBLayer
             if (keyWord != "")
             {
                 itemWhere = itemWhere.AndAlso(c => (c.Account == keyWord || c.OrderNumber == keyWord));
+            }
+
+            if (endTime != DateTime.MaxValue)
+            {
+                itemWhere = itemWhere.AndAlso(c => c.OrderCreateTime < endTime);
+            }
+
+            if (startTime != DateTime.MaxValue)
+            {
+                itemWhere = itemWhere.AndAlso(c => c.OrderCreateTime > startTime);
             }
             return itemWhere;
         }
