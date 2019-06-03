@@ -233,7 +233,7 @@ namespace View
         private void btnWriteOffSelectedMoney_Click(object sender, EventArgs e)
         {
             _controller.WriteOffSelectedMoney((List<PhuraseDetailModel>)dgvSaleRecords.DataSource);
-            //TODO:ui變化
+            MessageBox.Show("更新完成!");
         }
 
         private void btnCreateSaleRecord_Click(object sender, EventArgs e)

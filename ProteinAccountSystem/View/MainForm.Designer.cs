@@ -396,7 +396,7 @@
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(144, 27);
             this.dtpStart.TabIndex = 46;
-            this.dtpStart.Value = new System.DateTime(2019, 6, 4, 0, 7, 17, 0);
+            this.dtpStart.Value = new System.DateTime(2019, 6, 4, 0, 7, 13, 0);
             // 
             // label12
             // 
