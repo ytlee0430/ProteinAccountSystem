@@ -372,16 +372,16 @@
             // 
             // dtpStart
             // 
-            this.dtpStart.Location = new System.Drawing.Point(344, 22);
+            this.dtpStart.Location = new System.Drawing.Point(329, 22);
             this.dtpStart.Name = "dtpStart";
-            this.dtpStart.Size = new System.Drawing.Size(200, 27);
+            this.dtpStart.Size = new System.Drawing.Size(215, 27);
             this.dtpStart.TabIndex = 46;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("PMingLiU", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label12.Location = new System.Drawing.Point(275, 25);
+            this.label12.Location = new System.Drawing.Point(266, 27);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(62, 21);
@@ -729,6 +729,7 @@
             this.Controls.Add(this.tabController);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabStorage.ResumeLayout(false);
             this.tabStorage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).EndInit();

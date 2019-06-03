@@ -250,5 +250,10 @@ namespace View
         {
             //TODO: 參考 btnExportStockExcel_Click
         }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

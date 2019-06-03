@@ -38,6 +38,9 @@ namespace Setup
 
             //first run
             //DataBaseInitializer.InitializeItemsDataBase();
+           
+            //first run
+            //EnumService.EnumParentTypeInitail();
 
             Application.Run(new MainForm(new ShopeeController(
                 analyzeExcelService, stockService, 

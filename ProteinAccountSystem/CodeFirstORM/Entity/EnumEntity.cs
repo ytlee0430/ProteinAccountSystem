@@ -23,5 +23,7 @@ namespace CodeFirstORM.Entity
 
         public int ForeignKey { get; set; }
 
+        [Required]
+        public int ParentType { get; set; }
     }
 }

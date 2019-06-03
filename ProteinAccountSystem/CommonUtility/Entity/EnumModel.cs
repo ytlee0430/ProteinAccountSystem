@@ -11,5 +11,6 @@ namespace CommonUtility.Entity
         public int EnumValue { get; set; }
         public string Description { get; set; }
         public string KeyWord { get; set; }
+        public int ParentType { get; set; }
     }
 }
