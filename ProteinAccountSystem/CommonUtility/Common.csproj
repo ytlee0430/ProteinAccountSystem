@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\Constant.cs" />
     <Compile Include="Entity\EnumModel.cs" />
     <Compile Include="Entity\Item.cs" />
     <Compile Include="Entity\ItemViewModel.cs" />

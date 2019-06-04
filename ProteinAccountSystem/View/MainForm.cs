@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Common.Entity;
 using Common.Interface.Controller;
 using Common.Utils;
+using CommonUtility.Constants;
 using CommonUtility.Enum;
 
 namespace View
@@ -22,27 +23,34 @@ namespace View
             #region Import Combox Enum
             foreach (var pair in Enums.BrandEnum)
                 cbxBrands.Items.Add(pair.Value.Description);
+            cbxBrands.SelectedIndex = 0;
 
             foreach (var pair in Enums.FlavorEnum)
                 cbxFlavors.Items.Add(pair.Value.Description);
+            cbxFlavors.SelectedIndex = 0;
 
             foreach (var pair in Enums.PackageEnum)
                 cbxPackages.Items.Add(pair.Value.Description);
+            cbxPackages.SelectedIndex = 0;
 
             foreach (var pair in Enums.ProductionDetailEnum)
                 cbxProductDetail.Items.Add(pair.Value.Description);
+            cbxProductDetail.SelectedIndex = 0;
 
             foreach (var pair in Enums.ProductionEnum)
                 cbxType.Items.Add(pair.Value.Description);
+            cbxType.SelectedIndex = 0;
 
             foreach (var pair in Enums.PlatEnum)
                 cbxSaleWays.Items.Add(pair.Value.Description);
-
+            cbxSaleWays.SelectedIndex = 0;
             #endregion
 
             dtpStart.Value = DateTime.Now.AddMonths(-1);
             dtpEnd.Value = DateTime.Now; ;
             dtpExpireDate.Value = DateTime.Now.AddYears(1);
+
+            cbxIsWriteOffMoney.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -92,7 +100,6 @@ namespace View
             item.ItemCode = ProductUtilities.GetItemCodes(item);
 
             _controller.AddPhuraseProduct(item.ItemCode, (int)nudCount.Value, Convert.ToInt32(tbxSalePrice.Text));
-
 
             _displayItems.Add(new OrderDisplayItem
             {
@@ -154,15 +161,30 @@ namespace View
             searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
             var result = _controller.GetSalesRecords(searchModel);
 
+          
             DataGridViewButtonColumn dgvbt = new DataGridViewButtonColumn();
             dgvbt.Text = "顯示詳細銷貨資訊";
             dgvbt.UseColumnTextForButtonValue = true;
             dgvSaleRecords.Columns.Add(dgvbt);
             dgvSaleRecords.DataSource = result.OrderByDescending(r => r.OrderCreateTime).ToList();
             dgvSaleRecords.CellClick += DgvSaleRecords_CellClick;
+            dgvSaleRecords.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
 
-            dgvSaleRecords.AutoResizeColumns(
-                DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+            int pageIndex = Convert.ToInt32(lblNowPage.Text);
+            int pageSize = Constant.PageSize;
+            int firstIndex = (pageIndex - 1) * pageSize + 1;
+            int lastIndex = pageIndex * pageSize;
+            for (int i = 1; i < dgvSaleRecords.Rows.Count; i++)
+            {
+                if (i >= firstIndex && i <= lastIndex)
+                {
+                    dgvSaleRecords.Rows[i].Visible = true;
+                    continue;
+                }
+                dgvSaleRecords.Rows[i].Visible = false;
+            }
+
+            lblDataCount.Text = dgvSaleRecords.Rows.Count.ToString();
 
             var minWidth = 100;
             var maxWidth = 200;
@@ -179,7 +201,6 @@ namespace View
                     c.Width = minWidth;
                 }
             }
-
         }
 
         private void DgvSaleRecords_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -331,12 +352,48 @@ namespace View
 
         private void btnNextPage_Click(object sender, EventArgs e)
         {
-            //TODO:
+            int pageIndex = Convert.ToInt32(lblNowPage.Text);
+            pageIndex++;
+            int pageSize = Constant.PageSize;
+            int firstIndex = (pageIndex - 1) * pageSize + 1;
+            int lastIndex = pageIndex * pageSize;
+            if (lastIndex > dgvSaleRecords.Rows.Count + pageSize - 1)
+                return;
+
+            lblNowPage.Text = pageIndex.ToString();
+
+            for (int i = 1; i < dgvSaleRecords.Rows.Count; i++)
+            {
+                if (i >= firstIndex && i <= lastIndex)
+                {
+                    dgvSaleRecords.Rows[i].Visible = true;
+                    continue;
+                }
+                dgvSaleRecords.Rows[i].Visible = false;
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnPreviousPage_Click(object sender, EventArgs e)
         {
-            //TODO:
+            int pageIndex = Convert.ToInt32(lblNowPage.Text);
+            pageIndex--;
+            int pageSize = Constant.PageSize;
+            int firstIndex = (pageIndex - 1) * pageSize + 1;
+            int lastIndex = pageIndex * pageSize;
+            if (firstIndex < 1)
+                return;
+
+            lblNowPage.Text = pageIndex.ToString();
+
+            for (int i = 1; i < dgvSaleRecords.Rows.Count; i++)
+            {
+                if (i >= firstIndex && i <= lastIndex)
+                {
+                    dgvSaleRecords.Rows[i].Visible = true;
+                    continue;
+                }
+                dgvSaleRecords.Rows[i].Visible = false;
+            }
         }
     }
 }
