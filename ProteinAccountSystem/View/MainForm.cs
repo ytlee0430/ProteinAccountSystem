@@ -189,7 +189,7 @@ namespace View
                 var row = e.RowIndex;
                 var datas = ((List<PhuraseDetailModel>)dgvSaleRecords.DataSource);
                 var data = datas[row].Products;
-
+                //TODO: MAPPING ITEM CODE TO DETAILS
                 var details = new Form();
                 details.Text = "購買清單:" + datas[row].Account.ToString();
                 var dgv = new DataGridView();
@@ -329,6 +329,14 @@ namespace View
             MessageBox.Show("更新完成!");
         }
 
-   
+        private void btnNextPage_Click(object sender, EventArgs e)
+        {
+            //TODO:
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //TODO:
+        }
     }
 }

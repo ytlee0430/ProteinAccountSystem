@@ -17,7 +17,7 @@ namespace Service.Service
         public bool CreateShippmentTicket(List<PhuraseDetailModel> models, string path)
         {
             object savePath = path;//路徑變數 ，需使用object
-
+            //TODO: Check words
             try
             {
                 var result = models;

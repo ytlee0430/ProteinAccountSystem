@@ -47,6 +47,10 @@
             this.dgvNewOrder = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.tabSaleRecord = new System.Windows.Forms.TabPage();
+            this.lblNowPage = new System.Windows.Forms.Label();
+            this.btnNextPage = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.cbxIsWriteOffMoney = new System.Windows.Forms.ComboBox();
             this.btnWriteOffSelectedMoney = new System.Windows.Forms.Button();
             this.btnImportExcelWirteOffMoney = new System.Windows.Forms.Button();
             this.dgvSaleRecords = new System.Windows.Forms.DataGridView();
@@ -85,10 +89,6 @@
             this.tbxCost = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.dtpExpireDate = new System.Windows.Forms.DateTimePicker();
-            this.cbxIsWriteOffMoney = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnNextPage = new System.Windows.Forms.Button();
-            this.lblNowPage = new System.Windows.Forms.Label();
             this.tabStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
             this.tabFunction.SuspendLayout();
@@ -117,9 +117,9 @@
             this.tabStorage.Controls.Add(this.btnExportStockExcel);
             this.tabStorage.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabStorage.Location = new System.Drawing.Point(4, 34);
-            this.tabStorage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabStorage.Margin = new System.Windows.Forms.Padding(4);
             this.tabStorage.Name = "tabStorage";
-            this.tabStorage.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabStorage.Padding = new System.Windows.Forms.Padding(4);
             this.tabStorage.Size = new System.Drawing.Size(2245, 1018);
             this.tabStorage.TabIndex = 1;
             this.tabStorage.Text = "庫存";
@@ -130,7 +130,7 @@
             this.btnBulkStorage.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnBulkStorage.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnBulkStorage.Location = new System.Drawing.Point(318, 9);
-            this.btnBulkStorage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBulkStorage.Margin = new System.Windows.Forms.Padding(4);
             this.btnBulkStorage.Name = "btnBulkStorage";
             this.btnBulkStorage.Size = new System.Drawing.Size(296, 72);
             this.btnBulkStorage.TabIndex = 11;
@@ -144,7 +144,7 @@
             this.ckbShowCountZero.Checked = true;
             this.ckbShowCountZero.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckbShowCountZero.Location = new System.Drawing.Point(1536, 52);
-            this.ckbShowCountZero.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ckbShowCountZero.Margin = new System.Windows.Forms.Padding(4);
             this.ckbShowCountZero.Name = "ckbShowCountZero";
             this.ckbShowCountZero.Size = new System.Drawing.Size(228, 28);
             this.ckbShowCountZero.TabIndex = 10;
@@ -155,7 +155,7 @@
             // 
             this.ckbEnableChange.AutoSize = true;
             this.ckbEnableChange.Location = new System.Drawing.Point(1536, 10);
-            this.ckbEnableChange.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ckbEnableChange.Margin = new System.Windows.Forms.Padding(4);
             this.ckbEnableChange.Name = "ckbEnableChange";
             this.ckbEnableChange.Size = new System.Drawing.Size(156, 28);
             this.ckbEnableChange.TabIndex = 9;
@@ -169,7 +169,7 @@
             this.btnUpdateItem.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnUpdateItem.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnUpdateItem.Location = new System.Drawing.Point(1231, 10);
-            this.btnUpdateItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdateItem.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateItem.Name = "btnUpdateItem";
             this.btnUpdateItem.Size = new System.Drawing.Size(296, 72);
             this.btnUpdateItem.TabIndex = 8;
@@ -183,7 +183,7 @@
             this.dgvStorage.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvStorage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStorage.Location = new System.Drawing.Point(14, 90);
-            this.dgvStorage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvStorage.Margin = new System.Windows.Forms.Padding(4);
             this.dgvStorage.Name = "dgvStorage";
             this.dgvStorage.ReadOnly = true;
             this.dgvStorage.RowTemplate.Height = 24;
@@ -196,7 +196,7 @@
             this.btnAddNewItem.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnAddNewItem.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnAddNewItem.Location = new System.Drawing.Point(14, 9);
-            this.btnAddNewItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddNewItem.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddNewItem.Name = "btnAddNewItem";
             this.btnAddNewItem.Size = new System.Drawing.Size(296, 72);
             this.btnAddNewItem.TabIndex = 7;
@@ -210,7 +210,7 @@
             this.btnShowStorage.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnShowStorage.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnShowStorage.Location = new System.Drawing.Point(622, 9);
-            this.btnShowStorage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnShowStorage.Margin = new System.Windows.Forms.Padding(4);
             this.btnShowStorage.Name = "btnShowStorage";
             this.btnShowStorage.Size = new System.Drawing.Size(296, 72);
             this.btnShowStorage.TabIndex = 6;
@@ -224,7 +224,7 @@
             this.btnExportStockExcel.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnExportStockExcel.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnExportStockExcel.Location = new System.Drawing.Point(927, 9);
-            this.btnExportStockExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExportStockExcel.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportStockExcel.Name = "btnExportStockExcel";
             this.btnExportStockExcel.Size = new System.Drawing.Size(296, 72);
             this.btnExportStockExcel.TabIndex = 4;
@@ -238,9 +238,9 @@
             this.tabFunction.Controls.Add(this.btnCreateShippmentTicket);
             this.tabFunction.Controls.Add(this.btnImportExcel);
             this.tabFunction.Location = new System.Drawing.Point(4, 34);
-            this.tabFunction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabFunction.Margin = new System.Windows.Forms.Padding(4);
             this.tabFunction.Name = "tabFunction";
-            this.tabFunction.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabFunction.Padding = new System.Windows.Forms.Padding(4);
             this.tabFunction.Size = new System.Drawing.Size(2245, 1018);
             this.tabFunction.TabIndex = 0;
             this.tabFunction.Text = "首頁";
@@ -251,7 +251,7 @@
             this.btnCreateShippmentTicket.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnCreateShippmentTicket.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnCreateShippmentTicket.Location = new System.Drawing.Point(698, 32);
-            this.btnCreateShippmentTicket.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreateShippmentTicket.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateShippmentTicket.Name = "btnCreateShippmentTicket";
             this.btnCreateShippmentTicket.Size = new System.Drawing.Size(596, 72);
             this.btnCreateShippmentTicket.TabIndex = 1;
@@ -265,7 +265,7 @@
             this.btnImportExcel.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnImportExcel.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnImportExcel.Location = new System.Drawing.Point(4, 32);
-            this.btnImportExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnImportExcel.Margin = new System.Windows.Forms.Padding(4);
             this.btnImportExcel.Name = "btnImportExcel";
             this.btnImportExcel.Size = new System.Drawing.Size(596, 72);
             this.btnImportExcel.TabIndex = 0;
@@ -281,7 +281,7 @@
             this.tabController.Controls.Add(this.tabSaleRecord);
             this.tabController.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabController.Location = new System.Drawing.Point(0, 270);
-            this.tabController.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabController.Margin = new System.Windows.Forms.Padding(4);
             this.tabController.Name = "tabController";
             this.tabController.SelectedIndex = 0;
             this.tabController.Size = new System.Drawing.Size(2253, 1056);
@@ -294,7 +294,7 @@
             this.tabAddOrder.Controls.Add(this.dgvNewOrder);
             this.tabAddOrder.Controls.Add(this.button1);
             this.tabAddOrder.Location = new System.Drawing.Point(4, 34);
-            this.tabAddOrder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabAddOrder.Margin = new System.Windows.Forms.Padding(4);
             this.tabAddOrder.Name = "tabAddOrder";
             this.tabAddOrder.Size = new System.Drawing.Size(2245, 1018);
             this.tabAddOrder.TabIndex = 2;
@@ -316,7 +316,7 @@
             this.dgvNewOrder.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvNewOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNewOrder.Location = new System.Drawing.Point(8, 84);
-            this.dgvNewOrder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvNewOrder.Margin = new System.Windows.Forms.Padding(4);
             this.dgvNewOrder.Name = "dgvNewOrder";
             this.dgvNewOrder.RowTemplate.Height = 24;
             this.dgvNewOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -352,18 +352,60 @@
             this.tabSaleRecord.Controls.Add(this.btnSearch);
             this.tabSaleRecord.Controls.Add(this.btnCreateSaleRecord);
             this.tabSaleRecord.Location = new System.Drawing.Point(4, 34);
-            this.tabSaleRecord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabSaleRecord.Margin = new System.Windows.Forms.Padding(4);
             this.tabSaleRecord.Name = "tabSaleRecord";
             this.tabSaleRecord.Size = new System.Drawing.Size(2245, 1018);
             this.tabSaleRecord.TabIndex = 4;
             this.tabSaleRecord.Text = "檢視銷貨紀錄";
             this.tabSaleRecord.UseVisualStyleBackColor = true;
             // 
+            // lblNowPage
+            // 
+            this.lblNowPage.AutoSize = true;
+            this.lblNowPage.Location = new System.Drawing.Point(1049, 951);
+            this.lblNowPage.Name = "lblNowPage";
+            this.lblNowPage.Size = new System.Drawing.Size(21, 24);
+            this.lblNowPage.TabIndex = 54;
+            this.lblNowPage.Text = "1";
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.Location = new System.Drawing.Point(1094, 946);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(140, 35);
+            this.btnNextPage.TabIndex = 53;
+            this.btnNextPage.Text = "下一頁";
+            this.btnNextPage.UseVisualStyleBackColor = true;
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(876, 946);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(152, 35);
+            this.button2.TabIndex = 52;
+            this.button2.Text = "前一頁";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // cbxIsWriteOffMoney
+            // 
+            this.cbxIsWriteOffMoney.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.cbxIsWriteOffMoney.FormattingEnabled = true;
+            this.cbxIsWriteOffMoney.Items.AddRange(new object[] {
+            "全部",
+            "未銷帳",
+            "已銷帳"});
+            this.cbxIsWriteOffMoney.Location = new System.Drawing.Point(992, 27);
+            this.cbxIsWriteOffMoney.Name = "cbxIsWriteOffMoney";
+            this.cbxIsWriteOffMoney.Size = new System.Drawing.Size(139, 48);
+            this.cbxIsWriteOffMoney.TabIndex = 48;
+            // 
             // btnWriteOffSelectedMoney
             // 
             this.btnWriteOffSelectedMoney.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnWriteOffSelectedMoney.Location = new System.Drawing.Point(1935, 24);
-            this.btnWriteOffSelectedMoney.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnWriteOffSelectedMoney.Margin = new System.Windows.Forms.Padding(4);
             this.btnWriteOffSelectedMoney.Name = "btnWriteOffSelectedMoney";
             this.btnWriteOffSelectedMoney.Size = new System.Drawing.Size(285, 56);
             this.btnWriteOffSelectedMoney.TabIndex = 51;
@@ -375,7 +417,7 @@
             // 
             this.btnImportExcelWirteOffMoney.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnImportExcelWirteOffMoney.Location = new System.Drawing.Point(1372, 22);
-            this.btnImportExcelWirteOffMoney.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnImportExcelWirteOffMoney.Margin = new System.Windows.Forms.Padding(4);
             this.btnImportExcelWirteOffMoney.Name = "btnImportExcelWirteOffMoney";
             this.btnImportExcelWirteOffMoney.Size = new System.Drawing.Size(262, 56);
             this.btnImportExcelWirteOffMoney.TabIndex = 50;
@@ -389,7 +431,7 @@
             this.dgvSaleRecords.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvSaleRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSaleRecords.Location = new System.Drawing.Point(16, 107);
-            this.dgvSaleRecords.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvSaleRecords.Margin = new System.Windows.Forms.Padding(4);
             this.dgvSaleRecords.Name = "dgvSaleRecords";
             this.dgvSaleRecords.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvSaleRecords.RowTemplate.Height = 24;
@@ -410,7 +452,7 @@
             // dtpEnd
             // 
             this.dtpEnd.Location = new System.Drawing.Point(762, 33);
-            this.dtpEnd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpEnd.Margin = new System.Windows.Forms.Padding(4);
             this.dtpEnd.Name = "dtpEnd";
             this.dtpEnd.Size = new System.Drawing.Size(214, 36);
             this.dtpEnd.TabIndex = 47;
@@ -419,7 +461,7 @@
             // dtpStart
             // 
             this.dtpStart.Location = new System.Drawing.Point(497, 33);
-            this.dtpStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpStart.Margin = new System.Windows.Forms.Padding(4);
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(214, 36);
             this.dtpStart.TabIndex = 46;
@@ -448,7 +490,7 @@
             // txtKeyWord
             // 
             this.txtKeyWord.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtKeyWord.Location = new System.Drawing.Point(174, 30);
+            this.txtKeyWord.Location = new System.Drawing.Point(176, 30);
             this.txtKeyWord.Name = "txtKeyWord";
             this.txtKeyWord.Size = new System.Drawing.Size(217, 45);
             this.txtKeyWord.TabIndex = 44;
@@ -457,7 +499,7 @@
             // 
             this.btnSearch.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnSearch.Location = new System.Drawing.Point(1145, 21);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(219, 56);
             this.btnSearch.TabIndex = 2;
@@ -469,7 +511,7 @@
             // 
             this.btnCreateSaleRecord.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnCreateSaleRecord.Location = new System.Drawing.Point(1642, 24);
-            this.btnCreateSaleRecord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreateSaleRecord.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateSaleRecord.Name = "btnCreateSaleRecord";
             this.btnCreateSaleRecord.Size = new System.Drawing.Size(285, 56);
             this.btnCreateSaleRecord.TabIndex = 0;
@@ -660,7 +702,7 @@
             // 
             this.nudCount.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.nudCount.Location = new System.Drawing.Point(1560, 68);
-            this.nudCount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nudCount.Margin = new System.Windows.Forms.Padding(4);
             this.nudCount.Name = "nudCount";
             this.nudCount.Size = new System.Drawing.Size(180, 56);
             this.nudCount.TabIndex = 43;
@@ -716,51 +758,11 @@
             // dtpExpireDate
             // 
             this.dtpExpireDate.Location = new System.Drawing.Point(1197, 216);
-            this.dtpExpireDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpExpireDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpExpireDate.Name = "dtpExpireDate";
             this.dtpExpireDate.Size = new System.Drawing.Size(298, 29);
             this.dtpExpireDate.TabIndex = 47;
             this.dtpExpireDate.Value = new System.DateTime(2019, 6, 3, 0, 45, 27, 0);
-            // 
-            // cbxIsWriteOffMoney
-            // 
-            this.cbxIsWriteOffMoney.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.cbxIsWriteOffMoney.FormattingEnabled = true;
-            this.cbxIsWriteOffMoney.Items.AddRange(new object[] {
-            "全部",
-            "未銷帳",
-            "已銷帳"});
-            this.cbxIsWriteOffMoney.Location = new System.Drawing.Point(992, 27);
-            this.cbxIsWriteOffMoney.Name = "cbxIsWriteOffMoney";
-            this.cbxIsWriteOffMoney.Size = new System.Drawing.Size(139, 48);
-            this.cbxIsWriteOffMoney.TabIndex = 48;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(876, 946);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(152, 35);
-            this.button2.TabIndex = 52;
-            this.button2.Text = "前一頁";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // btnNextPage
-            // 
-            this.btnNextPage.Location = new System.Drawing.Point(1094, 946);
-            this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(140, 35);
-            this.btnNextPage.TabIndex = 53;
-            this.btnNextPage.Text = "下一頁";
-            this.btnNextPage.UseVisualStyleBackColor = true;
-            // 
-            // lblNowPage
-            // 
-            this.lblNowPage.AutoSize = true;
-            this.lblNowPage.Location = new System.Drawing.Point(1049, 951);
-            this.lblNowPage.Name = "lblNowPage";
-            this.lblNowPage.Size = new System.Drawing.Size(21, 24);
-            this.lblNowPage.TabIndex = 54;
-            this.lblNowPage.Text = "1";
             // 
             // MainForm
             // 
