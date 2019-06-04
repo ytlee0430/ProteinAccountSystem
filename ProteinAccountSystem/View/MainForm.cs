@@ -154,8 +154,11 @@ namespace View
             searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
             var result = _controller.GetSalesRecords(searchModel);
 
-            dgvSaleRecords.DataSource = result.OrderByDescending(r=>r.OrderCreateTime).ToList();
-
+            DataGridViewButtonColumn dgvbt = new DataGridViewButtonColumn();
+            dgvbt.Text = "顯示詳細銷貨資訊";
+            dgvbt.UseColumnTextForButtonValue = true;
+            dgvSaleRecords.Columns.Add(dgvbt);
+            dgvSaleRecords.DataSource = result.OrderByDescending(r => r.OrderCreateTime).ToList();
             dgvSaleRecords.CellClick += DgvSaleRecords_CellClick;
 
             dgvSaleRecords.AutoResizeColumns(
@@ -181,6 +184,25 @@ namespace View
 
         private void DgvSaleRecords_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex == 0)
+            {
+                var row = e.RowIndex;
+                var datas = ((List<PhuraseDetailModel>)dgvSaleRecords.DataSource);
+                var data = datas[row].Products;
+
+                var details = new Form();
+                details.Text = "購買清單:" + datas[row].Account.ToString();
+                var dgv = new DataGridView();
+                dgv.Dock = DockStyle.Fill;
+                dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+                dgv.DataSource = data;
+                dgv.ScrollBars = ScrollBars.Both;
+                details.Controls.Add(dgv);
+                details.Height = 300;
+                details.Width = 1000;
+                details.ShowDialog();
+            }
+
             if (e.ColumnIndex != 11 || e.RowIndex < 0)
                 return;
             var y = e.RowIndex;
@@ -306,5 +328,7 @@ namespace View
             _controller.AddDBStorages(list);
             MessageBox.Show("更新完成!");
         }
+
+   
     }
 }
