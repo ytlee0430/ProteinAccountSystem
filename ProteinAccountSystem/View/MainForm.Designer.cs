@@ -869,7 +869,7 @@
             // tbxAddEnumDes
             // 
             this.tbxAddEnumDes.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbxAddEnumDes.Location = new System.Drawing.Point(421, 17);
+            this.tbxAddEnumDes.Location = new System.Drawing.Point(438, 17);
             this.tbxAddEnumDes.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAddEnumDes.Name = "tbxAddEnumDes";
             this.tbxAddEnumDes.Size = new System.Drawing.Size(120, 39);
@@ -879,12 +879,12 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label19.Location = new System.Drawing.Point(310, 24);
+            this.label19.Location = new System.Drawing.Point(293, 24);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(107, 27);
+            this.label19.Size = new System.Drawing.Size(134, 27);
             this.label19.TabIndex = 48;
-            this.label19.Text = "加入值 :";
+            this.label19.Text = "加入描述 :";
             // 
             // btnAddEnum
             // 
