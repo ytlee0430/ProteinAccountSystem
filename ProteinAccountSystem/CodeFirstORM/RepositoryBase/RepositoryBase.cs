@@ -107,5 +107,10 @@ namespace CodeFirstORM.DBLayer
             _database.Set<T>().Remove(entity);
             return _database.SaveChanges() > 0;
         }
+
+        public virtual int GetRowCount(Expression<Func<T, bool>> exp)
+        {
+            return _database.Set<T>().Where(exp).Count();
+        }
     }
 }

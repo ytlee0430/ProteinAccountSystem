@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Common.Entity;
+using Common.Entity.Dto;
 using Common.Enum;
 
 namespace Common.Interface.Service
@@ -12,7 +13,7 @@ namespace Common.Interface.Service
 
         List<ItemViewModel> GetDBStorage(int brand, int flavor, int package, int productionType, int productionDetailType, bool showZero);
 
-        List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel);
+        SaleRecordPagingDto GetSalesRecords(SearchModel searchModel, int pageIndex);
 
         List<PhuraseDetailModel> UpdateProductItemCode(List<PhuraseDetailModel> models);
 
@@ -20,5 +21,6 @@ namespace Common.Interface.Service
 
         bool AddDBStorage(Item item);
         bool AddDBStorages(List<Item> list);
+        List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel);
     }
 }

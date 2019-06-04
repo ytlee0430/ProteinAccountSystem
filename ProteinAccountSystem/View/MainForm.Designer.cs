@@ -47,6 +47,8 @@
             this.dgvNewOrder = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.tabSaleRecord = new System.Windows.Forms.TabPage();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lblDataCount = new System.Windows.Forms.Label();
             this.lblNowPage = new System.Windows.Forms.Label();
             this.btnNextPage = new System.Windows.Forms.Button();
             this.btnPreviousPage = new System.Windows.Forms.Button();
@@ -89,8 +91,17 @@
             this.tbxCost = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.dtpExpireDate = new System.Windows.Forms.DateTimePicker();
-            this.lblDataCount = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.tabClassEnum = new System.Windows.Forms.TabPage();
+            this.dgvEnums = new System.Windows.Forms.DataGridView();
+            this.cbxClassEnum = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.tbxAddEnumDes = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.btnAddEnum = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.tbxAddEnumKeyWord = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.nudAddEnumParent = new System.Windows.Forms.NumericUpDown();
             this.tabStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
             this.tabFunction.SuspendLayout();
@@ -100,6 +111,9 @@
             this.tabSaleRecord.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSaleRecords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCount)).BeginInit();
+            this.tabClassEnum.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEnums)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAddEnumParent)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -269,6 +283,7 @@
             this.tabController.Controls.Add(this.tabStorage);
             this.tabController.Controls.Add(this.tabAddOrder);
             this.tabController.Controls.Add(this.tabSaleRecord);
+            this.tabController.Controls.Add(this.tabClassEnum);
             this.tabController.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabController.Location = new System.Drawing.Point(0, 180);
             this.tabController.Name = "tabController";
@@ -348,6 +363,26 @@
             this.tabSaleRecord.TabIndex = 4;
             this.tabSaleRecord.Text = "檢視銷貨紀錄";
             this.tabSaleRecord.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(962, 634);
+            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(56, 16);
+            this.label18.TabIndex = 56;
+            this.label18.Text = "筆資料";
+            // 
+            // lblDataCount
+            // 
+            this.lblDataCount.AutoSize = true;
+            this.lblDataCount.Location = new System.Drawing.Point(893, 634);
+            this.lblDataCount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblDataCount.Name = "lblDataCount";
+            this.lblDataCount.Size = new System.Drawing.Size(16, 16);
+            this.lblDataCount.TabIndex = 55;
+            this.lblDataCount.Text = "1";
             // 
             // lblNowPage
             // 
@@ -777,25 +812,129 @@
             this.dtpExpireDate.TabIndex = 47;
             this.dtpExpireDate.Value = new System.DateTime(2019, 6, 3, 0, 45, 27, 0);
             // 
-            // lblDataCount
+            // tabClassEnum
             // 
-            this.lblDataCount.AutoSize = true;
-            this.lblDataCount.Location = new System.Drawing.Point(874, 634);
-            this.lblDataCount.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblDataCount.Name = "lblDataCount";
-            this.lblDataCount.Size = new System.Drawing.Size(16, 16);
-            this.lblDataCount.TabIndex = 55;
-            this.lblDataCount.Text = "1";
+            this.tabClassEnum.Controls.Add(this.nudAddEnumParent);
+            this.tabClassEnum.Controls.Add(this.label21);
+            this.tabClassEnum.Controls.Add(this.label20);
+            this.tabClassEnum.Controls.Add(this.tbxAddEnumKeyWord);
+            this.tabClassEnum.Controls.Add(this.btnAddEnum);
+            this.tabClassEnum.Controls.Add(this.label19);
+            this.tabClassEnum.Controls.Add(this.tbxAddEnumDes);
+            this.tabClassEnum.Controls.Add(this.label17);
+            this.tabClassEnum.Controls.Add(this.cbxClassEnum);
+            this.tabClassEnum.Controls.Add(this.dgvEnums);
+            this.tabClassEnum.Location = new System.Drawing.Point(4, 26);
+            this.tabClassEnum.Name = "tabClassEnum";
+            this.tabClassEnum.Size = new System.Drawing.Size(1511, 686);
+            this.tabClassEnum.TabIndex = 5;
+            this.tabClassEnum.Text = "管理分類";
+            this.tabClassEnum.UseVisualStyleBackColor = true;
             // 
-            // label18
+            // dgvEnums
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(912, 634);
-            this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(56, 16);
-            this.label18.TabIndex = 56;
-            this.label18.Text = "筆資料";
+            this.dgvEnums.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvEnums.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvEnums.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEnums.Location = new System.Drawing.Point(19, 70);
+            this.dgvEnums.Name = "dgvEnums";
+            this.dgvEnums.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgvEnums.RowTemplate.Height = 24;
+            this.dgvEnums.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvEnums.Size = new System.Drawing.Size(1473, 546);
+            this.dgvEnums.TabIndex = 50;
+            // 
+            // cbxClassEnum
+            // 
+            this.cbxClassEnum.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.cbxClassEnum.FormattingEnabled = true;
+            this.cbxClassEnum.Location = new System.Drawing.Point(110, 21);
+            this.cbxClassEnum.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxClassEnum.Name = "cbxClassEnum";
+            this.cbxClassEnum.Size = new System.Drawing.Size(179, 35);
+            this.cbxClassEnum.TabIndex = 48;
+            this.cbxClassEnum.SelectedIndexChanged += new System.EventHandler(this.cbxClassEnum_SelectedIndexChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label17.Location = new System.Drawing.Point(16, 24);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(80, 27);
+            this.label17.TabIndex = 48;
+            this.label17.Text = "分類 :";
+            // 
+            // tbxAddEnumDes
+            // 
+            this.tbxAddEnumDes.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbxAddEnumDes.Location = new System.Drawing.Point(421, 17);
+            this.tbxAddEnumDes.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddEnumDes.Name = "tbxAddEnumDes";
+            this.tbxAddEnumDes.Size = new System.Drawing.Size(120, 39);
+            this.tbxAddEnumDes.TabIndex = 48;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label19.Location = new System.Drawing.Point(310, 24);
+            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(107, 27);
+            this.label19.TabIndex = 48;
+            this.label19.Text = "加入值 :";
+            // 
+            // btnAddEnum
+            // 
+            this.btnAddEnum.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnAddEnum.Location = new System.Drawing.Point(1129, 21);
+            this.btnAddEnum.Name = "btnAddEnum";
+            this.btnAddEnum.Size = new System.Drawing.Size(146, 37);
+            this.btnAddEnum.TabIndex = 51;
+            this.btnAddEnum.Text = "加入";
+            this.btnAddEnum.UseVisualStyleBackColor = true;
+            this.btnAddEnum.Click += new System.EventHandler(this.btnAddEnum_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label20.Location = new System.Drawing.Point(562, 24);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(107, 27);
+            this.label20.TabIndex = 52;
+            this.label20.Text = "關鍵字 :";
+            // 
+            // tbxAddEnumKeyWord
+            // 
+            this.tbxAddEnumKeyWord.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbxAddEnumKeyWord.Location = new System.Drawing.Point(673, 17);
+            this.tbxAddEnumKeyWord.Margin = new System.Windows.Forms.Padding(2);
+            this.tbxAddEnumKeyWord.Name = "tbxAddEnumKeyWord";
+            this.tbxAddEnumKeyWord.Size = new System.Drawing.Size(120, 39);
+            this.tbxAddEnumKeyWord.TabIndex = 53;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label21.Location = new System.Drawing.Point(811, 24);
+            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(134, 27);
+            this.label21.TabIndex = 54;
+            this.label21.Text = "大項分類 :";
+            // 
+            // nudAddEnumParent
+            // 
+            this.nudAddEnumParent.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.nudAddEnumParent.Location = new System.Drawing.Point(950, 17);
+            this.nudAddEnumParent.Name = "nudAddEnumParent";
+            this.nudAddEnumParent.Size = new System.Drawing.Size(120, 40);
+            this.nudAddEnumParent.TabIndex = 48;
             // 
             // MainForm
             // 
@@ -842,6 +981,10 @@
             this.tabSaleRecord.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSaleRecords)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCount)).EndInit();
+            this.tabClassEnum.ResumeLayout(false);
+            this.tabClassEnum.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEnums)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAddEnumParent)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -911,6 +1054,17 @@
         private System.Windows.Forms.Button btnPreviousPage;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label lblDataCount;
+        private System.Windows.Forms.TabPage tabClassEnum;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox cbxClassEnum;
+        private System.Windows.Forms.DataGridView dgvEnums;
+        private System.Windows.Forms.Button btnAddEnum;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox tbxAddEnumDes;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox tbxAddEnumKeyWord;
+        private System.Windows.Forms.NumericUpDown nudAddEnumParent;
+        private System.Windows.Forms.Label label21;
     }
 }
 

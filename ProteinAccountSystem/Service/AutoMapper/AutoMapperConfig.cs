@@ -14,6 +14,7 @@ namespace Service.AutoMapper
                 x.AddProfile<PhuraseModelEntityProfile>();
                 x.AddProfile<ItemViewProfile>();
                 x.AddProfile<ItemViewStringProfile>();
+                x.AddProfile<EnumProfile>();
             });
 
         }

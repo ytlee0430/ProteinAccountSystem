@@ -79,12 +79,13 @@ namespace Test
         public void ServiceMapperTest()
         {
             AutoMapperConfig.Configure();
-            var item = new Item
+            var item = new EnumEntity()
             {
-                Flavor = 14
+                Description = "test",
+                ForeignKey = 1,
             };
-            var itemEntity = AutoMapperConfig.Map<Item, ItemEntity>(item);
-            Assert.AreEqual(itemEntity.Flavor, item.Flavor);
+            var itemEntity = AutoMapperConfig.Map<EnumEntity, EnumModel>(item);
+            Assert.AreEqual(itemEntity.Description, item.Description);
         }
 
         [TestMethod]
