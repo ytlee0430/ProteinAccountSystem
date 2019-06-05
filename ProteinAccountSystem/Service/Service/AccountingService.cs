@@ -23,7 +23,7 @@ namespace Service.Service
             return repo.Update(r => orderNumbers.Contains(r.OrderNumber), u => new PhuraseDetailEntity { IsWriteOffMoney = true });
         }
 
-        public bool WriteOffMoney(List<PhuraseDetailModel> details)
+        public bool UpdateSalesRecords(List<PhuraseDetailModel> details)
         {
             var repo = new PhuraseDetailRepository();
             return repo.Update(Mapper.Map< List<PhuraseDetailEntity>>(details));

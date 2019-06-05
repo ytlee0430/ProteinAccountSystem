@@ -17,7 +17,6 @@ namespace Service.Service
         public bool CreateShippmentTicket(List<PhuraseDetailModel> models, string path)
         {
             object savePath = path;//路徑變數 ，需使用object
-            //TODO: Check words
             try
             {
                 var result = models;
@@ -33,29 +32,24 @@ namespace Service.Service
                 wordDoc.PageSetup.RightMargin = 57.0f;
                 wordDoc.PageSetup.HeaderDistance = 30.0f;//頁眉位置
                 object unite = MSWord.WdUnits.wdStory;
-
+                var strContent = "";
+                wordDoc.Paragraphs.Last.Range.Font.Size = 15;
                 foreach (var item in result)
                 {
-                    wordDoc.Paragraphs.Last.Range.Font.Size = 15;
-                    var strContent = item.Account + "\n";
-                    //wordApp.Selection.EndKey(ref unite, ref Nothing);
+                     strContent +="帳號:"+ item.Account + "\n";
                     foreach (var product in item.Products)
                     {
                         strContent += product.ProductName + "       " + " 數量 : " + product.Count + "\n";
                     }
-                    strContent += "寄件編號 :" + item.DeliveryNumber;
-                    //wordDoc.Paragraphs.Last.Range.Font.Name = "新細明體";
-                    wordDoc.Paragraphs.Last.Range.Text = strContent;
+                    strContent += "寄件編號 :" + item.DeliveryNumber + "\n";
+                    strContent += "--------------------------------------------------------------------------------------------------------" + "\n";
                 }
-
+                wordDoc.Paragraphs.Last.Range.Text = strContent;
+               
                 //WdSaveFormat為Word 2003文檔的保存格式 // office 2007就是wdFormatDocumentDefault
                 object format = MSWord.WdSaveFormat.wdFormatDocument;
                 //將wordDoc文檔對象的內容保存為DOCX文檔
                 wordDoc.SaveAs(ref savePath, ref format, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing, ref Nothing);
-                //關閉wordDoc文檔對象
-
-                //列印
-                //wordDoc.PrintOut();
 
                 wordDoc.Close(ref Nothing, ref Nothing, ref Nothing);
                 //關閉wordApp組件對象

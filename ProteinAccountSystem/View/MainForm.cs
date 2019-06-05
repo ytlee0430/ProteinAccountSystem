@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Common.Entity;
@@ -81,45 +82,56 @@ namespace View
 
         private void btnAddItem_Click(object sender, EventArgs e)
         {
-            var item = new Item
+            try
             {
-                Brand = cbxBrands.SelectedIndex,
-                Flavor = cbxFlavors.SelectedIndex,
-                Package = cbxPackages.SelectedIndex,
-                ProductionType = cbxType.SelectedIndex,
-                ProductionDetailType = cbxProductDetail.SelectedIndex,
-            };
-            item.ItemCode = ProductUtilities.GetItemCodes(item);
+                var item = new Item
+                {
+                    Brand = cbxBrands.SelectedIndex,
+                    Flavor = cbxFlavors.SelectedIndex,
+                    Package = cbxPackages.SelectedIndex,
+                    ProductionType = cbxType.SelectedIndex,
+                    ProductionDetailType = cbxProductDetail.SelectedIndex,
+                };
+                item.ItemCode = ProductUtilities.GetItemCodes(item);
 
-            _controller.AddPhuraseProduct(item.ItemCode, (int)nudCount.Value, Convert.ToInt32(tbxSalePrice.Text));
+                _controller.AddPhuraseProduct(item, (int)nudCount.Value, Convert.ToInt32(tbxSalePrice.Text));
 
-
-            _displayItems.Add(new OrderDisplayItem
+                _displayItems.Add(new OrderDisplayItem
+                {
+                    Brand = Enums.BrandEnum[item.Brand].Description,
+                    Flavor = Enums.FlavorEnum[item.Flavor].Description,
+                    Package = Enums.PackageEnum[item.Package].Description,
+                    ProductionType = Enums.ProductionEnum[item.ProductionType].Description,
+                    ProductionDetailType = Enums.ProductionDetailEnum[item.ProductionDetailType].Description,
+                    ItemCode = item.ItemCode,
+                    Count = (int)nudCount.Value,
+                    Price = Convert.ToInt32(tbxSalePrice.Text),
+                });
+                dgvNewOrder.DataSource = _displayItems.ToList();
+            }
+            catch (Exception)
             {
-                Brand = Enums.BrandEnum[item.Brand].Description,
-                Flavor = Enums.FlavorEnum[item.Flavor].Description,
-                Package = Enums.PackageEnum[item.Package].Description,
-                ProductionType = Enums.ProductionEnum[item.ProductionType].Description,
-                ProductionDetailType = Enums.ProductionDetailEnum[item.ProductionDetailType].Description,
-                ItemCode = item.ItemCode,
-                Count = (int)nudCount.Value,
-                Price = Convert.ToInt32(tbxSalePrice.Text),
-            });
-            dgvNewOrder.DataSource = _displayItems.ToList();
+                MessageBox.Show("輸入參數有錯，請重新確認");
+            }
         }
 
         private void btnCreateSale_Click(object sender, EventArgs e)
         {
-            var model = _controller.CreateSale(Convert.ToInt32(tbxShippingFee.Text), tbxReceipyNumber.Text, cbxSaleWays.SelectedIndex);
-            model.OrderCreateTime = DateTime.Now;
-            _controller.AddDBlientPhuraseRecord(new List<PhuraseDetailModel>() { model });
-            _controller.UpdateDBStorage(new List<PhuraseDetailModel>() { model });
+            var result = MessageBox.Show("是否確認新增訂單? ", "", MessageBoxButtons.YesNo);
 
-            _displayItems.Clear();
+            if (result == DialogResult.Yes)
+            {
+                var model = _controller.CreateSale(Convert.ToInt32(tbxShippingFee.Text), tbxReceipyNumber.Text, cbxSaleWays.SelectedIndex, tbxCompanyName.Text, tbxInvoiceNumber.Text);
+                model.OrderCreateTime = DateTime.Now;
+                _controller.AddDBlientPhuraseRecord(new List<PhuraseDetailModel>() { model });
+                _controller.UpdateDBStorage(new List<PhuraseDetailModel>() { model });
 
-            dgvNewOrder.DataSource = _displayItems;
-            dgvNewOrder.AutoResizeColumns(
-                DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+                _displayItems.Clear();
+
+                dgvNewOrder.DataSource = _displayItems;
+                dgvNewOrder.AutoResizeColumns(
+                    DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+            }
         }
 
         private void btnExportStockExcel_Click(object sender, EventArgs e)
@@ -143,6 +155,7 @@ namespace View
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            dgvSaleRecords.Columns.Clear();
             SearchModel searchModel = new SearchModel();
             searchModel.KeyWord = txtKeyWord.Text;
             searchModel.StartTime = dtpStart.Value;
@@ -152,6 +165,7 @@ namespace View
             searchModel.Package = cbxPackages.SelectedIndex;
             searchModel.ProductionType = cbxType.SelectedIndex;
             searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
+            searchModel.IsWriteOffMoney = cbxIsWriteOffMoney.SelectedIndex - 1;
             var result = _controller.GetSalesRecords(searchModel);
 
             DataGridViewButtonColumn dgvbt = new DataGridViewButtonColumn();
@@ -189,14 +203,17 @@ namespace View
                 var row = e.RowIndex;
                 var datas = ((List<PhuraseDetailModel>)dgvSaleRecords.DataSource);
                 var data = datas[row].Products;
-                //TODO: MAPPING ITEM CODE TO DETAILS
+
                 var details = new Form();
-                details.Text = "購買清單:" + datas[row].Account.ToString();
+                details.Text = string.IsNullOrEmpty(datas[row].Account) ? "購買清單:" : "購買清單:" + datas[row].Account.ToString();
+
                 var dgv = new DataGridView();
                 dgv.Dock = DockStyle.Fill;
                 dgv.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
                 dgv.DataSource = data;
                 dgv.ScrollBars = ScrollBars.Both;
+                dgv.DefaultCellStyle.Font = new Font("新細明體", 16);
+
                 details.Controls.Add(dgv);
                 details.Height = 300;
                 details.Width = 1000;
@@ -267,10 +284,17 @@ namespace View
             MessageBox.Show("更新完成!");
         }
 
-        private void btnWriteOffSelectedMoney_Click(object sender, EventArgs e)
+        private void btnUpdateSalesRecords_Click(object sender, EventArgs e)
         {
-            _controller.WriteOffSelectedMoney((List<PhuraseDetailModel>)dgvSaleRecords.DataSource);
-            MessageBox.Show("更新完成!");
+            var result = MessageBox.Show("是否確定要更新訂單狀態", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                if (_controller.UpdateSalesRecords((List<PhuraseDetailModel>)dgvSaleRecords.DataSource))
+                    MessageBox.Show("更新完成!");
+                else
+                    MessageBox.Show("更新失敗!");
+            }
+
         }
 
         private void btnCreateSaleRecord_Click(object sender, EventArgs e)
@@ -337,6 +361,17 @@ namespace View
         private void button2_Click(object sender, EventArgs e)
         {
             //TODO:
+        }
+
+        private void tabController_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbxBrands.SelectedIndex = 0;
+            cbxFlavors.SelectedIndex = 0;
+            cbxPackages.SelectedIndex = 0;
+            cbxType.SelectedIndex = 0;
+            cbxProductDetail.SelectedIndex = 0;
+            cbxIsWriteOffMoney.SelectedIndex = 0;
+            txtKeyWord.Text = "";
         }
     }
 }

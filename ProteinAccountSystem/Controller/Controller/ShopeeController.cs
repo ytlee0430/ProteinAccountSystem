@@ -55,14 +55,14 @@ namespace Controller.Controller
             return _accountingService.WriteOffMoney(datas.Select(s => s.OrderNumber).ToList());
         }
 
-        public void AddPhuraseProduct(string itemItemCode, int count, int saleMoney)
+        public void AddPhuraseProduct(Item Item, int count, int saleMoney)
         {
-            _createSaleService.AddPhuraseProduct(itemItemCode, count, saleMoney);
+            _createSaleService.AddPhuraseProduct(Item, count, saleMoney);
         }
 
-        public PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat)
+        public PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat, string companyName, string invoiceNumber)
         {
-            return _createSaleService.CreateSale(shopeeFee, receiptnumber, plat);
+            return _createSaleService.CreateSale(shopeeFee, receiptnumber, plat, companyName, invoiceNumber);
         }
 
         public bool UpdateDBItems(List<ItemViewModel> list)
@@ -124,9 +124,9 @@ namespace Controller.Controller
             return _stockService.GetSalesRecords(searchModel);
         }
 
-        public bool WriteOffSelectedMoney(List<PhuraseDetailModel> dataSource)
+        public bool UpdateSalesRecords(List<PhuraseDetailModel> dataSource)
         {
-            return _accountingService.WriteOffMoney(dataSource);
+            return _accountingService.UpdateSalesRecords(dataSource);
         }
 
         public bool AddDBStorages(List<Item> list)

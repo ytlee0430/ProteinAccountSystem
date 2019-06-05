@@ -23,9 +23,9 @@ namespace Common.Interface.Controller
 
         bool importWirteOffMoneyDataProcess(string path);
 
-        void AddPhuraseProduct(string itemItemCode, int count, int saleMoney);
+        void AddPhuraseProduct(Item Item, int count, int saleMoney);
 
-        PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat);
+        PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat, string companyName, string invoiceNumber);
 
         bool UpdateDBItems(List<ItemViewModel> list);
 
@@ -33,7 +33,7 @@ namespace Common.Interface.Controller
 
         bool AddDBStorage(Item item);
 
-        bool WriteOffSelectedMoney(List<PhuraseDetailModel> dataSource);
+        bool UpdateSalesRecords(List<PhuraseDetailModel> dataSource);
         bool AddDBStorages(List<Item> list);
         bool ExportSaleRecordExcel(List<PhuraseDetailModel> list, string path);
     }

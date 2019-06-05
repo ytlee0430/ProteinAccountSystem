@@ -16,6 +16,6 @@ namespace Common.Interface.Service
         /// <returns></returns>
         bool WriteOffMoney(List<string> orderNumbers);
 
-        bool WriteOffMoney(List<PhuraseDetailModel> details);
+        bool UpdateSalesRecords(List<PhuraseDetailModel> details);
     }
 }

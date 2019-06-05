@@ -9,7 +9,6 @@ namespace Common.Utils
 {
     public static class ProductUtilities
     {
-
         public static string GetItemCodes(Item item)
         {
             var type = ((int)item.ProductionType).ToString("00");
@@ -18,7 +17,7 @@ namespace Common.Utils
             var package = ((int)item.Package).ToString("00");
             var flavor = ((int)item.Flavor).ToString("00");
             return type + brand + productionDetailType + package + flavor;
-
         }
+
     }
 }

@@ -65,7 +65,7 @@ namespace Service.Service
         public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
         {
             var repo = new PhuraseDetailRepository();
-            var itemWhere = repo.GetDetailExp(searchModel.Brand, searchModel.Package, searchModel.Package,
+            var itemWhere = repo.GetDetailExp(searchModel.Brand, searchModel.Flavor, searchModel.Package,
                 searchModel.ProductionType, searchModel.ProductionDetailType,
                 searchModel.IsWriteOffMoney, searchModel.KeyWord,searchModel.StartTime, searchModel.EndTime);
             return Mapper.Map<List<PhuraseDetailModel>>(repo.Get(itemWhere));

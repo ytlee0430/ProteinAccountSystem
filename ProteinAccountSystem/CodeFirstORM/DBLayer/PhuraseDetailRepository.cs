@@ -97,12 +97,12 @@ namespace CodeFirstORM.DBLayer
 
             if (endTime != DateTime.MaxValue)
             {
-                itemWhere = itemWhere.AndAlso(c => c.OrderCreateTime < endTime);
+                itemWhere = itemWhere.AndAlso(c => c.OrderCreateTime <= endTime);
             }
 
             if (startTime != DateTime.MaxValue)
             {
-                itemWhere = itemWhere.AndAlso(c => c.OrderCreateTime > startTime);
+                itemWhere = itemWhere.AndAlso(c => c.OrderCreateTime >= startTime);
             }
             return itemWhere;
         }

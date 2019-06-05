@@ -51,7 +51,7 @@
             this.btnNextPage = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.cbxIsWriteOffMoney = new System.Windows.Forms.ComboBox();
-            this.btnWriteOffSelectedMoney = new System.Windows.Forms.Button();
+            this.btnUpdateSalesRecords = new System.Windows.Forms.Button();
             this.btnImportExcelWirteOffMoney = new System.Windows.Forms.Button();
             this.dgvSaleRecords = new System.Windows.Forms.DataGridView();
             this.label13 = new System.Windows.Forms.Label();
@@ -89,6 +89,10 @@
             this.tbxCost = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.dtpExpireDate = new System.Windows.Forms.DateTimePicker();
+            this.tbxCompanyName = new System.Windows.Forms.TextBox();
+            this.tbxInvoiceNumber = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.tabStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
             this.tabFunction.SuspendLayout();
@@ -120,7 +124,7 @@
             this.tabStorage.Margin = new System.Windows.Forms.Padding(4);
             this.tabStorage.Name = "tabStorage";
             this.tabStorage.Padding = new System.Windows.Forms.Padding(4);
-            this.tabStorage.Size = new System.Drawing.Size(2245, 1018);
+            this.tabStorage.Size = new System.Drawing.Size(2456, 1018);
             this.tabStorage.TabIndex = 1;
             this.tabStorage.Text = "庫存";
             // 
@@ -241,7 +245,7 @@
             this.tabFunction.Margin = new System.Windows.Forms.Padding(4);
             this.tabFunction.Name = "tabFunction";
             this.tabFunction.Padding = new System.Windows.Forms.Padding(4);
-            this.tabFunction.Size = new System.Drawing.Size(2245, 1018);
+            this.tabFunction.Size = new System.Drawing.Size(2456, 1018);
             this.tabFunction.TabIndex = 0;
             this.tabFunction.Text = "首頁";
             // 
@@ -284,8 +288,9 @@
             this.tabController.Margin = new System.Windows.Forms.Padding(4);
             this.tabController.Name = "tabController";
             this.tabController.SelectedIndex = 0;
-            this.tabController.Size = new System.Drawing.Size(2253, 1056);
+            this.tabController.Size = new System.Drawing.Size(2464, 1056);
             this.tabController.TabIndex = 0;
+            this.tabController.SelectedIndexChanged += new System.EventHandler(this.tabController_SelectedIndexChanged);
             // 
             // tabAddOrder
             // 
@@ -296,7 +301,7 @@
             this.tabAddOrder.Location = new System.Drawing.Point(4, 34);
             this.tabAddOrder.Margin = new System.Windows.Forms.Padding(4);
             this.tabAddOrder.Name = "tabAddOrder";
-            this.tabAddOrder.Size = new System.Drawing.Size(2245, 1018);
+            this.tabAddOrder.Size = new System.Drawing.Size(2456, 1018);
             this.tabAddOrder.TabIndex = 2;
             this.tabAddOrder.Text = "新增訂單";
             // 
@@ -340,7 +345,7 @@
             this.tabSaleRecord.Controls.Add(this.btnNextPage);
             this.tabSaleRecord.Controls.Add(this.button2);
             this.tabSaleRecord.Controls.Add(this.cbxIsWriteOffMoney);
-            this.tabSaleRecord.Controls.Add(this.btnWriteOffSelectedMoney);
+            this.tabSaleRecord.Controls.Add(this.btnUpdateSalesRecords);
             this.tabSaleRecord.Controls.Add(this.btnImportExcelWirteOffMoney);
             this.tabSaleRecord.Controls.Add(this.dgvSaleRecords);
             this.tabSaleRecord.Controls.Add(this.label13);
@@ -354,7 +359,7 @@
             this.tabSaleRecord.Location = new System.Drawing.Point(4, 34);
             this.tabSaleRecord.Margin = new System.Windows.Forms.Padding(4);
             this.tabSaleRecord.Name = "tabSaleRecord";
-            this.tabSaleRecord.Size = new System.Drawing.Size(2245, 1018);
+            this.tabSaleRecord.Size = new System.Drawing.Size(2456, 1018);
             this.tabSaleRecord.TabIndex = 4;
             this.tabSaleRecord.Text = "檢視銷貨紀錄";
             this.tabSaleRecord.UseVisualStyleBackColor = true;
@@ -401,17 +406,17 @@
             this.cbxIsWriteOffMoney.Size = new System.Drawing.Size(139, 48);
             this.cbxIsWriteOffMoney.TabIndex = 48;
             // 
-            // btnWriteOffSelectedMoney
+            // btnUpdateSalesRecords
             // 
-            this.btnWriteOffSelectedMoney.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnWriteOffSelectedMoney.Location = new System.Drawing.Point(1935, 24);
-            this.btnWriteOffSelectedMoney.Margin = new System.Windows.Forms.Padding(4);
-            this.btnWriteOffSelectedMoney.Name = "btnWriteOffSelectedMoney";
-            this.btnWriteOffSelectedMoney.Size = new System.Drawing.Size(285, 56);
-            this.btnWriteOffSelectedMoney.TabIndex = 51;
-            this.btnWriteOffSelectedMoney.Text = "銷帳已勾選帳號";
-            this.btnWriteOffSelectedMoney.UseVisualStyleBackColor = true;
-            this.btnWriteOffSelectedMoney.Click += new System.EventHandler(this.btnWriteOffSelectedMoney_Click);
+            this.btnUpdateSalesRecords.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnUpdateSalesRecords.Location = new System.Drawing.Point(1935, 24);
+            this.btnUpdateSalesRecords.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateSalesRecords.Name = "btnUpdateSalesRecords";
+            this.btnUpdateSalesRecords.Size = new System.Drawing.Size(285, 56);
+            this.btnUpdateSalesRecords.TabIndex = 51;
+            this.btnUpdateSalesRecords.Text = "更新銷售紀錄";
+            this.btnUpdateSalesRecords.UseVisualStyleBackColor = true;
+            this.btnUpdateSalesRecords.Click += new System.EventHandler(this.btnUpdateSalesRecords_Click);
             // 
             // btnImportExcelWirteOffMoney
             // 
@@ -436,7 +441,7 @@
             this.dgvSaleRecords.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvSaleRecords.RowTemplate.Height = 24;
             this.dgvSaleRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvSaleRecords.Size = new System.Drawing.Size(2209, 819);
+            this.dgvSaleRecords.Size = new System.Drawing.Size(2417, 819);
             this.dgvSaleRecords.TabIndex = 49;
             // 
             // label13
@@ -490,7 +495,7 @@
             // txtKeyWord
             // 
             this.txtKeyWord.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtKeyWord.Location = new System.Drawing.Point(176, 30);
+            this.txtKeyWord.Location = new System.Drawing.Point(178, 28);
             this.txtKeyWord.Name = "txtKeyWord";
             this.txtKeyWord.Size = new System.Drawing.Size(217, 45);
             this.txtKeyWord.TabIndex = 44;
@@ -749,7 +754,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label16.Location = new System.Drawing.Point(1190, 147);
+            this.label16.Location = new System.Drawing.Point(1896, 147);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(197, 40);
             this.label16.TabIndex = 45;
@@ -757,18 +762,59 @@
             // 
             // dtpExpireDate
             // 
-            this.dtpExpireDate.Location = new System.Drawing.Point(1197, 216);
+            this.dtpExpireDate.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.dtpExpireDate.Location = new System.Drawing.Point(1903, 198);
             this.dtpExpireDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpExpireDate.Name = "dtpExpireDate";
-            this.dtpExpireDate.Size = new System.Drawing.Size(298, 29);
+            this.dtpExpireDate.Size = new System.Drawing.Size(298, 51);
             this.dtpExpireDate.TabIndex = 47;
             this.dtpExpireDate.Value = new System.DateTime(2019, 6, 3, 0, 45, 27, 0);
+            // 
+            // tbxCompanyName
+            // 
+            this.tbxCompanyName.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbxCompanyName.Location = new System.Drawing.Point(1182, 198);
+            this.tbxCompanyName.Name = "tbxCompanyName";
+            this.tbxCompanyName.Size = new System.Drawing.Size(323, 55);
+            this.tbxCompanyName.TabIndex = 48;
+            // 
+            // tbxInvoiceNumber
+            // 
+            this.tbxInvoiceNumber.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbxInvoiceNumber.Location = new System.Drawing.Point(1533, 198);
+            this.tbxInvoiceNumber.Name = "tbxInvoiceNumber";
+            this.tbxInvoiceNumber.Size = new System.Drawing.Size(324, 55);
+            this.tbxInvoiceNumber.TabIndex = 49;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label17.Location = new System.Drawing.Point(1526, 147);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(197, 40);
+            this.label17.TabIndex = 50;
+            this.label17.Text = "統一編號 :";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label18.Location = new System.Drawing.Point(1179, 147);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(197, 40);
+            this.label18.TabIndex = 51;
+            this.label18.Text = "公司抬頭 :";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2266, 1338);
+            this.ClientSize = new System.Drawing.Size(2477, 1338);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.tbxInvoiceNumber);
+            this.Controls.Add(this.tbxCompanyName);
             this.Controls.Add(this.dtpExpireDate);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
@@ -858,7 +904,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.DataGridView dgvSaleRecords;
         private System.Windows.Forms.Button btnImportExcelWirteOffMoney;
-        private System.Windows.Forms.Button btnWriteOffSelectedMoney;
+        private System.Windows.Forms.Button btnUpdateSalesRecords;
         private System.Windows.Forms.Button btnAddNewItem;
         private System.Windows.Forms.CheckBox ckbEnableChange;
         private System.Windows.Forms.Button btnUpdateItem;
@@ -875,6 +921,10 @@
         private System.Windows.Forms.Label lblNowPage;
         private System.Windows.Forms.Button btnNextPage;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox tbxCompanyName;
+        private System.Windows.Forms.TextBox tbxInvoiceNumber;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
     }
 }
 
