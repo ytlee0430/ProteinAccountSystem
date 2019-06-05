@@ -5,6 +5,7 @@ using Common.Entity;
 using Common.Enum;
 using Common.Interface.Service;
 using Common.Utils;
+using CommonUtility.Enum;
 
 namespace Service.Service
 {
@@ -20,8 +21,8 @@ namespace Service.Service
         /// <param name="saleMoney"></param>
         public void AddPhuraseProduct(Item Item, int count, int saleMoney)
         {
-            var name = ((BrandEnum)Item.Brand).GetDescriptionText() + " " + ((ProductionType)Item.ProductionType).GetDescriptionText() + " " + ((ProductionDetail)Item.ProductionDetailType).GetDescriptionText() + " " + ((FlavorEnum)Item.Flavor).GetDescriptionText() + " " + ((PackageEnum)Item.Package).GetDescriptionText();
-
+            var name = Enums.BrandEnum[Item.Brand].Description + " " + Enums.ProductionEnum[Item.ProductionType].Description + " " + Enums.BrandEnum[Item.ProductionDetailType].Description + " " + Enums.FlavorEnum[Item.Flavor].Description + " " + Enums.PackageEnum[Item.Package].Description;
+            
             _phurases.Add(new PhuraseProductModel()
             {
                 ItemCode = Item.ItemCode,

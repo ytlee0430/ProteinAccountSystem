@@ -28,6 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabStorage = new System.Windows.Forms.TabPage();
             this.btnBulkStorage = new System.Windows.Forms.Button();
@@ -106,6 +113,13 @@
             this.label23 = new System.Windows.Forms.Label();
             this.tbxInvoiceNumber = new System.Windows.Forms.TextBox();
             this.tbxCompanyName = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
             this.tabFunction.SuspendLayout();
@@ -127,6 +141,12 @@
             // tabStorage
             // 
             this.tabStorage.BackColor = System.Drawing.Color.LightGray;
+            this.tabStorage.Controls.Add(this.label25);
+            this.tabStorage.Controls.Add(this.label26);
+            this.tabStorage.Controls.Add(this.label27);
+            this.tabStorage.Controls.Add(this.label28);
+            this.tabStorage.Controls.Add(this.button2);
+            this.tabStorage.Controls.Add(this.button3);
             this.tabStorage.Controls.Add(this.btnBulkStorage);
             this.tabStorage.Controls.Add(this.ckbShowCountZero);
             this.tabStorage.Controls.Add(this.ckbEnableChange);
@@ -140,7 +160,7 @@
             this.tabStorage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabStorage.Name = "tabStorage";
             this.tabStorage.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabStorage.Size = new System.Drawing.Size(2270, 1036);
+            this.tabStorage.Size = new System.Drawing.Size(2270, 990);
             this.tabStorage.TabIndex = 1;
             this.tabStorage.Text = "庫存";
             // 
@@ -202,12 +222,28 @@
             this.dgvStorage.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvStorage.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvStorage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("新細明體", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvStorage.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvStorage.Location = new System.Drawing.Point(14, 90);
             this.dgvStorage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvStorage.Name = "dgvStorage";
             this.dgvStorage.ReadOnly = true;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("新細明體", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvStorage.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvStorage.RowTemplate.Height = 24;
-            this.dgvStorage.Size = new System.Drawing.Size(2223, 910);
+            this.dgvStorage.Size = new System.Drawing.Size(2238, 844);
             this.dgvStorage.TabIndex = 0;
             // 
             // btnAddNewItem
@@ -261,7 +297,7 @@
             this.tabFunction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabFunction.Name = "tabFunction";
             this.tabFunction.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabFunction.Size = new System.Drawing.Size(2270, 1036);
+            this.tabFunction.Size = new System.Drawing.Size(2270, 990);
             this.tabFunction.TabIndex = 0;
             this.tabFunction.Text = "首頁";
             // 
@@ -318,14 +354,14 @@
             this.tabAddOrder.Location = new System.Drawing.Point(4, 34);
             this.tabAddOrder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabAddOrder.Name = "tabAddOrder";
-            this.tabAddOrder.Size = new System.Drawing.Size(2270, 1036);
+            this.tabAddOrder.Size = new System.Drawing.Size(2270, 990);
             this.tabAddOrder.TabIndex = 2;
             this.tabAddOrder.Text = "新增訂單";
             // 
             // btnCreateSale
             // 
             this.btnCreateSale.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnCreateSale.Location = new System.Drawing.Point(1870, 945);
+            this.btnCreateSale.Location = new System.Drawing.Point(1883, 914);
             this.btnCreateSale.Name = "btnCreateSale";
             this.btnCreateSale.Size = new System.Drawing.Size(372, 70);
             this.btnCreateSale.TabIndex = 7;
@@ -337,12 +373,28 @@
             // 
             this.dgvNewOrder.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvNewOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("新細明體", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvNewOrder.DefaultCellStyle = dataGridViewCellStyle13;
             this.dgvNewOrder.Location = new System.Drawing.Point(8, 84);
             this.dgvNewOrder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvNewOrder.Name = "dgvNewOrder";
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("新細明體", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNewOrder.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvNewOrder.RowTemplate.Height = 24;
             this.dgvNewOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvNewOrder.Size = new System.Drawing.Size(2228, 854);
+            this.dgvNewOrder.Size = new System.Drawing.Size(2247, 823);
             this.dgvNewOrder.TabIndex = 6;
             // 
             // button1
@@ -358,6 +410,7 @@
             // 
             // tabSaleRecord
             // 
+            this.tabSaleRecord.Controls.Add(this.label24);
             this.tabSaleRecord.Controls.Add(this.label18);
             this.tabSaleRecord.Controls.Add(this.lblDataCount);
             this.tabSaleRecord.Controls.Add(this.lblNowPage);
@@ -446,7 +499,7 @@
             // btnUpdateSalesRecords
             // 
             this.btnUpdateSalesRecords.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnUpdateSalesRecords.Location = new System.Drawing.Point(1936, 21);
+            this.btnUpdateSalesRecords.Location = new System.Drawing.Point(1934, 21);
             this.btnUpdateSalesRecords.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnUpdateSalesRecords.Name = "btnUpdateSalesRecords";
             this.btnUpdateSalesRecords.Size = new System.Drawing.Size(285, 56);
@@ -458,7 +511,7 @@
             // btnImportExcelWirteOffMoney
             // 
             this.btnImportExcelWirteOffMoney.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnImportExcelWirteOffMoney.Location = new System.Drawing.Point(1372, 22);
+            this.btnImportExcelWirteOffMoney.Location = new System.Drawing.Point(1371, 21);
             this.btnImportExcelWirteOffMoney.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnImportExcelWirteOffMoney.Name = "btnImportExcelWirteOffMoney";
             this.btnImportExcelWirteOffMoney.Size = new System.Drawing.Size(262, 56);
@@ -471,14 +524,38 @@
             // 
             this.dgvSaleRecords.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvSaleRecords.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("新細明體", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSaleRecords.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvSaleRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSaleRecords.Location = new System.Drawing.Point(16, 106);
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("新細明體", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvSaleRecords.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dgvSaleRecords.Location = new System.Drawing.Point(16, 96);
             this.dgvSaleRecords.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvSaleRecords.Name = "dgvSaleRecords";
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("新細明體", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSaleRecords.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvSaleRecords.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvSaleRecords.RowTemplate.Height = 24;
             this.dgvSaleRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvSaleRecords.Size = new System.Drawing.Size(3626, 1228);
+            this.dgvSaleRecords.Size = new System.Drawing.Size(2230, 843);
             this.dgvSaleRecords.TabIndex = 49;
             // 
             // label13
@@ -525,14 +602,14 @@
             this.label11.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label11.Location = new System.Drawing.Point(10, 34);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(167, 32);
+            this.label11.Size = new System.Drawing.Size(127, 32);
             this.label11.TabIndex = 44;
-            this.label11.Text = "帳號/姓名 :";
+            this.label11.Text = "關鍵字 :";
             // 
             // txtKeyWord
             // 
             this.txtKeyWord.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtKeyWord.Location = new System.Drawing.Point(179, 29);
+            this.txtKeyWord.Location = new System.Drawing.Point(170, 29);
             this.txtKeyWord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtKeyWord.Name = "txtKeyWord";
             this.txtKeyWord.Size = new System.Drawing.Size(217, 45);
@@ -553,7 +630,7 @@
             // btnCreateSaleRecord
             // 
             this.btnCreateSaleRecord.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnCreateSaleRecord.Location = new System.Drawing.Point(1642, 24);
+            this.btnCreateSaleRecord.Location = new System.Drawing.Point(1641, 21);
             this.btnCreateSaleRecord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCreateSaleRecord.Name = "btnCreateSaleRecord";
             this.btnCreateSaleRecord.Size = new System.Drawing.Size(285, 56);
@@ -966,6 +1043,69 @@
             this.tbxCompanyName.Size = new System.Drawing.Size(305, 55);
             this.tbxCompanyName.TabIndex = 51;
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(1252, 951);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(34, 24);
+            this.label24.TabIndex = 57;
+            this.label24.Text = "共";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(1180, 954);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(34, 24);
+            this.label25.TabIndex = 63;
+            this.label25.Text = "共";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(1371, 954);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(82, 24);
+            this.label26.TabIndex = 62;
+            this.label26.Text = "筆資料";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(1268, 954);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(21, 24);
+            this.label27.TabIndex = 61;
+            this.label27.Text = "1";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(976, 954);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(21, 24);
+            this.label28.TabIndex = 60;
+            this.label28.Text = "1";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1022, 949);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(140, 34);
+            this.button2.TabIndex = 59;
+            this.button2.Text = "下一頁";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(804, 949);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(152, 34);
+            this.button3.TabIndex = 58;
+            this.button3.Text = "前一頁";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -1003,6 +1143,7 @@
             this.Controls.Add(this.cbxBrands);
             this.Controls.Add(this.tabController);
             this.Name = "MainForm";
+            this.Text = "台肌店乳清進銷存";
             this.tabStorage.ResumeLayout(false);
             this.tabStorage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).EndInit();
@@ -1102,6 +1243,13 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox tbxInvoiceNumber;
         private System.Windows.Forms.TextBox tbxCompanyName;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

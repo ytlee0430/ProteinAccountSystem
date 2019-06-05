@@ -30,6 +30,8 @@ namespace View
             dtpExpireDate.Value = DateTime.Now.AddYears(1);
 
             cbxIsWriteOffMoney.SelectedIndex = 0;
+
+            dgvSaleRecords.CellClick += DgvSaleRecords_CellClick;
         }
 
         /// <summary>
@@ -163,11 +165,11 @@ namespace View
             DataGridViewButtonColumn dgvbt = new DataGridViewButtonColumn();
             dgvbt.Text = "顯示詳細銷貨資訊";
             dgvbt.UseColumnTextForButtonValue = true;
+
             dgvSaleRecords.Columns.Add(dgvbt);
 
             dgvSaleRecords.DataSource = result.Details;
 
-            dgvSaleRecords.CellClick += DgvSaleRecords_CellClick;
             dgvSaleRecords.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
 
 
@@ -205,6 +207,7 @@ namespace View
                 dgv.DataSource = data;
                 dgv.ScrollBars = ScrollBars.Both;
                 dgv.DefaultCellStyle.Font = new Font("新細明體", 16);
+                dgv.ColumnHeadersDefaultCellStyle.Font=new Font("新細明體", 14);
 
                 details.Controls.Add(dgv);
                 details.Height = 300;

@@ -92,7 +92,7 @@ namespace CodeFirstORM.DBLayer
 
             if (keyWord != "")
             {
-                itemWhere = itemWhere.AndAlso(c => (c.Account == keyWord || c.OrderNumber == keyWord));
+                itemWhere = itemWhere.AndAlso(c => (c.Account == keyWord || c.OrderNumber == keyWord)||c.CompanyInvoiceNumber==keyWord||c.CompanyName==keyWord);
             }
 
             if (endTime != DateTime.MaxValue)
