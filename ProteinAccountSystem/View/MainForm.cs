@@ -144,8 +144,8 @@ namespace View
         private void btnSearch_Click(object sender, EventArgs e)
         {
             _searchModel.KeyWord = txtKeyWord.Text;
-            _searchModel.StartTime = dtpStart.Value;
-            _searchModel.EndTime = dtpEnd.Value;
+            _searchModel.StartTime = dtpStart.Value.Date;
+            _searchModel.EndTime = dtpEnd.Value.Date.AddDays(1);
             _searchModel.Brand = cbxBrands.SelectedIndex;
             _searchModel.Flavor = cbxFlavors.SelectedIndex;
             _searchModel.Package = cbxPackages.SelectedIndex;

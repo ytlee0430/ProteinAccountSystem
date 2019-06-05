@@ -92,17 +92,17 @@ namespace CodeFirstORM.DBLayer
 
             if (keyWord != "")
             {
-                itemWhere = itemWhere.AndAlso(c => (c.Account == keyWord || c.OrderNumber == keyWord)||c.CompanyInvoiceNumber==keyWord||c.CompanyName==keyWord);
+                itemWhere = itemWhere.AndAlso(c => c.Account == keyWord || c.OrderNumber == keyWord || c.CompanyInvoiceNumber == keyWord || c.CompanyName == keyWord);
             }
 
             if (endTime != DateTime.MaxValue)
             {
-                itemWhere = itemWhere.AndAlso(c => c.OrderCreateTime <= endTime);
+                itemWhere = itemWhere.AndAlso(c => c.OrderCreateTime < endTime);
             }
 
-            if (startTime != DateTime.MaxValue)
+            if (startTime != DateTime.MinValue)
             {
-                itemWhere = itemWhere.AndAlso(c => c.OrderCreateTime >= startTime);
+                itemWhere = itemWhere.AndAlso(c => c.OrderCreateTime > startTime);
             }
             return itemWhere;
         }
