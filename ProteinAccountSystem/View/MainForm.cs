@@ -56,13 +56,13 @@ namespace View
 
         private void btnShowStorage_Click(object sender, EventArgs e)
         {
-            var Brand = cbxBrands.SelectedIndex;
-            var Flavor = cbxFlavors.SelectedIndex;
-            var Package = cbxPackages.SelectedIndex;
-            var ProductionType = cbxType.SelectedIndex;
-            var ProductionDetailType = cbxProductDetail.SelectedIndex;
+            var brand = cbxBrands.SelectedIndex;
+            var flavor = cbxFlavors.SelectedIndex;
+            var package = cbxPackages.SelectedIndex;
+            var productionType = cbxType.SelectedIndex;
+            var productionDetailType = cbxProductDetail.SelectedIndex;
             var showZero = ckbShowCountZero.Checked;
-            var storages = _controller.GetStorage(Brand, Flavor, Package, ProductionType, ProductionDetailType, showZero);
+            var storages = _controller.GetStorage(brand, flavor, package, productionType, productionDetailType, showZero);
             dgvStorage.DataSource = storages;
             dgvStorage.AutoResizeColumns(
                 DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
@@ -127,18 +127,15 @@ namespace View
             saveFileDialog1.ShowDialog();
             var path = saveFileDialog1.FileName;
 
-            var Brand = cbxBrands.SelectedIndex;
-            var Flavor = cbxFlavors.SelectedIndex;
-            var Package = cbxPackages.SelectedIndex;
-            var ProductionType = cbxType.SelectedIndex;
-            var ProductionDetailType = cbxProductDetail.SelectedIndex;
+            var brand = cbxBrands.SelectedIndex;
+            var flavor = cbxFlavors.SelectedIndex;
+            var package = cbxPackages.SelectedIndex;
+            var productionType = cbxType.SelectedIndex;
+            var productionDetailType = cbxProductDetail.SelectedIndex;
             var showZero = ckbShowCountZero.Checked;
-            var storages = _controller.GetStorage(Brand, Flavor, Package, ProductionType, ProductionDetailType, showZero);
+            var storages = _controller.GetStorage(brand, flavor, package, productionType, productionDetailType, showZero);
             var result = _controller.ExportStockExcel(storages, path);
-            if (!result)
-                MessageBox.Show("匯出失敗!");
-            else
-                MessageBox.Show("匯出成功!");
+            MessageBox.Show(!result ? "匯出失敗!" : "匯出成功!");
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -249,11 +246,11 @@ namespace View
 
         private void btnAddNewItem_Click(object sender, EventArgs e)
         {
-            var Brand = cbxBrands.SelectedIndex;
-            var Flavor = cbxFlavors.SelectedIndex;
-            var Package = cbxPackages.SelectedIndex;
-            var ProductionType = cbxType.SelectedIndex;
-            var ProductionDetailType = cbxProductDetail.SelectedIndex;
+            var brand = cbxBrands.SelectedIndex;
+            var flavor = cbxFlavors.SelectedIndex;
+            var package = cbxPackages.SelectedIndex;
+            var productionType = cbxType.SelectedIndex;
+            var productionDetailType = cbxProductDetail.SelectedIndex;
             var count = (int)nudCount.Value;
             var price = Convert.ToInt32(tbxSalePrice.Text);
             var discount = Convert.ToDouble(tbxDiscount.Text);
@@ -261,11 +258,11 @@ namespace View
             var expireDate = dtpExpireDate.Value;
             var item = new Item
             {
-                Brand = Brand,
-                Flavor = Flavor,
-                Package = Package,
-                ProductionType = ProductionType,
-                ProductionDetailType = ProductionDetailType,
+                Brand = brand,
+                Flavor = flavor,
+                Package = package,
+                ProductionType = productionType,
+                ProductionDetailType = productionDetailType,
                 Storage = count,
                 NetPrice = price,
                 Discount = discount,
