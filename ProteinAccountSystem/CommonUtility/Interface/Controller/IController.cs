@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Common.Entity;
+using Common.Entity.Dto;
 using Common.Enum;
 
 namespace Common.Interface.Controller
@@ -19,6 +20,7 @@ namespace Common.Interface.Controller
 
         bool UpdateDBStorage(List<PhuraseDetailModel> list);
 
+        SaleRecordPagingDto GetSalesRecords(SearchModel searchModel, int pageIndex);
         List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel);
 
         bool importWirteOffMoneyDataProcess(string path);
@@ -36,5 +38,9 @@ namespace Common.Interface.Controller
         bool UpdateSalesRecords(List<PhuraseDetailModel> dataSource);
         bool AddDBStorages(List<Item> list);
         bool ExportSaleRecordExcel(List<PhuraseDetailModel> list, string path);
+
+        List<EnumModel> GetEnums(int selectedIndex);
+
+        bool AddEnumValue(string description, string keyword, int enumClass, int value);
     }
 }

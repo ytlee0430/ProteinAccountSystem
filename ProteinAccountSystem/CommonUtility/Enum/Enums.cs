@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CommonUtility.Entity;
+using Common.Entity;
 
 namespace CommonUtility.Enum
 {
@@ -15,6 +15,7 @@ namespace CommonUtility.Enum
         public static Dictionary<int, EnumModel> PlatEnum { get; set; } = new Dictionary<int, EnumModel>();
         public static Dictionary<int, EnumModel> ProductionDetailEnum { get; set; } = new Dictionary<int, EnumModel>();
         public static Dictionary<int, EnumModel> ProductionEnum { get; set; } = new Dictionary<int, EnumModel>();
+        public static Dictionary<int, EnumModel> ClassEnum { get; set; } = new Dictionary<int, EnumModel>();
 
 
     }

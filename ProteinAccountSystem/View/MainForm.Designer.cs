@@ -47,9 +47,11 @@
             this.dgvNewOrder = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.tabSaleRecord = new System.Windows.Forms.TabPage();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lblDataCount = new System.Windows.Forms.Label();
             this.lblNowPage = new System.Windows.Forms.Label();
             this.btnNextPage = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnPreviousPage = new System.Windows.Forms.Button();
             this.cbxIsWriteOffMoney = new System.Windows.Forms.ComboBox();
             this.btnUpdateSalesRecords = new System.Windows.Forms.Button();
             this.btnImportExcelWirteOffMoney = new System.Windows.Forms.Button();
@@ -62,6 +64,17 @@
             this.txtKeyWord = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnCreateSaleRecord = new System.Windows.Forms.Button();
+            this.tabClassEnum = new System.Windows.Forms.TabPage();
+            this.nudAddEnumParent = new System.Windows.Forms.NumericUpDown();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.tbxAddEnumKeyWord = new System.Windows.Forms.TextBox();
+            this.btnAddEnum = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.tbxAddEnumDes = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.cbxClassEnum = new System.Windows.Forms.ComboBox();
+            this.dgvEnums = new System.Windows.Forms.DataGridView();
             this.tbxShippingFee = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tbxReceipyNumber = new System.Windows.Forms.TextBox();
@@ -89,10 +102,10 @@
             this.tbxCost = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.dtpExpireDate = new System.Windows.Forms.DateTimePicker();
-            this.tbxCompanyName = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.tbxInvoiceNumber = new System.Windows.Forms.TextBox();
-            this.lblInvoiceNumber = new System.Windows.Forms.Label();
-            this.lblCompanyName = new System.Windows.Forms.Label();
+            this.tbxCompanyName = new System.Windows.Forms.TextBox();
             this.tabStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
             this.tabFunction.SuspendLayout();
@@ -101,6 +114,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvNewOrder)).BeginInit();
             this.tabSaleRecord.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSaleRecords)).BeginInit();
+            this.tabClassEnum.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAddEnumParent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEnums)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCount)).BeginInit();
             this.SuspendLayout();
             // 
@@ -121,10 +137,10 @@
             this.tabStorage.Controls.Add(this.btnExportStockExcel);
             this.tabStorage.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabStorage.Location = new System.Drawing.Point(4, 34);
-            this.tabStorage.Margin = new System.Windows.Forms.Padding(4);
+            this.tabStorage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabStorage.Name = "tabStorage";
-            this.tabStorage.Padding = new System.Windows.Forms.Padding(4);
-            this.tabStorage.Size = new System.Drawing.Size(2456, 1018);
+            this.tabStorage.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabStorage.Size = new System.Drawing.Size(2270, 1036);
             this.tabStorage.TabIndex = 1;
             this.tabStorage.Text = "庫存";
             // 
@@ -134,7 +150,7 @@
             this.btnBulkStorage.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnBulkStorage.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnBulkStorage.Location = new System.Drawing.Point(318, 9);
-            this.btnBulkStorage.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBulkStorage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBulkStorage.Name = "btnBulkStorage";
             this.btnBulkStorage.Size = new System.Drawing.Size(296, 72);
             this.btnBulkStorage.TabIndex = 11;
@@ -148,7 +164,7 @@
             this.ckbShowCountZero.Checked = true;
             this.ckbShowCountZero.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckbShowCountZero.Location = new System.Drawing.Point(1536, 52);
-            this.ckbShowCountZero.Margin = new System.Windows.Forms.Padding(4);
+            this.ckbShowCountZero.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ckbShowCountZero.Name = "ckbShowCountZero";
             this.ckbShowCountZero.Size = new System.Drawing.Size(228, 28);
             this.ckbShowCountZero.TabIndex = 10;
@@ -159,7 +175,7 @@
             // 
             this.ckbEnableChange.AutoSize = true;
             this.ckbEnableChange.Location = new System.Drawing.Point(1536, 10);
-            this.ckbEnableChange.Margin = new System.Windows.Forms.Padding(4);
+            this.ckbEnableChange.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ckbEnableChange.Name = "ckbEnableChange";
             this.ckbEnableChange.Size = new System.Drawing.Size(156, 28);
             this.ckbEnableChange.TabIndex = 9;
@@ -172,8 +188,8 @@
             this.btnUpdateItem.BackColor = System.Drawing.Color.White;
             this.btnUpdateItem.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnUpdateItem.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnUpdateItem.Location = new System.Drawing.Point(1231, 10);
-            this.btnUpdateItem.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateItem.Location = new System.Drawing.Point(1232, 10);
+            this.btnUpdateItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpdateItem.Name = "btnUpdateItem";
             this.btnUpdateItem.Size = new System.Drawing.Size(296, 72);
             this.btnUpdateItem.TabIndex = 8;
@@ -187,7 +203,7 @@
             this.dgvStorage.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvStorage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStorage.Location = new System.Drawing.Point(14, 90);
-            this.dgvStorage.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvStorage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvStorage.Name = "dgvStorage";
             this.dgvStorage.ReadOnly = true;
             this.dgvStorage.RowTemplate.Height = 24;
@@ -200,7 +216,7 @@
             this.btnAddNewItem.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnAddNewItem.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnAddNewItem.Location = new System.Drawing.Point(14, 9);
-            this.btnAddNewItem.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAddNewItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddNewItem.Name = "btnAddNewItem";
             this.btnAddNewItem.Size = new System.Drawing.Size(296, 72);
             this.btnAddNewItem.TabIndex = 7;
@@ -214,7 +230,7 @@
             this.btnShowStorage.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnShowStorage.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnShowStorage.Location = new System.Drawing.Point(622, 9);
-            this.btnShowStorage.Margin = new System.Windows.Forms.Padding(4);
+            this.btnShowStorage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnShowStorage.Name = "btnShowStorage";
             this.btnShowStorage.Size = new System.Drawing.Size(296, 72);
             this.btnShowStorage.TabIndex = 6;
@@ -228,7 +244,7 @@
             this.btnExportStockExcel.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnExportStockExcel.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnExportStockExcel.Location = new System.Drawing.Point(927, 9);
-            this.btnExportStockExcel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnExportStockExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnExportStockExcel.Name = "btnExportStockExcel";
             this.btnExportStockExcel.Size = new System.Drawing.Size(296, 72);
             this.btnExportStockExcel.TabIndex = 4;
@@ -242,10 +258,10 @@
             this.tabFunction.Controls.Add(this.btnCreateShippmentTicket);
             this.tabFunction.Controls.Add(this.btnImportExcel);
             this.tabFunction.Location = new System.Drawing.Point(4, 34);
-            this.tabFunction.Margin = new System.Windows.Forms.Padding(4);
+            this.tabFunction.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabFunction.Name = "tabFunction";
-            this.tabFunction.Padding = new System.Windows.Forms.Padding(4);
-            this.tabFunction.Size = new System.Drawing.Size(2456, 1018);
+            this.tabFunction.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabFunction.Size = new System.Drawing.Size(2270, 1036);
             this.tabFunction.TabIndex = 0;
             this.tabFunction.Text = "首頁";
             // 
@@ -255,7 +271,7 @@
             this.btnCreateShippmentTicket.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnCreateShippmentTicket.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnCreateShippmentTicket.Location = new System.Drawing.Point(698, 32);
-            this.btnCreateShippmentTicket.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateShippmentTicket.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCreateShippmentTicket.Name = "btnCreateShippmentTicket";
             this.btnCreateShippmentTicket.Size = new System.Drawing.Size(596, 72);
             this.btnCreateShippmentTicket.TabIndex = 1;
@@ -269,7 +285,7 @@
             this.btnImportExcel.FlatAppearance.BorderColor = System.Drawing.Color.Blue;
             this.btnImportExcel.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnImportExcel.Location = new System.Drawing.Point(4, 32);
-            this.btnImportExcel.Margin = new System.Windows.Forms.Padding(4);
+            this.btnImportExcel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnImportExcel.Name = "btnImportExcel";
             this.btnImportExcel.Size = new System.Drawing.Size(596, 72);
             this.btnImportExcel.TabIndex = 0;
@@ -283,12 +299,13 @@
             this.tabController.Controls.Add(this.tabStorage);
             this.tabController.Controls.Add(this.tabAddOrder);
             this.tabController.Controls.Add(this.tabSaleRecord);
+            this.tabController.Controls.Add(this.tabClassEnum);
             this.tabController.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabController.Location = new System.Drawing.Point(0, 270);
-            this.tabController.Margin = new System.Windows.Forms.Padding(4);
+            this.tabController.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabController.Name = "tabController";
             this.tabController.SelectedIndex = 0;
-            this.tabController.Size = new System.Drawing.Size(2464, 1056);
+            this.tabController.Size = new System.Drawing.Size(2278, 1028);
             this.tabController.TabIndex = 0;
             this.tabController.SelectedIndexChanged += new System.EventHandler(this.tabController_SelectedIndexChanged);
             // 
@@ -299,9 +316,9 @@
             this.tabAddOrder.Controls.Add(this.dgvNewOrder);
             this.tabAddOrder.Controls.Add(this.button1);
             this.tabAddOrder.Location = new System.Drawing.Point(4, 34);
-            this.tabAddOrder.Margin = new System.Windows.Forms.Padding(4);
+            this.tabAddOrder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabAddOrder.Name = "tabAddOrder";
-            this.tabAddOrder.Size = new System.Drawing.Size(2456, 1018);
+            this.tabAddOrder.Size = new System.Drawing.Size(2270, 1036);
             this.tabAddOrder.TabIndex = 2;
             this.tabAddOrder.Text = "新增訂單";
             // 
@@ -321,17 +338,17 @@
             this.dgvNewOrder.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvNewOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNewOrder.Location = new System.Drawing.Point(8, 84);
-            this.dgvNewOrder.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvNewOrder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvNewOrder.Name = "dgvNewOrder";
             this.dgvNewOrder.RowTemplate.Height = 24;
             this.dgvNewOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvNewOrder.Size = new System.Drawing.Size(2227, 854);
+            this.dgvNewOrder.Size = new System.Drawing.Size(2228, 854);
             this.dgvNewOrder.TabIndex = 6;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button1.Location = new System.Drawing.Point(8, 17);
+            this.button1.Location = new System.Drawing.Point(8, 16);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(396, 60);
             this.button1.TabIndex = 5;
@@ -341,9 +358,11 @@
             // 
             // tabSaleRecord
             // 
+            this.tabSaleRecord.Controls.Add(this.label18);
+            this.tabSaleRecord.Controls.Add(this.lblDataCount);
             this.tabSaleRecord.Controls.Add(this.lblNowPage);
             this.tabSaleRecord.Controls.Add(this.btnNextPage);
-            this.tabSaleRecord.Controls.Add(this.button2);
+            this.tabSaleRecord.Controls.Add(this.btnPreviousPage);
             this.tabSaleRecord.Controls.Add(this.cbxIsWriteOffMoney);
             this.tabSaleRecord.Controls.Add(this.btnUpdateSalesRecords);
             this.tabSaleRecord.Controls.Add(this.btnImportExcelWirteOffMoney);
@@ -357,17 +376,35 @@
             this.tabSaleRecord.Controls.Add(this.btnSearch);
             this.tabSaleRecord.Controls.Add(this.btnCreateSaleRecord);
             this.tabSaleRecord.Location = new System.Drawing.Point(4, 34);
-            this.tabSaleRecord.Margin = new System.Windows.Forms.Padding(4);
+            this.tabSaleRecord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabSaleRecord.Name = "tabSaleRecord";
-            this.tabSaleRecord.Size = new System.Drawing.Size(2456, 1018);
+            this.tabSaleRecord.Size = new System.Drawing.Size(2270, 990);
             this.tabSaleRecord.TabIndex = 4;
             this.tabSaleRecord.Text = "檢視銷貨紀錄";
             this.tabSaleRecord.UseVisualStyleBackColor = true;
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(1443, 951);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(82, 24);
+            this.label18.TabIndex = 56;
+            this.label18.Text = "筆資料";
+            // 
+            // lblDataCount
+            // 
+            this.lblDataCount.AutoSize = true;
+            this.lblDataCount.Location = new System.Drawing.Point(1340, 951);
+            this.lblDataCount.Name = "lblDataCount";
+            this.lblDataCount.Size = new System.Drawing.Size(21, 24);
+            this.lblDataCount.TabIndex = 55;
+            this.lblDataCount.Text = "1";
+            // 
             // lblNowPage
             // 
             this.lblNowPage.AutoSize = true;
-            this.lblNowPage.Location = new System.Drawing.Point(1049, 951);
+            this.lblNowPage.Location = new System.Drawing.Point(1048, 951);
             this.lblNowPage.Name = "lblNowPage";
             this.lblNowPage.Size = new System.Drawing.Size(21, 24);
             this.lblNowPage.TabIndex = 54;
@@ -377,21 +414,21 @@
             // 
             this.btnNextPage.Location = new System.Drawing.Point(1094, 946);
             this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(140, 35);
+            this.btnNextPage.Size = new System.Drawing.Size(140, 34);
             this.btnNextPage.TabIndex = 53;
             this.btnNextPage.Text = "下一頁";
             this.btnNextPage.UseVisualStyleBackColor = true;
             this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
             // 
-            // button2
+            // btnPreviousPage
             // 
-            this.button2.Location = new System.Drawing.Point(876, 946);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(152, 35);
-            this.button2.TabIndex = 52;
-            this.button2.Text = "前一頁";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnPreviousPage.Location = new System.Drawing.Point(876, 946);
+            this.btnPreviousPage.Name = "btnPreviousPage";
+            this.btnPreviousPage.Size = new System.Drawing.Size(152, 34);
+            this.btnPreviousPage.TabIndex = 52;
+            this.btnPreviousPage.Text = "前一頁";
+            this.btnPreviousPage.UseVisualStyleBackColor = true;
+            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
             // 
             // cbxIsWriteOffMoney
             // 
@@ -409,8 +446,8 @@
             // btnUpdateSalesRecords
             // 
             this.btnUpdateSalesRecords.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnUpdateSalesRecords.Location = new System.Drawing.Point(1935, 24);
-            this.btnUpdateSalesRecords.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateSalesRecords.Location = new System.Drawing.Point(1936, 21);
+            this.btnUpdateSalesRecords.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.btnUpdateSalesRecords.Name = "btnUpdateSalesRecords";
             this.btnUpdateSalesRecords.Size = new System.Drawing.Size(285, 56);
             this.btnUpdateSalesRecords.TabIndex = 51;
@@ -422,7 +459,7 @@
             // 
             this.btnImportExcelWirteOffMoney.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnImportExcelWirteOffMoney.Location = new System.Drawing.Point(1372, 22);
-            this.btnImportExcelWirteOffMoney.Margin = new System.Windows.Forms.Padding(4);
+            this.btnImportExcelWirteOffMoney.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnImportExcelWirteOffMoney.Name = "btnImportExcelWirteOffMoney";
             this.btnImportExcelWirteOffMoney.Size = new System.Drawing.Size(262, 56);
             this.btnImportExcelWirteOffMoney.TabIndex = 50;
@@ -435,13 +472,13 @@
             this.dgvSaleRecords.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvSaleRecords.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvSaleRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSaleRecords.Location = new System.Drawing.Point(16, 107);
-            this.dgvSaleRecords.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvSaleRecords.Location = new System.Drawing.Point(16, 106);
+            this.dgvSaleRecords.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvSaleRecords.Name = "dgvSaleRecords";
             this.dgvSaleRecords.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvSaleRecords.RowTemplate.Height = 24;
             this.dgvSaleRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvSaleRecords.Size = new System.Drawing.Size(2417, 819);
+            this.dgvSaleRecords.Size = new System.Drawing.Size(3626, 1228);
             this.dgvSaleRecords.TabIndex = 49;
             // 
             // label13
@@ -457,7 +494,7 @@
             // dtpEnd
             // 
             this.dtpEnd.Location = new System.Drawing.Point(762, 33);
-            this.dtpEnd.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpEnd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpEnd.Name = "dtpEnd";
             this.dtpEnd.Size = new System.Drawing.Size(214, 36);
             this.dtpEnd.TabIndex = 47;
@@ -465,8 +502,8 @@
             // 
             // dtpStart
             // 
-            this.dtpStart.Location = new System.Drawing.Point(497, 33);
-            this.dtpStart.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpStart.Location = new System.Drawing.Point(496, 33);
+            this.dtpStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpStart.Name = "dtpStart";
             this.dtpStart.Size = new System.Drawing.Size(214, 36);
             this.dtpStart.TabIndex = 46;
@@ -495,7 +532,8 @@
             // txtKeyWord
             // 
             this.txtKeyWord.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.txtKeyWord.Location = new System.Drawing.Point(178, 28);
+            this.txtKeyWord.Location = new System.Drawing.Point(179, 29);
+            this.txtKeyWord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtKeyWord.Name = "txtKeyWord";
             this.txtKeyWord.Size = new System.Drawing.Size(217, 45);
             this.txtKeyWord.TabIndex = 44;
@@ -503,8 +541,8 @@
             // btnSearch
             // 
             this.btnSearch.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnSearch.Location = new System.Drawing.Point(1145, 21);
-            this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSearch.Location = new System.Drawing.Point(1144, 21);
+            this.btnSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(219, 56);
             this.btnSearch.TabIndex = 2;
@@ -516,13 +554,134 @@
             // 
             this.btnCreateSaleRecord.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnCreateSaleRecord.Location = new System.Drawing.Point(1642, 24);
-            this.btnCreateSaleRecord.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateSaleRecord.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCreateSaleRecord.Name = "btnCreateSaleRecord";
             this.btnCreateSaleRecord.Size = new System.Drawing.Size(285, 56);
             this.btnCreateSaleRecord.TabIndex = 0;
             this.btnCreateSaleRecord.Text = "匯出Excel銷售紀錄";
             this.btnCreateSaleRecord.UseVisualStyleBackColor = true;
             this.btnCreateSaleRecord.Click += new System.EventHandler(this.btnCreateSaleRecord_Click);
+            // 
+            // tabClassEnum
+            // 
+            this.tabClassEnum.Controls.Add(this.nudAddEnumParent);
+            this.tabClassEnum.Controls.Add(this.label21);
+            this.tabClassEnum.Controls.Add(this.label20);
+            this.tabClassEnum.Controls.Add(this.tbxAddEnumKeyWord);
+            this.tabClassEnum.Controls.Add(this.btnAddEnum);
+            this.tabClassEnum.Controls.Add(this.label19);
+            this.tabClassEnum.Controls.Add(this.tbxAddEnumDes);
+            this.tabClassEnum.Controls.Add(this.label17);
+            this.tabClassEnum.Controls.Add(this.cbxClassEnum);
+            this.tabClassEnum.Controls.Add(this.dgvEnums);
+            this.tabClassEnum.Location = new System.Drawing.Point(4, 34);
+            this.tabClassEnum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabClassEnum.Name = "tabClassEnum";
+            this.tabClassEnum.Size = new System.Drawing.Size(2270, 990);
+            this.tabClassEnum.TabIndex = 5;
+            this.tabClassEnum.Text = "管理分類";
+            this.tabClassEnum.UseVisualStyleBackColor = true;
+            // 
+            // nudAddEnumParent
+            // 
+            this.nudAddEnumParent.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.nudAddEnumParent.Location = new System.Drawing.Point(1425, 26);
+            this.nudAddEnumParent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nudAddEnumParent.Name = "nudAddEnumParent";
+            this.nudAddEnumParent.Size = new System.Drawing.Size(180, 56);
+            this.nudAddEnumParent.TabIndex = 48;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label21.Location = new System.Drawing.Point(1216, 36);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(197, 40);
+            this.label21.TabIndex = 54;
+            this.label21.Text = "大項分類 :";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label20.Location = new System.Drawing.Point(843, 36);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(157, 40);
+            this.label20.TabIndex = 52;
+            this.label20.Text = "關鍵字 :";
+            // 
+            // tbxAddEnumKeyWord
+            // 
+            this.tbxAddEnumKeyWord.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbxAddEnumKeyWord.Location = new System.Drawing.Point(1010, 26);
+            this.tbxAddEnumKeyWord.Name = "tbxAddEnumKeyWord";
+            this.tbxAddEnumKeyWord.Size = new System.Drawing.Size(178, 55);
+            this.tbxAddEnumKeyWord.TabIndex = 53;
+            // 
+            // btnAddEnum
+            // 
+            this.btnAddEnum.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnAddEnum.Location = new System.Drawing.Point(1694, 32);
+            this.btnAddEnum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAddEnum.Name = "btnAddEnum";
+            this.btnAddEnum.Size = new System.Drawing.Size(219, 56);
+            this.btnAddEnum.TabIndex = 51;
+            this.btnAddEnum.Text = "加入";
+            this.btnAddEnum.UseVisualStyleBackColor = true;
+            this.btnAddEnum.Click += new System.EventHandler(this.btnAddEnum_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label19.Location = new System.Drawing.Point(440, 36);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(197, 40);
+            this.label19.TabIndex = 48;
+            this.label19.Text = "加入描述 :";
+            // 
+            // tbxAddEnumDes
+            // 
+            this.tbxAddEnumDes.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbxAddEnumDes.Location = new System.Drawing.Point(657, 26);
+            this.tbxAddEnumDes.Name = "tbxAddEnumDes";
+            this.tbxAddEnumDes.Size = new System.Drawing.Size(178, 55);
+            this.tbxAddEnumDes.TabIndex = 48;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label17.Location = new System.Drawing.Point(24, 36);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(117, 40);
+            this.label17.TabIndex = 48;
+            this.label17.Text = "分類 :";
+            // 
+            // cbxClassEnum
+            // 
+            this.cbxClassEnum.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.cbxClassEnum.FormattingEnabled = true;
+            this.cbxClassEnum.Location = new System.Drawing.Point(165, 32);
+            this.cbxClassEnum.Name = "cbxClassEnum";
+            this.cbxClassEnum.Size = new System.Drawing.Size(266, 48);
+            this.cbxClassEnum.TabIndex = 48;
+            this.cbxClassEnum.SelectedIndexChanged += new System.EventHandler(this.cbxClassEnum_SelectedIndexChanged);
+            // 
+            // dgvEnums
+            // 
+            this.dgvEnums.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvEnums.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvEnums.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEnums.Location = new System.Drawing.Point(28, 105);
+            this.dgvEnums.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvEnums.Name = "dgvEnums";
+            this.dgvEnums.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgvEnums.RowTemplate.Height = 24;
+            this.dgvEnums.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvEnums.Size = new System.Drawing.Size(2210, 865);
+            this.dgvEnums.TabIndex = 50;
             // 
             // tbxShippingFee
             // 
@@ -707,7 +866,7 @@
             // 
             this.nudCount.Font = new System.Drawing.Font("新細明體", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.nudCount.Location = new System.Drawing.Point(1560, 68);
-            this.nudCount.Margin = new System.Windows.Forms.Padding(4);
+            this.nudCount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nudCount.Name = "nudCount";
             this.nudCount.Size = new System.Drawing.Size(180, 56);
             this.nudCount.TabIndex = 43;
@@ -754,7 +913,8 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label16.Location = new System.Drawing.Point(1896, 147);
+            this.label16.Location = new System.Drawing.Point(2844, 220);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(197, 40);
             this.label16.TabIndex = 45;
@@ -763,58 +923,58 @@
             // dtpExpireDate
             // 
             this.dtpExpireDate.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.dtpExpireDate.Location = new System.Drawing.Point(1903, 198);
-            this.dtpExpireDate.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpExpireDate.Location = new System.Drawing.Point(2854, 297);
+            this.dtpExpireDate.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.dtpExpireDate.Name = "dtpExpireDate";
-            this.dtpExpireDate.Size = new System.Drawing.Size(298, 51);
+            this.dtpExpireDate.Size = new System.Drawing.Size(445, 51);
             this.dtpExpireDate.TabIndex = 47;
             this.dtpExpireDate.Value = new System.DateTime(2019, 6, 3, 0, 45, 27, 0);
             // 
-            // tbxCompanyName
+            // label22
             // 
-            this.tbxCompanyName.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbxCompanyName.Location = new System.Drawing.Point(1182, 198);
-            this.tbxCompanyName.Name = "tbxCompanyName";
-            this.tbxCompanyName.Size = new System.Drawing.Size(323, 55);
-            this.tbxCompanyName.TabIndex = 48;
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label22.Location = new System.Drawing.Point(1566, 147);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(177, 40);
+            this.label22.TabIndex = 48;
+            this.label22.Text = "統一編號";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label23.Location = new System.Drawing.Point(1195, 147);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(177, 40);
+            this.label23.TabIndex = 49;
+            this.label23.Text = "公司抬頭";
             // 
             // tbxInvoiceNumber
             // 
             this.tbxInvoiceNumber.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tbxInvoiceNumber.Location = new System.Drawing.Point(1533, 198);
+            this.tbxInvoiceNumber.Location = new System.Drawing.Point(1573, 197);
             this.tbxInvoiceNumber.Name = "tbxInvoiceNumber";
-            this.tbxInvoiceNumber.Size = new System.Drawing.Size(324, 55);
-            this.tbxInvoiceNumber.TabIndex = 49;
+            this.tbxInvoiceNumber.Size = new System.Drawing.Size(267, 55);
+            this.tbxInvoiceNumber.TabIndex = 50;
             // 
-            // lblInvoiceNumber
+            // tbxCompanyName
             // 
-            this.lblInvoiceNumber.AutoSize = true;
-            this.lblInvoiceNumber.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblInvoiceNumber.Location = new System.Drawing.Point(1526, 147);
-            this.lblInvoiceNumber.Name = "lblInvoiceNumber";
-            this.lblInvoiceNumber.Size = new System.Drawing.Size(197, 40);
-            this.lblInvoiceNumber.TabIndex = 50;
-            this.lblInvoiceNumber.Text = "統一編號 :";
-            // 
-            // lblCompanyName
-            // 
-            this.lblCompanyName.AutoSize = true;
-            this.lblCompanyName.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lblCompanyName.Location = new System.Drawing.Point(1179, 147);
-            this.lblCompanyName.Name = "lblCompanyName";
-            this.lblCompanyName.Size = new System.Drawing.Size(197, 40);
-            this.lblCompanyName.TabIndex = 51;
-            this.lblCompanyName.Text = "公司抬頭 :";
+            this.tbxCompanyName.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tbxCompanyName.Location = new System.Drawing.Point(1193, 197);
+            this.tbxCompanyName.Name = "tbxCompanyName";
+            this.tbxCompanyName.Size = new System.Drawing.Size(305, 55);
+            this.tbxCompanyName.TabIndex = 51;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2477, 1338);
-            this.Controls.Add(this.lblCompanyName);
-            this.Controls.Add(this.lblInvoiceNumber);
-            this.Controls.Add(this.tbxInvoiceNumber);
+            this.ClientSize = new System.Drawing.Size(2297, 1311);
             this.Controls.Add(this.tbxCompanyName);
+            this.Controls.Add(this.tbxInvoiceNumber);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.label22);
             this.Controls.Add(this.dtpExpireDate);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
@@ -853,6 +1013,10 @@
             this.tabSaleRecord.ResumeLayout(false);
             this.tabSaleRecord.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSaleRecords)).EndInit();
+            this.tabClassEnum.ResumeLayout(false);
+            this.tabClassEnum.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAddEnumParent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEnums)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -920,11 +1084,24 @@
         private System.Windows.Forms.ComboBox cbxIsWriteOffMoney;
         private System.Windows.Forms.Label lblNowPage;
         private System.Windows.Forms.Button btnNextPage;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox tbxCompanyName;
+        private System.Windows.Forms.Button btnPreviousPage;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblDataCount;
+        private System.Windows.Forms.TabPage tabClassEnum;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox cbxClassEnum;
+        private System.Windows.Forms.DataGridView dgvEnums;
+        private System.Windows.Forms.Button btnAddEnum;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox tbxAddEnumDes;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox tbxAddEnumKeyWord;
+        private System.Windows.Forms.NumericUpDown nudAddEnumParent;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox tbxInvoiceNumber;
-        private System.Windows.Forms.Label lblInvoiceNumber;
-        private System.Windows.Forms.Label lblCompanyName;
+        private System.Windows.Forms.TextBox tbxCompanyName;
     }
 }
 

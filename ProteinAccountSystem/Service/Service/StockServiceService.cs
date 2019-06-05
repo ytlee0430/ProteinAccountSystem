@@ -5,9 +5,11 @@ using AutoMapper;
 using CodeFirstORM.DBLayer;
 using CodeFirstORM.Entity;
 using Common.Entity;
+using Common.Entity.Dto;
 using Common.Enum;
 using Common.Interface.Service;
 using Common.Utils;
+using CommonUtility.Constants;
 using CommonUtility.Enum;
 using Service.AutoMapper;
 
@@ -62,13 +64,29 @@ namespace Service.Service
             return Mapper.Map<List<ItemViewModel>>(repo.Get(ex).OrderByDescending(o => o.Key));
         }
 
+        public SaleRecordPagingDto GetSalesRecords(SearchModel searchModel, int pageIndex)
+        {
+            var repo = new PhuraseDetailRepository();
+            var exp = repo.GetDetailExp(searchModel.Brand, searchModel.Package, searchModel.Package,
+                searchModel.ProductionType, searchModel.ProductionDetailType,
+                searchModel.IsWriteOffMoney, searchModel.KeyWord,searchModel.StartTime, searchModel.EndTime);
+            var pageSize = Constant.PageSize;
+            var details = Mapper.Map<List<PhuraseDetailModel>>(repo.Get(exp).OrderByDescending(o => o.OrderCreateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize)).ToList();
+            var count = repo.GetRowCount(exp);
+            return  new SaleRecordPagingDto
+            {
+                Details = details,
+                TotalCount = count
+            };
+        }
+
         public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
         {
             var repo = new PhuraseDetailRepository();
             var itemWhere = repo.GetDetailExp(searchModel.Brand, searchModel.Flavor, searchModel.Package,
                 searchModel.ProductionType, searchModel.ProductionDetailType,
-                searchModel.IsWriteOffMoney, searchModel.KeyWord,searchModel.StartTime, searchModel.EndTime);
-            return Mapper.Map<List<PhuraseDetailModel>>(repo.Get(itemWhere));
+                searchModel.IsWriteOffMoney, searchModel.KeyWord, searchModel.StartTime, searchModel.EndTime);
+            return Mapper.Map<List<PhuraseDetailModel>>(repo.Get(itemWhere)).OrderByDescending(o => o.OrderCreateTime).ToList();
         }
 
         public List<PhuraseDetailModel> UpdateProductItemCode(List<PhuraseDetailModel> models)

@@ -10,7 +10,7 @@ using Common.Entity;
 using Common.Enum;
 using Common.Utils;
 
-namespace Service.Service
+namespace Service
 {
     public class DataBaseInitializer
     {

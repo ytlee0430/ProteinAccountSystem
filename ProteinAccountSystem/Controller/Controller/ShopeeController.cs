@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using Common.Entity;
+using Common.Entity.Dto;
 using Common.Enum;
 using Common.Interface.Controller;
 using Common.Interface.Service;
@@ -17,7 +18,8 @@ namespace Controller.Controller
         private ICreateSaleService _createSaleService;
         private IAccountingService _accountingService;
         private IExcelExportService _excelExportService;
-        public ShopeeController(IAnalyzeExcelService analyzeExcelService, IStockService stockService, IShippmentService shippmentService, ICreateSaleService createSaleService, IAccountingService accountingService, IExcelExportService excelExportService)
+        private IEnumService _enumService;
+        public ShopeeController(IAnalyzeExcelService analyzeExcelService, IStockService stockService, IShippmentService shippmentService, ICreateSaleService createSaleService, IAccountingService accountingService, IExcelExportService excelExportService, IEnumService enumService)
         {
             _analyzeExcelService = analyzeExcelService;
             _stockService = stockService;
@@ -25,6 +27,7 @@ namespace Controller.Controller
             _createSaleService = createSaleService;
             _accountingService = accountingService;
             _excelExportService = excelExportService;
+            _enumService = enumService;
         }
 
 
@@ -48,6 +51,8 @@ namespace Controller.Controller
 
             return true;
         }
+
+      
 
         public bool importWirteOffMoneyDataProcess(string path)
         {
@@ -119,6 +124,11 @@ namespace Controller.Controller
         /// <param name="endTime"></param>
         /// <param name="writeOffMoneyState"></param>
         /// <returns></returns>
+        public SaleRecordPagingDto GetSalesRecords(SearchModel searchModel, int pageIndex)
+        {
+            return _stockService.GetSalesRecords(searchModel, pageIndex);
+        }
+
         public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
         {
             return _stockService.GetSalesRecords(searchModel);
@@ -137,6 +147,16 @@ namespace Controller.Controller
         public bool ExportSaleRecordExcel(List<PhuraseDetailModel> list, string path)
         {
             return _excelExportService.ExportExcel(list, path);
+        }
+
+        public List<EnumModel> GetEnums(int selectedIndex)
+        {
+            return _enumService.GetEnums(selectedIndex);
+        }
+
+        public bool AddEnumValue(string description, string keyword, int enumClass, int parentType)
+        {
+            return _enumService.AddEnumValue(description,keyword,enumClass,parentType);
         }
     }
 }

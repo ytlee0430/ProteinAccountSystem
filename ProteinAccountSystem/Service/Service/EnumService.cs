@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CodeFirstORM;
+using AutoMapper;
 using CodeFirstORM.DBLayer;
 using CodeFirstORM.Entity;
+using Common.Entity;
 using Common.Enum;
-using Common.Utils;
-using CommonUtility.Entity;
+using Common.Interface.Service;
 using CommonUtility.Enum;
 
 namespace Service.Service
 {
-    public class EnumService
+    public class EnumService : IEnumService
     {
         public static void EnumInitialize()
         {
@@ -21,32 +19,23 @@ namespace Service.Service
             var enumEntitis = repo.GetAll();
             foreach (var enumEntity in enumEntitis)
             {
-                Dictionary<int, EnumModel> dic = null;
-                switch (enumEntity.EnumClassDescription)
+                Enums.ClassEnum.Add(enumEntity.Key, new EnumModel
                 {
-                    case "Brand":
-                        dic = Enums.BrandEnum;
-                        break;
-                    case "Flavor":
-                        dic = Enums.FlavorEnum;
-                        break;
-                    case "Package":
-                        dic = Enums.PackageEnum;
-                        break;
-                    case "Plat":
-                        dic = Enums.PlatEnum;
-                        break;
-                    case "ProductionDetail":
-                        dic = Enums.ProductionDetailEnum;
-                        break;
-                    case "Production":
-                        dic = Enums.ProductionEnum;
-                        break;
-                    default:
-                        break;
-                }
+                    Description = enumEntity.EnumClassDescription,
+                    EnumValue = enumEntity.Key,
+                });
+
+                var dic = GetEnumDic(enumEntity.EnumClassDescription);
+
                 foreach (var e in enumEntity.Enums)
-                    dic.Add(e.EnumValue, new EnumModel { Description = e.Description, EnumValue = e.EnumValue, KeyWord = e.KeyWord, ParentType = e.ParentType });
+                    dic.Add(e.EnumValue,
+                        new EnumModel
+                        {
+                            Description = e.Description,
+                            EnumValue = e.EnumValue,
+                            KeyWord = e.KeyWord,
+                            ParentType = e.ParentType
+                        });
             }
         }
 
@@ -95,6 +84,7 @@ namespace Service.Service
                                     break;
                             }
                         }
+
                         break;
                     case "Package":
                         foreach (var item in enumEntity.Enums)
@@ -121,6 +111,7 @@ namespace Service.Service
                                     break;
                             }
                         }
+
                         break;
                     case "Plat":
                         break;
@@ -163,6 +154,7 @@ namespace Service.Service
                                     break;
                             }
                         }
+
                         break;
                     case "Production":
                         break;
@@ -170,9 +162,90 @@ namespace Service.Service
                         break;
                 }
             }
+
             repo.Update(enumEntitis);
         }
 
+        private static Dictionary<int, EnumModel> GetEnumDic(string des)
+        {
+            Dictionary<int, EnumModel> dic = null;
+            switch (des)
+            {
+                case "Brand":
+                    dic = Enums.BrandEnum;
+                    break;
+                case "Flavor":
+                    dic = Enums.FlavorEnum;
+                    break;
+                case "Package":
+                    dic = Enums.PackageEnum;
+                    break;
+                case "Plat":
+                    dic = Enums.PlatEnum;
+                    break;
+                case "ProductionDetail":
+                    dic = Enums.ProductionDetailEnum;
+                    break;
+                case "Production":
+                    dic = Enums.ProductionEnum;
+                    break;
+                default:
+                    break;
+            }
 
+            return dic;
+        }
+
+        public List<EnumModel> GetEnums(int selectedIndex)
+        {
+            var repo = new EnumClassRepository();
+            var result = repo.Get(o => o.Key == selectedIndex).FirstOrDefault();
+            if (result == null)
+            {
+                //TODO:exception handle
+                return new List<EnumModel>();
+            }
+
+            return Mapper.Map<List<EnumModel>>(result.Enums);
+        }
+
+        public bool AddEnumValue(string description, string keyword, int enumClass, int parentType)
+        {
+            var repo = new EnumClassRepository();
+            var enumClassEntity = repo.Get(enumClass);
+
+            if (enumClassEntity == null || enumClassEntity.Enums.Any(e => e.Description == description))
+                return false;
+
+            var addValue = enumClassEntity.Enums.Max(m => m.EnumValue) +1;
+            enumClassEntity.Enums.Add(new EnumEntity
+            {
+                Description = description,
+                EnumValue = addValue ,
+                KeyWord = keyword,
+                ParentType = parentType
+            });
+
+            if (!repo.Update(enumClassEntity))
+                return false;
+
+            try
+            {
+                var dic = GetEnumDic(enumClassEntity.EnumClassDescription);
+                dic.Add(addValue, new EnumModel
+                {
+                    Description = description,
+                    EnumValue = addValue,
+                    KeyWord = keyword,
+                    ParentType = parentType
+                });
+            }
+            catch (Exception e)
+            {
+                //TODO:exception handle
+                return false;
+            }
+            return true;
+        }
     }
 }

@@ -28,7 +28,7 @@ namespace Setup
             ICreateSaleService createSaleService = new CreateSaleService();
             IAccountingService accountingService = new AccountingService();
             IExcelExportService excelExportService = new ExcelExportService();
-
+            IEnumService enumService = new EnumService();
             AutoMapperConfig.Configure();
 
             //first run
@@ -45,7 +45,7 @@ namespace Setup
             Application.Run(new MainForm(new ShopeeController(
                 analyzeExcelService, stockService, 
                 shippmentService, createSaleService, accountingService,
-                excelExportService)));
+                excelExportService, enumService)));
 
         }
     }

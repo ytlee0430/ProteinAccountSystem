@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Common.Entity;
 using Common.Interface.Controller;
 using Common.Utils;
+using CommonUtility.Constants;
 using CommonUtility.Enum;
 
 namespace View
@@ -14,36 +15,21 @@ namespace View
     {
         private IController _controller;
         List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
+        SearchModel _searchModel = new SearchModel();
 
         public MainForm(IController controller)
         {
             _controller = controller;
 
             InitializeComponent();
-            #region Import Combox Enum
-            foreach (var pair in Enums.BrandEnum)
-                cbxBrands.Items.Add(pair.Value.Description);
 
-            foreach (var pair in Enums.FlavorEnum)
-                cbxFlavors.Items.Add(pair.Value.Description);
-
-            foreach (var pair in Enums.PackageEnum)
-                cbxPackages.Items.Add(pair.Value.Description);
-
-            foreach (var pair in Enums.ProductionDetailEnum)
-                cbxProductDetail.Items.Add(pair.Value.Description);
-
-            foreach (var pair in Enums.ProductionEnum)
-                cbxType.Items.Add(pair.Value.Description);
-
-            foreach (var pair in Enums.PlatEnum)
-                cbxSaleWays.Items.Add(pair.Value.Description);
-
-            #endregion
+            InitialEnumCbx();
 
             dtpStart.Value = DateTime.Now.AddMonths(-1);
             dtpEnd.Value = DateTime.Now; ;
             dtpExpireDate.Value = DateTime.Now.AddYears(1);
+
+            cbxIsWriteOffMoney.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -155,28 +141,35 @@ namespace View
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            dgvSaleRecords.Columns.Clear();
-            SearchModel searchModel = new SearchModel();
-            searchModel.KeyWord = txtKeyWord.Text;
-            searchModel.StartTime = dtpStart.Value;
-            searchModel.EndTime = dtpEnd.Value;
-            searchModel.Brand = cbxBrands.SelectedIndex;
-            searchModel.Flavor = cbxFlavors.SelectedIndex;
-            searchModel.Package = cbxPackages.SelectedIndex;
-            searchModel.ProductionType = cbxType.SelectedIndex;
-            searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
-            searchModel.IsWriteOffMoney = cbxIsWriteOffMoney.SelectedIndex - 1;
-            var result = _controller.GetSalesRecords(searchModel);
+            _searchModel.KeyWord = txtKeyWord.Text;
+            _searchModel.StartTime = dtpStart.Value;
+            _searchModel.EndTime = dtpEnd.Value;
+            _searchModel.Brand = cbxBrands.SelectedIndex;
+            _searchModel.Flavor = cbxFlavors.SelectedIndex;
+            _searchModel.Package = cbxPackages.SelectedIndex;
+            _searchModel.ProductionType = cbxType.SelectedIndex;
+            _searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
+            _searchModel.IsWriteOffMoney = cbxIsWriteOffMoney.SelectedIndex - 1;
+            SearchSaleRecord();
+        }
 
+        private void SearchSaleRecord()
+        {
+            int pageIndex = Convert.ToInt32(lblNowPage.Text);
+
+            var result = _controller.GetSalesRecords(_searchModel, pageIndex);
+            lblDataCount.Text = result.TotalCount.ToString();
+            dgvSaleRecords.Columns.Clear();
             DataGridViewButtonColumn dgvbt = new DataGridViewButtonColumn();
             dgvbt.Text = "顯示詳細銷貨資訊";
             dgvbt.UseColumnTextForButtonValue = true;
             dgvSaleRecords.Columns.Add(dgvbt);
-            dgvSaleRecords.DataSource = result.OrderByDescending(r => r.OrderCreateTime).ToList();
-            dgvSaleRecords.CellClick += DgvSaleRecords_CellClick;
 
-            dgvSaleRecords.AutoResizeColumns(
-                DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+            dgvSaleRecords.DataSource = result.Details;
+
+            dgvSaleRecords.CellClick += DgvSaleRecords_CellClick;
+            dgvSaleRecords.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
+
 
             var minWidth = 100;
             var maxWidth = 200;
@@ -193,7 +186,6 @@ namespace View
                     c.Width = minWidth;
                 }
             }
-
         }
 
         private void DgvSaleRecords_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -355,12 +347,91 @@ namespace View
 
         private void btnNextPage_Click(object sender, EventArgs e)
         {
-            //TODO:
+            int pageIndex = Convert.ToInt32(lblNowPage.Text);
+            pageIndex++;
+            int pageSize = Constant.PageSize;
+            int lastIndex = pageIndex * pageSize;
+            if (lastIndex > Convert.ToInt32(lblDataCount.Text) + pageSize - 1)
+                return;
+            lblNowPage.Text = pageIndex.ToString();
+            SearchSaleRecord();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnPreviousPage_Click(object sender, EventArgs e)
         {
-            //TODO:
+            int pageIndex = Convert.ToInt32(lblNowPage.Text);
+            pageIndex--;
+            int pageSize = Constant.PageSize;
+            int firstIndex = (pageIndex - 1) * pageSize + 1;
+            if (firstIndex < 1)
+                return;
+            lblNowPage.Text = pageIndex.ToString();
+            SearchSaleRecord();
+        }
+
+        private void cbxClassEnum_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var enums = _controller.GetEnums(cbxClassEnum.SelectedIndex);
+            dgvEnums.DataSource = enums;
+        }
+
+        private void btnAddEnum_Click(object sender, EventArgs e)
+        {
+            bool result = _controller.AddEnumValue(
+                tbxAddEnumDes.Text,
+                tbxAddEnumKeyWord.Text,
+                cbxClassEnum.SelectedIndex,
+                (int)nudAddEnumParent.Value
+                );
+
+            if (result)
+            {
+                var enums = _controller.GetEnums(cbxClassEnum.SelectedIndex);
+                dgvEnums.DataSource = enums;
+                InitialEnumCbx();
+            }
+            else
+            {
+                MessageBox.Show("新增失敗! 請檢查格式是否正確。");
+            }
+        }
+
+        private void InitialEnumCbx()
+        {
+            cbxBrands.Items.Clear();
+            foreach (var pair in Enums.BrandEnum)
+                cbxBrands.Items.Add(pair.Value.Description);
+            cbxBrands.SelectedIndex = 0;
+
+            cbxFlavors.Items.Clear();
+            foreach (var pair in Enums.FlavorEnum)
+                cbxFlavors.Items.Add(pair.Value.Description);
+            cbxFlavors.SelectedIndex = 0;
+
+            cbxPackages.Items.Clear();
+            foreach (var pair in Enums.PackageEnum)
+                cbxPackages.Items.Add(pair.Value.Description);
+            cbxPackages.SelectedIndex = 0;
+
+            cbxProductDetail.Items.Clear();
+            foreach (var pair in Enums.ProductionDetailEnum)
+                cbxProductDetail.Items.Add(pair.Value.Description);
+            cbxProductDetail.SelectedIndex = 0;
+
+            cbxType.Items.Clear();
+            foreach (var pair in Enums.ProductionEnum)
+                cbxType.Items.Add(pair.Value.Description);
+            cbxType.SelectedIndex = 0;
+
+            cbxSaleWays.Items.Clear();
+            foreach (var pair in Enums.PlatEnum)
+                cbxSaleWays.Items.Add(pair.Value.Description);
+            cbxSaleWays.SelectedIndex = 0;
+
+            cbxClassEnum.Items.Clear();
+            foreach (var pair in Enums.ClassEnum)
+                cbxClassEnum.Items.Add(pair.Value.Description);
+            cbxClassEnum.SelectedIndex = 0;
         }
 
         private void tabController_SelectedIndexChanged(object sender, EventArgs e)
