@@ -10,7 +10,7 @@ using Common.Interface.Service;
 
 namespace Controller.Controller
 {
-    public class ShopeeController : IController
+    public class MainFormController : IMainFormController
     {
         private IAnalyzeExcelService _analyzeExcelService;
         private IStockService _stockService;
@@ -19,7 +19,7 @@ namespace Controller.Controller
         private IAccountingService _accountingService;
         private IExcelExportService _excelExportService;
         private IEnumService _enumService;
-        public ShopeeController(IAnalyzeExcelService analyzeExcelService, IStockService stockService, IShippmentService shippmentService, ICreateSaleService createSaleService, IAccountingService accountingService, IExcelExportService excelExportService, IEnumService enumService)
+        public MainFormController(IAnalyzeExcelService analyzeExcelService, IStockService stockService, IShippmentService shippmentService, ICreateSaleService createSaleService, IAccountingService accountingService, IExcelExportService excelExportService, IEnumService enumService)
         {
             _analyzeExcelService = analyzeExcelService;
             _stockService = stockService;

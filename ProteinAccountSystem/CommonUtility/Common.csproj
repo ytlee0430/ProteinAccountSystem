@@ -65,7 +65,7 @@
     <Compile Include="Enum\PlatEnum.cs" />
     <Compile Include="Enum\ProductionDetail.cs" />
     <Compile Include="Enum\ProductionType.cs" />
-    <Compile Include="Interface\Controller\IController.cs" />
+    <Compile Include="Interface\Controller\IMainFormController.cs" />
     <Compile Include="Interface\Service\IExcelExportService.cs" />
     <Compile Include="Interface\Service\IAccountingService.cs" />
     <Compile Include="Interface\Service\ICreateSaleService.cs" />
@@ -91,5 +91,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

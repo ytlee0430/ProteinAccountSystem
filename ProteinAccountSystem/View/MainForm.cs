@@ -13,11 +13,11 @@ namespace View
 {
     public partial class MainForm : Form
     {
-        private IController _controller;
+        private IMainFormController _controller;
         List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
         SearchModel _searchModel = new SearchModel();
 
-        public MainForm(IController controller)
+        public MainForm(IMainFormController controller)
         {
             _controller = controller;
 

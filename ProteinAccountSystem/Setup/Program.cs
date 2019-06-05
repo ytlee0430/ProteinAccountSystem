@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common.Interface.Service;
+using Common.Log;
 using Controller.Controller;
 using Service.AutoMapper;
 using Service.Service;
@@ -38,15 +39,24 @@ namespace Setup
 
             //first run
             //DataBaseInitializer.InitializeItemsDataBase();
-           
+
             //first run
             //EnumService.EnumParentTypeInitail();
 
-            Application.Run(new MainForm(new ShopeeController(
-                analyzeExcelService, stockService, 
-                shippmentService, createSaleService, accountingService,
-                excelExportService, enumService)));
-
+            try
+            {
+                Application.Run(new MainForm(new MainFormController(
+                    analyzeExcelService, stockService,
+                    shippmentService, createSaleService, accountingService,
+                    excelExportService, enumService)));
+            }
+            catch (Exception e)
+            {
+                LogUtil.Fatal(e.StackTrace);
+                LogUtil.Fatal(e.ToString());
+                MessageBox.Show($"Unhandle Exception Occur! Message:{e.Message}");
+                Application.Exit();
+            }
         }
     }
 }

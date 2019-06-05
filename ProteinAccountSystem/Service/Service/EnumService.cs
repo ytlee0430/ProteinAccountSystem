@@ -7,6 +7,7 @@ using CodeFirstORM.Entity;
 using Common.Entity;
 using Common.Enum;
 using Common.Interface.Service;
+using Common.Log;
 using CommonUtility.Enum;
 
 namespace Service.Service
@@ -202,7 +203,7 @@ namespace Service.Service
             var result = repo.Get(o => o.Key == selectedIndex).FirstOrDefault();
             if (result == null)
             {
-                //TODO:exception handle
+                LogUtil.Error($"Get Enums Fail: selected Index :{selectedIndex}");
                 return new List<EnumModel>();
             }
 
@@ -217,11 +218,11 @@ namespace Service.Service
             if (enumClassEntity == null || enumClassEntity.Enums.Any(e => e.Description == description))
                 return false;
 
-            var addValue = enumClassEntity.Enums.Max(m => m.EnumValue) +1;
+            var addValue = enumClassEntity.Enums.Max(m => m.EnumValue) + 1;
             enumClassEntity.Enums.Add(new EnumEntity
             {
                 Description = description,
-                EnumValue = addValue ,
+                EnumValue = addValue,
                 KeyWord = keyword,
                 ParentType = parentType
             });
@@ -242,7 +243,8 @@ namespace Service.Service
             }
             catch (Exception e)
             {
-                //TODO:exception handle
+                LogUtil.Error("Get Enum Dic Error!");
+                LogUtil.Error(e.ToString());
                 return false;
             }
             return true;

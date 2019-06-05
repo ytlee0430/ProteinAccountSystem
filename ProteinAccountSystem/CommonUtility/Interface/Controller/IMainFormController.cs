@@ -5,7 +5,7 @@ using Common.Enum;
 
 namespace Common.Interface.Controller
 {
-    public interface IController
+    public interface IMainFormController
     {
         bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "");
 
