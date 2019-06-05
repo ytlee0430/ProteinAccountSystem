@@ -1,14 +1,14 @@
-﻿using System;
+﻿using CodeFirstORM.RepositoryBase;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using CodeFirstORM.RepositoryBase;
 
 namespace CodeFirstORM.Entity
 {
     public class ItemEntity : IEntity
     {
         [Key]
-        public int Key{ get; set; }
+        public int Key { get; set; }
 
         /// <summary>
         /// 庫存
@@ -56,7 +56,6 @@ namespace CodeFirstORM.Entity
         /// </summary>
         public int Tax { get; set; }
 
-
         /// <summary>
         /// 包裝
         /// </summary>
@@ -68,11 +67,9 @@ namespace CodeFirstORM.Entity
         [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime ExpiredDate { get; set; }
 
-
         /// <summary>
         /// 商品細項分類
         /// </summary>
         public int ProductionDetailType { get; set; }
-
     }
 }

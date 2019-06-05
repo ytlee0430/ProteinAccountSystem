@@ -1,26 +1,27 @@
-﻿using System.Collections.Generic;
-using Common.Entity;
+﻿using Common.Entity;
 using Common.Entity.Dto;
-using Common.Enum;
+using System.Collections.Generic;
 
 namespace Common.Interface.Service
 {
     public interface IStockService
     {
-        bool UpdateDBStorage(List<PhuraseDetailModel> stockData);
-
         bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData);
+
+        bool AddDBStorage(Item item);
+
+        bool AddDBStorages(List<Item> list);
+
+        void GenerateProductItemCode(List<PhuraseDetailModel> models);
 
         List<ItemViewModel> GetDBStorage(int brand, int flavor, int package, int productionType, int productionDetailType, bool showZero);
 
         SaleRecordPagingDto GetSalesRecords(SearchModel searchModel, int pageIndex);
 
-        List<PhuraseDetailModel> UpdateProductItemCode(List<PhuraseDetailModel> models);
+        List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel);
 
         bool UpdateDBItems(List<ItemViewModel> list);
 
-        bool AddDBStorage(Item item);
-        bool AddDBStorages(List<Item> list);
-        List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel);
+        bool UpdateDBStorage(List<PhuraseDetailModel> stockData);
     }
 }

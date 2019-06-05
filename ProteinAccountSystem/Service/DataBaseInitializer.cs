@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using CodeFirstORM.DBLayer;
 using CodeFirstORM.Entity;
 using Common.Entity;
 using Common.Enum;
 using Common.Utils;
+using System;
+using System.Collections.Generic;
 
 namespace Service
 {
@@ -69,7 +66,6 @@ namespace Service
             repoClass.Add(enumClasses);
         }
 
-
         public static void InitializeItemsDataBase()
         {
             var repo = new ItemRepository();
@@ -103,7 +99,6 @@ namespace Service
             item.ItemCode = ProductUtilities.GetItemCodes(Mapper.Map<Item>(item));
             insertLsit.Add(item);
 
-
             item = new ItemEntity
             {
                 Brand = (int)BrandEnum.EatMe,
@@ -118,7 +113,6 @@ namespace Service
             };
             item.ItemCode = ProductUtilities.GetItemCodes(Mapper.Map<Item>(item));
             insertLsit.Add(item);
-
 
             item = new ItemEntity
             {
@@ -149,7 +143,6 @@ namespace Service
             };
             item.ItemCode = ProductUtilities.GetItemCodes(Mapper.Map<Item>(item));
             insertLsit.Add(item);
-
 
             foreach (FlavorEnum flavor in Enum.GetValues(typeof(FlavorEnum)))
             {
@@ -213,6 +206,5 @@ namespace Service
 
             repo.Add(insertLsit);
         }
-
     }
 }

@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Common.Interface.Service;
+﻿using Common.Interface.Service;
 using Common.Log;
 using Controller.Controller;
 using Service.AutoMapper;
 using Service.Service;
+using System;
+using System.Windows.Forms;
 using View;
 
 namespace Setup
 {
-    static class Program
+    internal static class Program
     {
         /// <summary>
         /// 應用程式的主要進入點。
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

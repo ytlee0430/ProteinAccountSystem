@@ -1,5 +1,4 @@
 ﻿using Common.Entity;
-using Common.Enum;
 
 namespace Common.Interface.Service
 {

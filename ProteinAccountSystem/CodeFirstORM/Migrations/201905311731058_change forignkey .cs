@@ -1,8 +1,7 @@
 namespace CodeFirstORM.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class changeforignkey : DbMigration
     {
         public override void Up()
@@ -13,7 +12,7 @@ namespace CodeFirstORM.Migrations
             AddPrimaryKey("dbo.PhuraseDetailEntities", "Key");
             AddForeignKey("dbo.PhuraseProducts", "PhuraseDetailEntityKey", "dbo.PhuraseDetailEntities", "Key", cascadeDelete: true);
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.PhuraseProducts", "PhuraseDetailEntityKey", "dbo.PhuraseDetailEntities");

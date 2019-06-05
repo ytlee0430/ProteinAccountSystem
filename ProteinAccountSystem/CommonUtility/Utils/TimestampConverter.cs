@@ -1,13 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Utils
 {
     public class TimestampConverter
     {
+        /// <summary>
+        /// DateTime时间格式转换为Unix时间戳格式
+        /// </summary>
+        /// <param name="time"> DateTime时间格式</param>
+        /// <returns>Unix时间戳格式</returns>
+        public static int ConvertDateTimeInt(DateTime time)
+        {
+            DateTime startTime = new DateTime(1970, 1, 1);
+            return (int)(time - startTime).TotalSeconds;
+        }
+
         /// <summary>
         /// 时间戳转为C#格式时间
         /// </summary>
@@ -22,25 +29,13 @@ namespace Common.Utils
         }
 
         /// <summary>
-        /// DateTime时间格式转换为Unix时间戳格式
+        /// 获取时间戳
         /// </summary>
-        /// <param name="time"> DateTime时间格式</param>
-        /// <returns>Unix时间戳格式</returns>
-        public static int ConvertDateTimeInt(DateTime time)
-        {
-            DateTime startTime = new DateTime(1970, 1, 1);
-            return (int)(time - startTime).TotalSeconds;
-        }
-
-        /// <summary>  
-        /// 获取时间戳  
-        /// </summary>  
-        /// <returns></returns>  
+        /// <returns></returns>
         public static string GetTimeStamp()
         {
             TimeSpan ts = DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0, 0);
             return Convert.ToInt64(ts.TotalSeconds).ToString();
         }
-
     }
 }

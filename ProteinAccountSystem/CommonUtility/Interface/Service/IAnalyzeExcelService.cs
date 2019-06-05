@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Common.Entity;
+﻿using Common.Entity;
+using System.Collections.Generic;
 
 namespace Common.Interface.Service
 {

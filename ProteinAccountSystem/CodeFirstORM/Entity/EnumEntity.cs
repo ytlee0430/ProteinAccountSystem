@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CodeFirstORM.RepositoryBase;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CodeFirstORM.RepositoryBase;
 
 namespace CodeFirstORM.Entity
 {

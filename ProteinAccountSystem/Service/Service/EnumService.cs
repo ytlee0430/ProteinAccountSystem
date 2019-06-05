@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using CodeFirstORM.DBLayer;
 using CodeFirstORM.Entity;
 using Common.Entity;
@@ -9,6 +6,9 @@ using Common.Enum;
 using Common.Interface.Service;
 using Common.Log;
 using CommonUtility.Enum;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Service.Service
 {
@@ -50,6 +50,7 @@ namespace Service.Service
                 {
                     case "Brand":
                         break;
+
                     case "Flavor":
                         foreach (var item in enumEntity.Enums)
                         {
@@ -81,12 +82,14 @@ namespace Service.Service
                                 case FlavorEnum.Chocalate:
                                     item.ParentType = 1;
                                     break;
+
                                 default:
                                     break;
                             }
                         }
 
                         break;
+
                     case "Package":
                         foreach (var item in enumEntity.Enums)
                         {
@@ -98,11 +101,13 @@ namespace Service.Service
                                 case PackageEnum.Sample:
                                     item.ParentType = 1;
                                     break;
+
                                 case PackageEnum.FourHundredMili:
                                 case PackageEnum.SixHundredMili:
                                 case PackageEnum.NoPackage:
                                     item.ParentType = 3;
                                     break;
+
                                 case PackageEnum.XS:
                                 case PackageEnum.S:
                                 case PackageEnum.M:
@@ -114,8 +119,10 @@ namespace Service.Service
                         }
 
                         break;
+
                     case "Plat":
                         break;
+
                     case "ProductionDetail":
                         foreach (var item in enumEntity.Enums)
                         {
@@ -139,6 +146,7 @@ namespace Service.Service
                                 case ProductionDetail.Grip:
                                     item.ParentType = 2;
                                     break;
+
                                 case ProductionDetail.ProteinOatBar:
                                 case ProductionDetail.ChocalateBrownie:
                                 case ProductionDetail.PeanutButter:
@@ -150,6 +158,7 @@ namespace Service.Service
                                 case ProductionDetail.Cookie:
                                     item.ParentType = 3;
                                     break;
+
                                 default:
                                     item.ParentType = 3;
                                     break;
@@ -157,57 +166,16 @@ namespace Service.Service
                         }
 
                         break;
+
                     case "Production":
                         break;
+
                     default:
                         break;
                 }
             }
 
             repo.Update(enumEntitis);
-        }
-
-        private static Dictionary<int, EnumModel> GetEnumDic(string des)
-        {
-            Dictionary<int, EnumModel> dic = null;
-            switch (des)
-            {
-                case "Brand":
-                    dic = Enums.BrandEnum;
-                    break;
-                case "Flavor":
-                    dic = Enums.FlavorEnum;
-                    break;
-                case "Package":
-                    dic = Enums.PackageEnum;
-                    break;
-                case "Plat":
-                    dic = Enums.PlatEnum;
-                    break;
-                case "ProductionDetail":
-                    dic = Enums.ProductionDetailEnum;
-                    break;
-                case "Production":
-                    dic = Enums.ProductionEnum;
-                    break;
-                default:
-                    break;
-            }
-
-            return dic;
-        }
-
-        public List<EnumModel> GetEnums(int selectedIndex)
-        {
-            var repo = new EnumClassRepository();
-            var result = repo.Get(o => o.Key == selectedIndex).FirstOrDefault();
-            if (result == null)
-            {
-                LogUtil.Error($"Get Enums Fail: selected Index :{selectedIndex}");
-                return new List<EnumModel>();
-            }
-
-            return Mapper.Map<List<EnumModel>>(result.Enums);
         }
 
         public bool AddEnumValue(string description, string keyword, int enumClass, int parentType)
@@ -248,6 +216,55 @@ namespace Service.Service
                 return false;
             }
             return true;
+        }
+
+        public List<EnumModel> GetEnums(int selectedIndex)
+        {
+            var repo = new EnumClassRepository();
+            var result = repo.Get(o => o.Key == selectedIndex).FirstOrDefault();
+            if (result == null)
+            {
+                LogUtil.Error($"Get Enums Fail: selected Index :{selectedIndex}");
+                return new List<EnumModel>();
+            }
+
+            return Mapper.Map<List<EnumModel>>(result.Enums);
+        }
+
+        private static Dictionary<int, EnumModel> GetEnumDic(string des)
+        {
+            Dictionary<int, EnumModel> dic = null;
+            switch (des)
+            {
+                case "Brand":
+                    dic = Enums.BrandEnum;
+                    break;
+
+                case "Flavor":
+                    dic = Enums.FlavorEnum;
+                    break;
+
+                case "Package":
+                    dic = Enums.PackageEnum;
+                    break;
+
+                case "Plat":
+                    dic = Enums.PlatEnum;
+                    break;
+
+                case "ProductionDetail":
+                    dic = Enums.ProductionDetailEnum;
+                    break;
+
+                case "Production":
+                    dic = Enums.ProductionEnum;
+                    break;
+
+                default:
+                    break;
+            }
+
+            return dic;
         }
     }
 }

@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Enum;
 
 namespace Common.Entity
 {
     public class PhuraseDetailModel
     {
-
         public int Key { get; set; }
 
         /// <summary>
@@ -43,7 +38,6 @@ namespace Common.Entity
         [DisplayName("購買商品")]
         public List<PhuraseProductModel> Products { get; set; }
 
-
         /// <summary>
         /// 運費(未稅)
         /// </summary>
@@ -63,7 +57,7 @@ namespace Common.Entity
         public int TotalMoney { get; set; }
 
         /// <summary>
-        /// 購買平台    
+        /// 購買平台
         /// </summary>
         [DisplayName("購買平台")]
         public int Plat { get; set; } = 1;
@@ -85,7 +79,7 @@ namespace Common.Entity
         /// </summary>
         [DisplayName("是否銷帳")]
         public bool IsWriteOffMoney { get; set; } = false;
-        
+
         /// <summary>
         /// 銷售時間(訂單成立時間)
         /// </summary>
@@ -97,13 +91,13 @@ namespace Common.Entity
         /// </summary>
         [DisplayName("經手人")]
         public string Manager { get; set; }
-        
+
         /// <summary>
         /// 公司抬頭
         /// </summary>
         [DisplayName("公司抬頭")]
         public string CompanyName { get; set; }
-       
+
         /// <summary>
         /// 公司統一編號
         /// </summary>

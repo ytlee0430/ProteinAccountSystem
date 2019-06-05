@@ -1,8 +1,7 @@
 namespace CodeFirstORM.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class additemdetia : DbMigration
     {
         public override void Up()
@@ -11,7 +10,7 @@ namespace CodeFirstORM.Migrations
             AddColumn("dbo.PhuraseDetailEntities", "Remark", c => c.String());
             AddColumn("dbo.PhuraseDetailEntities", "ReceiptNumber", c => c.String());
         }
-        
+
         public override void Down()
         {
             DropColumn("dbo.PhuraseDetailEntities", "ReceiptNumber");

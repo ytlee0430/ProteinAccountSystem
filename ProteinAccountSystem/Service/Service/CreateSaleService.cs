@@ -1,20 +1,18 @@
-﻿using System;
+﻿using Common.Entity;
+using Common.Interface.Service;
+using CommonUtility.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Entity;
-using Common.Enum;
-using Common.Interface.Service;
-using Common.Utils;
-using CommonUtility.Enum;
 
 namespace Service.Service
 {
     public class CreateSaleService : ICreateSaleService
     {
-        List<PhuraseProductModel> _phurases = new List<PhuraseProductModel>();
+        private List<PhuraseProductModel> _phurases = new List<PhuraseProductModel>();
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="itemCode"></param>
         /// <param name="count"></param>
@@ -22,7 +20,7 @@ namespace Service.Service
         public void AddPhuraseProduct(Item Item, int count, int saleMoney)
         {
             var name = Enums.BrandEnum[Item.Brand].Description + " " + Enums.ProductionEnum[Item.ProductionType].Description + " " + Enums.BrandEnum[Item.ProductionDetailType].Description + " " + Enums.FlavorEnum[Item.Flavor].Description + " " + Enums.PackageEnum[Item.Package].Description;
-            
+
             _phurases.Add(new PhuraseProductModel()
             {
                 ItemCode = Item.ItemCode,
@@ -39,7 +37,7 @@ namespace Service.Service
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="shoppeeFee"></param>
         /// <param name="receiptnumber"></param>

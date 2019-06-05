@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Common.Entity
 {
     public class Item
@@ -29,7 +30,7 @@ namespace Common.Entity
         /// 商品分類
         /// </summary>
         public int ProductionType { get; set; }
-        
+
         /// <summary>
         /// 商品細項分類
         /// </summary>
@@ -64,6 +65,5 @@ namespace Common.Entity
         /// 保存期限
         /// </summary>
         public DateTime ExpiredDate { get; set; }
-
     }
 }

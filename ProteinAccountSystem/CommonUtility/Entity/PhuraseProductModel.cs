@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Common.Entity
 {
     public class PhuraseProductModel
     {
-
         public int Key { get; set; }
 
         /// <summary>
@@ -41,7 +35,6 @@ namespace Common.Entity
         /// </summary>
         [DisplayName("商品售價(未稅)")]
         public int ProductMoneyWithoutTax { get; set; }
-
 
         /// <summary>
         /// 商品口味

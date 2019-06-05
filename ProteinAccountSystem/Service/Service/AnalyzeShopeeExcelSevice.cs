@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Common.Entity;
+﻿using Common.Entity;
 using Common.Interface.Service;
 using Spire.Xls;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Service.Service
 {
@@ -44,7 +44,7 @@ namespace Service.Service
                     data.Products = new List<PhuraseProductModel>(){
                     new PhuraseProductModel()
                     {
-                        ProductName=name, // 需要再蝦皮編輯商品貨號 
+                        ProductName=name, // 需要再蝦皮編輯商品貨號
                         Count=Convert.ToInt32(cells[24].DisplayedText),
                         ProductMoney=Convert.ToInt32(Convert.ToDouble( cells[5].DisplayedText)),
                         ProductMoneyWithoutTax=Convert.ToInt32( Convert.ToDouble(cells[5].DisplayedText)/1.05),
@@ -61,7 +61,7 @@ namespace Service.Service
                 {
                     currenData.Products.Add(new PhuraseProductModel()
                     {
-                        ProductName = name, // 需要再蝦皮編輯商品貨號 
+                        ProductName = name, // 需要再蝦皮編輯商品貨號
                         Count = Convert.ToInt32(Convert.ToDouble(cells[24].DisplayedText)),
                         ProductMoney = Convert.ToInt32(Convert.ToDouble(cells[5].DisplayedText)),
                         ProductMoneyWithoutTax = Convert.ToInt32(Convert.ToDouble(cells[5].DisplayedText) / 1.05),

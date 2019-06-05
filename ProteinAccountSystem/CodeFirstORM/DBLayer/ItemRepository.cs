@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using CodeFirstORM.Entity;
+﻿using CodeFirstORM.Entity;
 using CodeFirstORM.Utils;
-using Z.EntityFramework.Plus;
+using System;
+using System.Linq.Expressions;
 
 namespace CodeFirstORM.DBLayer
 {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Common.Enum
 {
@@ -25,7 +20,7 @@ namespace Common.Enum
         StrawberryButter = 02,
 
         /// <summary>
-        ///焦糖海鹽 
+        ///焦糖海鹽
         /// </summary>
         [Description("焦糖海鹽")]
         CaramelSalt = 03,
@@ -67,13 +62,13 @@ namespace Common.Enum
         MilkTea = 09,
 
         /// <summary>
-        /// 巧克力花生醬	
+        /// 巧克力花生醬
         /// </summary>
         [Description("巧克力花生醬")]
         ChocolatePeanutButter = 10,
 
         /// <summary>
-        /// 原味	
+        /// 原味
         /// </summary>
         [Description("原味")]
         UnFlavor = 11,

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Enum;
-
+﻿using System.ComponentModel;
 
 namespace Common.Entity
 {
@@ -34,7 +27,7 @@ namespace Common.Entity
         /// </summary>
         [DisplayName("商品分類")]
         public string ProductionType { get; set; }
-        
+
         /// <summary>
         /// 商品細項分類
         /// </summary>

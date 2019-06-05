@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Entity;
+﻿using System.Collections.Generic;
 
 namespace Common.Interface.Service
 {
     public interface IExcelExportService
     {
-        bool ExportExcel<T>(IEnumerable<T> list, string path);
+        bool ExportExcel<T>(IEnumerable<T> list, string path) where T : class;
     }
 }

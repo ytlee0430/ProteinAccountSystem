@@ -1,8 +1,8 @@
-﻿using System;
+﻿using CodeFirstORM.RepositoryBase;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using CodeFirstORM.RepositoryBase;
 
 namespace CodeFirstORM.Entity
 {
@@ -37,7 +37,6 @@ namespace CodeFirstORM.Entity
         /// </summary>
         public virtual ICollection<PhuraseProductEntity> Products { get; set; }
 
-
         /// <summary>
         /// 運費(未稅)
         /// </summary>
@@ -67,7 +66,7 @@ namespace CodeFirstORM.Entity
         /// 發票號碼
         /// </summary>
         public string ReceiptNumber { get; set; }
-        
+
         /// <summary>
         /// 是否銷帳
         /// </summary>
@@ -77,7 +76,7 @@ namespace CodeFirstORM.Entity
         /// 銷售時間(訂單成立時間)
         /// </summary>
         [Required]
-        public DateTime OrderCreateTime { get; set; } 
+        public DateTime OrderCreateTime { get; set; }
 
         /// <summary>
         /// 經手人

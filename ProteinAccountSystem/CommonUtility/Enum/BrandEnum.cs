@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Common.Enum
 {
@@ -11,10 +6,13 @@ namespace Common.Enum
     {
         [Description("全部")]
         All = 0,
+
         [Description("EatMe")]
         EatMe = 01,
+
         [Description("Myprotein")]
         Myprotein = 02,
+
         [Description("RDX")]
         RDX = 03,
     }

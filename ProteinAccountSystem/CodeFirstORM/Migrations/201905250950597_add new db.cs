@@ -1,6 +1,5 @@
 namespace CodeFirstORM.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
 
     public partial class addnewdb : DbMigration
@@ -52,7 +51,6 @@ namespace CodeFirstORM.Migrations
                     ProductMoneyWithoutTax = c.Int(nullable: false),
                 })
                 .PrimaryKey(t => t.Key);
-
         }
 
         public override void Down()

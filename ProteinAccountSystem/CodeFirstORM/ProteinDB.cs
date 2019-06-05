@@ -1,5 +1,4 @@
-﻿using System.Data.Entity.Core.Metadata.Edm;
-using CodeFirstORM.Entity;
+﻿using CodeFirstORM.Entity;
 
 namespace CodeFirstORM
 {
@@ -10,7 +9,7 @@ namespace CodeFirstORM
     using System.Linq;
     using System.Reflection;
 
-    public class ProteinDB : DbContext , IDatabaseContext
+    public class ProteinDB : DbContext, IDatabaseContext
     {
         public ProteinDB()
             : base("name=ProteinDB")
@@ -22,7 +21,7 @@ namespace CodeFirstORM
         public DbSet<PhuraseProductEntity> PhuraseProducts { get; set; }
         public DbSet<EnumEntity> EnumEntities { get; set; }
         public DbSet<EnumClassEntity> EnumClassEntities { get; set; }
-      
+
         public new IDbSet<T> Set<T>() where T : class
         {
             return base.Set<T>();

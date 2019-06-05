@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Entity;
+﻿using Common.Entity;
 
 namespace Common.Utils
 {
@@ -18,6 +13,5 @@ namespace Common.Utils
             var flavor = ((int)item.Flavor).ToString("00");
             return type + brand + productionDetailType + package + flavor;
         }
-
     }
 }

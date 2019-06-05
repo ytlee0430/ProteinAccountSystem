@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using CodeFirstORM.Entity;
 using Common.Entity;
 using CommonUtility.Enum;

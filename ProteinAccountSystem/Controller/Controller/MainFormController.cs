@@ -1,24 +1,24 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Linq;
-using Common.Entity;
+﻿using Common.Entity;
 using Common.Entity.Dto;
-using Common.Enum;
 using Common.Interface.Controller;
 using Common.Interface.Service;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Controller.Controller
 {
     public class MainFormController : IMainFormController
     {
-        private IAnalyzeExcelService _analyzeExcelService;
-        private IStockService _stockService;
-        private IShippmentService _shippmentService;
-        private ICreateSaleService _createSaleService;
         private IAccountingService _accountingService;
-        private IExcelExportService _excelExportService;
+        private IAnalyzeExcelService _analyzeExcelService;
+        private ICreateSaleService _createSaleService;
         private IEnumService _enumService;
+        private IExcelExportService _excelExportService;
+        private List<PhuraseDetailModel> _phuraseDetailModels = new List<PhuraseDetailModel>();
+        private IShippmentService _shippmentService;
+        private IStockService _stockService;
+
         public MainFormController(IAnalyzeExcelService analyzeExcelService, IStockService stockService, IShippmentService shippmentService, ICreateSaleService createSaleService, IAccountingService accountingService, IExcelExportService excelExportService, IEnumService enumService)
         {
             _analyzeExcelService = analyzeExcelService;
@@ -30,54 +30,9 @@ namespace Controller.Controller
             _enumService = enumService;
         }
 
-
-        private List<PhuraseDetailModel> _phuraseDetailModels = new List<PhuraseDetailModel>();
-        public bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "")
+        public bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData)
         {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// 匯入出貨資料流程
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public bool ImportShipDataProcess(string path)
-        {
-            _phuraseDetailModels = _analyzeExcelService.AnalyzeShipData(path);
-            _phuraseDetailModels = _stockService.UpdateProductItemCode(_phuraseDetailModels);
-            _stockService.AddDBlientPhuraseRecord(_phuraseDetailModels);
-            _stockService.UpdateDBStorage(_phuraseDetailModels);
-
-            return true;
-        }
-
-      
-
-        public bool importWirteOffMoneyDataProcess(string path)
-        {
-            var datas = _analyzeExcelService.AnalyzeShipData(path);
-            return _accountingService.WriteOffMoney(datas.Select(s => s.OrderNumber).ToList());
-        }
-
-        public void AddPhuraseProduct(Item Item, int count, int saleMoney)
-        {
-            _createSaleService.AddPhuraseProduct(Item, count, saleMoney);
-        }
-
-        public PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat, string companyName, string invoiceNumber)
-        {
-            return _createSaleService.CreateSale(shopeeFee, receiptnumber, plat, companyName, invoiceNumber);
-        }
-
-        public bool UpdateDBItems(List<ItemViewModel> list)
-        {
-            return _stockService.UpdateDBItems(list);
-        }
-
-        public bool ExportStockExcel(List<ItemViewModel> storages, string path)
-        {
-            return _excelExportService.ExportExcel(storages, path);
+            return _stockService.AddDBlientPhuraseRecord(stockData);
         }
 
         public bool AddDBStorage(Item item)
@@ -85,14 +40,29 @@ namespace Controller.Controller
             return _stockService.AddDBStorage(item);
         }
 
-        public bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData)
+        public bool AddDBStorages(List<Item> list)
         {
-            return _stockService.AddDBlientPhuraseRecord(stockData);
+            return _stockService.AddDBStorages(list);
         }
 
-        public bool UpdateDBStorage(List<PhuraseDetailModel> stockData)
+        public bool AddEnumValue(string description, string keyword, int enumClass, int parentType)
         {
-            return _stockService.UpdateDBStorage(stockData);
+            return _enumService.AddEnumValue(description, keyword, enumClass, parentType);
+        }
+
+        public void AddPhuraseProduct(Item Item, int count, int saleMoney)
+        {
+            _createSaleService.AddPhuraseProduct(Item, count, saleMoney);
+        }
+
+        public bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "")
+        {
+            throw new NotImplementedException();
+        }
+
+        public PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat, string companyName, string invoiceNumber)
+        {
+            return _createSaleService.CreateSale(shopeeFee, receiptnumber, plat, companyName, invoiceNumber);
         }
 
         public bool CreateShippmentTickets(string path)
@@ -104,16 +74,21 @@ namespace Controller.Controller
 
             _phuraseDetailModels.Clear();
             return result;
-
         }
 
-        /// <summary>
-        /// 取得庫存
-        /// </summary>
-        /// <returns></returns>
-        public List<ItemViewModel> GetStorage(int brand, int flavor, int package, int productionType, int productionDetailType, bool showZero)
+        public bool ExportSaleRecordExcel(List<PhuraseDetailModel> list, string path)
         {
-            return _stockService.GetDBStorage(brand, flavor, package, productionType, productionDetailType, showZero);
+            return _excelExportService.ExportExcel(list, path);
+        }
+
+        public bool ExportStockExcel(List<ItemViewModel> storages, string path)
+        {
+            return _excelExportService.ExportExcel(storages, path);
+        }
+
+        public List<EnumModel> GetEnums(int selectedIndex)
+        {
+            return _enumService.GetEnums(selectedIndex);
         }
 
         /// <summary>
@@ -134,29 +109,49 @@ namespace Controller.Controller
             return _stockService.GetSalesRecords(searchModel);
         }
 
+        /// <summary>
+        /// 取得庫存
+        /// </summary>
+        /// <returns></returns>
+        public List<ItemViewModel> GetStorage(int brand, int flavor, int package, int productionType, int productionDetailType, bool showZero)
+        {
+            return _stockService.GetDBStorage(brand, flavor, package, productionType, productionDetailType, showZero);
+        }
+
+        /// <summary>
+        /// 匯入出貨資料流程
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public bool ImportShipDataProcess(string path)
+        {
+            _phuraseDetailModels = _analyzeExcelService.AnalyzeShipData(path);
+            _stockService.GenerateProductItemCode(_phuraseDetailModels);
+            _stockService.AddDBlientPhuraseRecord(_phuraseDetailModels);
+            _stockService.UpdateDBStorage(_phuraseDetailModels);
+
+            return true;
+        }
+
+        public bool importWirteOffMoneyDataProcess(string path)
+        {
+            var datas = _analyzeExcelService.AnalyzeShipData(path);
+            return _accountingService.WriteOffMoney(datas.Select(s => s.OrderNumber).ToList());
+        }
+
+        public bool UpdateDBItems(List<ItemViewModel> list)
+        {
+            return _stockService.UpdateDBItems(list);
+        }
+
+        public bool UpdateDBStorage(List<PhuraseDetailModel> stockData)
+        {
+            return _stockService.UpdateDBStorage(stockData);
+        }
+
         public bool UpdateSalesRecords(List<PhuraseDetailModel> dataSource)
         {
             return _accountingService.UpdateSalesRecords(dataSource);
-        }
-
-        public bool AddDBStorages(List<Item> list)
-        {
-            return _stockService.AddDBStorages(list);
-        }
-
-        public bool ExportSaleRecordExcel(List<PhuraseDetailModel> list, string path)
-        {
-            return _excelExportService.ExportExcel(list, path);
-        }
-
-        public List<EnumModel> GetEnums(int selectedIndex)
-        {
-            return _enumService.GetEnums(selectedIndex);
-        }
-
-        public bool AddEnumValue(string description, string keyword, int enumClass, int parentType)
-        {
-            return _enumService.AddEnumValue(description,keyword,enumClass,parentType);
         }
     }
 }

@@ -14,8 +14,8 @@ namespace View
     public partial class MainForm : Form
     {
         private IMainFormController _controller;
-        List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
-        SearchModel _searchModel = new SearchModel();
+        private List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
+        private SearchModel _searchModel = new SearchModel();
 
         public MainForm(IMainFormController controller)
         {
@@ -172,7 +172,6 @@ namespace View
 
             dgvSaleRecords.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
 
-
             var minWidth = 100;
             var maxWidth = 200;
             foreach (DataGridViewColumn c in dgvSaleRecords.Columns)
@@ -289,7 +288,6 @@ namespace View
                 else
                     MessageBox.Show("更新失敗!");
             }
-
         }
 
         private void btnCreateSaleRecord_Click(object sender, EventArgs e)

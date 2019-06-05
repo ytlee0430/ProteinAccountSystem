@@ -8,7 +8,7 @@ namespace Service.AutoMapper
     {
         public PhuraseDetailEntityProfile()
         {
-           CreateMap<PhuraseDetailModel, PhuraseDetailEntity>();
+            CreateMap<PhuraseDetailModel, PhuraseDetailEntity>();
         }
     }
 }

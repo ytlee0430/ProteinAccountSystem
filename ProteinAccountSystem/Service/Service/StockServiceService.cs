@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using CodeFirstORM.DBLayer;
 using CodeFirstORM.Entity;
 using Common.Entity;
 using Common.Entity.Dto;
-using Common.Enum;
 using Common.Interface.Service;
-using Common.Utils;
 using CommonUtility.Constants;
 using CommonUtility.Enum;
-using Service.AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Service.Service
 {
@@ -28,68 +25,19 @@ namespace Service.Service
             return repo.Add(Mapper.Map<List<PhuraseDetailEntity>>(stockData));
         }
 
-        /// <summary>
-        /// 更新db庫存數量
-        /// </summary>
-        /// <param name="stockData"></param>
-        /// <returns></returns>
-        public bool UpdateDBStorage(List<PhuraseDetailModel> stockData)
-        {
-            Dictionary<string, int> codeToNumDic = new Dictionary<string, int>();
-
-            foreach (var detail in stockData)
-                foreach (var product in detail.Products)
-                {
-                    if (!codeToNumDic.TryGetValue(product.ItemCode, out int num))
-                        codeToNumDic[product.ItemCode] = product.Count;
-                    else
-                        codeToNumDic[product.ItemCode] = num + product.Count;
-                }
-
-            var repo = new ItemRepository();
-            var items = repo.Get(p => codeToNumDic.Keys.Contains(p.ItemCode)).OrderBy(o => o.ExpiredDate).GroupBy(g => g.ItemCode).Select(s => s.FirstOrDefault());
-            foreach (var item in items)
-                item.Storage -= codeToNumDic[item.ItemCode];
-            return repo.Update(items);
-        }
-
-        /// <summary>
-        /// 取得庫存
-        /// </summary>
-        /// <returns></returns>
-        public List<ItemViewModel> GetDBStorage(int brand, int flavor, int package, int productionType, int productionDetailType,bool showZero)
+        public bool AddDBStorage(Item item)
         {
             var repo = new ItemRepository();
-            var ex = repo.GetItemExp(brand, flavor, package, productionType, productionDetailType, showZero);
-            return Mapper.Map<List<ItemViewModel>>(repo.Get(ex).OrderByDescending(o => o.Key));
+            return repo.Add(Mapper.Map<ItemEntity>(item));
         }
 
-        public SaleRecordPagingDto GetSalesRecords(SearchModel searchModel, int pageIndex)
+        public bool AddDBStorages(List<Item> list)
         {
-            var repo = new PhuraseDetailRepository();
-            var exp = repo.GetDetailExp(searchModel.Brand, searchModel.Package, searchModel.Package,
-                searchModel.ProductionType, searchModel.ProductionDetailType,
-                searchModel.IsWriteOffMoney, searchModel.KeyWord,searchModel.StartTime, searchModel.EndTime);
-            var pageSize = Constant.PageSize;
-            var details = Mapper.Map<List<PhuraseDetailModel>>(repo.Get(exp).OrderByDescending(o => o.OrderCreateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize)).ToList();
-            var count = repo.GetRowCount(exp);
-            return  new SaleRecordPagingDto
-            {
-                Details = details,
-                TotalCount = count
-            };
+            var repo = new ItemRepository();
+            return repo.Add(Mapper.Map<List<ItemEntity>>(list));
         }
 
-        public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
-        {
-            var repo = new PhuraseDetailRepository();
-            var itemWhere = repo.GetDetailExp(searchModel.Brand, searchModel.Flavor, searchModel.Package,
-                searchModel.ProductionType, searchModel.ProductionDetailType,
-                searchModel.IsWriteOffMoney, searchModel.KeyWord, searchModel.StartTime, searchModel.EndTime);
-            return Mapper.Map<List<PhuraseDetailModel>>(repo.Get(itemWhere)).OrderByDescending(o => o.OrderCreateTime).ToList();
-        }
-
-        public List<PhuraseDetailModel> UpdateProductItemCode(List<PhuraseDetailModel> models)
+        public void GenerateProductItemCode(List<PhuraseDetailModel> models)
         {
             foreach (var model in models)
             {
@@ -146,7 +94,42 @@ namespace Service.Service
                     item.ItemCode = itemcode;
                 }
             }
-            return models;
+        }
+
+        /// <summary>
+        /// 取得庫存
+        /// </summary>
+        /// <returns></returns>
+        public List<ItemViewModel> GetDBStorage(int brand, int flavor, int package, int productionType, int productionDetailType, bool showZero)
+        {
+            var repo = new ItemRepository();
+            var ex = repo.GetItemExp(brand, flavor, package, productionType, productionDetailType, showZero);
+            return Mapper.Map<List<ItemViewModel>>(repo.Get(ex).OrderByDescending(o => o.Key));
+        }
+
+        public SaleRecordPagingDto GetSalesRecords(SearchModel searchModel, int pageIndex)
+        {
+            var repo = new PhuraseDetailRepository();
+            var exp = repo.GetDetailExp(searchModel.Brand, searchModel.Package, searchModel.Package,
+                searchModel.ProductionType, searchModel.ProductionDetailType,
+                searchModel.IsWriteOffMoney, searchModel.KeyWord, searchModel.StartTime, searchModel.EndTime);
+            var pageSize = Constant.PageSize;
+            var details = Mapper.Map<List<PhuraseDetailModel>>(repo.Get(exp).OrderByDescending(o => o.OrderCreateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize)).ToList();
+            var count = repo.GetRowCount(exp);
+            return new SaleRecordPagingDto
+            {
+                Details = details,
+                TotalCount = count
+            };
+        }
+
+        public List<PhuraseDetailModel> GetSalesRecords(SearchModel searchModel)
+        {
+            var repo = new PhuraseDetailRepository();
+            var itemWhere = repo.GetDetailExp(searchModel.Brand, searchModel.Flavor, searchModel.Package,
+                searchModel.ProductionType, searchModel.ProductionDetailType,
+                searchModel.IsWriteOffMoney, searchModel.KeyWord, searchModel.StartTime, searchModel.EndTime);
+            return Mapper.Map<List<PhuraseDetailModel>>(repo.Get(itemWhere)).OrderByDescending(o => o.OrderCreateTime).ToList();
         }
 
         public bool UpdateDBItems(List<ItemViewModel> list)
@@ -157,24 +140,36 @@ namespace Service.Service
             {
                 updateList = Mapper.Map<List<ItemEntity>>(list);
             }
-            catch 
+            catch
             {
                 throw new ArgumentException("請勿輸入錯誤格式!");
             }
             return repo.Update(updateList);
         }
 
-        public bool AddDBStorage(Item item)
+        /// <summary>
+        /// 更新db庫存數量
+        /// </summary>
+        /// <param name="stockData"></param>
+        /// <returns></returns>
+        public bool UpdateDBStorage(List<PhuraseDetailModel> stockData)
         {
-            var repo = new ItemRepository();
-            return repo.Add(Mapper.Map<ItemEntity>(item));
-        }
+            Dictionary<string, int> codeToNumDic = new Dictionary<string, int>();
 
-        public bool AddDBStorages(List<Item> list)
-        {
-            var repo = new ItemRepository();
-            return repo.Add(Mapper.Map< List<ItemEntity>>(list));
+            foreach (var detail in stockData)
+                foreach (var product in detail.Products)
+                {
+                    if (!codeToNumDic.TryGetValue(product.ItemCode, out int num))
+                        codeToNumDic[product.ItemCode] = product.Count;
+                    else
+                        codeToNumDic[product.ItemCode] = num + product.Count;
+                }
 
+            var repo = new ItemRepository();
+            var items = repo.Get(p => codeToNumDic.Keys.Contains(p.ItemCode)).OrderBy(o => o.ExpiredDate).GroupBy(g => g.ItemCode).Select(s => s.FirstOrDefault());
+            foreach (var item in items)
+                item.Storage -= codeToNumDic[item.ItemCode];
+            return repo.Update(items);
         }
     }
 }

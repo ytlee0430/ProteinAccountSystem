@@ -1,12 +1,10 @@
-﻿using System;
+﻿using CodeFirstORM.Entity;
+using CodeFirstORM.Utils;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using CodeFirstORM.Entity;
-using CodeFirstORM.Utils;
 
 namespace CodeFirstORM.DBLayer
 {
@@ -16,21 +14,6 @@ namespace CodeFirstORM.DBLayer
 
         public PhuraseDetailRepository() : base(new ProteinDB())
         {
-        }
-
-        public override IQueryable<PhuraseDetailEntity> GetAll()
-        {
-            return _database.Set<PhuraseDetailEntity>().Include(e => e.Products);
-        }
-
-        public override PhuraseDetailEntity Get(int id)
-        {
-            return _database.Set<PhuraseDetailEntity>().Include(e => e.Products).Single(p => p.Key == id);
-        }
-
-        public override IQueryable<PhuraseDetailEntity> Get(Expression<Func<PhuraseDetailEntity, bool>> exp)
-        {
-            return _database.Set<PhuraseDetailEntity>().Include(e => e.Products).Where(exp);
         }
 
         public override bool Add(PhuraseDetailEntity entity)
@@ -57,6 +40,21 @@ namespace CodeFirstORM.DBLayer
                 }
                 return base.Add(entitis);
             }
+        }
+
+        public override PhuraseDetailEntity Get(int id)
+        {
+            return _database.Set<PhuraseDetailEntity>().Include(e => e.Products).Single(p => p.Key == id);
+        }
+
+        public override IQueryable<PhuraseDetailEntity> Get(Expression<Func<PhuraseDetailEntity, bool>> exp)
+        {
+            return _database.Set<PhuraseDetailEntity>().Include(e => e.Products).Where(exp);
+        }
+
+        public override IQueryable<PhuraseDetailEntity> GetAll()
+        {
+            return _database.Set<PhuraseDetailEntity>().Include(e => e.Products);
         }
 
         public Expression<Func<PhuraseDetailEntity, bool>> GetDetailExp(int brand, int flavor, int package, int productionType,
@@ -106,6 +104,5 @@ namespace CodeFirstORM.DBLayer
             }
             return itemWhere;
         }
-
     }
 }

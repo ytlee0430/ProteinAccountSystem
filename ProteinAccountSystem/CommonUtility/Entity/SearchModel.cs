@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Common.Enum;
 
 namespace Common.Entity
 {
@@ -45,9 +40,10 @@ namespace Common.Entity
         public DateTime EndTime { get; set; } = DateTime.MaxValue;
 
         /// <summary>
-        /// -1全部 0未銷帳 1已銷帳 
+        /// -1全部 0未銷帳 1已銷帳
         /// </summary>
         public int IsWriteOffMoney { get; set; } = -1;
+
         /// <summary>
         /// 帳號/姓名
         /// </summary>

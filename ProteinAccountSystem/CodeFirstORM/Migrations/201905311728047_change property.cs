@@ -1,8 +1,7 @@
 namespace CodeFirstORM.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class changeproperty : DbMigration
     {
         public override void Up()
@@ -13,7 +12,7 @@ namespace CodeFirstORM.Migrations
             AddPrimaryKey("dbo.EnumClassEntities", "Key");
             AddForeignKey("dbo.EnumEntities", "ForeignKey", "dbo.EnumClassEntities", "Key", cascadeDelete: true);
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.EnumEntities", "ForeignKey", "dbo.EnumClassEntities");

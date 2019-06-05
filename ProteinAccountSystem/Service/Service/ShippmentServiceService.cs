@@ -1,22 +1,21 @@
-﻿using System;
+﻿using Common.Entity;
+using Common.Interface.Service;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Common.Entity;
-using Common.Interface.Service;
 using MSWord = Microsoft.Office.Interop.Word;
 
 namespace Service.Service
 {
     public class ShippmentService : IShippmentService
     {
-        //Word應用程序變量 
-        MSWord.Document wordDoc;                  //Word文檔變量
-        MSWord.Application wordApp = new MSWord.Application();//初始化
-
-
         public bool CreateShippmentTicket(List<PhuraseDetailModel> models, string path)
         {
+            MSWord.Application wordApp = new MSWord.Application();
+            //Word應用程序變量
+            MSWord.Document wordDoc;//Word文檔變量
             object savePath = path;//路徑變數 ，需使用object
+            //初始化
             try
             {
                 var result = models;
@@ -36,7 +35,7 @@ namespace Service.Service
                 wordDoc.Paragraphs.Last.Range.Font.Size = 15;
                 foreach (var item in result)
                 {
-                     strContent +="帳號:"+ item.Account + "\n";
+                    strContent += "帳號:" + item.Account + "\n";
                     foreach (var product in item.Products)
                     {
                         strContent += product.ProductName + "       " + " 數量 : " + product.Count + "\n";
@@ -45,7 +44,7 @@ namespace Service.Service
                     strContent += "--------------------------------------------------------------------------------------------------------" + "\n";
                 }
                 wordDoc.Paragraphs.Last.Range.Text = strContent;
-               
+
                 //WdSaveFormat為Word 2003文檔的保存格式 // office 2007就是wdFormatDocumentDefault
                 object format = MSWord.WdSaveFormat.wdFormatDocument;
                 //將wordDoc文檔對象的內容保存為DOCX文檔
@@ -60,11 +59,6 @@ namespace Service.Service
                 return false;
             }
             return true;
-        }
-
-        private List<PhuraseDetailModel> GetPhuraseDetailModels(List<string> model)
-        {
-            return null;
         }
     }
 }

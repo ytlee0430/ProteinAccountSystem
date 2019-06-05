@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeFirstORM.Utils
 {
-    internal  static class Extensions
+    internal static class Extensions
     {
         public static Expression<Func<T, bool>> AndAlso<T>(
             this Expression<Func<T, bool>> expr1,

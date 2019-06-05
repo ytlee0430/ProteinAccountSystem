@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CodeFirstORM.RepositoryBase;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CodeFirstORM.RepositoryBase;
 
 namespace CodeFirstORM.Entity
 {
@@ -66,6 +61,5 @@ namespace CodeFirstORM.Entity
         /// 商品細項分類
         /// </summary>
         public int ProductionDetailType { get; set; }
-
     }
 }

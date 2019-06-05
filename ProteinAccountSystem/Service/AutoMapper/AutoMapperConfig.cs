@@ -1,5 +1,4 @@
-﻿using System.CodeDom;
-using AutoMapper;
+﻿using AutoMapper;
 
 namespace Service.AutoMapper
 {
@@ -16,7 +15,6 @@ namespace Service.AutoMapper
                 x.AddProfile<ItemViewStringProfile>();
                 x.AddProfile<EnumProfile>();
             });
-
         }
 
         public static M Map<T, M>(T entity)

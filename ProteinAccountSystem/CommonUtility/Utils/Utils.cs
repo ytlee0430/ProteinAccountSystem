@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.ComponentModel;
-using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Common.Utils
@@ -15,7 +11,7 @@ namespace Common.Utils
     public static class Utils
     {
         // 取得 Enum 列舉 Attribute Description 設定值
-        public static  string GetDescriptionText(this System.Enum source)
+        public static string GetDescriptionText(this System.Enum source)
         {
             FieldInfo fi = source.GetType().GetField(source.ToString());
             DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(
@@ -61,10 +57,12 @@ namespace Common.Utils
                     try
                     {
                         #region 呼叫遠端 Web API
+
                         string FooUrl = $"http://vulcanwebapi.azurewebsites.net/api/Values/FormUrlencodedPost";
                         HttpResponseMessage response = null;
 
-                        #region  設定相關網址內容
+                        #region 設定相關網址內容
+
                         var fooFullUrl = $"{FooUrl}";
 
                         // Accept 用於宣告客戶端要求服務端回應的文件型態 (底下兩種方法皆可任選其一來使用)
@@ -73,7 +71,9 @@ namespace Common.Utils
 
                         // Content-Type 用於宣告遞送給對方的文件型態
                         //client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json");
+
                         #region 使用 MultipartFormDataContent 產生要 Post 的資料
+
                         // https://msdn.microsoft.com/zh-tw/library/system.net.http.multipartformdatacontent(v=vs.110).aspx
                         using (var content = new MultipartFormDataContent())
                         {
@@ -83,12 +83,15 @@ namespace Common.Utils
                             }
                             response = await client.PostAsync(fooFullUrl, content);
                         }
-                        #endregion
 
-                        #endregion
-                        #endregion
+                        #endregion 使用 MultipartFormDataContent 產生要 Post 的資料
+
+                        #endregion 設定相關網址內容
+
+                        #endregion 呼叫遠端 Web API
 
                         #region 處理呼叫完成 Web API 之後的回報結果
+
                         if (response != null)
                         {
                             if (response.IsSuccessStatusCode == true)
@@ -106,7 +109,8 @@ namespace Common.Utils
                         {
                             return "";
                         }
-                        #endregion
+
+                        #endregion 處理呼叫完成 Web API 之後的回報結果
                     }
                     catch (Exception ex)
                     {
