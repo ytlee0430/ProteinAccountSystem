@@ -91,8 +91,8 @@
             this.dtpExpireDate = new System.Windows.Forms.DateTimePicker();
             this.tbxCompanyName = new System.Windows.Forms.TextBox();
             this.tbxInvoiceNumber = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.lblInvoiceNumber = new System.Windows.Forms.Label();
+            this.lblCompanyName = new System.Windows.Forms.Label();
             this.tabStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
             this.tabFunction.SuspendLayout();
@@ -786,33 +786,33 @@
             this.tbxInvoiceNumber.Size = new System.Drawing.Size(324, 55);
             this.tbxInvoiceNumber.TabIndex = 49;
             // 
-            // label17
+            // lblInvoiceNumber
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label17.Location = new System.Drawing.Point(1526, 147);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(197, 40);
-            this.label17.TabIndex = 50;
-            this.label17.Text = "統一編號 :";
+            this.lblInvoiceNumber.AutoSize = true;
+            this.lblInvoiceNumber.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblInvoiceNumber.Location = new System.Drawing.Point(1526, 147);
+            this.lblInvoiceNumber.Name = "lblInvoiceNumber";
+            this.lblInvoiceNumber.Size = new System.Drawing.Size(197, 40);
+            this.lblInvoiceNumber.TabIndex = 50;
+            this.lblInvoiceNumber.Text = "統一編號 :";
             // 
-            // label18
+            // lblCompanyName
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label18.Location = new System.Drawing.Point(1179, 147);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(197, 40);
-            this.label18.TabIndex = 51;
-            this.label18.Text = "公司抬頭 :";
+            this.lblCompanyName.AutoSize = true;
+            this.lblCompanyName.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblCompanyName.Location = new System.Drawing.Point(1179, 147);
+            this.lblCompanyName.Name = "lblCompanyName";
+            this.lblCompanyName.Size = new System.Drawing.Size(197, 40);
+            this.lblCompanyName.TabIndex = 51;
+            this.lblCompanyName.Text = "公司抬頭 :";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2477, 1338);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.label17);
+            this.Controls.Add(this.lblCompanyName);
+            this.Controls.Add(this.lblInvoiceNumber);
             this.Controls.Add(this.tbxInvoiceNumber);
             this.Controls.Add(this.tbxCompanyName);
             this.Controls.Add(this.dtpExpireDate);
@@ -923,8 +923,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox tbxCompanyName;
         private System.Windows.Forms.TextBox tbxInvoiceNumber;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblInvoiceNumber;
+        private System.Windows.Forms.Label lblCompanyName;
     }
 }
 
