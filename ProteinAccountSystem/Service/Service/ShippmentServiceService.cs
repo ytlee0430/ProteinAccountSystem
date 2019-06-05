@@ -3,6 +3,7 @@ using Common.Interface.Service;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Common.Log;
 using MSWord = Microsoft.Office.Interop.Word;
 
 namespace Service.Service
@@ -56,6 +57,9 @@ namespace Service.Service
             }
             catch (Exception e)
             {
+                LogUtil.Error(e.StackTrace);
+                LogUtil.Error(e.ToString());
+                LogUtil.Error("CreateShippmentTicket Fail!");
                 return false;
             }
             return true;

@@ -206,7 +206,7 @@ namespace View
                 dgv.DataSource = data;
                 dgv.ScrollBars = ScrollBars.Both;
                 dgv.DefaultCellStyle.Font = new Font("新細明體", 16);
-                dgv.ColumnHeadersDefaultCellStyle.Font=new Font("新細明體", 14);
+                dgv.ColumnHeadersDefaultCellStyle.Font = new Font("新細明體", 14);
 
                 details.Controls.Add(dgv);
                 details.Height = 300;
@@ -225,7 +225,7 @@ namespace View
         {
             openFileDialog1.ShowDialog();
             var path = openFileDialog1.FileName;
-            _controller.importWirteOffMoneyDataProcess(path);
+            _controller.ImportWirteOffMoneyDataProcess(path);
         }
 
         private void btnUpdateItem_Click(object sender, EventArgs e)
@@ -273,9 +273,7 @@ namespace View
                 ExpiredDate = expireDate,
             };
             item.ItemCode = ProductUtilities.GetItemCodes(item);
-
-            _controller.AddDBStorage(item);
-            MessageBox.Show("更新完成!");
+            MessageBox.Show(!_controller.AddDBStorage(item) ? "更新失敗!" : "更新完成!");
         }
 
         private void btnUpdateSalesRecords_Click(object sender, EventArgs e)
@@ -283,10 +281,9 @@ namespace View
             var result = MessageBox.Show("是否確定要更新訂單狀態", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
-                if (_controller.UpdateSalesRecords((List<PhuraseDetailModel>)dgvSaleRecords.DataSource))
-                    MessageBox.Show("更新完成!");
-                else
-                    MessageBox.Show("更新失敗!");
+                MessageBox.Show(_controller.UpdateSalesRecords((List<PhuraseDetailModel>)dgvSaleRecords.DataSource)
+                    ? "更新完成!"
+                    : "更新失敗!");
             }
         }
 
@@ -306,18 +303,15 @@ namespace View
             searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
             var list = _controller.GetSalesRecords(searchModel);
             var result = _controller.ExportSaleRecordExcel(list, path);
-            if (!result)
-                MessageBox.Show("匯出失敗!");
-            else
-                MessageBox.Show("匯出成功!");
+            MessageBox.Show(!result ? "匯出失敗!" : "匯出成功!");
         }
 
         private void btnBulkStorage_Click(object sender, EventArgs e)
         {
-            var Brand = cbxBrands.SelectedIndex;
-            var Package = cbxPackages.SelectedIndex;
-            var ProductionType = cbxType.SelectedIndex;
-            var ProductionDetailType = cbxProductDetail.SelectedIndex;
+            var brand = cbxBrands.SelectedIndex;
+            var package = cbxPackages.SelectedIndex;
+            var productionType = cbxType.SelectedIndex;
+            var productionDetailType = cbxProductDetail.SelectedIndex;
             var count = (int)nudCount.Value;
             var price = Convert.ToInt32(tbxSalePrice.Text);
             var discount = Convert.ToDouble(tbxDiscount.Text);
@@ -328,11 +322,11 @@ namespace View
             {
                 var item = new Item
                 {
-                    Brand = Brand,
+                    Brand = brand,
                     Flavor = flavor.Key,
-                    Package = Package,
-                    ProductionType = ProductionType,
-                    ProductionDetailType = ProductionDetailType,
+                    Package = package,
+                    ProductionType = productionType,
+                    ProductionDetailType = productionDetailType,
                     Storage = count,
                     NetPrice = price,
                     Discount = discount,

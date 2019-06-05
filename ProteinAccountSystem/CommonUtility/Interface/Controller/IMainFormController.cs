@@ -36,7 +36,7 @@ namespace Common.Interface.Controller
 
         bool ImportShipDataProcess(string path);
 
-        bool importWirteOffMoneyDataProcess(string path);
+        bool ImportWirteOffMoneyDataProcess(string path);
 
         bool UpdateDBItems(List<ItemViewModel> list);
 

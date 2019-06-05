@@ -5,6 +5,7 @@ using Common.Interface.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common.Log;
 
 namespace Controller.Controller
 {
@@ -37,7 +38,17 @@ namespace Controller.Controller
 
         public bool AddDBStorage(Item item)
         {
-            return _stockService.AddDBStorage(item);
+            try
+            {
+                return _stockService.AddDBStorage(item);
+            }
+            catch (Exception e)
+            {
+                LogUtil.Error(e.StackTrace);
+                LogUtil.Error(e.ToString());
+                LogUtil.Error("AddDBStorage Fail!");
+                return false;
+            }
         }
 
         public bool AddDBStorages(List<Item> list)
@@ -71,8 +82,8 @@ namespace Controller.Controller
                 return false;
 
             var result = _shippmentService.CreateShippmentTicket(_phuraseDetailModels, path);
-
             _phuraseDetailModels.Clear();
+
             return result;
         }
 
@@ -125,15 +136,25 @@ namespace Controller.Controller
         /// <returns></returns>
         public bool ImportShipDataProcess(string path)
         {
-            _phuraseDetailModels = _analyzeExcelService.AnalyzeShipData(path);
-            _stockService.GenerateProductItemCode(_phuraseDetailModels);
-            _stockService.AddDBlientPhuraseRecord(_phuraseDetailModels);
-            _stockService.UpdateDBStorage(_phuraseDetailModels);
+            try
+            {
+                _phuraseDetailModels = _analyzeExcelService.AnalyzeShipData(path);
+                _stockService.GenerateProductItemCode(_phuraseDetailModels);
+                _stockService.AddDBlientPhuraseRecord(_phuraseDetailModels);
+                _stockService.UpdateDBStorage(_phuraseDetailModels);
+            }
+            catch (Exception e)
+            {
+                LogUtil.Error(e.StackTrace);
+                LogUtil.Error(e.ToString());
+                LogUtil.Error("ImportShipDataProcess Fail!");
+                return false;
+            }
 
             return true;
         }
 
-        public bool importWirteOffMoneyDataProcess(string path)
+        public bool ImportWirteOffMoneyDataProcess(string path)
         {
             var datas = _analyzeExcelService.AnalyzeShipData(path);
             return _accountingService.WriteOffMoney(datas.Select(s => s.OrderNumber).ToList());
