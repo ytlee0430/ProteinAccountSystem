@@ -71,7 +71,7 @@ namespace Service.Service
                 searchModel.ProductionType, searchModel.ProductionDetailType,
                 searchModel.IsWriteOffMoney, searchModel.KeyWord,searchModel.StartTime, searchModel.EndTime);
             var pageSize = Constant.PageSize;
-            var details = Mapper.Map<List<PhuraseDetailModel>>(repo.Get(exp)).OrderByDescending(o=>o.OrderCreateTime).Skip((pageIndex-1)* pageSize).Take(pageSize).ToList();
+            var details = Mapper.Map<List<PhuraseDetailModel>>(repo.Get(exp).OrderByDescending(o => o.OrderCreateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize)).ToList();
             var count = repo.GetRowCount(exp);
             return  new SaleRecordPagingDto
             {
