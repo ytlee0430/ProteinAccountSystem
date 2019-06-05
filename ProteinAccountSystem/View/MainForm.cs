@@ -5,17 +5,18 @@ using System.Linq;
 using System.Windows.Forms;
 using Common.Entity;
 using Common.Interface.Controller;
+using Common.Interface.View;
 using Common.Utils;
-using CommonUtility.Constants;
-using CommonUtility.Enum;
+using Common.Constants;
+using Common.Enum;
 
 namespace View
 {
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IMainForm
     {
-        private IMainFormController _controller;
-        private List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
-        private SearchModel _searchModel = new SearchModel();
+        private readonly IMainFormController _controller;
+        private readonly List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
+        private readonly SearchModel _searchModel = new SearchModel();
 
         public MainForm(IMainFormController controller)
         {
@@ -26,7 +27,7 @@ namespace View
             InitialEnumCbx();
 
             dtpStart.Value = DateTime.Now.AddMonths(-1);
-            dtpEnd.Value = DateTime.Now; ;
+            dtpEnd.Value = DateTime.Now;
             dtpExpireDate.Value = DateTime.Now.AddYears(1);
 
             cbxIsWriteOffMoney.SelectedIndex = 0;

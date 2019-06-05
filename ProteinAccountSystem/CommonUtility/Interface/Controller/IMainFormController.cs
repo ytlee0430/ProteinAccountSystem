@@ -14,7 +14,7 @@ namespace Common.Interface.Controller
 
         bool AddEnumValue(string description, string keyword, int enumClass, int value);
 
-        void AddPhuraseProduct(Item Item, int count, int saleMoney);
+        void AddPhuraseProduct(Item item, int count, int saleMoney);
 
         bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "");
 

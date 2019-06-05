@@ -1,4 +1,4 @@
-﻿namespace CommonUtility.Constants
+﻿namespace Common.Constants
 {
     public static class Constant
     {

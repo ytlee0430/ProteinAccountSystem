@@ -1,24 +1,24 @@
-﻿using Common.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Common.Entity;
 using Common.Entity.Dto;
 using Common.Interface.Controller;
 using Common.Interface.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Common.Log;
 
 namespace Controller.Controller
 {
     public class MainFormController : IMainFormController
     {
-        private IAccountingService _accountingService;
-        private IAnalyzeExcelService _analyzeExcelService;
-        private ICreateSaleService _createSaleService;
-        private IEnumService _enumService;
-        private IExcelExportService _excelExportService;
+        private readonly IAccountingService _accountingService;
+        private readonly IAnalyzeExcelService _analyzeExcelService;
+        private readonly ICreateSaleService _createSaleService;
+        private readonly IEnumService _enumService;
+        private readonly IExcelExportService _excelExportService;
         private List<PhuraseDetailModel> _phuraseDetailModels = new List<PhuraseDetailModel>();
-        private IShippmentService _shippmentService;
-        private IStockService _stockService;
+        private readonly IShippmentService _shippmentService;
+        private readonly IStockService _stockService;
 
         public MainFormController(IAnalyzeExcelService analyzeExcelService, IStockService stockService, IShippmentService shippmentService, ICreateSaleService createSaleService, IAccountingService accountingService, IExcelExportService excelExportService, IEnumService enumService)
         {
@@ -61,9 +61,9 @@ namespace Controller.Controller
             return _enumService.AddEnumValue(description, keyword, enumClass, parentType);
         }
 
-        public void AddPhuraseProduct(Item Item, int count, int saleMoney)
+        public void AddPhuraseProduct(Item item, int count, int saleMoney)
         {
-            _createSaleService.AddPhuraseProduct(Item, count, saleMoney);
+            _createSaleService.AddPhuraseProduct(item, count, saleMoney);
         }
 
         public bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "")
@@ -105,10 +105,6 @@ namespace Controller.Controller
         /// <summary>
         /// 取得銷售紀錄
         /// </summary>
-        /// <param name="keyword"></param>
-        /// <param name="startTime"></param>
-        /// <param name="endTime"></param>
-        /// <param name="writeOffMoneyState"></param>
         /// <returns></returns>
         public SaleRecordPagingDto GetSalesRecords(SearchModel searchModel, int pageIndex)
         {

@@ -1,7 +1,7 @@
 ﻿using Common.Entity;
 using System.Collections.Generic;
 
-namespace CommonUtility.Enum
+namespace Common.Enum
 {
     public class Enums
     {

@@ -18,7 +18,6 @@ namespace Service.Service
         /// <summary>
         /// 取得匯入帳號訂單號碼，將銷帳紀錄改為已銷帳
         /// </summary>
-        /// <param name="models"></param>
         /// <returns></returns>
         public bool WriteOffMoney(List<string> orderNumbers)
         {

@@ -1,6 +1,6 @@
 ﻿using Common.Entity;
 using Common.Interface.Service;
-using CommonUtility.Enum;
+using Common.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,40 +9,27 @@ namespace Service.Service
 {
     public class CreateSaleService : ICreateSaleService
     {
-        private List<PhuraseProductModel> _phurases = new List<PhuraseProductModel>();
+        private readonly List<PhuraseProductModel> _phurases = new List<PhuraseProductModel>();
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="itemCode"></param>
-        /// <param name="count"></param>
-        /// <param name="saleMoney"></param>
-        public void AddPhuraseProduct(Item Item, int count, int saleMoney)
+        public void AddPhuraseProduct(Item item, int count, int saleMoney)
         {
-            var name = Enums.BrandEnum[Item.Brand].Description + " " + Enums.ProductionEnum[Item.ProductionType].Description + " " + Enums.BrandEnum[Item.ProductionDetailType].Description + " " + Enums.FlavorEnum[Item.Flavor].Description + " " + Enums.PackageEnum[Item.Package].Description;
+            var name = Enums.BrandEnum[item.Brand].Description + " " + Enums.ProductionEnum[item.ProductionType].Description + " " + Enums.BrandEnum[item.ProductionDetailType].Description + " " + Enums.FlavorEnum[item.Flavor].Description + " " + Enums.PackageEnum[item.Package].Description;
 
             _phurases.Add(new PhuraseProductModel()
             {
-                ItemCode = Item.ItemCode,
+                ItemCode = item.ItemCode,
                 Count = count,
                 ProductMoney = saleMoney,
                 ProductMoneyWithoutTax = Convert.ToInt32(saleMoney / 1.05),
-                Brand = Item.Brand,
-                Flavor = Item.Flavor,
-                Package = Item.Package,
-                ProductionDetailType = Item.ProductionDetailType,
-                ProductionType = Item.ProductionType,
+                Brand = item.Brand,
+                Flavor = item.Flavor,
+                Package = item.Package,
+                ProductionDetailType = item.ProductionDetailType,
+                ProductionType = item.ProductionType,
                 ProductName = name,
             });
         }
 
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="shoppeeFee"></param>
-        /// <param name="receiptnumber"></param>
-        /// <param name="saleWay"></param>
-        /// <returns></returns>
         public PhuraseDetailModel CreateSale(int shoppeeFee, string receiptnumber, int saleWay, string companyName, string invoiceNumber)
         {
             var model = new PhuraseDetailModel();

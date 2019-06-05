@@ -5,7 +5,6 @@ using Common.Entity;
 using Common.Enum;
 using Common.Interface.Service;
 using Common.Log;
-using CommonUtility.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -83,8 +82,14 @@ namespace Service.Service
                                     item.ParentType = 1;
                                     break;
 
-                                default:
+                                case FlavorEnum.All:
                                     break;
+
+                                case FlavorEnum.Null:
+                                    break;
+
+                                default:
+                                    throw new ArgumentOutOfRangeException();
                             }
                         }
 
@@ -115,6 +120,12 @@ namespace Service.Service
                                 case PackageEnum.XL:
                                     item.ParentType = 2;
                                     break;
+
+                                case PackageEnum.All:
+                                    break;
+
+                                default:
+                                    throw new ArgumentOutOfRangeException();
                             }
                         }
 
@@ -164,14 +175,13 @@ namespace Service.Service
                                     break;
                             }
                         }
-
                         break;
 
                     case "Production":
                         break;
 
                     default:
-                        break;
+                        throw new ArgumentOutOfRangeException("EnumClassDescription");
                 }
             }
 
@@ -233,7 +243,7 @@ namespace Service.Service
 
         private static Dictionary<int, EnumModel> GetEnumDic(string des)
         {
-            Dictionary<int, EnumModel> dic = null;
+            Dictionary<int, EnumModel> dic;
             switch (des)
             {
                 case "Brand":
@@ -261,7 +271,7 @@ namespace Service.Service
                     break;
 
                 default:
-                    break;
+                    throw new ArgumentOutOfRangeException("Des");
             }
 
             return dic;

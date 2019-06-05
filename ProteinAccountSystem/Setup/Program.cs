@@ -1,16 +1,21 @@
 ﻿using Common.Interface.Service;
 using Common.Log;
-using Controller.Controller;
 using Service.AutoMapper;
 using Service.Service;
 using System;
 using System.Windows.Forms;
+using Common.Interface.Controller;
+using Common.Interface.View;
+using Controller.Controller;
+using Microsoft.Extensions.DependencyInjection;
 using View;
 
 namespace Setup
 {
     internal static class Program
     {
+        private static IServiceProvider ServiceProvider { get; set; }
+
         /// <summary>
         /// 應用程式的主要進入點。
         /// </summary>
@@ -19,14 +24,7 @@ namespace Setup
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //TODO: dirty work here , use DI
-            IAnalyzeExcelService analyzeExcelService = new AnalyzeShopeeExcelSevice();
-            IStockService stockService = new StockServiceService();
-            IShippmentService shippmentService = new ShippmentService();
-            ICreateSaleService createSaleService = new CreateSaleService();
-            IAccountingService accountingService = new AccountingService();
-            IExcelExportService excelExportService = new ExcelExportService();
-            IEnumService enumService = new EnumService();
+
             AutoMapperConfig.Configure();
 
             //first run
@@ -40,12 +38,11 @@ namespace Setup
             //first run
             //EnumService.EnumParentTypeInitail();
 
+            ConfigureServices();
+
             try
             {
-                Application.Run(new MainForm(new MainFormController(
-                    analyzeExcelService, stockService,
-                    shippmentService, createSaleService, accountingService,
-                    excelExportService, enumService)));
+                Application.Run((Form)ServiceProvider.GetService(typeof(IMainForm)));
             }
             catch (Exception e)
             {
@@ -54,6 +51,21 @@ namespace Setup
                 MessageBox.Show($"Unhandle Exception Occur! Message:{e.Message}");
                 Application.Exit();
             }
+        }
+
+        private static void ConfigureServices()
+        {
+            var services = new ServiceCollection();
+            services.AddTransient<IAnalyzeExcelService, AnalyzeShopeeExcelSevice>();
+            services.AddTransient<IStockService, StockServiceService>();
+            services.AddTransient<IShippmentService, ShippmentService>();
+            services.AddTransient<ICreateSaleService, CreateSaleService>();
+            services.AddTransient<IAccountingService, AccountingService>();
+            services.AddTransient<IExcelExportService, ExcelExportService>();
+            services.AddTransient<IEnumService, EnumService>();
+            services.AddTransient<IMainFormController, MainFormController>();
+            services.AddTransient<IMainForm, MainForm>();
+            ServiceProvider = services.BuildServiceProvider();
         }
     }
 }

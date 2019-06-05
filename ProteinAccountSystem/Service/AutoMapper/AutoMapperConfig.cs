@@ -17,9 +17,9 @@ namespace Service.AutoMapper
             });
         }
 
-        public static M Map<T, M>(T entity)
+        public static TR Map<T, TR>(T entity)
         {
-            return Mapper.Map<M>(entity);
+            return Mapper.Map<TR>(entity);
         }
     }
 }

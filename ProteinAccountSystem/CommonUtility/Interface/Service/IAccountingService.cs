@@ -10,7 +10,6 @@ namespace Common.Interface.Service
         /// <summary>
         /// 將匯入的excel  銷帳
         /// </summary>
-        /// <param name="models"></param>
         /// <returns></returns>
         bool WriteOffMoney(List<string> orderNumbers);
     }

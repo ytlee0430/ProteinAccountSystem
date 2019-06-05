@@ -2,7 +2,7 @@
 using System.Data;
 using System.Reflection;
 
-namespace CommonUtility.Utils
+namespace Common.Utils
 {
     public static class Extensions
     {

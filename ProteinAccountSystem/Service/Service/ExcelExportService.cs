@@ -1,9 +1,8 @@
 ﻿using Common.Interface.Service;
-using CommonUtility.Utils;
+using Common.Utils;
 using Spire.Xls;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Common.Log;
 
 namespace Service.Service
@@ -16,7 +15,7 @@ namespace Service.Service
             {
                 Workbook book = new Workbook();
                 Worksheet sheet = book.Worksheets[0];
-                var dataTable = list.ToDataTable<T>();
+                var dataTable = list.ToDataTable();
                 sheet.InsertDataTable(dataTable, true, 1, 1);
                 book.SaveToFile(path, ExcelVersion.Version2013);
             }

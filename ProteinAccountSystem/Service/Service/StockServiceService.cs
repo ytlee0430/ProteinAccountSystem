@@ -4,8 +4,8 @@ using CodeFirstORM.Entity;
 using Common.Entity;
 using Common.Entity.Dto;
 using Common.Interface.Service;
-using CommonUtility.Constants;
-using CommonUtility.Enum;
+using Common.Constants;
+using Common.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +51,7 @@ namespace Service.Service
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
-                            itemcode += ((int)pair.Key).ToString("00");
+                            itemcode += pair.Key.ToString("00");
                             break;
                         }
                     }
@@ -60,7 +60,7 @@ namespace Service.Service
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
-                            itemcode += ((int)pair.Key).ToString("00");
+                            itemcode += pair.Key.ToString("00");
                             break;
                         }
                     }
@@ -69,7 +69,7 @@ namespace Service.Service
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
-                            itemcode += ((int)pair.Key).ToString("00");
+                            itemcode += pair.Key.ToString("00");
                             break;
                         }
                     }
@@ -78,7 +78,7 @@ namespace Service.Service
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
-                            itemcode += ((int)pair.Key).ToString("00");
+                            itemcode += pair.Key.ToString("00");
                             break;
                         }
                     }
@@ -87,7 +87,7 @@ namespace Service.Service
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
-                            itemcode += ((int)pair.Key).ToString("00");
+                            itemcode += pair.Key.ToString("00");
                             break;
                         }
                     }
@@ -135,7 +135,7 @@ namespace Service.Service
         public bool UpdateDBItems(List<ItemViewModel> list)
         {
             var repo = new ItemRepository();
-            var updateList = new List<ItemEntity>();
+            List<ItemEntity> updateList;
             try
             {
                 updateList = Mapper.Map<List<ItemEntity>>(list);

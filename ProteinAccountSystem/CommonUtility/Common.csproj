@@ -73,6 +73,7 @@
     <Compile Include="Interface\Service\IShippmentService.cs" />
     <Compile Include="Interface\Service\IEnumService.cs" />
     <Compile Include="Interface\Service\IStockService.cs" />
+    <Compile Include="Interface\View\IMainForm.cs" />
     <Compile Include="Log\ILogger.cs" />
     <Compile Include="Log\Logger.cs" />
     <Compile Include="Log\LogUtil.cs" />

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using CodeFirstORM.Entity;
 using Common.Entity;
-using CommonUtility.Enum;
+using Common.Enum;
 using System.Linq;
 
 namespace Service.AutoMapper
