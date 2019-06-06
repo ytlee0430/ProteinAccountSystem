@@ -20,7 +20,10 @@ namespace Controller.Controller
         private readonly IShippmentService _shippmentService;
         private readonly IStockService _stockService;
 
-        public MainFormController(IAnalyzeExcelService analyzeExcelService, IStockService stockService, IShippmentService shippmentService, ICreateSaleService createSaleService, IAccountingService accountingService, IExcelExportService excelExportService, IEnumService enumService)
+        public MainFormController(IAnalyzeExcelService analyzeExcelService,
+            IStockService stockService, IShippmentService shippmentService,
+            ICreateSaleService createSaleService, IAccountingService accountingService,
+            IExcelExportService excelExportService, IEnumService enumService)
         {
             _analyzeExcelService = analyzeExcelService;
             _stockService = stockService;

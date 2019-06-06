@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
+using Common.Log;
 
 namespace Common.Utils
 {
@@ -114,12 +115,11 @@ namespace Common.Utils
                     }
                     catch (Exception ex)
                     {
+                        LogUtil.Error(ex.ToString());
                         return "";
                     }
                 }
             }
-
-            return "";
         }
     }
 }

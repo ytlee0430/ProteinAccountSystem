@@ -32,15 +32,18 @@ namespace Service.Service
 
         public PhuraseDetailModel CreateSale(int shoppeeFee, string receiptnumber, int saleWay, string companyName, string invoiceNumber)
         {
-            var model = new PhuraseDetailModel();
-            model.Products = _phurases.ToList();
-            model.TotalMoney = _phurases.Sum(x => x.ProductMoney * x.Count) + shoppeeFee;
-            model.TransferMoney = shoppeeFee;
-            model.TotalTax = Convert.ToInt32((_phurases.Sum(x => x.ProductMoneyWithoutTax * x.Count) + shoppeeFee) * 0.05);
-            model.ReceiptNumber = receiptnumber;
-            model.Plat = saleWay;
-            model.CompanyName = companyName;
-            model.CompanyInvoiceNumber = invoiceNumber;
+            var model = new PhuraseDetailModel
+            {
+                Products = _phurases.ToList(),
+                TotalMoney = _phurases.Sum(x => x.ProductMoney * x.Count) + shoppeeFee,
+                TransferMoney = shoppeeFee,
+                TotalTax =
+                    Convert.ToInt32((_phurases.Sum(x => x.ProductMoneyWithoutTax * x.Count) + shoppeeFee) * 0.05),
+                ReceiptNumber = receiptnumber,
+                Plat = saleWay,
+                CompanyName = companyName,
+                CompanyInvoiceNumber = invoiceNumber
+            };
             _phurases.Clear();
             return model;
         }
