@@ -8,7 +8,7 @@ namespace CodeFirstORM.Entity
     public class EnumClassEntity : IEntity
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Key { get; set; }
 
         public string EnumClassDescription { get; set; }

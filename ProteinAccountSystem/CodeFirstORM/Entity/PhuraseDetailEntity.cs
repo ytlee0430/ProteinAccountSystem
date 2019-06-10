@@ -9,7 +9,6 @@ namespace CodeFirstORM.Entity
     public class PhuraseDetailEntity : IEntity
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Key { get; set; }
 
         /// <summary>

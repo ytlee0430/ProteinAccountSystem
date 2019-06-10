@@ -33,7 +33,7 @@ namespace CodeFirstORM.Entity
         /// </summary>
         public int ProductMoneyWithoutTax { get; set; }
 
-        public int PhuraseDetailEntityKey { get; set; }
+        public int? PhuraseDetailEntityKey { get; set; }
 
         public PhuraseDetailEntity PhuraseDetail { get; set; }
 

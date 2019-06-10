@@ -107,6 +107,10 @@
     <Compile Include="Migrations\201906100730538_addSubMoney.Designer.cs">
       <DependentUpon>201906100730538_addSubMoney.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906100603398_ForeignKey-nullable.cs" />
+    <Compile Include="Migrations\201906100603398_ForeignKey-nullable.Designer.cs">
+      <DependentUpon>201906100603398_ForeignKey-nullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="RepositoryBase\IDatabaseContext.cs" />
     <Compile Include="RepositoryBase\IEntity.cs" />
     <Compile Include="RepositoryBase\RepositoryBase.cs" />
@@ -116,10 +120,6 @@
     <Compile Include="Migrations\201905250950597_add new db.cs" />
     <Compile Include="Migrations\201905250950597_add new db.Designer.cs">
       <DependentUpon>201905250950597_add new db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905250959062_add new database.cs" />
-    <Compile Include="Migrations\201905250959062_add new database.Designer.cs">
-      <DependentUpon>201905250959062_add new database.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201905251129458_update d.cs" />
     <Compile Include="Migrations\201905251129458_update d.Designer.cs">
@@ -136,10 +136,6 @@
     <Compile Include="Migrations\201905271417499_add expireddate.cs" />
     <Compile Include="Migrations\201905271417499_add expireddate.Designer.cs">
       <DependentUpon>201905271417499_add expireddate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905271458531_upate db.cs" />
-    <Compile Include="Migrations\201905271458531_upate db.Designer.cs">
-      <DependentUpon>201905271458531_upate db.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201905271802121_add item detia .cs" />
     <Compile Include="Migrations\201905271802121_add item detia .Designer.cs">
@@ -181,9 +177,6 @@
     <EmbeddedResource Include="Migrations\201905250950597_add new db.resx">
       <DependentUpon>201905250950597_add new db.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905250959062_add new database.resx">
-      <DependentUpon>201905250959062_add new database.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905251129458_update d.resx">
       <DependentUpon>201905251129458_update d.cs</DependentUpon>
     </EmbeddedResource>
@@ -195,9 +188,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905271417499_add expireddate.resx">
       <DependentUpon>201905271417499_add expireddate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905271458531_upate db.resx">
-      <DependentUpon>201905271458531_upate db.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905271802121_add item detia .resx">
       <DependentUpon>201905271802121_add item detia .cs</DependentUpon>
@@ -249,6 +239,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906100730538_addSubMoney.resx">
       <DependentUpon>201906100730538_addSubMoney.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906100603398_ForeignKey-nullable.resx">
+      <DependentUpon>201906100603398_ForeignKey-nullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,13 +7,13 @@ namespace CodeFirstORM.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class addnewdatabase : IMigrationMetadata
+    public sealed partial class ForeignKeynullable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addnewdatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ForeignKeynullable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905250959062_add new database"; }
+            get { return "201906100603398_ForeignKey-nullable"; }
         }
         
         string IMigrationMetadata.Source

@@ -16,31 +16,31 @@ namespace CodeFirstORM.DBLayer
         {
         }
 
-        public override bool Add(EnumClassEntity entity)
-        {
-            lock (_lock)
-            {
-                entity.Key = _database.EnumClassEntities.Any() ?
-                    _database.EnumClassEntities.Max(e => e.Key) + 1 : 0;
-                return base.Add(entity);
-            }
-        }
+        //public override bool Add(EnumClassEntity entity)
+        //{
+        //    lock (_lock)
+        //    {
+        //        entity.Key = _database.EnumClassEntities.Any() ?
+        //            _database.EnumClassEntities.Max(e => e.Key) + 1 : 0;
+        //        return base.Add(entity);
+        //    }
+        //}
 
-        public override bool Add(IEnumerable<EnumClassEntity> entitis)
-        {
-            lock (_lock)
-            {
-                var maxKey = _database.EnumClassEntities.Any() ?
-                    _database.EnumClassEntities.Max(e => e.Key) : -1;
+        //public override bool Add(IEnumerable<EnumClassEntity> entitis)
+        //{
+        //    lock (_lock)
+        //    {
+        //        var maxKey = _database.EnumClassEntities.Any() ?
+        //            _database.EnumClassEntities.Max(e => e.Key) : -1;
 
-                foreach (var entity in entitis)
-                {
-                    maxKey++;
-                    entity.Key = maxKey;
-                }
-                return base.Add(entitis);
-            }
-        }
+        //        foreach (var entity in entitis)
+        //        {
+        //            maxKey++;
+        //            entity.Key = maxKey;
+        //        }
+        //        return base.Add(entitis);
+        //    }
+        //}
 
         public override EnumClassEntity Get(int id)
         {

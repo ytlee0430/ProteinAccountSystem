@@ -8,7 +8,9 @@ namespace CodeFirstORM.Config
         public EnumEntityMapping()
         {
             ToTable("EnumEntities");
-            HasRequired(x => x.EnumClass).WithMany(s => s.Enums).HasForeignKey(x => x.ForeignKey).WillCascadeOnDelete(true);
+            HasOptional(x => x.EnumClass).WithMany(s => s.Enums)
+                .HasForeignKey(x => x.ForeignKey).WillCascadeOnDelete(true);
+
         }
     }
 }
