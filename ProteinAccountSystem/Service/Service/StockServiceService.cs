@@ -41,8 +41,9 @@ namespace Service.Service
         {
             var repo = new PhuraseDetailRepository();
             var map = Mapper.Map<List<PhuraseDetailEntity>>(phuraseDetailModels);
-
-            var result = repo.AddIfNotExists(map, x => x.OrderNumber == phuraseDetailModels.FirstOrDefault().OrderNumber);
+            //TODO:原本邏輯有誤，修改後待測
+            var orders = phuraseDetailModels.GroupBy(p => p.OrderNumber).Select(s => s.First()).Select(p => p.OrderNumber);
+            var result = repo.AddIfNotExists(map, x => orders.Contains(x.OrderNumber));
 
             return Mapper.Map<List<PhuraseDetailModel>>(result);
         }

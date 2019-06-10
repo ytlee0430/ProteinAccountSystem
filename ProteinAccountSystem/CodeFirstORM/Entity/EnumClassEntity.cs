@@ -11,6 +11,7 @@ namespace CodeFirstORM.Entity
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Key { get; set; }
 
+        [Required]
         public string EnumClassDescription { get; set; }
 
         public ICollection<EnumEntity> Enums { get; set; }
