@@ -16,7 +16,7 @@ namespace CodeFirstORM.Entity
 
         public string KeyWord { get; set; }
 
-        public int ForeignKey { get; set; }
+        public int? ForeignKey { get; set; }
 
         [Required]
         public int ParentType { get; set; }

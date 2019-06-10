@@ -16,31 +16,31 @@ namespace CodeFirstORM.DBLayer
         {
         }
 
-        public override bool Add(PhuraseDetailEntity entity)
-        {
-            lock (_lock)
-            {
-                entity.Key = _database.PhuraseDetails.Any() ?
-                    _database.PhuraseDetails.Max(e => e.Key) + 1 : 0;
-                return base.Add(entity);
-            }
-        }
+        //public override bool Add(PhuraseDetailEntity entity)
+        //{
+        //    lock (_lock)
+        //    {
+        //        entity.Key = _database.PhuraseDetails.Any() ?
+        //            _database.PhuraseDetails.Max(e => e.Key) + 1 : 0;
+        //        return base.Add(entity);
+        //    }
+        //}
 
-        public override bool Add(IEnumerable<PhuraseDetailEntity> entitis)
-        {
-            lock (_lock)
-            {
-                var maxKey = _database.PhuraseDetails.Any() ?
-                    _database.PhuraseDetails.Max(e => e.Key) : -1;
+        //public override bool Add(IEnumerable<PhuraseDetailEntity> entitis)
+        //{
+        //    lock (_lock)
+        //    {
+        //        var maxKey = _database.PhuraseDetails.Any() ?
+        //            _database.PhuraseDetails.Max(e => e.Key) : -1;
 
-                foreach (var entity in entitis)
-                {
-                    maxKey++;
-                    entity.Key = maxKey;
-                }
-                return base.Add(entitis);
-            }
-        }
+        //        foreach (var entity in entitis)
+        //        {
+        //            maxKey++;
+        //            entity.Key = maxKey;
+        //        }
+        //        return base.Add(entitis);
+        //    }
+        //}
 
         public override PhuraseDetailEntity Get(int id)
         {

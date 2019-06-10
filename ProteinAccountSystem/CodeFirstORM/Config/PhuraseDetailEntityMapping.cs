@@ -8,7 +8,8 @@ namespace CodeFirstORM.Config
         public PhuraseProductEntityMapping()
         {
             ToTable("PhuraseProducts");
-            HasRequired(x => x.PhuraseDetail).WithMany(s => s.Products).HasForeignKey(x => x.PhuraseDetailEntityKey).WillCascadeOnDelete(true);
+            HasOptional(x => x.PhuraseDetail).WithMany(s => s.Products)
+                .HasForeignKey(x => x.PhuraseDetailEntityKey).WillCascadeOnDelete(true);
         }
     }
 }

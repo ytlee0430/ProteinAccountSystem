@@ -10,7 +10,7 @@ namespace CodeFirstORM.Migrations
                 "dbo.EnumClassEntities",
                 c => new
                 {
-                    Key = c.Int(nullable: false),
+                    Key = c.Int(nullable: false, identity: true),
                     EnumClassDescription = c.String(),
                 })
                 .PrimaryKey(t => t.Key)

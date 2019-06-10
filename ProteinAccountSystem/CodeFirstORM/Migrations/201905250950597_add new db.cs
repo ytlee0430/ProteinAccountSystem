@@ -27,7 +27,7 @@ namespace CodeFirstORM.Migrations
                 "dbo.PhuraseDetailEntities",
                 c => new
                 {
-                    Key = c.Int(nullable: false),
+                    Key = c.Int(nullable: false, identity: true),
                     OrderNumber = c.String(),
                     Account = c.String(),
                     DeliveryNumber = c.String(),
