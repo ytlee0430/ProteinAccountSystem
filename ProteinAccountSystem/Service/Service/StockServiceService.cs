@@ -37,6 +37,16 @@ namespace Service.Service
             return repo.Add(Mapper.Map<List<ItemEntity>>(list));
         }
 
+        public List<PhuraseDetailModel> AddSalesRecordIfNotExist(List<PhuraseDetailModel> phuraseDetailModels)
+        {
+            var repo = new PhuraseDetailRepository();
+            var map = Mapper.Map<List<PhuraseDetailEntity>>(phuraseDetailModels);
+
+            var result = repo.AddIfNotExists(map, x => x.OrderNumber == phuraseDetailModels.FirstOrDefault().OrderNumber);
+
+            return Mapper.Map<List<PhuraseDetailModel>>(result);
+        }
+
         public void GenerateProductItemCode(List<PhuraseDetailModel> models)
         {
             foreach (var model in models)

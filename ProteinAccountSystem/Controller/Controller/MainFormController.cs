@@ -139,8 +139,9 @@ namespace Controller.Controller
             {
                 _phuraseDetailModels = _analyzeExcelService.AnalyzeShipData(path);
                 _stockService.GenerateProductItemCode(_phuraseDetailModels);
-                _stockService.AddDBlientPhuraseRecord(_phuraseDetailModels);
-                _stockService.UpdateDBStorage(_phuraseDetailModels);
+                var notExists = _stockService.AddSalesRecordIfNotExist(_phuraseDetailModels);
+                //_stockService.AddDBlientPhuraseRecord(_phuraseDetailModels);
+                _stockService.UpdateDBStorage(notExists);
             }
             catch (Exception e)
             {

@@ -26,8 +26,8 @@ namespace View
 
             InitialEnumCbx();
 
-            dtpStart.Value = DateTime.Now.AddMonths(-1);
-            dtpEnd.Value = DateTime.Now;
+            dtpSaleStart.Value = DateTime.Now.AddMonths(-1);
+            dtpSaleEnd.Value = DateTime.Now;
             dtpExpireDate.Value = DateTime.Now.AddYears(1);
 
             cbxIsWriteOffMoney.SelectedIndex = 0;
@@ -142,8 +142,8 @@ namespace View
         private void btnSearch_Click(object sender, EventArgs e)
         {
             _searchModel.KeyWord = txtKeyWord.Text;
-            _searchModel.StartTime = dtpStart.Value.Date;
-            _searchModel.EndTime = dtpEnd.Value.Date.AddDays(1);
+            _searchModel.StartTime = dtpSaleStart.Value.Date;
+            _searchModel.EndTime = dtpSaleEnd.Value.Date.AddDays(1);
             _searchModel.Brand = cbxBrands.SelectedIndex;
             _searchModel.Flavor = cbxFlavors.SelectedIndex;
             _searchModel.Package = cbxPackages.SelectedIndex;
@@ -160,10 +160,15 @@ namespace View
             var result = _controller.GetSalesRecords(_searchModel, pageIndex);
             lblDataCount.Text = result.TotalCount.ToString();
             dgvSaleRecords.Columns.Clear();
+
+            //create check box
+            DataGridViewCheckBoxColumn dgvck = new DataGridViewCheckBoxColumn();
+            dgvSaleRecords.Columns.Add(dgvck);
+            
+            //create button
             DataGridViewButtonColumn dgvbt = new DataGridViewButtonColumn();
             dgvbt.Text = "顯示詳細銷貨資訊";
             dgvbt.UseColumnTextForButtonValue = true;
-
             dgvSaleRecords.Columns.Add(dgvbt);
 
             dgvSaleRecords.DataSource = result.Details;
@@ -309,8 +314,8 @@ namespace View
 
             SearchModel searchModel = new SearchModel();
             searchModel.KeyWord = txtKeyWord.Text;
-            searchModel.StartTime = dtpStart.Value;
-            searchModel.EndTime = dtpEnd.Value;
+            searchModel.StartTime = dtpSaleStart.Value;
+            searchModel.EndTime = dtpSaleEnd.Value;
             searchModel.Brand = cbxBrands.SelectedIndex;
             searchModel.Flavor = cbxFlavors.SelectedIndex;
             searchModel.Package = cbxPackages.SelectedIndex;
@@ -455,6 +460,9 @@ namespace View
             txtKeyWord.Text = "";
         }
 
+        private void btnPrintTransferDatas_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

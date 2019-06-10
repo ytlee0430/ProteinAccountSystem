@@ -23,5 +23,6 @@ namespace Common.Interface.Service
         bool UpdateDBItems(List<ItemViewModel> list);
 
         bool UpdateDBStorage(List<PhuraseDetailModel> stockData);
+        List<PhuraseDetailModel> AddSalesRecordIfNotExist(List<PhuraseDetailModel> phuraseDetailModels);
     }
 }
