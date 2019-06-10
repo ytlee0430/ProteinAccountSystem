@@ -221,9 +221,17 @@ namespace View
 
         private void btnImportExcelWirteOffMoney_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-            var path = openFileDialog1.FileName;
-            _controller.ImportWirteOffMoneyDataProcess(path);
+            try
+            {
+                openFileDialog1.ShowDialog();
+                var path = openFileDialog1.FileName;
+                _controller.ImportWirteOffMoneyDataProcess(path);
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         private void btnUpdateItem_Click(object sender, EventArgs e)
@@ -247,31 +255,40 @@ namespace View
 
         private void btnAddNewItem_Click(object sender, EventArgs e)
         {
-            var brand = cbxBrands.SelectedIndex;
-            var flavor = cbxFlavors.SelectedIndex;
-            var package = cbxPackages.SelectedIndex;
-            var productionType = cbxType.SelectedIndex;
-            var productionDetailType = cbxProductDetail.SelectedIndex;
-            var count = (int)nudCount.Value;
-            var price = Convert.ToInt32(tbxSalePrice.Text);
-            var discount = Convert.ToDouble(tbxDiscount.Text);
-            var cost = Convert.ToInt32(tbxCost.Text);
-            var expireDate = dtpExpireDate.Value;
-            var item = new Item
+            try
             {
-                Brand = brand,
-                Flavor = flavor,
-                Package = package,
-                ProductionType = productionType,
-                ProductionDetailType = productionDetailType,
-                Storage = count,
-                NetPrice = price,
-                Discount = discount,
-                Cost = cost,
-                ExpiredDate = expireDate,
-            };
-            item.ItemCode = ProductUtilities.GetItemCodes(item);
-            MessageBox.Show(!_controller.AddDBStorage(item) ? "更新失敗!" : "更新完成!");
+                var brand = cbxBrands.SelectedIndex;
+                var flavor = cbxFlavors.SelectedIndex;
+                var package = cbxPackages.SelectedIndex;
+                var productionType = cbxType.SelectedIndex;
+                var productionDetailType = cbxProductDetail.SelectedIndex;
+                var count = (int)nudCount.Value;
+                var price = Convert.ToInt32(tbxSalePrice.Text);
+                var discount = Convert.ToDouble(tbxDiscount.Text);
+                var cost = Convert.ToInt32(tbxCost.Text);
+                var expireDate = dtpExpireDate.Value;
+                var item = new Item
+                {
+                    Brand = brand,
+                    Flavor = flavor,
+                    Package = package,
+                    ProductionType = productionType,
+                    ProductionDetailType = productionDetailType,
+                    Storage = count,
+                    NetPrice = price,
+                    Discount = discount,
+                    Cost = cost,
+                    ExpiredDate = expireDate,
+                };
+                item.ItemCode = ProductUtilities.GetItemCodes(item);
+                MessageBox.Show(!_controller.AddDBStorage(item) ? "更新失敗!" : "更新完成!");
+            }
+            catch (Exception )
+            {
+                MessageBox.Show("輸入資料有誤，請重新確認");
+                throw;
+            }
+           
         }
 
         private void btnUpdateSalesRecords_Click(object sender, EventArgs e)
@@ -437,5 +454,7 @@ namespace View
             cbxIsWriteOffMoney.SelectedIndex = 0;
             txtKeyWord.Text = "";
         }
+
+
     }
 }

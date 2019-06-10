@@ -49,6 +49,13 @@ namespace Common.Entity
         /// </summary>
         [DisplayName("總稅金")]
         public int TotalTax { get; set; }
+     
+        /// <summary>
+        /// 小計  稅前單價*數量
+        /// </summary>
+        [DisplayName("小計")]
+        public int SubMoney { get; set; }
+
 
         /// <summary>
         /// 訂單金額

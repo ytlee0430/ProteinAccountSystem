@@ -46,7 +46,12 @@ namespace CodeFirstORM.Entity
         /// 總稅金
         /// </summary>
         public int TotalTax { get; set; }
-
+        
+        /// <summary>
+        /// 小計  稅前單價*數量
+        /// </summary>
+        public int SubMoney { get; set; }
+     
         /// <summary>
         /// 訂單金額
         /// </summary>

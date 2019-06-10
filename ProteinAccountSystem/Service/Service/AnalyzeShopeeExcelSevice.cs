@@ -41,6 +41,7 @@ namespace Service.Service
                     data.TotalMoney = Convert.ToInt32(Convert.ToDouble(cells[7].DisplayedText));
                     data.TotalTax = Convert.ToInt32(Convert.ToDouble(cells[7].DisplayedText) * 0.05);
                     data.TransferMoneyWithoutTax = Convert.ToInt32(Convert.ToDouble(cells[6].DisplayedText) / 1.05);
+                    data.SubMoney = Convert.ToInt32(Convert.ToDouble(cells[5].DisplayedText) / 1.05) * Convert.ToInt32(cells[24].DisplayedText);
                     data.Products = new List<PhuraseProductModel>(){
                     new PhuraseProductModel()
                     {

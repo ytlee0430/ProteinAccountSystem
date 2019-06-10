@@ -103,6 +103,10 @@
     <Compile Include="Migrations\201906031707140_remove-auto-getdate.Designer.cs">
       <DependentUpon>201906031707140_remove-auto-getdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906100730538_addSubMoney.cs" />
+    <Compile Include="Migrations\201906100730538_addSubMoney.Designer.cs">
+      <DependentUpon>201906100730538_addSubMoney.cs</DependentUpon>
+    </Compile>
     <Compile Include="RepositoryBase\IDatabaseContext.cs" />
     <Compile Include="RepositoryBase\IEntity.cs" />
     <Compile Include="RepositoryBase\RepositoryBase.cs" />
@@ -242,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906031707140_remove-auto-getdate.resx">
       <DependentUpon>201906031707140_remove-auto-getdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906100730538_addSubMoney.resx">
+      <DependentUpon>201906100730538_addSubMoney.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

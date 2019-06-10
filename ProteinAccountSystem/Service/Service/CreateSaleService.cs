@@ -42,7 +42,8 @@ namespace Service.Service
                 ReceiptNumber = receiptnumber,
                 Plat = saleWay,
                 CompanyName = companyName,
-                CompanyInvoiceNumber = invoiceNumber
+                CompanyInvoiceNumber = invoiceNumber,
+                SubMoney = _phurases.Sum(x => x.Count * x.ProductMoneyWithoutTax),
             };
             _phurases.Clear();
             return model;
