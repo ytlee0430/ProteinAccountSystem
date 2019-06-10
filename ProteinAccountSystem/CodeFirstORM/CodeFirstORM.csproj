@@ -111,6 +111,10 @@
     <Compile Include="Migrations\201906100603398_ForeignKey-nullable.Designer.cs">
       <DependentUpon>201906100603398_ForeignKey-nullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906101719393_a.cs" />
+    <Compile Include="Migrations\201906101719393_a.Designer.cs">
+      <DependentUpon>201906101719393_a.cs</DependentUpon>
+    </Compile>
     <Compile Include="RepositoryBase\IDatabaseContext.cs" />
     <Compile Include="RepositoryBase\IEntity.cs" />
     <Compile Include="RepositoryBase\RepositoryBase.cs" />
@@ -242,6 +246,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906100603398_ForeignKey-nullable.resx">
       <DependentUpon>201906100603398_ForeignKey-nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101719393_a.resx">
+      <DependentUpon>201906101719393_a.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
