@@ -315,7 +315,7 @@ namespace View
             SearchModel searchModel = new SearchModel();
             searchModel.KeyWord = txtKeyWord.Text;
             searchModel.StartTime = dtpSaleStart.Value;
-            searchModel.EndTime = dtpSaleEnd.Value;
+            searchModel.EndTime = dtpSaleEnd.Value.AddDays(1);
             searchModel.Brand = cbxBrands.SelectedIndex;
             searchModel.Flavor = cbxFlavors.SelectedIndex;
             searchModel.Package = cbxPackages.SelectedIndex;

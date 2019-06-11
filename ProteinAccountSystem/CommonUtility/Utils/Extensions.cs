@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 
 namespace Common.Utils
 {
@@ -41,13 +43,18 @@ namespace Common.Utils
 
             foreach (var prop in props)
             {
+                Type type = prop.PropertyType;
+                if (type.IsClass)
+                    type = typeof(string);
                 var attributes = prop.GetCustomAttributes(typeof(DisplayNameAttribute), true);
                 if (!attributes.Any())
-                    tb.Columns.Add(prop.Name, prop.PropertyType);
+                {
+                    tb.Columns.Add(prop.Name, type);
+                }
                 else
                 {
                     var displayName = attributes.Cast<DisplayNameAttribute>().Single().DisplayName;
-                    tb.Columns.Add(string.IsNullOrEmpty(displayName) ? prop.Name : displayName, prop.PropertyType);
+                    tb.Columns.Add(string.IsNullOrEmpty(displayName) ? prop.Name : displayName, type);
                 }
             }
 
@@ -56,13 +63,52 @@ namespace Common.Utils
                 var values = new object[props.Length];
                 for (var i = 0; i < props.Length; i++)
                 {
-                    values[i] = props[i].GetValue(item, null);
+                    var enumerable = props[i].GetValue(item, null) as System.Collections.IEnumerable;
+                    if (enumerable == null || (enumerable is string))
+                        values[i] = props[i].GetValue(item, null);
+                    else
+                        values[i] = IEnumerableToString(enumerable);
                 }
 
                 tb.Rows.Add(values);
             }
 
             return tb;
+        }
+
+        private static string IEnumerableToString(System.Collections.IEnumerable items)
+        {
+            var sb = new StringBuilder();
+            Type type = null;
+            PropertyInfo[] props = null;
+            type = items.GetType().GetGenericArguments()[0];
+            props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (var item in items)
+            {
+                for (int i = 0; i < props.Length; i++)
+                {
+                    var prop = props[i];
+                    var attributes = prop.GetCustomAttributes(typeof(DisplayNameAttribute), true);
+                    if (!attributes.Any())
+                        sb.Append($"{prop.Name} : ");
+                    else
+                    {
+                        var displayName = attributes.Cast<DisplayNameAttribute>().Single().DisplayName;
+                        var title = string.IsNullOrEmpty(displayName) ? prop.Name : displayName;
+                        sb.Append($"{title} : ");
+                    }
+
+                    var enumerable = props[i].GetValue(item, null) as System.Collections.IEnumerable;
+                    if (enumerable == null || (enumerable is string))
+                        sb.Append(props[i].GetValue(item, null));
+                    else
+                        sb.Append(IEnumerableToString(enumerable));
+                }
+                sb.Append("\n");
+            }
+
+            return sb.ToString();
         }
     }
 }

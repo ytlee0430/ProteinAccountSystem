@@ -92,7 +92,6 @@ namespace Controller.Controller
 
         public bool ExportSaleRecordExcel(List<PhuraseDetailModel> list, string path)
         {
-            //TODO: products 格式問題，待修
             return _excelExportService.ExportExcel(list, path);
         }
 
