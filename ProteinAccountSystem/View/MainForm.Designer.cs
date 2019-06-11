@@ -49,10 +49,19 @@
             this.btnImportExcel = new System.Windows.Forms.Button();
             this.tabController = new System.Windows.Forms.TabControl();
             this.tabAddOrder = new System.Windows.Forms.TabPage();
+            this.txtSaleName = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.dtpSaleTime = new System.Windows.Forms.DateTimePicker();
+            this.label32 = new System.Windows.Forms.Label();
             this.btnCreateSale = new System.Windows.Forms.Button();
             this.dgvNewOrder = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.tabSaleRecord = new System.Windows.Forms.TabPage();
+            this.btnPrintTransferDatas = new System.Windows.Forms.Button();
+            this.dtpWriteOffMoneyEndTime = new System.Windows.Forms.DateTimePicker();
+            this.label30 = new System.Windows.Forms.Label();
+            this.dtpWriteOffMoneyStartTime = new System.Windows.Forms.DateTimePicker();
+            this.label29 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.lblDataCount = new System.Windows.Forms.Label();
@@ -113,11 +122,6 @@
             this.label23 = new System.Windows.Forms.Label();
             this.tbxInvoiceNumber = new System.Windows.Forms.TextBox();
             this.tbxCompanyName = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.dtpWriteOffMoneyStartTime = new System.Windows.Forms.DateTimePicker();
-            this.label30 = new System.Windows.Forms.Label();
-            this.dtpWriteOffMoneyEndTime = new System.Windows.Forms.DateTimePicker();
-            this.btnPrintTransferDatas = new System.Windows.Forms.Button();
             this.tabStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
             this.tabFunction.SuspendLayout();
@@ -384,6 +388,10 @@
             // tabAddOrder
             // 
             this.tabAddOrder.BackColor = System.Drawing.Color.LightGray;
+            this.tabAddOrder.Controls.Add(this.txtSaleName);
+            this.tabAddOrder.Controls.Add(this.label33);
+            this.tabAddOrder.Controls.Add(this.dtpSaleTime);
+            this.tabAddOrder.Controls.Add(this.label32);
             this.tabAddOrder.Controls.Add(this.btnCreateSale);
             this.tabAddOrder.Controls.Add(this.dgvNewOrder);
             this.tabAddOrder.Controls.Add(this.button1);
@@ -393,6 +401,43 @@
             this.tabAddOrder.Size = new System.Drawing.Size(2270, 989);
             this.tabAddOrder.TabIndex = 2;
             this.tabAddOrder.Text = "新增訂單";
+            // 
+            // txtSaleName
+            // 
+            this.txtSaleName.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.txtSaleName.Location = new System.Drawing.Point(1063, 12);
+            this.txtSaleName.Name = "txtSaleName";
+            this.txtSaleName.Size = new System.Drawing.Size(306, 55);
+            this.txtSaleName.TabIndex = 52;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label33.Location = new System.Drawing.Point(862, 19);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(197, 40);
+            this.label33.TabIndex = 52;
+            this.label33.Text = "銷售對象 :";
+            // 
+            // dtpSaleTime
+            // 
+            this.dtpSaleTime.Location = new System.Drawing.Point(599, 25);
+            this.dtpSaleTime.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpSaleTime.Name = "dtpSaleTime";
+            this.dtpSaleTime.Size = new System.Drawing.Size(214, 36);
+            this.dtpSaleTime.TabIndex = 63;
+            this.dtpSaleTime.Value = new System.DateTime(2019, 6, 4, 0, 7, 13, 0);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label32.Location = new System.Drawing.Point(433, 25);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(159, 32);
+            this.label32.TabIndex = 62;
+            this.label32.Text = "銷售時間 :";
             // 
             // btnCreateSale
             // 
@@ -460,6 +505,56 @@
             this.tabSaleRecord.TabIndex = 4;
             this.tabSaleRecord.Text = "檢視銷貨紀錄";
             this.tabSaleRecord.UseVisualStyleBackColor = true;
+            // 
+            // btnPrintTransferDatas
+            // 
+            this.btnPrintTransferDatas.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnPrintTransferDatas.Location = new System.Drawing.Point(1185, 91);
+            this.btnPrintTransferDatas.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPrintTransferDatas.Name = "btnPrintTransferDatas";
+            this.btnPrintTransferDatas.Size = new System.Drawing.Size(340, 55);
+            this.btnPrintTransferDatas.TabIndex = 62;
+            this.btnPrintTransferDatas.Text = "將已勾選列印出貨單";
+            this.btnPrintTransferDatas.UseVisualStyleBackColor = true;
+            this.btnPrintTransferDatas.Click += new System.EventHandler(this.btnPrintTransferDatas_Click);
+            // 
+            // dtpWriteOffMoneyEndTime
+            // 
+            this.dtpWriteOffMoneyEndTime.Location = new System.Drawing.Point(798, 101);
+            this.dtpWriteOffMoneyEndTime.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpWriteOffMoneyEndTime.Name = "dtpWriteOffMoneyEndTime";
+            this.dtpWriteOffMoneyEndTime.Size = new System.Drawing.Size(214, 36);
+            this.dtpWriteOffMoneyEndTime.TabIndex = 61;
+            this.dtpWriteOffMoneyEndTime.Value = new System.DateTime(2019, 6, 4, 0, 0, 0, 0);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label30.Location = new System.Drawing.Point(760, 101);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(30, 40);
+            this.label30.TabIndex = 60;
+            this.label30.Text = "-";
+            // 
+            // dtpWriteOffMoneyStartTime
+            // 
+            this.dtpWriteOffMoneyStartTime.Location = new System.Drawing.Point(531, 101);
+            this.dtpWriteOffMoneyStartTime.Margin = new System.Windows.Forms.Padding(4);
+            this.dtpWriteOffMoneyStartTime.Name = "dtpWriteOffMoneyStartTime";
+            this.dtpWriteOffMoneyStartTime.Size = new System.Drawing.Size(214, 36);
+            this.dtpWriteOffMoneyStartTime.TabIndex = 59;
+            this.dtpWriteOffMoneyStartTime.Value = new System.DateTime(2019, 6, 4, 0, 7, 13, 0);
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label29.Location = new System.Drawing.Point(365, 102);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(159, 32);
+            this.label29.TabIndex = 58;
+            this.label29.Text = "銷帳時間 :";
             // 
             // label24
             // 
@@ -1053,56 +1148,6 @@
             this.tbxCompanyName.Size = new System.Drawing.Size(306, 55);
             this.tbxCompanyName.TabIndex = 51;
             // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label29.Location = new System.Drawing.Point(365, 102);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(159, 32);
-            this.label29.TabIndex = 58;
-            this.label29.Text = "銷帳時間 :";
-            // 
-            // dtpWriteOffMoneyStartTime
-            // 
-            this.dtpWriteOffMoneyStartTime.Location = new System.Drawing.Point(531, 101);
-            this.dtpWriteOffMoneyStartTime.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpWriteOffMoneyStartTime.Name = "dtpWriteOffMoneyStartTime";
-            this.dtpWriteOffMoneyStartTime.Size = new System.Drawing.Size(214, 36);
-            this.dtpWriteOffMoneyStartTime.TabIndex = 59;
-            this.dtpWriteOffMoneyStartTime.Value = new System.DateTime(2019, 6, 4, 0, 7, 13, 0);
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label30.Location = new System.Drawing.Point(760, 101);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(30, 40);
-            this.label30.TabIndex = 60;
-            this.label30.Text = "-";
-            // 
-            // dtpWriteOffMoneyEndTime
-            // 
-            this.dtpWriteOffMoneyEndTime.Location = new System.Drawing.Point(798, 101);
-            this.dtpWriteOffMoneyEndTime.Margin = new System.Windows.Forms.Padding(4);
-            this.dtpWriteOffMoneyEndTime.Name = "dtpWriteOffMoneyEndTime";
-            this.dtpWriteOffMoneyEndTime.Size = new System.Drawing.Size(214, 36);
-            this.dtpWriteOffMoneyEndTime.TabIndex = 61;
-            this.dtpWriteOffMoneyEndTime.Value = new System.DateTime(2019, 6, 4, 0, 0, 0, 0);
-            // 
-            // btnPrintTransferDatas
-            // 
-            this.btnPrintTransferDatas.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnPrintTransferDatas.Location = new System.Drawing.Point(1185, 91);
-            this.btnPrintTransferDatas.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPrintTransferDatas.Name = "btnPrintTransferDatas";
-            this.btnPrintTransferDatas.Size = new System.Drawing.Size(340, 55);
-            this.btnPrintTransferDatas.TabIndex = 62;
-            this.btnPrintTransferDatas.Text = "將已勾選列印出貨單";
-            this.btnPrintTransferDatas.UseVisualStyleBackColor = true;
-            this.btnPrintTransferDatas.Click += new System.EventHandler(this.btnPrintTransferDatas_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -1148,6 +1193,7 @@
             this.tabFunction.ResumeLayout(false);
             this.tabController.ResumeLayout(false);
             this.tabAddOrder.ResumeLayout(false);
+            this.tabAddOrder.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNewOrder)).EndInit();
             this.tabSaleRecord.ResumeLayout(false);
             this.tabSaleRecord.PerformLayout();
@@ -1253,6 +1299,10 @@
         private System.Windows.Forms.DateTimePicker dtpWriteOffMoneyStartTime;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Button btnPrintTransferDatas;
+        private System.Windows.Forms.TextBox txtSaleName;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.DateTimePicker dtpSaleTime;
+        private System.Windows.Forms.Label label32;
     }
 }
 
