@@ -29,7 +29,8 @@ namespace CodeFirstORM.DBLayer
             var db = _database.Set<T>();
             foreach (var entity in entitys)
             {
-                var exists = predicate != null ? db.Any(predicate) : db.Any();
+                //todo:原本邏輯有誤，修後待測
+                var exists = predicate != null && db.Any(predicate);
                 if (!exists)
                 {
                     db.Add(entity);

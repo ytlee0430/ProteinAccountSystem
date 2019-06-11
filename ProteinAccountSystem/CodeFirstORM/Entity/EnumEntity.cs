@@ -12,8 +12,10 @@ namespace CodeFirstORM.Entity
 
         public int EnumValue { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
+        [Required]
         public string KeyWord { get; set; }
 
         public int? ForeignKey { get; set; }

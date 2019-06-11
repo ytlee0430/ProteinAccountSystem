@@ -8,6 +8,7 @@ using Common.Interface.Controller;
 using Common.Interface.View;
 using Controller.Controller;
 using Microsoft.Extensions.DependencyInjection;
+using Service;
 using View;
 
 namespace Setup
