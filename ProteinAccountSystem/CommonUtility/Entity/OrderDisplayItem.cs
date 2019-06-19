@@ -51,5 +51,6 @@ namespace Common.Entity
         /// </summary>
         [DisplayName("商品數量")]
         public int Count { get; set; }
+
     }
 }

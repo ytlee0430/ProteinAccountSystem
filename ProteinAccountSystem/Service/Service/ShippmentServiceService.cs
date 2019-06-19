@@ -23,6 +23,7 @@ namespace Service.Service
                 wordApp.Visible = false;
                 Object nothing = Missing.Value;
                 wordDoc = wordApp.Documents.Add(ref nothing, ref nothing, ref nothing, ref nothing);
+          
                 //頁面設置
                 wordDoc.PageSetup.PaperSize = MSWord.WdPaperSize.wdPaperA4;//設置紙張樣式為A4紙
                 wordDoc.PageSetup.Orientation = MSWord.WdOrientation.wdOrientPortrait;//排列方式為垂直方向
@@ -32,15 +33,21 @@ namespace Service.Service
                 wordDoc.PageSetup.RightMargin = 57.0f;
                 wordDoc.PageSetup.HeaderDistance = 30.0f;//頁眉位置
                 var strContent = "";
-                wordDoc.Paragraphs.Last.Range.Font.Size = 15;
+                wordDoc.Paragraphs.Last.Range.Font.Size = 18;
                 foreach (var item in result)
                 {
                     strContent += "帳號:" + item.Account + "\n";
+                    strContent += "訂單編號 :" + item.OrderNumber + "\n";
+                    strContent += "寄件編號 :" + item.DeliveryNumber + "\n";
+                    strContent += "發票號碼 :" + item.ReceiptNumber + "\n";
+
+                    strContent += "--------------------------------------------------------------------------------------------------------" + "\n";
+
                     foreach (var product in item.Products)
                     {
                         strContent += product.ProductName + "       " + " 數量 : " + product.Count + "\n";
                     }
-                    strContent += "寄件編號 :" + item.DeliveryNumber + "\n";
+                    
                     strContent += "--------------------------------------------------------------------------------------------------------" + "\n";
                 }
                 wordDoc.Paragraphs.Last.Range.Text = strContent;

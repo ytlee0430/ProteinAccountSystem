@@ -1,5 +1,6 @@
 ﻿using Common.Entity;
 using Common.Entity.Dto;
+using System;
 using System.Collections.Generic;
 
 namespace Common.Interface.Controller
@@ -18,7 +19,15 @@ namespace Common.Interface.Controller
 
         bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "");
 
-        PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat, string companyName, string invoiceNumber);
+        PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat, string companyName, string invoiceNumber, DateTime saleTime, string customerName);
+
+        /// <summary>
+        /// 將已勾選項目批量印出寄件單
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        bool CreatShippmentTicks(List<PhuraseDetailModel> list, string path);
 
         bool CreateShippmentTickets(string path);
 

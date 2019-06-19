@@ -96,5 +96,10 @@ namespace CodeFirstORM.Entity
         /// 公司統一編號
         /// </summary>
         public string CompanyInvoiceNumber { get; set; }
+
+        /// <summary>
+        /// 銷帳時間
+        /// </summary>
+        public DateTime WriteOffMoneyTime { get; set; }
     }
 }

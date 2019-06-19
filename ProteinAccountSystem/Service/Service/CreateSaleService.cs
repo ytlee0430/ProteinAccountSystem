@@ -30,7 +30,7 @@ namespace Service.Service
             });
         }
 
-        public PhuraseDetailModel CreateSale(int shoppeeFee, string receiptnumber, int saleWay, string companyName, string invoiceNumber)
+        public PhuraseDetailModel CreateSale(int shoppeeFee, string receiptnumber, int saleWay, string companyName, string invoiceNumber, DateTime saleTime, string customerName)
         {
             var model = new PhuraseDetailModel
             {
@@ -44,6 +44,8 @@ namespace Service.Service
                 CompanyName = companyName,
                 CompanyInvoiceNumber = invoiceNumber,
                 SubMoney = _phurases.Sum(x => x.Count * x.ProductMoneyWithoutTax),
+                OrderCreateTime = saleTime,
+                Account = customerName,
             };
             _phurases.Clear();
             return model;

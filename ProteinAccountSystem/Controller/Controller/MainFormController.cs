@@ -74,9 +74,9 @@ namespace Controller.Controller
             throw new NotImplementedException();
         }
 
-        public PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat, string companyName, string invoiceNumber)
+        public PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat, string companyName, string invoiceNumber, DateTime saleTime, string customerName)
         {
-            return _createSaleService.CreateSale(shopeeFee, receiptnumber, plat, companyName, invoiceNumber);
+            return _createSaleService.CreateSale(shopeeFee, receiptnumber, plat, companyName, invoiceNumber, saleTime,customerName);
         }
 
         public bool CreateShippmentTickets(string path)
@@ -173,6 +173,17 @@ namespace Controller.Controller
         public bool UpdateSalesRecords(List<PhuraseDetailModel> dataSource)
         {
             return _accountingService.UpdateSalesRecords(dataSource);
+        }
+
+        /// <summary>
+        /// 將以勾選項目印出出貨單
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public bool CreatShippmentTicks(List<PhuraseDetailModel> list, string path)
+        {
+            return _shippmentService.CreateShippmentTicket(list, path);
         }
     }
 }

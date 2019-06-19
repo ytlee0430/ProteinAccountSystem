@@ -58,7 +58,7 @@ namespace CodeFirstORM.DBLayer
         }
 
         public Expression<Func<PhuraseDetailEntity, bool>> GetDetailExp(int brand, int flavor, int package, int productionType,
-            int productionDetailType, int isWriteOffMoney, string keyWord, DateTime startTime, DateTime endTime)
+            int productionDetailType, int isWriteOffMoney, string keyWord, DateTime startTime, DateTime endTime, DateTime writeOffMoneyStartTime, DateTime writeOffMoneyEndTime, string receiptNumber)
         {
             Expression<Func<PhuraseDetailEntity, bool>> itemWhere = c => true;
 
@@ -101,6 +101,21 @@ namespace CodeFirstORM.DBLayer
             if (startTime != DateTime.MinValue)
             {
                 itemWhere = itemWhere.AndAlso(c => c.OrderCreateTime > startTime);
+            }
+
+            if (writeOffMoneyEndTime != DateTime.MaxValue)
+            {
+                itemWhere = itemWhere.AndAlso(c => c.WriteOffMoneyTime < writeOffMoneyEndTime);
+            }
+
+            if (writeOffMoneyStartTime != DateTime.MinValue)
+            {
+                itemWhere = itemWhere.AndAlso(c => c.WriteOffMoneyTime > writeOffMoneyStartTime);
+            }
+
+            if (!string.IsNullOrEmpty(receiptNumber))
+            {
+                itemWhere = itemWhere.AndAlso(c => c.ReceiptNumber == receiptNumber);
             }
             return itemWhere;
         }

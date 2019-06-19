@@ -119,6 +119,10 @@
     <Compile Include="Migrations\201906101803359_addRequire.Designer.cs">
       <DependentUpon>201906101803359_addRequire.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906190536118_time.cs" />
+    <Compile Include="Migrations\201906190536118_time.Designer.cs">
+      <DependentUpon>201906190536118_time.cs</DependentUpon>
+    </Compile>
     <Compile Include="RepositoryBase\IDatabaseContext.cs" />
     <Compile Include="RepositoryBase\IEntity.cs" />
     <Compile Include="RepositoryBase\RepositoryBase.cs" />
@@ -256,6 +260,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906101803359_addRequire.resx">
       <DependentUpon>201906101803359_addRequire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906190536118_time.resx">
+      <DependentUpon>201906190536118_time.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -17,7 +17,7 @@ namespace View
         private readonly IMainFormController _controller;
         private readonly List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
         private readonly SearchModel _searchModel = new SearchModel();
-
+        private List<int> _printIndexs = new List<int>();
         public MainForm(IMainFormController controller)
         {
             _controller = controller;
@@ -33,6 +33,7 @@ namespace View
             cbxIsWriteOffMoney.SelectedIndex = 0;
 
             dgvSaleRecords.CellClick += DgvSaleRecords_CellClick;
+            dtpSaleTime.Value = DateTime.Now;
         }
 
         /// <summary>
@@ -110,7 +111,7 @@ namespace View
 
             if (result == DialogResult.Yes)
             {
-                var model = _controller.CreateSale(Convert.ToInt32(tbxShippingFee.Text), tbxReceipyNumber.Text, cbxSaleWays.SelectedIndex, tbxCompanyName.Text, tbxInvoiceNumber.Text);
+                var model = _controller.CreateSale(Convert.ToInt32(tbxShippingFee.Text), tbxReceiptNumber.Text, cbxSaleWays.SelectedIndex, tbxCompanyName.Text, tbxInvoiceNumber.Text, dtpSaleTime.Value.Date, txtCustomerName.Text);
                 model.OrderCreateTime = DateTime.Now;
                 _controller.AddDBlientPhuraseRecord(new List<PhuraseDetailModel>() { model });
                 _controller.UpdateDBStorage(new List<PhuraseDetailModel>() { model });
@@ -142,14 +143,17 @@ namespace View
         private void btnSearch_Click(object sender, EventArgs e)
         {
             _searchModel.KeyWord = txtKeyWord.Text;
-            _searchModel.StartTime = dtpSaleStart.Value.Date;
-            _searchModel.EndTime = dtpSaleEnd.Value.Date.AddDays(1);
+            _searchModel.SaleStartTime = dtpSaleStart.Value.Date;
+            _searchModel.SaleEndTime = dtpSaleEnd.Value.Date.AddDays(1);
             _searchModel.Brand = cbxBrands.SelectedIndex;
             _searchModel.Flavor = cbxFlavors.SelectedIndex;
             _searchModel.Package = cbxPackages.SelectedIndex;
             _searchModel.ProductionType = cbxType.SelectedIndex;
             _searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
             _searchModel.IsWriteOffMoney = cbxIsWriteOffMoney.SelectedIndex - 1;
+            _searchModel.WriteOffMoneyStartTime = dtpWriteOffMoneyStartTime.Value.Date;
+            _searchModel.WriteOffMoneyEndTime = dtpWriteOffMoneyEndTime.Value.Date.AddDays(1);
+            _searchModel.receiptNumber = tbxReceiptNumber.Text;
             SearchSaleRecord();
         }
 
@@ -164,7 +168,7 @@ namespace View
             //create check box
             DataGridViewCheckBoxColumn dgvck = new DataGridViewCheckBoxColumn();
             dgvSaleRecords.Columns.Add(dgvck);
-            
+
             //create button
             DataGridViewButtonColumn dgvbt = new DataGridViewButtonColumn();
             dgvbt.Text = "顯示詳細銷貨資訊";
@@ -196,6 +200,21 @@ namespace View
         {
             if (e.ColumnIndex == 0)
             {
+                var datas = ((List<PhuraseDetailModel>)dgvSaleRecords.DataSource);
+
+                if (string.IsNullOrEmpty(datas[e.RowIndex].ReceiptNumber))
+                {
+                    MessageBox.Show("該勾選項目，尚未填入發票號碼，請重新確認", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                _printIndexs.Add(e.RowIndex);
+
+                return;
+            }
+
+            if (e.ColumnIndex == 1)
+            {
                 var row = e.RowIndex;
                 var datas = ((List<PhuraseDetailModel>)dgvSaleRecords.DataSource);
                 var data = datas[row].Products;
@@ -217,11 +236,14 @@ namespace View
                 details.ShowDialog();
             }
 
-            if (e.ColumnIndex != 11 || e.RowIndex < 0)
-                return;
-            var y = e.RowIndex;
-            var list = (List<PhuraseDetailModel>)dgvSaleRecords.DataSource;
-            list[y].IsWriteOffMoney = !list[y].IsWriteOffMoney;
+            if (e.ColumnIndex == 14)
+            {
+                //銷帳
+                var rowIndex = e.RowIndex;
+                var list = (List<PhuraseDetailModel>)dgvSaleRecords.DataSource;
+                list[rowIndex].IsWriteOffMoney = !list[rowIndex].IsWriteOffMoney;
+                list[rowIndex].WriteOffMoneyTime = DateTime.Now;
+            }
         }
 
         private void btnImportExcelWirteOffMoney_Click(object sender, EventArgs e)
@@ -288,12 +310,12 @@ namespace View
                 item.ItemCode = ProductUtilities.GetItemCodes(item);
                 MessageBox.Show(!_controller.AddDBStorage(item) ? "更新失敗!" : "更新完成!");
             }
-            catch (Exception )
+            catch (Exception)
             {
                 MessageBox.Show("輸入資料有誤，請重新確認");
                 throw;
             }
-           
+
         }
 
         private void btnUpdateSalesRecords_Click(object sender, EventArgs e)
@@ -314,8 +336,8 @@ namespace View
 
             SearchModel searchModel = new SearchModel();
             searchModel.KeyWord = txtKeyWord.Text;
-            searchModel.StartTime = dtpSaleStart.Value;
-            searchModel.EndTime = dtpSaleEnd.Value.AddDays(1);
+            searchModel.SaleStartTime = dtpSaleStart.Value;
+            searchModel.SaleEndTime = dtpSaleEnd.Value.AddDays(1);
             searchModel.Brand = cbxBrands.SelectedIndex;
             searchModel.Flavor = cbxFlavors.SelectedIndex;
             searchModel.Package = cbxPackages.SelectedIndex;
@@ -462,9 +484,18 @@ namespace View
 
         private void btnPrintTransferDatas_Click(object sender, EventArgs e)
         {
+            var list = (List<PhuraseDetailModel>)dgvSaleRecords.DataSource;
+
+            var a = new List<PhuraseDetailModel>();
+
+            for (int i = 0; i < _printIndexs.Count; i++)
+                a.Add(list[_printIndexs[i]]);
+
+            saveFileDialog1.ShowDialog();
+
+            var path = saveFileDialog1.FileName;
+            _controller.CreatShippmentTicks(a, path);
 
         }
-
-
     }
 }

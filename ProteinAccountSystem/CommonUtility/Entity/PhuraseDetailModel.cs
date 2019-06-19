@@ -49,7 +49,7 @@ namespace Common.Entity
         /// </summary>
         [DisplayName("總稅金")]
         public int TotalTax { get; set; }
-     
+
         /// <summary>
         /// 小計  稅前單價*數量
         /// </summary>
@@ -110,5 +110,11 @@ namespace Common.Entity
         /// </summary>
         [DisplayName("公司統一編號")]
         public string CompanyInvoiceNumber { get; set; }
+        
+        /// <summary>
+        /// 銷帳時間
+        /// </summary>
+        [DisplayName("銷帳時間")]
+        public DateTime WriteOffMoneyTime { get; set; }
     }
 }

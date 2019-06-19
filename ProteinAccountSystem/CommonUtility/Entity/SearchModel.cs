@@ -32,12 +32,12 @@ namespace Common.Entity
         /// <summary>
         /// 起始時間
         /// </summary>
-        public DateTime StartTime { get; set; } = DateTime.MinValue;
+        public DateTime SaleStartTime { get; set; } = DateTime.MinValue;
 
         /// <summary>
         /// 結束時間
         /// </summary>
-        public DateTime EndTime { get; set; } = DateTime.MaxValue;
+        public DateTime SaleEndTime { get; set; } = DateTime.MaxValue;
 
         /// <summary>
         /// -1全部 0未銷帳 1已銷帳
@@ -48,5 +48,19 @@ namespace Common.Entity
         /// 帳號/姓名
         /// </summary>
         public string KeyWord { get; set; }
+
+        /// <summary>
+        /// 銷帳起始時間
+        /// </summary>
+        public DateTime WriteOffMoneyStartTime { get; set; } = DateTime.MinValue;
+        /// <summary>
+        /// 銷帳結束時間
+        /// </summary>
+        public DateTime WriteOffMoneyEndTime { get; set; } = DateTime.MaxValue;
+        
+        /// <summary>
+        /// 發票號碼
+        /// </summary>
+        public string receiptNumber { get; set; }
     }
 }
