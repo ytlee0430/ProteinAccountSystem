@@ -15,33 +15,6 @@ namespace CodeFirstORM.DBLayer
         public PhuraseDetailRepository() : base(new ProteinDB())
         {
         }
-        public override PhuraseDetailEntity Get(int id)
-        {
-            return _database.Set<PhuraseDetailEntity>().Include(e => e.Products).Single(p => p.Key == id);
-        }
-
-        public override IQueryable<PhuraseDetailEntity> Get(Expression<Func<PhuraseDetailEntity, bool>> exp)
-        {
-            return _database.Set<PhuraseDetailEntity>().Include(e => e.Products).Where(exp);
-        }
-
-        public override IQueryable<PhuraseDetailEntity> GetAll()
-        {
-            return _database.Set<PhuraseDetailEntity>().Include(e => e.Products);
-        }
-
-        public List<PhuraseDetailEntity> Contains(List<PhuraseDetailEntity> entities)
-        {
-            var result = new List<PhuraseDetailEntity>();
-            foreach (var entity in entities)
-            {
-                if (!_database.Set<PhuraseDetailEntity>().Any(x => x.OrderNumber == entity.OrderNumber))
-                {
-                    result.Add(entity);
-                }
-            }
-            return result;
-        }
 
         public Expression<Func<PhuraseDetailEntity, bool>> GetDetailExp(int brand, int flavor, int package, int productionType,
             int productionDetailType, int isWriteOffMoney, string keyWord, DateTime startTime, DateTime endTime, DateTime writeOffMoneyStartTime, DateTime writeOffMoneyEndTime, string receiptNumber)

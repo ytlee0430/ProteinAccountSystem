@@ -40,12 +40,13 @@ namespace Service.Service
         public List<PhuraseDetailModel> AddSalesRecordIfNotExist(List<PhuraseDetailModel> phuraseDetailModels)
         {
             var repo = new PhuraseDetailRepository();
-            var map = Mapper.Map<List<PhuraseDetailEntity>>(phuraseDetailModels);
-            var orders = phuraseDetailModels.GroupBy(p => p.OrderNumber).Select(s => s.First()).Select(p => p.OrderNumber);
-            var lasts = repo.Contains(map);
-            var result = repo.Add(lasts);
-
-            return Mapper.Map<List<PhuraseDetailModel>>(lasts);
+            //var orders = phuraseDetailModels.GroupBy(p => p.OrderNumber).Select(s => s.First()).Select(p => p.OrderNumber);
+            var orders = phuraseDetailModels.Select(p => p.OrderNumber).Distinct();
+            var existOrders = repo.Get(p => orders.Contains(p.OrderNumber)).Select(p => p.OrderNumber).ToList();
+            phuraseDetailModels = phuraseDetailModels.Where(p => !existOrders.Contains(p.OrderNumber)).ToList();
+            var result = repo.Add(Mapper.Map<List<PhuraseDetailEntity>>(phuraseDetailModels));
+            
+            return phuraseDetailModels;
         }
 
         public void GenerateProductItemCode(List<PhuraseDetailModel> models)

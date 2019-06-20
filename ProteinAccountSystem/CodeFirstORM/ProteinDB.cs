@@ -14,6 +14,7 @@ namespace CodeFirstORM
         public ProteinDB()
             : base("name=ProteinDB")
         {
+            this.Configuration.LazyLoadingEnabled = true;
         }
 
         public DbSet<ItemEntity> Items { get; set; }

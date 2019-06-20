@@ -15,46 +15,5 @@ namespace CodeFirstORM.DBLayer
         public EnumClassRepository() : base(new ProteinDB())
         {
         }
-
-        //public override bool Add(EnumClassEntity entity)
-        //{
-        //    lock (_lock)
-        //    {
-        //        entity.Key = _database.EnumClassEntities.Any() ?
-        //            _database.EnumClassEntities.Max(e => e.Key) + 1 : 0;
-        //        return base.Add(entity);
-        //    }
-        //}
-
-        //public override bool Add(IEnumerable<EnumClassEntity> entitis)
-        //{
-        //    lock (_lock)
-        //    {
-        //        var maxKey = _database.EnumClassEntities.Any() ?
-        //            _database.EnumClassEntities.Max(e => e.Key) : -1;
-
-        //        foreach (var entity in entitis)
-        //        {
-        //            maxKey++;
-        //            entity.Key = maxKey;
-        //        }
-        //        return base.Add(entitis);
-        //    }
-        //}
-
-        public override EnumClassEntity Get(int id)
-        {
-            return _database.Set<EnumClassEntity>().Include(e => e.Enums).Single(p => p.Key == id);
-        }
-
-        public override IQueryable<EnumClassEntity> Get(Expression<Func<EnumClassEntity, bool>> exp)
-        {
-            return _database.Set<EnumClassEntity>().Include(e => e.Enums).Where(exp);
-        }
-
-        public override IQueryable<EnumClassEntity> GetAll()
-        {
-            return _database.Set<EnumClassEntity>().Include(e => e.Enums);
-        }
     }
 }
