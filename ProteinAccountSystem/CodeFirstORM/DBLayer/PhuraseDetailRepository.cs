@@ -15,33 +15,6 @@ namespace CodeFirstORM.DBLayer
         public PhuraseDetailRepository() : base(new ProteinDB())
         {
         }
-
-        //public override bool Add(PhuraseDetailEntity entity)
-        //{
-        //    lock (_lock)
-        //    {
-        //        entity.Key = _database.PhuraseDetails.Any() ?
-        //            _database.PhuraseDetails.Max(e => e.Key) + 1 : 0;
-        //        return base.Add(entity);
-        //    }
-        //}
-
-        //public override bool Add(IEnumerable<PhuraseDetailEntity> entitis)
-        //{
-        //    lock (_lock)
-        //    {
-        //        var maxKey = _database.PhuraseDetails.Any() ?
-        //            _database.PhuraseDetails.Max(e => e.Key) : -1;
-
-        //        foreach (var entity in entitis)
-        //        {
-        //            maxKey++;
-        //            entity.Key = maxKey;
-        //        }
-        //        return base.Add(entitis);
-        //    }
-        //}
-
         public override PhuraseDetailEntity Get(int id)
         {
             return _database.Set<PhuraseDetailEntity>().Include(e => e.Products).Single(p => p.Key == id);
@@ -55,6 +28,19 @@ namespace CodeFirstORM.DBLayer
         public override IQueryable<PhuraseDetailEntity> GetAll()
         {
             return _database.Set<PhuraseDetailEntity>().Include(e => e.Products);
+        }
+
+        public List<PhuraseDetailEntity> Contains(List<PhuraseDetailEntity> entities)
+        {
+            var result = new List<PhuraseDetailEntity>();
+            foreach (var entity in entities)
+            {
+                if (!_database.Set<PhuraseDetailEntity>().Any(x => x.OrderNumber == entity.OrderNumber))
+                {
+                    result.Add(entity);
+                }
+            }
+            return result;
         }
 
         public Expression<Func<PhuraseDetailEntity, bool>> GetDetailExp(int brand, int flavor, int package, int productionType,

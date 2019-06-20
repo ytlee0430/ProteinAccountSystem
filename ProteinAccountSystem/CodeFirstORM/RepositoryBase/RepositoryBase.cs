@@ -22,26 +22,7 @@ namespace CodeFirstORM.DBLayer
             _database.Set<T>().Add(entity);
             return _database.SaveChanges() > 0;
         }
-
-        public virtual IEnumerable<T> AddIfNotExists(IEnumerable<T> entitys, Expression<Func<T, bool>> predicate = null)
-        {
-            List<T> result = new List<T>();
-            var db = _database.Set<T>();
-            foreach (var entity in entitys)
-            {
-                //todo:原本邏輯有誤，修後待測
-                var exists = predicate != null && db.Any(predicate);
-                if (!exists)
-                {
-                    db.Add(entity);
-                    if (_database.SaveChanges() < 0)
-                        result.Add(entity);
-                }
-            }
-
-            return result;
-        }
-
+        
         public virtual bool Add(IEnumerable<T> entitys)
         {
             foreach (var entity in entitys)

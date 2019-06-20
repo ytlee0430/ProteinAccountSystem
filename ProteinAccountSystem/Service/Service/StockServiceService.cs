@@ -41,11 +41,11 @@ namespace Service.Service
         {
             var repo = new PhuraseDetailRepository();
             var map = Mapper.Map<List<PhuraseDetailEntity>>(phuraseDetailModels);
-            //TODO:原本邏輯有誤，修改後待測
             var orders = phuraseDetailModels.GroupBy(p => p.OrderNumber).Select(s => s.First()).Select(p => p.OrderNumber);
-            var result = repo.AddIfNotExists(map, x => orders.Contains(x.OrderNumber));
+            var lasts = repo.Contains(map);
+            var result = repo.Add(lasts);
 
-            return Mapper.Map<List<PhuraseDetailModel>>(result);
+            return Mapper.Map<List<PhuraseDetailModel>>(lasts);
         }
 
         public void GenerateProductItemCode(List<PhuraseDetailModel> models)
@@ -55,32 +55,43 @@ namespace Service.Service
                 var products = model.Products;
                 foreach (var item in products)
                 {
-                    var name = item.ProductName.ToLower();
+                    var name = item.ProductName.ToLower().Replace(" ", "");
                     var itemcode = "";
-
+                    var productName = "";
                     foreach (var pair in Enums.ProductionEnum.OrderByDescending(p => p.Value.KeyWord.Length))
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
                             itemcode += pair.Key.ToString("00");
+                            productName += pair.Value.Description;
                             break;
+                        }
+                        else
+                        {
+                            if (pair.Key == Enums.ProductionEnum.Count - 1)
+                            {
+                                itemcode += pair.Key.ToString("00");
+                                productName += pair.Value.Description;
+                            }
                         }
                     }
 
                     foreach (var pair in Enums.BrandEnum.OrderByDescending(p => p.Value.KeyWord.Length))
                     {
-                        if (name.Contains(pair.Value.KeyWord))
+                        if (name.Contains(pair.Value.KeyWord.ToLower()))
                         {
                             itemcode += pair.Key.ToString("00");
+                            productName += pair.Value.Description;
                             break;
                         }
                     }
-
+                    //TODO: 要判斷其他
                     foreach (var pair in Enums.ProductionDetailEnum.OrderByDescending(p => p.Value.KeyWord.Length))
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
                             itemcode += pair.Key.ToString("00");
+                            productName += pair.Value.Description;
                             break;
                         }
                     }
@@ -90,6 +101,7 @@ namespace Service.Service
                         if (name.Contains(pair.Value.KeyWord))
                         {
                             itemcode += pair.Key.ToString("00");
+                            productName += pair.Value.Description;
                             break;
                         }
                     }
@@ -99,10 +111,12 @@ namespace Service.Service
                         if (name.Contains(pair.Value.KeyWord))
                         {
                             itemcode += pair.Key.ToString("00");
+                            productName += pair.Value.Description;
                             break;
                         }
                     }
                     item.ItemCode = itemcode;
+                    item.ProductName = productName;
                 }
             }
         }
@@ -141,7 +155,7 @@ namespace Service.Service
             var itemWhere = repo.GetDetailExp(searchModel.Brand, searchModel.Flavor, searchModel.Package,
                 searchModel.ProductionType, searchModel.ProductionDetailType,
                 searchModel.IsWriteOffMoney, searchModel.KeyWord, searchModel.SaleStartTime, searchModel.SaleEndTime
-                , searchModel.WriteOffMoneyStartTime, searchModel.WriteOffMoneyEndTime,searchModel.receiptNumber);
+                , searchModel.WriteOffMoneyStartTime, searchModel.WriteOffMoneyEndTime, searchModel.receiptNumber);
             return Mapper.Map<List<PhuraseDetailModel>>(repo.Get(itemWhere)).OrderByDescending(o => o.OrderCreateTime).ToList();
         }
 

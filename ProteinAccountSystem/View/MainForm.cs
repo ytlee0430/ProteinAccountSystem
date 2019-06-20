@@ -34,6 +34,8 @@ namespace View
 
             dgvSaleRecords.CellClick += DgvSaleRecords_CellClick;
             dtpSaleTime.Value = DateTime.Now;
+            //dtpWriteOffMoneyEndTime.Value = DateTime.;
+            //dtpWriteOffMoneyStartTime.Value = DateTime.MinValue;
         }
 
         /// <summary>
@@ -151,9 +153,15 @@ namespace View
             _searchModel.ProductionType = cbxType.SelectedIndex;
             _searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
             _searchModel.IsWriteOffMoney = cbxIsWriteOffMoney.SelectedIndex - 1;
-            _searchModel.WriteOffMoneyStartTime = dtpWriteOffMoneyStartTime.Value.Date;
-            _searchModel.WriteOffMoneyEndTime = dtpWriteOffMoneyEndTime.Value.Date.AddDays(1);
+
+            if (cbxIsSearchWriteOffMoneyTime.Checked)
+            {
+                _searchModel.WriteOffMoneyStartTime = dtpWriteOffMoneyStartTime.Value.Date;
+                _searchModel.WriteOffMoneyEndTime = dtpWriteOffMoneyEndTime.Value.Date.AddDays(1);
+            }
+
             _searchModel.receiptNumber = tbxReceiptNumber.Text;
+
             SearchSaleRecord();
         }
 
@@ -496,6 +504,28 @@ namespace View
             var path = saveFileDialog1.FileName;
             _controller.CreatShippmentTicks(a, path);
 
+        }
+
+        private void btnDeleteItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxIsSearchWriteOffMoneyTime_CheckedChanged(object sender, EventArgs e)
+        {
+            var cbx = (CheckBox)sender;
+            if (cbx.Checked)
+            {
+                dtpWriteOffMoneyStartTime.Enabled = true;
+                dtpWriteOffMoneyEndTime.Enabled = true;
+            }
+            else
+            {
+                dtpWriteOffMoneyStartTime.Enabled = false;
+                dtpWriteOffMoneyEndTime.Enabled = false;
+                _searchModel.WriteOffMoneyStartTime = DateTime.MinValue;
+                _searchModel.WriteOffMoneyEndTime = DateTime.MaxValue;
+            }
         }
     }
 }

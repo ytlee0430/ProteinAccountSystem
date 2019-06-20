@@ -61,10 +61,10 @@ namespace Common.Enum
         [Description("零卡高纖蛋白棒")]
         MyBarZero = 18,
 
-        [Description("遙遙杯")]
+        [Description("搖搖杯")]
         Sharker = 19,
 
-        [Description("鋼材遙遙杯")]
+        [Description("鋼材搖搖杯")]
         SteelSharker = 20,
 
         [Description("握力器")]

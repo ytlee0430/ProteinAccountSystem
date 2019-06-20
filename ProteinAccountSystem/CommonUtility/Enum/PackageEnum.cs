@@ -7,19 +7,19 @@ namespace Common.Enum
         [Description("全部")]
         All = 0,
 
-        [Description("1 kg")]
+        [Description("1kg")]
         OneKg = 01,
 
-        [Description("2.5 kg")]
+        [Description("2.5kg")]
         TwoHalfKg = 02,
 
-        [Description("5 kg")]
+        [Description("5kg")]
         FiveKg = 03,
 
-        [Description("400 ml")]
+        [Description("400ml")]
         FourHundredMili = 04,
 
-        [Description("600 ml")]
+        [Description("600ml")]
         SixHundredMili = 05,
 
         [Description("無分包裝")]

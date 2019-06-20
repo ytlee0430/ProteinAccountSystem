@@ -36,19 +36,18 @@ namespace Service.Service
                 wordDoc.Paragraphs.Last.Range.Font.Size = 18;
                 foreach (var item in result)
                 {
-                    strContent += "帳號:" + item.Account + "\n";
-                    strContent += "訂單編號 :" + item.OrderNumber + "\n";
-                    strContent += "寄件編號 :" + item.DeliveryNumber + "\n";
-                    strContent += "發票號碼 :" + item.ReceiptNumber + "\n";
+                    strContent += "帳號:" + item.Account +"           "+ "訂單編號 :" + item.OrderNumber +"\n";
+                    //strContent += "訂單編號 :" + item.OrderNumber + "\n";
+                    strContent += "寄件編號 :" + item.DeliveryNumber +"         "+ "發票號碼 :" + item.ReceiptNumber + "\n";
+                    //strContent += "發票號碼 :" + item.ReceiptNumber + "\n";
 
-                    strContent += "--------------------------------------------------------------------------------------------------------" + "\n";
 
                     foreach (var product in item.Products)
                     {
                         strContent += product.ProductName + "       " + " 數量 : " + product.Count + "\n";
                     }
                     
-                    strContent += "--------------------------------------------------------------------------------------------------------" + "\n";
+                    strContent += "---------------------------------------------------------------------------------------" + "\n";
                 }
                 wordDoc.Paragraphs.Last.Range.Text = strContent;
 

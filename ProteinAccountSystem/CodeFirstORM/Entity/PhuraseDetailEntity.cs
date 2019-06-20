@@ -100,6 +100,6 @@ namespace CodeFirstORM.Entity
         /// <summary>
         /// 銷帳時間
         /// </summary>
-        public DateTime WriteOffMoneyTime { get; set; }
+        public DateTime? WriteOffMoneyTime { get; set; }
     }
 }
