@@ -13,7 +13,7 @@ namespace Service.Service
 
         public void AddPhuraseProduct(Item item, int count, int saleMoney)
         {
-            var name = Enums.BrandEnum[item.Brand].Description + " " + Enums.ProductionEnum[item.ProductionType].Description + " " + Enums.BrandEnum[item.ProductionDetailType].Description + " " + Enums.FlavorEnum[item.Flavor].Description + " " + Enums.PackageEnum[item.Package].Description;
+            var name = Enums.BrandEnum[item.Brand].Description + " " + Enums.ProductionEnum[item.ProductionType].Description + " " + Enums.ProductionDetailEnum[item.ProductionDetailType].Description + " " + Enums.FlavorEnum[item.Flavor].Description + " " + Enums.PackageEnum[item.Package].Description;
 
             _phurases.Add(new PhuraseProductModel()
             {
@@ -49,6 +49,12 @@ namespace Service.Service
             };
             _phurases.Clear();
             return model;
+        }
+
+        public void DeletePhuraseProduct(string itemCode)
+        {
+            var item = _phurases.FirstOrDefault(x => x.ItemCode == itemCode);
+            _phurases.Remove(item);
         }
     }
 }

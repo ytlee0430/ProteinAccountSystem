@@ -8,5 +8,6 @@ namespace Common.Interface.Service
         void AddPhuraseProduct(Item item, int count, int saleMoney);
 
         PhuraseDetailModel CreateSale(int shoppeeFee, string receiptnumber, int saleWay, string companyName, string invoiceNumber, DateTime saleTime, string customerName);
+        void DeletePhuraseProduct(string itemCode);
     }
 }

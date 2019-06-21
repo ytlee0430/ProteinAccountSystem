@@ -15,5 +15,10 @@ namespace CodeFirstORM.DBLayer
         public EnumClassRepository() : base(new ProteinDB())
         {
         }
+
+        public override IQueryable<EnumClassEntity> GetAll()
+        {
+            return _database.Set<EnumClassEntity>().Include(x => x.Enums);
+        }
     }
 }

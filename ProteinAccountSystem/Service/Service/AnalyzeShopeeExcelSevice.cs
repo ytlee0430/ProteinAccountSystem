@@ -26,6 +26,8 @@ namespace Service.Service
             var deliveryIndex = 0;
             var itemIndex = 0;
             var flavorIndex = 0;
+            var productPriceIndex = 0;
+            var productSalePriceIndex = 0;
             for (int i = 0; i < sheet.Rows[0].Cells.Count(); i++)
             {
                 if (sheet.Rows[0].Cells[i].DisplayedText == "數量")
@@ -35,8 +37,15 @@ namespace Service.Service
 
                 if (sheet.Rows[0].Cells[i].DisplayedText == "商品名稱 (品)")
                     itemIndex = i;
+
                 if (sheet.Rows[0].Cells[i].DisplayedText == "商品選項名稱 (品)")
                     flavorIndex = i;
+
+                if (sheet.Rows[0].Cells[i].DisplayedText == "商品原價 (品)")
+                    productPriceIndex = i;
+
+                if (sheet.Rows[0].Cells[i].DisplayedText == "商品活動價格 (品)")
+                    productSalePriceIndex = i;
             }
 
             for (int i = 1; i < sheet.Rows.Count(); i++)
@@ -48,6 +57,8 @@ namespace Service.Service
                 data.OrderNumber = cells[0].DisplayedText;
                 //[現貨] 英國官方授權經銷 MYPROTEIN 濃縮乳清蛋白 2.5 KG  開立發票、紙箱包裝  台肌店-口味:藍莓起司蛋糕
                 var name = string.IsNullOrEmpty(cells[flavorIndex].DisplayedText) ? cells[itemIndex].DisplayedText + "-口味:無口味" : cells[itemIndex].DisplayedText + "-口味:" + cells[flavorIndex].DisplayedText;
+                var productPrice = string.IsNullOrEmpty(cells[productSalePriceIndex].DisplayedText) ? cells[productPriceIndex].DisplayedText : cells[productSalePriceIndex].DisplayedText;
+
                 if (!result.TryGetValue(data.OrderNumber, out var currenData))
                 {
                     data.Account = cells[3].DisplayedText;
@@ -58,18 +69,17 @@ namespace Service.Service
                     data.TotalTax = Convert.ToInt32(Convert.ToDouble(cells[7].DisplayedText) * 0.05);
                     data.TransferMoneyWithoutTax = Convert.ToInt32(Convert.ToDouble(cells[6].DisplayedText) / 1.05);
                     data.SubMoney = Convert.ToInt32(Convert.ToDouble(cells[5].DisplayedText) / 1.05) * Convert.ToInt32(cells[count].DisplayedText);
+
                     data.Products = new List<PhuraseProductModel>(){
-                    new PhuraseProductModel()
+                        new PhuraseProductModel()
                     {
                         ProductName=name, // 需要再蝦皮編輯商品貨號
                         Count=Convert.ToInt32(cells[count].DisplayedText),
-                        ProductMoney=Convert.ToInt32(Convert.ToDouble( cells[5].DisplayedText)),
-                        ProductMoneyWithoutTax=Convert.ToInt32( Convert.ToDouble(cells[5].DisplayedText)/1.05),
+                        ProductMoney=Convert.ToInt32(Convert.ToDouble( productPrice)),
+                        ProductMoneyWithoutTax=Convert.ToInt32( Convert.ToDouble( productPrice)/1.05),
                     } };
                     data.DeliveryNumber = cells[deliveryIndex].DisplayedText;
-                    var remark = string.IsNullOrEmpty(cells[44].DisplayedText)
-                        ? string.Empty
-                        : $"買家:{cells[44].DisplayedText} ;";
+                    var remark = string.IsNullOrEmpty(cells[44].DisplayedText) ? string.Empty : $"買家:{cells[44].DisplayedText} ;";
                     remark = string.IsNullOrEmpty(cells[45].DisplayedText) ? remark : $"{remark}賣家:{cells[45].DisplayedText}";
                     data.Remark = remark;
                     result.Add(data.OrderNumber, data);
@@ -80,9 +90,8 @@ namespace Service.Service
                     {
                         ProductName = name, // 需要再蝦皮編輯商品貨號
                         Count = Convert.ToInt32(Convert.ToDouble(cells[count].DisplayedText)),
-                        ProductMoney = Convert.ToInt32(Convert.ToDouble(cells[5].DisplayedText)),
-                        ProductMoneyWithoutTax = Convert.ToInt32(Convert.ToDouble(cells[5].DisplayedText) / 1.05),
-                        //ItemCode=cells[22].ToString()+cells[23].ToString()
+                        ProductMoney = Convert.ToInt32(Convert.ToDouble(productPrice)),
+                        ProductMoneyWithoutTax = Convert.ToInt32(Convert.ToDouble(productPrice) / 1.05),
                     });
                 }
             }

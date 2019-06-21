@@ -45,7 +45,7 @@ namespace Service.Service
             var existOrders = repo.Get(p => orders.Contains(p.OrderNumber)).Select(p => p.OrderNumber).ToList();
             phuraseDetailModels = phuraseDetailModels.Where(p => !existOrders.Contains(p.OrderNumber)).ToList();
             var result = repo.Add(Mapper.Map<List<PhuraseDetailEntity>>(phuraseDetailModels));
-            
+
             return phuraseDetailModels;
         }
 
@@ -64,7 +64,7 @@ namespace Service.Service
                         if (name.Contains(pair.Value.KeyWord))
                         {
                             itemcode += pair.Key.ToString("00");
-                            productName += pair.Value.Description;
+                            productName += pair.Value.Description + "-";
                             break;
                         }
                         else
@@ -72,7 +72,7 @@ namespace Service.Service
                             if (pair.Key == Enums.ProductionEnum.Count - 1)
                             {
                                 itemcode += pair.Key.ToString("00");
-                                productName += pair.Value.Description;
+                                productName += pair.Value.Description + "-";
                             }
                         }
                     }
@@ -82,7 +82,7 @@ namespace Service.Service
                         if (name.Contains(pair.Value.KeyWord.ToLower()))
                         {
                             itemcode += pair.Key.ToString("00");
-                            productName += pair.Value.Description;
+                            productName += pair.Value.Description + "-";
                             break;
                         }
                     }
@@ -92,7 +92,7 @@ namespace Service.Service
                         if (name.Contains(pair.Value.KeyWord))
                         {
                             itemcode += pair.Key.ToString("00");
-                            productName += pair.Value.Description;
+                            productName += pair.Value.Description + "-";
                             break;
                         }
                     }
@@ -102,7 +102,7 @@ namespace Service.Service
                         if (name.Contains(pair.Value.KeyWord))
                         {
                             itemcode += pair.Key.ToString("00");
-                            productName += pair.Value.Description;
+                            productName += pair.Value.Description + "-";
                             break;
                         }
                     }

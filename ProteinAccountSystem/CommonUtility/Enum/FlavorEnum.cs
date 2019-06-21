@@ -156,5 +156,11 @@ namespace Common.Enum
         /// </summary>
         [Description("巧克力")]
         Chocalate = 25,
+        
+        /// <summary>
+        /// 花生
+        /// </summary>
+        [Description("花生")]
+        Peanut =26
     }
 }

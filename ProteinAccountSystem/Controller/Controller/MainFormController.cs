@@ -68,7 +68,10 @@ namespace Controller.Controller
         {
             _createSaleService.AddPhuraseProduct(item, count, saleMoney);
         }
-
+        public void DeletePhuraseProduct(string itemCode)
+        {
+            _createSaleService.DeletePhuraseProduct(itemCode);
+        }
         public bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "")
         {
             throw new NotImplementedException();
@@ -76,7 +79,7 @@ namespace Controller.Controller
 
         public PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat, string companyName, string invoiceNumber, DateTime saleTime, string customerName)
         {
-            return _createSaleService.CreateSale(shopeeFee, receiptnumber, plat, companyName, invoiceNumber, saleTime,customerName);
+            return _createSaleService.CreateSale(shopeeFee, receiptnumber, plat, companyName, invoiceNumber, saleTime, customerName);
         }
 
         public bool CreateShippmentTickets(string path)

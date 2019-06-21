@@ -18,6 +18,8 @@ namespace View
         private readonly List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
         private readonly SearchModel _searchModel = new SearchModel();
         private List<int> _printIndexs = new List<int>();
+        private List<int> _deleteIndexs = new List<int>();
+
         public MainForm(IMainFormController controller)
         {
             _controller = controller;
@@ -33,9 +35,52 @@ namespace View
             cbxIsWriteOffMoney.SelectedIndex = 0;
 
             dgvSaleRecords.CellClick += DgvSaleRecords_CellClick;
+            dgvNewOrder.CellClick += DgvNewOrder_CellClick;
             dtpSaleTime.Value = DateTime.Now;
-            //dtpWriteOffMoneyEndTime.Value = DateTime.;
-            //dtpWriteOffMoneyStartTime.Value = DateTime.MinValue;
+
+
+            dgvSaleRecords.Columns.Clear();
+            DataGridViewCheckBoxColumn dgvck = new DataGridViewCheckBoxColumn();
+            dgvck.TrueValue = true;
+            dgvck.FalseValue = false;
+
+            dgvNewOrder.Columns.Add(dgvck);
+
+        }
+
+        private void DgvNewOrder_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                //TODO:有時候會有例外
+                if (e.ColumnIndex == 0)
+                {
+                    var datas = ((List<OrderDisplayItem>)dgvNewOrder.DataSource);
+                    if (datas == null)
+                        return;
+
+                    var itemcode = datas[e.RowIndex].ItemCode;
+                    var a = ((DataGridViewCheckBoxCell)((DataGridView)sender).Rows[e.RowIndex].Cells[0]);
+                    if (a.Value == null || a.Value == a.FalseValue)
+                    {
+                        a.Value = a.TrueValue;
+                        _deleteIndexs.Add(e.RowIndex);
+                    }
+                    else
+                    {
+                        a.Value = a.FalseValue;
+                        _deleteIndexs.Remove(e.RowIndex);
+                    }
+
+                    return;
+                }
+            }
+            catch (Exception E)
+            {
+
+                throw;
+            }
+
         }
 
         /// <summary>
@@ -99,9 +144,10 @@ namespace View
                     Count = (int)nudCount.Value,
                     Price = Convert.ToInt32(tbxSalePrice.Text),
                 });
+
                 dgvNewOrder.DataSource = _displayItems.ToList();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("輸入參數有錯，請重新確認");
             }
@@ -508,7 +554,14 @@ namespace View
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
-
+            var a = (List<OrderDisplayItem>)dgvNewOrder.DataSource;
+            foreach (var index in _deleteIndexs)
+            {
+                _controller.DeletePhuraseProduct(a[index].ItemCode);
+                _displayItems.Remove(a[index]);
+            }
+            _deleteIndexs.Clear();
+            dgvNewOrder.DataSource = _displayItems;
         }
 
         private void cbxIsSearchWriteOffMoneyTime_CheckedChanged(object sender, EventArgs e)

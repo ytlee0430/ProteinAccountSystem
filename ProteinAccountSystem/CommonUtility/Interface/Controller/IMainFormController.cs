@@ -17,6 +17,8 @@ namespace Common.Interface.Controller
 
         void AddPhuraseProduct(Item item, int count, int saleMoney);
 
+        void DeletePhuraseProduct(string itemCode);
+
         bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "");
 
         PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat, string companyName, string invoiceNumber, DateTime saleTime, string customerName);

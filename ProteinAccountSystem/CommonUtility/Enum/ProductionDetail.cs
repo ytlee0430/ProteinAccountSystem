@@ -58,7 +58,7 @@ namespace Common.Enum
         [Description("杏仁醬")]
         AlmondButter = 17,
 
-        [Description("零卡高纖蛋白棒")]
+        [Description("低卡高纖蛋白棒")]
         MyBarZero = 18,
 
         [Description("搖搖杯")]
