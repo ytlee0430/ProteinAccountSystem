@@ -60,7 +60,6 @@ namespace Setup
             services.AddTransient<IAnalyzeExcelService, AnalyzeShopeeExcelSevice>();
             services.AddTransient<IStockService, StockServiceService>();
             services.AddTransient<IShippmentService, ShippmentService>();
-            services.AddTransient<ICreateSaleService, CreateSaleService>();
             services.AddTransient<IAccountingService, AccountingService>();
             services.AddTransient<IExcelExportService, ExcelExportService>();
             services.AddTransient<IEnumService, EnumService>();

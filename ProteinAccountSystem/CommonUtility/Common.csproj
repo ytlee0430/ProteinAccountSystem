@@ -64,11 +64,11 @@
     <Compile Include="Enum\PackageEnum.cs" />
     <Compile Include="Enum\PlatEnum.cs" />
     <Compile Include="Enum\ProductionDetail.cs" />
+    <Compile Include="Enum\OrderState.cs" />
     <Compile Include="Enum\ProductionType.cs" />
     <Compile Include="Interface\Controller\IMainFormController.cs" />
     <Compile Include="Interface\Service\IExcelExportService.cs" />
     <Compile Include="Interface\Service\IAccountingService.cs" />
-    <Compile Include="Interface\Service\ICreateSaleService.cs" />
     <Compile Include="Interface\Service\IAnalyzeExcelService.cs" />
     <Compile Include="Interface\Service\IShippmentService.cs" />
     <Compile Include="Interface\Service\IEnumService.cs" />

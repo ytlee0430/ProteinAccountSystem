@@ -24,7 +24,6 @@ namespace Service.Service
                 wordApp.Visible = false;
                 Object nothing = Missing.Value;
                 wordDoc = wordApp.Documents.Add(ref nothing, ref nothing, ref nothing, ref nothing);
-                //TODO:分頁
                 //頁面設置
                 wordDoc.PageSetup.PaperSize = MSWord.WdPaperSize.wdPaperA4;//設置紙張樣式為A4紙
                 wordDoc.PageSetup.Orientation = MSWord.WdOrientation.wdOrientPortrait;//排列方式為垂直方向
@@ -33,7 +32,7 @@ namespace Service.Service
                 wordDoc.PageSetup.LeftMargin = 57.0f;
                 wordDoc.PageSetup.RightMargin = 57.0f;
                 wordDoc.PageSetup.HeaderDistance = 30.0f;//頁眉位置
-                
+
                 //var strContent = "";
                 wordDoc.Paragraphs.Last.Range.Font.Size = 15;
                 foreach (var item in result)
@@ -50,7 +49,7 @@ namespace Service.Service
                     var index = 1;
                     foreach (var product in item.Products)
                     {
-                        strContent +=index+"."+ product.ProductName + "\n" + "數量:" + product.Count + "    " + "金額:" + product.ProductMoney + "\n";
+                        strContent += index + "." + product.ProductName + "\n" + "數量:" + product.Count + "    " + "金額:" + product.ProductMoney + "\n";
                         index++;
                     }
 

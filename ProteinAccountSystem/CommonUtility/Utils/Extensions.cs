@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -54,7 +55,7 @@ namespace Common.Utils
                 else
                 {
                     var displayName = attributes.Cast<DisplayNameAttribute>().Single().DisplayName;
-                    tb.Columns.Add(string.IsNullOrEmpty(displayName) ? prop.Name : displayName, type);
+                    tb.Columns.Add(String.IsNullOrEmpty(displayName) ? prop.Name : displayName, type);
                 }
             }
 
@@ -63,7 +64,7 @@ namespace Common.Utils
                 var values = new object[props.Length];
                 for (var i = 0; i < props.Length; i++)
                 {
-                    var enumerable = props[i].GetValue(item, null) as System.Collections.IEnumerable;
+                    var enumerable = props[i].GetValue(item, null) as IEnumerable;
                     if (enumerable == null || (enumerable is string))
                         values[i] = props[i].GetValue(item, null);
                     else
@@ -76,7 +77,7 @@ namespace Common.Utils
             return tb;
         }
 
-        private static string IEnumerableToString(System.Collections.IEnumerable items)
+        private static string IEnumerableToString(IEnumerable items)
         {
             var sb = new StringBuilder();
             Type type = null;
@@ -95,11 +96,11 @@ namespace Common.Utils
                     else
                     {
                         var displayName = attributes.Cast<DisplayNameAttribute>().Single().DisplayName;
-                        var title = string.IsNullOrEmpty(displayName) ? prop.Name : displayName;
+                        var title = String.IsNullOrEmpty(displayName) ? prop.Name : displayName;
                         sb.Append($"{title} : ");
                     }
 
-                    var enumerable = props[i].GetValue(item, null) as System.Collections.IEnumerable;
+                    var enumerable = props[i].GetValue(item, null) as IEnumerable;
                     if (enumerable == null || (enumerable is string))
                         sb.Append(props[i].GetValue(item, null));
                     else
@@ -109,6 +110,28 @@ namespace Common.Utils
             }
 
             return sb.ToString();
+        }
+
+        // 取得 Enum 列舉 Attribute Description 設定值
+        public static string GetDescriptionText(this System.Enum source)
+        {
+            FieldInfo fi = source.GetType().GetField(source.ToString());
+            DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(
+                typeof(DescriptionAttribute), false);
+            return attributes.Length > 0 ? attributes[0].Description : source.ToString();
+        }
+
+        public static System.Enum ConvertDescriptionToEnum(this string str, System.Enum enu)
+        {
+            foreach (System.Enum brand in System.Enum.GetValues(enu.GetType()))
+            {
+                if (str.Equals(brand.GetDescriptionText()))
+                {
+                    return brand;
+                }
+            }
+
+            return null;
         }
     }
 }

@@ -49,6 +49,12 @@ namespace Service.Service
             return phuraseDetailModels;
         }
 
+        public bool DeleteSale(List<int> deleteIndexes)
+        {
+            var repo = new PhuraseDetailRepository();
+            return repo.Remove(r => deleteIndexes.Contains(r.Key));
+        }
+
         public void GenerateProductItemCode(List<PhuraseDetailModel> models)
         {
             foreach (var model in models)
@@ -86,9 +92,11 @@ namespace Service.Service
                             break;
                         }
                     }
-                    //TODO: 要判斷其他
+
                     foreach (var pair in Enums.ProductionDetailEnum.OrderByDescending(p => p.Value.KeyWord.Length))
                     {
+                        if (pair.Value.KeyWord.Equals("全部"))
+                            continue;
                         if (name.Contains(pair.Value.KeyWord))
                         {
                             itemcode += pair.Key.ToString("00");

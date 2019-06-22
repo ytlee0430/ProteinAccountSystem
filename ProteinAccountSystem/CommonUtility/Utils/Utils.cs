@@ -11,16 +11,6 @@ namespace Common.Utils
 {
     public static class Utils
     {
-        // 取得 Enum 列舉 Attribute Description 設定值
-        public static string GetDescriptionText(this System.Enum source)
-        {
-            FieldInfo fi = source.GetType().GetField(source.ToString());
-            DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(
-             typeof(DescriptionAttribute), false);
-            if (attributes.Length > 0) return attributes[0].Description;
-            else return source.ToString();
-        }
-
         //public async Task<string> PostAsync(string url, object data)
         //{
         //    //var Client = new HttpClient();

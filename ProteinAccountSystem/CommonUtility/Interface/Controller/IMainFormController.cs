@@ -15,13 +15,7 @@ namespace Common.Interface.Controller
 
         bool AddEnumValue(string description, string keyword, int enumClass, int value);
 
-        void AddPhuraseProduct(Item item, int count, int saleMoney);
-
-        void DeletePhuraseProduct(string itemCode);
-
         bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "");
-
-        PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat, string companyName, string invoiceNumber, DateTime saleTime, string customerName);
 
         /// <summary>
         /// 將已勾選項目批量印出寄件單
@@ -54,5 +48,10 @@ namespace Common.Interface.Controller
         bool UpdateDBStorage(List<PhuraseDetailModel> list);
 
         bool UpdateSalesRecords(List<PhuraseDetailModel> dataSource);
+
+        void CreateSale(int shopeeFee, string receiptnumber, int plat, string companyName, string invoiceNumber,
+            DateTime saleTime, string customerName, List<PhuraseProductModel> phurases);
+
+        bool DeleteSale(List<int> deleteIndexes);
     }
 }

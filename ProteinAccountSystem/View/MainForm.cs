@@ -17,8 +17,7 @@ namespace View
         private readonly IMainFormController _controller;
         private readonly List<OrderDisplayItem> _displayItems = new List<OrderDisplayItem>();
         private readonly SearchModel _searchModel = new SearchModel();
-        private List<int> _printIndexs = new List<int>();
-        private List<int> _deleteIndexs = new List<int>();
+        private readonly List<PhuraseProductModel> _phurases = new List<PhuraseProductModel>();
 
         public MainForm(IMainFormController controller)
         {
@@ -38,49 +37,16 @@ namespace View
             dgvNewOrder.CellClick += DgvNewOrder_CellClick;
             dtpSaleTime.Value = DateTime.Now;
 
-
             dgvSaleRecords.Columns.Clear();
             DataGridViewCheckBoxColumn dgvck = new DataGridViewCheckBoxColumn();
             dgvck.TrueValue = true;
             dgvck.FalseValue = false;
 
             dgvNewOrder.Columns.Add(dgvck);
-
         }
 
         private void DgvNewOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                //TODO:有時候會有例外
-                if (e.ColumnIndex == 0)
-                {
-                    var datas = ((List<OrderDisplayItem>)dgvNewOrder.DataSource);
-                    if (datas == null)
-                        return;
-
-                    var itemcode = datas[e.RowIndex].ItemCode;
-                    var a = ((DataGridViewCheckBoxCell)((DataGridView)sender).Rows[e.RowIndex].Cells[0]);
-                    if (a.Value == null || a.Value == a.FalseValue)
-                    {
-                        a.Value = a.TrueValue;
-                        _deleteIndexs.Add(e.RowIndex);
-                    }
-                    else
-                    {
-                        a.Value = a.FalseValue;
-                        _deleteIndexs.Remove(e.RowIndex);
-                    }
-
-                    return;
-                }
-            }
-            catch (Exception E)
-            {
-
-                throw;
-            }
-
         }
 
         /// <summary>
@@ -131,7 +97,20 @@ namespace View
                 };
                 item.ItemCode = ProductUtilities.GetItemCodes(item);
 
-                _controller.AddPhuraseProduct(item, (int)nudCount.Value, Convert.ToInt32(tbxSalePrice.Text));
+                var name = Enums.BrandEnum[item.Brand].Description + " " + Enums.ProductionEnum[item.ProductionType].Description + " " + Enums.ProductionDetailEnum[item.ProductionDetailType].Description + " " + Enums.FlavorEnum[item.Flavor].Description + " " + Enums.PackageEnum[item.Package].Description;
+                _phurases.Add(new PhuraseProductModel()
+                {
+                    ItemCode = item.ItemCode,
+                    Count = (int)nudCount.Value,
+                    ProductMoney = Convert.ToInt32(tbxSalePrice.Text),
+                    ProductMoneyWithoutTax = Convert.ToInt32(Convert.ToInt32(tbxSalePrice.Text) / 1.05),
+                    Brand = item.Brand,
+                    Flavor = item.Flavor,
+                    Package = item.Package,
+                    ProductionDetailType = item.ProductionDetailType,
+                    ProductionType = item.ProductionType,
+                    ProductName = name,
+                });
 
                 _displayItems.Add(new OrderDisplayItem
                 {
@@ -161,13 +140,11 @@ namespace View
             {
                 var time = dtpSaleTime.Value.Date == DateTime.Now ? DateTime.Now : dtpSaleTime.Value.Date;
 
-                var model = _controller.CreateSale(Convert.ToInt32(tbxShippingFee.Text), tbxReceiptNumber.Text, cbxSaleWays.SelectedIndex, tbxCompanyName.Text, tbxInvoiceNumber.Text, time, txtCustomerName.Text);
-                model.OrderState = 3;
-                _controller.AddDBlientPhuraseRecord(new List<PhuraseDetailModel>() { model });
-                _controller.UpdateDBStorage(new List<PhuraseDetailModel>() { model });
+                _controller.CreateSale(Convert.ToInt32(tbxShippingFee.Text), tbxReceiptNumber.Text, cbxSaleWays.SelectedIndex,
+                    tbxCompanyName.Text, tbxInvoiceNumber.Text, time, txtCustomerName.Text, _phurases);
 
                 _displayItems.Clear();
-
+                _phurases.Clear();
                 dgvNewOrder.DataSource = _displayItems;
                 dgvNewOrder.AutoResizeColumns(
                     DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
@@ -223,6 +200,8 @@ namespace View
 
             //create check box
             DataGridViewCheckBoxColumn dgvck = new DataGridViewCheckBoxColumn();
+            dgvck.TrueValue = true;
+            dgvck.FalseValue = false;
             dgvSaleRecords.Columns.Add(dgvck);
 
             //create button
@@ -254,21 +233,6 @@ namespace View
 
         private void DgvSaleRecords_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
-            {
-                var datas = ((List<PhuraseDetailModel>)dgvSaleRecords.DataSource);
-
-                if (string.IsNullOrEmpty(datas[e.RowIndex].ReceiptNumber))
-                {
-                    MessageBox.Show("該勾選項目，尚未填入發票號碼，請重新確認", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                _printIndexs.Add(e.RowIndex);
-
-                return;
-            }
-
             if (e.ColumnIndex == 1)
             {
                 var row = e.RowIndex;
@@ -312,9 +276,7 @@ namespace View
             }
             catch (Exception)
             {
-
             }
-
         }
 
         private void btnUpdateItem_Click(object sender, EventArgs e)
@@ -371,7 +333,6 @@ namespace View
                 MessageBox.Show("輸入資料有誤，請重新確認");
                 throw;
             }
-
         }
 
         private void btnUpdateSalesRecords_Click(object sender, EventArgs e)
@@ -540,36 +501,46 @@ namespace View
 
         private void btnPrintTransferDatas_Click(object sender, EventArgs e)
         {
-            if (_printIndexs.Count==0)
+            var datas = ((List<PhuraseDetailModel>)dgvSaleRecords.DataSource);
+            var outputList = new List<PhuraseDetailModel>();
+            foreach (DataGridViewRow row in dgvSaleRecords.Rows)
+            {
+                var chk = (DataGridViewCheckBoxCell)row.Cells[0];
+                if (chk.Value != chk.TrueValue) continue;
+                outputList.Add(datas[chk.RowIndex]);
+            }
+
+            if (!outputList.Any())
+            {
                 MessageBox.Show("尚未勾選要印出的單據");
+                return;
+            }
 
-            var list = (List<PhuraseDetailModel>)dgvSaleRecords.DataSource;
-
-            var a = new List<PhuraseDetailModel>();
-
-            for (int i = 0; i < _printIndexs.Count; i++)
-                a.Add(list[_printIndexs[i]]);
+            if (outputList.Any(o => string.IsNullOrEmpty(o.ReceiptNumber)))
+            {
+                MessageBox.Show("該勾選項目，尚未填入發票號碼，請重新確認", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             saveFileDialog1.ShowDialog();
 
             var path = saveFileDialog1.FileName;
 
-            if (_controller.CreatShippmentTicks(a, path))
-                MessageBox.Show("文件產生成功");
-            else
-                MessageBox.Show("文件產生失敗");
+            MessageBox.Show(_controller.CreatShippmentTicks(outputList, path) ? "文件產生成功" : "文件產生失敗");
         }
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
         {
-            var a = (List<OrderDisplayItem>)dgvNewOrder.DataSource;
-            foreach (var index in _deleteIndexs)
+            var phurasesCopy = _phurases.ToList();
+            var displayItemsCopy = _displayItems.ToList();
+            foreach (DataGridViewRow row in dgvNewOrder.Rows)
             {
-                _controller.DeletePhuraseProduct(a[index].ItemCode);
-                _displayItems.Remove(a[index]);
+                var chk = (DataGridViewCheckBoxCell)row.Cells[0];
+                if (chk.Value != chk.TrueValue) continue;
+                _phurases.Remove(phurasesCopy[chk.RowIndex]);
+                _displayItems.Remove(displayItemsCopy[chk.RowIndex]);
             }
-            _deleteIndexs.Clear();
-            dgvNewOrder.DataSource = _displayItems;
+            dgvNewOrder.DataSource = _displayItems.ToList();
         }
 
         private void cbxIsSearchWriteOffMoneyTime_CheckedChanged(object sender, EventArgs e)
@@ -591,8 +562,25 @@ namespace View
 
         private void btnDeleteSale_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("確認刪除已勾選訂單");
-            //TODO:DELETE
+            var res = MessageBox.Show("確認刪除已勾選訂單", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (res == DialogResult.No)
+                return;
+
+            var datas = ((List<PhuraseDetailModel>)dgvSaleRecords.DataSource);
+            var datasCopy = datas.ToList();
+            var deleteIndexes = new List<int>();
+            foreach (DataGridViewRow row in dgvSaleRecords.Rows)
+            {
+                var chk = (DataGridViewCheckBoxCell)row.Cells[0];
+                if (chk.Value != chk.TrueValue) continue;
+                datas.Remove(datasCopy[chk.RowIndex]);
+                deleteIndexes.Add(datasCopy[chk.RowIndex].Key);
+            }
+
+            _controller.DeleteSale(deleteIndexes);
+
+            dgvSaleRecords.DataSource = datas.ToList();
         }
     }
 }

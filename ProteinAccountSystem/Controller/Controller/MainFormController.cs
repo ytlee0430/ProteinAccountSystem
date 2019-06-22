@@ -13,7 +13,6 @@ namespace Controller.Controller
     {
         private readonly IAccountingService _accountingService;
         private readonly IAnalyzeExcelService _analyzeExcelService;
-        private readonly ICreateSaleService _createSaleService;
         private readonly IEnumService _enumService;
         private readonly IExcelExportService _excelExportService;
         private List<PhuraseDetailModel> _phuraseDetailModels = new List<PhuraseDetailModel>();
@@ -22,13 +21,12 @@ namespace Controller.Controller
 
         public MainFormController(IAnalyzeExcelService analyzeExcelService,
             IStockService stockService, IShippmentService shippmentService,
-            ICreateSaleService createSaleService, IAccountingService accountingService,
+            IAccountingService accountingService,
             IExcelExportService excelExportService, IEnumService enumService)
         {
             _analyzeExcelService = analyzeExcelService;
             _stockService = stockService;
             _shippmentService = shippmentService;
-            _createSaleService = createSaleService;
             _accountingService = accountingService;
             _excelExportService = excelExportService;
             _enumService = enumService;
@@ -64,22 +62,9 @@ namespace Controller.Controller
             return _enumService.AddEnumValue(description, keyword, enumClass, parentType);
         }
 
-        public void AddPhuraseProduct(Item item, int count, int saleMoney)
-        {
-            _createSaleService.AddPhuraseProduct(item, count, saleMoney);
-        }
-        public void DeletePhuraseProduct(string itemCode)
-        {
-            _createSaleService.DeletePhuraseProduct(itemCode);
-        }
         public bool CreateInvoice(string itemCode, int number, int price, string EINNnumber = "")
         {
             throw new NotImplementedException();
-        }
-
-        public PhuraseDetailModel CreateSale(int shopeeFee, string receiptnumber, int plat, string companyName, string invoiceNumber, DateTime saleTime, string customerName)
-        {
-            return _createSaleService.CreateSale(shopeeFee, receiptnumber, plat, companyName, invoiceNumber, saleTime, customerName);
         }
 
         public bool CreateShippmentTickets(string path)
@@ -175,6 +160,36 @@ namespace Controller.Controller
         public bool UpdateSalesRecords(List<PhuraseDetailModel> dataSource)
         {
             return _accountingService.UpdateSalesRecords(dataSource);
+        }
+
+        public void CreateSale(int shopeeFee, string receiptnumber, int saleWay, string companyName, string invoiceNumber,
+            DateTime saleTime, string customerName, List<PhuraseProductModel> phurases)
+        {
+            var model = new PhuraseDetailModel
+            {
+                Products = phurases.ToList(),
+                TotalMoney = phurases.Sum(x => x.ProductMoney * x.Count) + shopeeFee,
+                TransferMoney = shopeeFee,
+                TotalTax =
+                    Convert.ToInt32((phurases.Sum(x => x.ProductMoneyWithoutTax * x.Count) + shopeeFee) * 0.05),
+                ReceiptNumber = receiptnumber,
+                Plat = saleWay,
+                CompanyName = companyName,
+                CompanyInvoiceNumber = invoiceNumber,
+                SubMoney = phurases.Sum(x => x.Count * x.ProductMoneyWithoutTax),
+                OrderCreateTime = saleTime,
+                Account = customerName,
+            };
+            //TODO:為什麼本來是3
+            model.OrderState = 0;
+
+            AddDBlientPhuraseRecord(new List<PhuraseDetailModel>() { model });
+            UpdateDBStorage(new List<PhuraseDetailModel>() { model });
+        }
+
+        public bool DeleteSale(List<int> deleteIndexes)
+        {
+            return _stockService.DeleteSale(deleteIndexes);
         }
 
         /// <summary>

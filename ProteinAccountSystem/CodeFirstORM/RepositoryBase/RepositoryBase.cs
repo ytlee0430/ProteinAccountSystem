@@ -22,7 +22,7 @@ namespace CodeFirstORM.DBLayer
             _database.Set<T>().Add(entity);
             return _database.SaveChanges() > 0;
         }
-        
+
         public virtual bool Add(IEnumerable<T> entitys)
         {
             foreach (var entity in entitys)
@@ -49,6 +49,13 @@ namespace CodeFirstORM.DBLayer
         public virtual int GetRowCount(Expression<Func<T, bool>> exp)
         {
             return _database.Set<T>().Where(exp).Count();
+        }
+
+        public virtual bool Remove(Expression<Func<T, bool>> exp)
+        {
+            foreach (var entity in _database.Set<T>().Where(exp))
+                _database.Set<T>().Remove(entity);
+            return _database.SaveChanges() > 0;
         }
 
         public virtual bool Remove(T entity)

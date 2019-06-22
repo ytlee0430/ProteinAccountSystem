@@ -4,6 +4,8 @@ using Spire.Xls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Common.Enum;
+using Common.Utils;
 
 namespace Service.Service
 {
@@ -59,7 +61,8 @@ namespace Service.Service
                     break;
                 var data = new PhuraseDetailModel();
                 data.OrderNumber = cells[0].DisplayedText;
-                data.OrderState = GetOrderState(cells[orderStataIndex].DisplayedText);
+
+                data.OrderState = (OrderState)cells[orderStataIndex].DisplayedText.ConvertDescriptionToEnum(OrderState.WaitingForShipment);
 
                 //[現貨] 英國官方授權經銷 MYPROTEIN 濃縮乳清蛋白 2.5 KG  開立發票、紙箱包裝  台肌店-口味:藍莓起司蛋糕
                 var name = string.IsNullOrEmpty(cells[flavorIndex].DisplayedText) ? cells[itemIndex].DisplayedText + "-口味:無口味" : cells[itemIndex].DisplayedText + "-口味:" + cells[flavorIndex].DisplayedText;
@@ -102,23 +105,6 @@ namespace Service.Service
                 }
             }
             return result.Values.ToList();
-        }
-
-        private int GetOrderState(string state)
-        {
-            switch (state)
-            {
-                case ("待出貨"):
-                    return 0;
-                case ("運送中"):
-                    return 1;
-                case ("已完成"):
-                    return 2;
-                case ("已取消"):
-                    return 3;
-                default:
-                    return 0;
-            }
         }
     }
 }

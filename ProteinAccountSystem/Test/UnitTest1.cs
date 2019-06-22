@@ -6,6 +6,8 @@ using Service.AutoMapper;
 using Service.Service;
 using System.Collections.Generic;
 using System.Linq;
+using Common.Enum;
+using Common.Utils;
 
 namespace Test
 {
@@ -54,6 +56,21 @@ namespace Test
             //    ExpiredDate = new DateTime(2020, 04, 30)
             //});
             //Assert.AreEqual(true, x);
+        }
+
+        [TestMethod]
+        public void ConvertDescriptionTest()
+        {
+            //var testRepository = new ItemRepository();
+            //var x = testRepository.Update(new ItemEntity
+            //{
+            //    Key = 3,
+            //    Brand = 1,
+            //    ItemCode = "110022",
+            //    ExpiredDate = new DateTime(2020, 04, 30)
+            //});
+            var orderState = (OrderState)"待出貨".ConvertDescriptionToEnum(OrderState.Shipping);
+            Assert.AreEqual(OrderState.WaitingForShipment, orderState);
         }
 
         [TestMethod]
