@@ -14,6 +14,6 @@ namespace CodeFirstORM.Entity
         [Required]
         public string EnumClassDescription { get; set; }
 
-        public ICollection<EnumEntity> Enums { get; set; }
+        public virtual ICollection<EnumEntity> Enums { get; set; }
     }
 }

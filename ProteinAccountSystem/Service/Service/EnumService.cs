@@ -26,7 +26,6 @@ namespace Service.Service
                 });
 
                 var dic = GetEnumDic(enumEntity.EnumClassDescription);
-
                 foreach (var e in enumEntity.Enums)
                     dic.Add(e.EnumValue,
                         new EnumModel

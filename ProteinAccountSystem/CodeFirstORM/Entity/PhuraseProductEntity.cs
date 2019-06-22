@@ -40,7 +40,7 @@ namespace CodeFirstORM.Entity
 
         public int? PhuraseDetailEntityKey { get; set; }
 
-        public PhuraseDetailEntity PhuraseDetail { get; set; }
+        public virtual PhuraseDetailEntity PhuraseDetail { get; set; }
 
         /// <summary>
         /// 商品口味

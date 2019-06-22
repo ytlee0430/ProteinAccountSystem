@@ -8,7 +8,7 @@ namespace CodeFirstORM.Entity
         [Key]
         public int Key { get; set; }
 
-        public EnumClassEntity EnumClass { get; set; }
+        public virtual EnumClassEntity EnumClass { get; set; }
 
         public int EnumValue { get; set; }
 
