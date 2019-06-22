@@ -33,30 +33,34 @@ namespace Service.Service
                 wordDoc.PageSetup.LeftMargin = 57.0f;
                 wordDoc.PageSetup.RightMargin = 57.0f;
                 wordDoc.PageSetup.HeaderDistance = 30.0f;//頁眉位置
-
-                var strContent = "";
+                
+                //var strContent = "";
                 wordDoc.Paragraphs.Last.Range.Font.Size = 15;
                 foreach (var item in result)
                 {
-                    strContent += "                  出貨單           列印時間:" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "\n";
+                    var strContent = "";
+                    strContent += "                  送貨單           列印時間:" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss") + "\n";
+                    strContent += "================================================================" + "\n";
                     strContent += "帳號:" + item.Account + "\n";
                     strContent += "訂單編號 :" + item.OrderNumber + "\n";
                     strContent += "寄件編號 :" + item.DeliveryNumber + "\n";
                     strContent += "發票號碼 :" + item.ReceiptNumber + "\n";
                     strContent += "詳細項目:" + "\n";
-                    strContent += ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n";
+                    strContent += ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n";
                     var index = 1;
                     foreach (var product in item.Products)
                     {
                         strContent +=index+"."+ product.ProductName + "\n" + "數量:" + product.Count + "    " + "金額:" + product.ProductMoney + "\n";
                         index++;
                     }
-                    strContent += ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n";
+
+                    strContent += index + "." + "運費" + "\n" + "數量:" + "1" + "    " + "金額:" + item.TransferMoney + "\n";
+                    strContent += ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + "\n";
                     strContent += "訂單總額:" + item.TotalMoney + "\n";
                     strContent += "\n" + "--------------------------------------------------------------------------------------------------------" + "\n";
+                    wordDoc.Paragraphs.Last.Range.Text = strContent;
+                    wordDoc.Words.Last.InsertBreak(MSWord.WdBreakType.wdPageBreak);
                 }
-                wordDoc.Paragraphs.Last.Range.Text = strContent;
-
                 //WdSaveFormat為Word 2003文檔的保存格式 // office 2007就是wdFormatDocumentDefault
                 object format = MSWord.WdSaveFormat.wdFormatDocument;
                 //將wordDoc文檔對象的內容保存為DOCX文檔

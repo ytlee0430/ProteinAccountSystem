@@ -124,6 +124,7 @@
             this.label23 = new System.Windows.Forms.Label();
             this.tbxInvoiceNumber = new System.Windows.Forms.TextBox();
             this.tbxCompanyName = new System.Windows.Forms.TextBox();
+            this.btnDeleteSale = new System.Windows.Forms.Button();
             this.tabStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
             this.tabFunction.SuspendLayout();
@@ -164,7 +165,7 @@
             this.tabStorage.Margin = new System.Windows.Forms.Padding(4);
             this.tabStorage.Name = "tabStorage";
             this.tabStorage.Padding = new System.Windows.Forms.Padding(4);
-            this.tabStorage.Size = new System.Drawing.Size(2348, 1081);
+            this.tabStorage.Size = new System.Drawing.Size(2406, 1081);
             this.tabStorage.TabIndex = 1;
             this.tabStorage.Text = "庫存";
             // 
@@ -285,7 +286,7 @@
             this.dgvStorage.Name = "dgvStorage";
             this.dgvStorage.ReadOnly = true;
             this.dgvStorage.RowTemplate.Height = 24;
-            this.dgvStorage.Size = new System.Drawing.Size(2322, 918);
+            this.dgvStorage.Size = new System.Drawing.Size(2373, 918);
             this.dgvStorage.TabIndex = 0;
             // 
             // btnAddNewItem
@@ -339,7 +340,7 @@
             this.tabFunction.Margin = new System.Windows.Forms.Padding(4);
             this.tabFunction.Name = "tabFunction";
             this.tabFunction.Padding = new System.Windows.Forms.Padding(4);
-            this.tabFunction.Size = new System.Drawing.Size(2348, 1081);
+            this.tabFunction.Size = new System.Drawing.Size(2406, 1081);
             this.tabFunction.TabIndex = 0;
             this.tabFunction.Text = "首頁";
             // 
@@ -385,7 +386,7 @@
             this.tabController.Margin = new System.Windows.Forms.Padding(4);
             this.tabController.Name = "tabController";
             this.tabController.SelectedIndex = 0;
-            this.tabController.Size = new System.Drawing.Size(2356, 1119);
+            this.tabController.Size = new System.Drawing.Size(2414, 1119);
             this.tabController.TabIndex = 0;
             this.tabController.SelectedIndexChanged += new System.EventHandler(this.tabController_SelectedIndexChanged);
             // 
@@ -403,7 +404,7 @@
             this.tabAddOrder.Location = new System.Drawing.Point(4, 34);
             this.tabAddOrder.Margin = new System.Windows.Forms.Padding(4);
             this.tabAddOrder.Name = "tabAddOrder";
-            this.tabAddOrder.Size = new System.Drawing.Size(2348, 1081);
+            this.tabAddOrder.Size = new System.Drawing.Size(2406, 1081);
             this.tabAddOrder.TabIndex = 2;
             this.tabAddOrder.Text = "新增訂單";
             // 
@@ -475,7 +476,7 @@
             this.dgvNewOrder.Name = "dgvNewOrder";
             this.dgvNewOrder.RowTemplate.Height = 24;
             this.dgvNewOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvNewOrder.Size = new System.Drawing.Size(2320, 896);
+            this.dgvNewOrder.Size = new System.Drawing.Size(2374, 896);
             this.dgvNewOrder.TabIndex = 6;
             // 
             // button1
@@ -491,6 +492,7 @@
             // 
             // tabSaleRecord
             // 
+            this.tabSaleRecord.Controls.Add(this.btnDeleteSale);
             this.tabSaleRecord.Controls.Add(this.cbxIsSearchWriteOffMoneyTime);
             this.tabSaleRecord.Controls.Add(this.btnPrintTransferDatas);
             this.tabSaleRecord.Controls.Add(this.dtpWriteOffMoneyEndTime);
@@ -518,7 +520,7 @@
             this.tabSaleRecord.Location = new System.Drawing.Point(4, 34);
             this.tabSaleRecord.Margin = new System.Windows.Forms.Padding(4);
             this.tabSaleRecord.Name = "tabSaleRecord";
-            this.tabSaleRecord.Size = new System.Drawing.Size(2348, 1081);
+            this.tabSaleRecord.Size = new System.Drawing.Size(2406, 1081);
             this.tabSaleRecord.TabIndex = 4;
             this.tabSaleRecord.Text = "檢視銷貨紀錄";
             this.tabSaleRecord.UseVisualStyleBackColor = true;
@@ -537,10 +539,10 @@
             // btnPrintTransferDatas
             // 
             this.btnPrintTransferDatas.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnPrintTransferDatas.Location = new System.Drawing.Point(1412, 89);
+            this.btnPrintTransferDatas.Location = new System.Drawing.Point(1185, 88);
             this.btnPrintTransferDatas.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrintTransferDatas.Name = "btnPrintTransferDatas";
-            this.btnPrintTransferDatas.Size = new System.Drawing.Size(340, 56);
+            this.btnPrintTransferDatas.Size = new System.Drawing.Size(325, 56);
             this.btnPrintTransferDatas.TabIndex = 62;
             this.btnPrintTransferDatas.Text = "將已勾選列印出貨單";
             this.btnPrintTransferDatas.UseVisualStyleBackColor = true;
@@ -658,10 +660,10 @@
             // btnUpdateSalesRecords
             // 
             this.btnUpdateSalesRecords.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnUpdateSalesRecords.Location = new System.Drawing.Point(1976, 21);
+            this.btnUpdateSalesRecords.Location = new System.Drawing.Point(2106, 21);
             this.btnUpdateSalesRecords.Margin = new System.Windows.Forms.Padding(6);
             this.btnUpdateSalesRecords.Name = "btnUpdateSalesRecords";
-            this.btnUpdateSalesRecords.Size = new System.Drawing.Size(285, 56);
+            this.btnUpdateSalesRecords.Size = new System.Drawing.Size(294, 56);
             this.btnUpdateSalesRecords.TabIndex = 51;
             this.btnUpdateSalesRecords.Text = "更新銷售紀錄";
             this.btnUpdateSalesRecords.UseVisualStyleBackColor = true;
@@ -670,10 +672,10 @@
             // btnImportExcelWirteOffMoney
             // 
             this.btnImportExcelWirteOffMoney.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnImportExcelWirteOffMoney.Location = new System.Drawing.Point(1412, 21);
+            this.btnImportExcelWirteOffMoney.Location = new System.Drawing.Point(1492, 21);
             this.btnImportExcelWirteOffMoney.Margin = new System.Windows.Forms.Padding(4);
             this.btnImportExcelWirteOffMoney.Name = "btnImportExcelWirteOffMoney";
-            this.btnImportExcelWirteOffMoney.Size = new System.Drawing.Size(262, 56);
+            this.btnImportExcelWirteOffMoney.Size = new System.Drawing.Size(294, 56);
             this.btnImportExcelWirteOffMoney.TabIndex = 50;
             this.btnImportExcelWirteOffMoney.Text = "匯入Excel銷帳";
             this.btnImportExcelWirteOffMoney.UseVisualStyleBackColor = true;
@@ -690,7 +692,7 @@
             this.dgvSaleRecords.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvSaleRecords.RowTemplate.Height = 24;
             this.dgvSaleRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvSaleRecords.Size = new System.Drawing.Size(2296, 828);
+            this.dgvSaleRecords.Size = new System.Drawing.Size(2386, 828);
             this.dgvSaleRecords.TabIndex = 49;
             // 
             // label13
@@ -756,7 +758,7 @@
             this.btnSearch.Location = new System.Drawing.Point(1185, 21);
             this.btnSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(219, 56);
+            this.btnSearch.Size = new System.Drawing.Size(294, 56);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "搜尋";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -765,10 +767,10 @@
             // btnCreateSaleRecord
             // 
             this.btnCreateSaleRecord.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnCreateSaleRecord.Location = new System.Drawing.Point(1682, 21);
+            this.btnCreateSaleRecord.Location = new System.Drawing.Point(1799, 21);
             this.btnCreateSaleRecord.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateSaleRecord.Name = "btnCreateSaleRecord";
-            this.btnCreateSaleRecord.Size = new System.Drawing.Size(285, 56);
+            this.btnCreateSaleRecord.Size = new System.Drawing.Size(294, 56);
             this.btnCreateSaleRecord.TabIndex = 0;
             this.btnCreateSaleRecord.Text = "匯出Excel銷售紀錄";
             this.btnCreateSaleRecord.UseVisualStyleBackColor = true;
@@ -789,7 +791,7 @@
             this.tabClassEnum.Location = new System.Drawing.Point(4, 34);
             this.tabClassEnum.Margin = new System.Windows.Forms.Padding(4);
             this.tabClassEnum.Name = "tabClassEnum";
-            this.tabClassEnum.Size = new System.Drawing.Size(2348, 1081);
+            this.tabClassEnum.Size = new System.Drawing.Size(2406, 1081);
             this.tabClassEnum.TabIndex = 5;
             this.tabClassEnum.Text = "管理分類";
             this.tabClassEnum.UseVisualStyleBackColor = true;
@@ -892,7 +894,7 @@
             this.dgvEnums.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvEnums.RowTemplate.Height = 24;
             this.dgvEnums.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvEnums.Size = new System.Drawing.Size(2282, 930);
+            this.dgvEnums.Size = new System.Drawing.Size(2355, 930);
             this.dgvEnums.TabIndex = 50;
             // 
             // label7
@@ -1178,12 +1180,24 @@
             this.tbxCompanyName.Size = new System.Drawing.Size(306, 55);
             this.tbxCompanyName.TabIndex = 51;
             // 
+            // btnDeleteSale
+            // 
+            this.btnDeleteSale.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnDeleteSale.Location = new System.Drawing.Point(1518, 89);
+            this.btnDeleteSale.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteSale.Name = "btnDeleteSale";
+            this.btnDeleteSale.Size = new System.Drawing.Size(318, 56);
+            this.btnDeleteSale.TabIndex = 64;
+            this.btnDeleteSale.Text = "刪除已勾選訂單";
+            this.btnDeleteSale.UseVisualStyleBackColor = true;
+            this.btnDeleteSale.Click += new System.EventHandler(this.btnDeleteSale_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(2360, 1389);
+            this.ClientSize = new System.Drawing.Size(2427, 1389);
             this.Controls.Add(this.tbxCompanyName);
             this.Controls.Add(this.tbxInvoiceNumber);
             this.Controls.Add(this.label23);
@@ -1335,6 +1349,7 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Button btnDeleteItem;
         private System.Windows.Forms.CheckBox cbxIsSearchWriteOffMoneyTime;
+        private System.Windows.Forms.Button btnDeleteSale;
     }
 }
 

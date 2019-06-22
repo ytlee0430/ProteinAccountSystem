@@ -13,7 +13,13 @@ namespace Common.Entity
         /// </summary>
         [DisplayName("訂單編號")]
         public string OrderNumber { get; set; }
-
+      
+        /// <summary>
+        /// 訂單狀態 0:待出貨 1:運送中 2:已完成  3:已取消
+        /// </summary>
+        [DisplayName("訂單狀態")]
+        public int OrderState { get; set; } = 0;
+       
         /// <summary>
         /// 購買帳號
         /// </summary>
@@ -116,5 +122,7 @@ namespace Common.Entity
         /// </summary>
         [DisplayName("銷帳時間")]
         public DateTime? WriteOffMoneyTime { get; set; }
+
+  
     }
 }

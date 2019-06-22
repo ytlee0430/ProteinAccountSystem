@@ -159,8 +159,10 @@ namespace View
 
             if (result == DialogResult.Yes)
             {
-                var model = _controller.CreateSale(Convert.ToInt32(tbxShippingFee.Text), tbxReceiptNumber.Text, cbxSaleWays.SelectedIndex, tbxCompanyName.Text, tbxInvoiceNumber.Text, dtpSaleTime.Value.Date, txtCustomerName.Text);
-                model.OrderCreateTime = DateTime.Now;
+                var time = dtpSaleTime.Value.Date == DateTime.Now ? DateTime.Now : dtpSaleTime.Value.Date;
+
+                var model = _controller.CreateSale(Convert.ToInt32(tbxShippingFee.Text), tbxReceiptNumber.Text, cbxSaleWays.SelectedIndex, tbxCompanyName.Text, tbxInvoiceNumber.Text, time, txtCustomerName.Text);
+                model.OrderState = 3;
                 _controller.AddDBlientPhuraseRecord(new List<PhuraseDetailModel>() { model });
                 _controller.UpdateDBStorage(new List<PhuraseDetailModel>() { model });
 
@@ -538,6 +540,9 @@ namespace View
 
         private void btnPrintTransferDatas_Click(object sender, EventArgs e)
         {
+            if (_printIndexs.Count==0)
+                MessageBox.Show("尚未勾選要印出的單據");
+
             var list = (List<PhuraseDetailModel>)dgvSaleRecords.DataSource;
 
             var a = new List<PhuraseDetailModel>();
@@ -548,8 +553,11 @@ namespace View
             saveFileDialog1.ShowDialog();
 
             var path = saveFileDialog1.FileName;
-            _controller.CreatShippmentTicks(a, path);
 
+            if (_controller.CreatShippmentTicks(a, path))
+                MessageBox.Show("文件產生成功");
+            else
+                MessageBox.Show("文件產生失敗");
         }
 
         private void btnDeleteItem_Click(object sender, EventArgs e)
@@ -579,6 +587,12 @@ namespace View
                 _searchModel.WriteOffMoneyStartTime = DateTime.MinValue;
                 _searchModel.WriteOffMoneyEndTime = DateTime.MaxValue;
             }
+        }
+
+        private void btnDeleteSale_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("確認刪除已勾選訂單");
+            //TODO:DELETE
         }
     }
 }

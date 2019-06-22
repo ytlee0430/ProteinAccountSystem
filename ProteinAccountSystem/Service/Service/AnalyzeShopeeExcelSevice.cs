@@ -28,6 +28,7 @@ namespace Service.Service
             var flavorIndex = 0;
             var productPriceIndex = 0;
             var productSalePriceIndex = 0;
+            var orderStataIndex = 0;
             for (int i = 0; i < sheet.Rows[0].Cells.Count(); i++)
             {
                 if (sheet.Rows[0].Cells[i].DisplayedText == "數量")
@@ -46,6 +47,9 @@ namespace Service.Service
 
                 if (sheet.Rows[0].Cells[i].DisplayedText == "商品活動價格 (品)")
                     productSalePriceIndex = i;
+
+                if (sheet.Rows[0].Cells[i].DisplayedText == "訂單狀態 (單)")
+                    orderStataIndex = i;
             }
 
             for (int i = 1; i < sheet.Rows.Count(); i++)
@@ -55,6 +59,8 @@ namespace Service.Service
                     break;
                 var data = new PhuraseDetailModel();
                 data.OrderNumber = cells[0].DisplayedText;
+                data.OrderState = GetOrderState(cells[orderStataIndex].DisplayedText);
+
                 //[現貨] 英國官方授權經銷 MYPROTEIN 濃縮乳清蛋白 2.5 KG  開立發票、紙箱包裝  台肌店-口味:藍莓起司蛋糕
                 var name = string.IsNullOrEmpty(cells[flavorIndex].DisplayedText) ? cells[itemIndex].DisplayedText + "-口味:無口味" : cells[itemIndex].DisplayedText + "-口味:" + cells[flavorIndex].DisplayedText;
                 var productPrice = string.IsNullOrEmpty(cells[productSalePriceIndex].DisplayedText) ? cells[productPriceIndex].DisplayedText : cells[productSalePriceIndex].DisplayedText;
@@ -96,6 +102,23 @@ namespace Service.Service
                 }
             }
             return result.Values.ToList();
+        }
+
+        private int GetOrderState(string state)
+        {
+            switch (state)
+            {
+                case ("待出貨"):
+                    return 0;
+                case ("運送中"):
+                    return 1;
+                case ("已完成"):
+                    return 2;
+                case ("已取消"):
+                    return 3;
+                default:
+                    return 0;
+            }
         }
     }
 }
