@@ -434,7 +434,7 @@ namespace View
 
         private void cbxClassEnum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var enums = _controller.GetEnums(cbxClassEnum.SelectedIndex+1);
+            var enums = _controller.GetEnums(cbxClassEnum.SelectedIndex + 1);
             dgvEnums.DataSource = enums;
         }
 
@@ -443,8 +443,8 @@ namespace View
             bool result = _controller.AddEnumValue(
                 tbxAddEnumDes.Text,
                 tbxAddEnumKeyWord.Text,
-                cbxClassEnum.SelectedIndex+1,
-                (int)nudAddEnumParent.Value
+                cbxClassEnum.SelectedIndex + 1,
+                cbxAddType.SelectedIndex
                 );
 
             if (result)
@@ -495,6 +495,11 @@ namespace View
             foreach (var pair in Enums.ClassEnum)
                 cbxClassEnum.Items.Add(pair.Value.Description);
             cbxClassEnum.SelectedIndex = 0;
+
+            cbxAddType.Items.Clear();
+            foreach (var pair in Enums.ProductionEnum)
+                cbxAddType.Items.Add(pair.Value.Description);
+            cbxAddType.SelectedIndex = 0;
         }
 
         private void tabController_SelectedIndexChanged(object sender, EventArgs e)
@@ -509,10 +514,9 @@ namespace View
 
             if (((TabControl)sender).SelectedIndex == 4)
             {
-                var enums = _controller.GetEnums(cbxClassEnum.SelectedIndex+1);
+                var enums = _controller.GetEnums(cbxClassEnum.SelectedIndex + 1);
                 dgvEnums.DataSource = enums;
             }
-
         }
 
         private void btnPrintTransferDatas_Click(object sender, EventArgs e)
@@ -578,7 +582,7 @@ namespace View
 
         private void btnDeleteSale_Click(object sender, EventArgs e)
         {
-            var res = MessageBox.Show("確認刪除已勾選訂單", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            var res = MessageBox.Show("確認取消已勾選訂單", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (res == DialogResult.No)
                 return;
@@ -588,10 +592,10 @@ namespace View
             {
                 var chk = (DataGridViewCheckBoxCell)row.Cells[0];
                 if (chk.Value != chk.TrueValue) continue;
-
                 datas[chk.RowIndex].OrderState = OrderState.已取消;
-                _controller.UpdateSalesRecords(new List<PhuraseDetailModel>() { datas[chk.RowIndex] });
             }
+
+            _controller.UpdateSalesRecords(datas);
 
             dgvSaleRecords.DataSource = datas.ToList();
         }
