@@ -5,15 +5,15 @@ namespace Common.Enum
     public enum OrderState
     {
         [Description("待出貨")]
-        WaitingForShipment = 0,
+        待出貨 = 0,
 
         [Description("運送中")]
-        Shipping = 01,
+        運送中 = 01,
 
         [Description("完成")]
-        Done = 02,
+        完成 = 02,
 
         [Description("已取消")]
-        Cancel = 03,
+        已取消 = 03,
     }
 }

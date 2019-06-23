@@ -52,6 +52,7 @@ namespace Service.Service
         public bool DeleteSale(List<int> deleteIndexes)
         {
             var repo = new PhuraseDetailRepository();
+           
             return repo.Remove(r => deleteIndexes.Contains(r.Key));
         }
 
@@ -150,6 +151,7 @@ namespace Service.Service
                 searchModel.receiptNumber);
             var pageSize = Constant.PageSize;
             var details = Mapper.Map<List<PhuraseDetailModel>>(repo.Get(exp).OrderByDescending(o => o.OrderCreateTime).Skip((pageIndex - 1) * pageSize).Take(pageSize)).ToList();
+
             var count = repo.GetRowCount(exp);
             return new SaleRecordPagingDto
             {

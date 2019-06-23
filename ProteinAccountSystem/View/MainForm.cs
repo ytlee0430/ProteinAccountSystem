@@ -200,18 +200,19 @@ namespace View
 
             //create check box
             DataGridViewCheckBoxColumn dgvck = new DataGridViewCheckBoxColumn();
+            dgvck.HeaderText = "欲取消項目";
             dgvck.TrueValue = true;
             dgvck.FalseValue = false;
             dgvSaleRecords.Columns.Add(dgvck);
 
             //create button
             DataGridViewButtonColumn dgvbt = new DataGridViewButtonColumn();
+            dgvbt.HeaderText = "顯示詳細銷貨資訊";
             dgvbt.Text = "顯示詳細銷貨資訊";
             dgvbt.UseColumnTextForButtonValue = true;
             dgvSaleRecords.Columns.Add(dgvbt);
 
             dgvSaleRecords.DataSource = result.Details;
-
             dgvSaleRecords.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader);
 
             var minWidth = 100;
@@ -229,6 +230,8 @@ namespace View
                     c.Width = minWidth;
                 }
             }
+
+            dgvSaleRecords.Columns["Key"].Visible = false;
         }
 
         private void DgvSaleRecords_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -256,13 +259,20 @@ namespace View
                 details.ShowDialog();
             }
 
-            if (e.ColumnIndex == 14)
+            if (e.ColumnIndex == 15)
             {
                 //銷帳
                 var rowIndex = e.RowIndex;
                 var list = (List<PhuraseDetailModel>)dgvSaleRecords.DataSource;
                 list[rowIndex].IsWriteOffMoney = !list[rowIndex].IsWriteOffMoney;
-                list[rowIndex].WriteOffMoneyTime = DateTime.Now;
+                if (list[rowIndex].IsWriteOffMoney)
+                    list[rowIndex].WriteOffMoneyTime = DateTime.Now;
+                else
+                    list[rowIndex].WriteOffMoneyTime = null;
+
+                dgvSaleRecords.DataSource = list;
+                dgvSaleRecords.Refresh();
+                dgvSaleRecords.Update();
             }
         }
 
@@ -331,7 +341,6 @@ namespace View
             catch (Exception)
             {
                 MessageBox.Show("輸入資料有誤，請重新確認");
-                throw;
             }
         }
 
@@ -425,7 +434,7 @@ namespace View
 
         private void cbxClassEnum_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var enums = _controller.GetEnums(cbxClassEnum.SelectedIndex);
+            var enums = _controller.GetEnums(cbxClassEnum.SelectedIndex+1);
             dgvEnums.DataSource = enums;
         }
 
@@ -434,7 +443,7 @@ namespace View
             bool result = _controller.AddEnumValue(
                 tbxAddEnumDes.Text,
                 tbxAddEnumKeyWord.Text,
-                cbxClassEnum.SelectedIndex,
+                cbxClassEnum.SelectedIndex+1,
                 (int)nudAddEnumParent.Value
                 );
 
@@ -497,6 +506,13 @@ namespace View
             cbxProductDetail.SelectedIndex = 0;
             cbxIsWriteOffMoney.SelectedIndex = 0;
             txtKeyWord.Text = "";
+
+            if (((TabControl)sender).SelectedIndex == 4)
+            {
+                var enums = _controller.GetEnums(cbxClassEnum.SelectedIndex+1);
+                dgvEnums.DataSource = enums;
+            }
+
         }
 
         private void btnPrintTransferDatas_Click(object sender, EventArgs e)
@@ -568,17 +584,14 @@ namespace View
                 return;
 
             var datas = ((List<PhuraseDetailModel>)dgvSaleRecords.DataSource);
-            var datasCopy = datas.ToList();
-            var deleteIndexes = new List<int>();
             foreach (DataGridViewRow row in dgvSaleRecords.Rows)
             {
                 var chk = (DataGridViewCheckBoxCell)row.Cells[0];
                 if (chk.Value != chk.TrueValue) continue;
-                datas.Remove(datasCopy[chk.RowIndex]);
-                deleteIndexes.Add(datasCopy[chk.RowIndex].Key);
-            }
 
-            _controller.DeleteSale(deleteIndexes);
+                datas[chk.RowIndex].OrderState = OrderState.已取消;
+                _controller.UpdateSalesRecords(new List<PhuraseDetailModel>() { datas[chk.RowIndex] });
+            }
 
             dgvSaleRecords.DataSource = datas.ToList();
         }

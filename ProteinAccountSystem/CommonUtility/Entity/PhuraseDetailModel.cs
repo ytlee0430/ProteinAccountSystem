@@ -73,7 +73,7 @@ namespace Common.Entity
         /// 購買平台
         /// </summary>
         [DisplayName("購買平台")]
-        public int Plat { get; set; } = 1;
+        public PlatEnum Plat { get; set; } = PlatEnum.蝦皮拍賣;
 
         /// <summary>
         /// 備註

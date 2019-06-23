@@ -58,6 +58,7 @@
             this.dgvNewOrder = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.tabSaleRecord = new System.Windows.Forms.TabPage();
+            this.btnDeleteSale = new System.Windows.Forms.Button();
             this.cbxIsSearchWriteOffMoneyTime = new System.Windows.Forms.CheckBox();
             this.btnPrintTransferDatas = new System.Windows.Forms.Button();
             this.dtpWriteOffMoneyEndTime = new System.Windows.Forms.DateTimePicker();
@@ -124,7 +125,6 @@
             this.label23 = new System.Windows.Forms.Label();
             this.tbxInvoiceNumber = new System.Windows.Forms.TextBox();
             this.tbxCompanyName = new System.Windows.Forms.TextBox();
-            this.btnDeleteSale = new System.Windows.Forms.Button();
             this.tabStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
             this.tabFunction.SuspendLayout();
@@ -524,6 +524,18 @@
             this.tabSaleRecord.TabIndex = 4;
             this.tabSaleRecord.Text = "檢視銷貨紀錄";
             this.tabSaleRecord.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteSale
+            // 
+            this.btnDeleteSale.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnDeleteSale.Location = new System.Drawing.Point(1518, 89);
+            this.btnDeleteSale.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteSale.Name = "btnDeleteSale";
+            this.btnDeleteSale.Size = new System.Drawing.Size(318, 56);
+            this.btnDeleteSale.TabIndex = 64;
+            this.btnDeleteSale.Text = "取消已勾選訂單";
+            this.btnDeleteSale.UseVisualStyleBackColor = true;
+            this.btnDeleteSale.Click += new System.EventHandler(this.btnDeleteSale_Click);
             // 
             // cbxIsSearchWriteOffMoneyTime
             // 
@@ -977,7 +989,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label3.Location = new System.Drawing.Point(596, 14);
+            this.label3.Location = new System.Drawing.Point(950, 14);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(117, 40);
             this.label3.TabIndex = 28;
@@ -987,7 +999,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label2.Location = new System.Drawing.Point(273, 14);
+            this.label2.Location = new System.Drawing.Point(1196, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(117, 40);
             this.label2.TabIndex = 27;
@@ -1015,7 +1027,7 @@
             // 
             this.cbxPackages.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbxPackages.FormattingEnabled = true;
-            this.cbxPackages.Location = new System.Drawing.Point(596, 68);
+            this.cbxPackages.Location = new System.Drawing.Point(957, 63);
             this.cbxPackages.Name = "cbxPackages";
             this.cbxPackages.Size = new System.Drawing.Size(178, 48);
             this.cbxPackages.TabIndex = 23;
@@ -1024,7 +1036,7 @@
             // 
             this.cbxFlavors.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbxFlavors.FormattingEnabled = true;
-            this.cbxFlavors.Location = new System.Drawing.Point(270, 68);
+            this.cbxFlavors.Location = new System.Drawing.Point(1193, 63);
             this.cbxFlavors.Name = "cbxFlavors";
             this.cbxFlavors.Size = new System.Drawing.Size(280, 48);
             this.cbxFlavors.TabIndex = 22;
@@ -1042,7 +1054,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label6.Location = new System.Drawing.Point(855, 14);
+            this.label6.Location = new System.Drawing.Point(587, 14);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(117, 40);
             this.label6.TabIndex = 40;
@@ -1052,7 +1064,7 @@
             // 
             this.cbxProductDetail.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbxProductDetail.FormattingEnabled = true;
-            this.cbxProductDetail.Location = new System.Drawing.Point(856, 68);
+            this.cbxProductDetail.Location = new System.Drawing.Point(594, 68);
             this.cbxProductDetail.Name = "cbxProductDetail";
             this.cbxProductDetail.Size = new System.Drawing.Size(284, 48);
             this.cbxProductDetail.TabIndex = 39;
@@ -1061,7 +1073,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label10.Location = new System.Drawing.Point(1179, 14);
+            this.label10.Location = new System.Drawing.Point(253, 14);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(117, 40);
             this.label10.TabIndex = 42;
@@ -1071,7 +1083,7 @@
             // 
             this.cbxType.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbxType.FormattingEnabled = true;
-            this.cbxType.Location = new System.Drawing.Point(1182, 68);
+            this.cbxType.Location = new System.Drawing.Point(256, 68);
             this.cbxType.Name = "cbxType";
             this.cbxType.Size = new System.Drawing.Size(294, 48);
             this.cbxType.TabIndex = 41;
@@ -1179,18 +1191,6 @@
             this.tbxCompanyName.Name = "tbxCompanyName";
             this.tbxCompanyName.Size = new System.Drawing.Size(306, 55);
             this.tbxCompanyName.TabIndex = 51;
-            // 
-            // btnDeleteSale
-            // 
-            this.btnDeleteSale.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btnDeleteSale.Location = new System.Drawing.Point(1518, 89);
-            this.btnDeleteSale.Margin = new System.Windows.Forms.Padding(4);
-            this.btnDeleteSale.Name = "btnDeleteSale";
-            this.btnDeleteSale.Size = new System.Drawing.Size(318, 56);
-            this.btnDeleteSale.TabIndex = 64;
-            this.btnDeleteSale.Text = "刪除已勾選訂單";
-            this.btnDeleteSale.UseVisualStyleBackColor = true;
-            this.btnDeleteSale.Click += new System.EventHandler(this.btnDeleteSale_Click);
             // 
             // MainForm
             // 

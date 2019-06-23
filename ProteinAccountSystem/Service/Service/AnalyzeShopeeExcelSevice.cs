@@ -62,7 +62,7 @@ namespace Service.Service
                 var data = new PhuraseDetailModel();
                 data.OrderNumber = cells[0].DisplayedText;
 
-                data.OrderState = (OrderState)cells[orderStataIndex].DisplayedText.ConvertDescriptionToEnum(OrderState.WaitingForShipment);
+                data.OrderState = (OrderState)cells[orderStataIndex].DisplayedText.ConvertDescriptionToEnum(OrderState.待出貨);
 
                 //[現貨] 英國官方授權經銷 MYPROTEIN 濃縮乳清蛋白 2.5 KG  開立發票、紙箱包裝  台肌店-口味:藍莓起司蛋糕
                 var name = string.IsNullOrEmpty(cells[flavorIndex].DisplayedText) ? cells[itemIndex].DisplayedText + "-口味:無口味" : cells[itemIndex].DisplayedText + "-口味:" + cells[flavorIndex].DisplayedText;

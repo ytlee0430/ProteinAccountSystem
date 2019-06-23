@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Common.Entity;
 using Common.Entity.Dto;
+using Common.Enum;
 using Common.Interface.Controller;
 using Common.Interface.Service;
 using Common.Log;
@@ -173,7 +174,7 @@ namespace Controller.Controller
                 TotalTax =
                     Convert.ToInt32((phurases.Sum(x => x.ProductMoneyWithoutTax * x.Count) + shopeeFee) * 0.05),
                 ReceiptNumber = receiptnumber,
-                Plat = saleWay,
+                Plat = (PlatEnum)saleWay,
                 CompanyName = companyName,
                 CompanyInvoiceNumber = invoiceNumber,
                 SubMoney = phurases.Sum(x => x.Count * x.ProductMoneyWithoutTax),
