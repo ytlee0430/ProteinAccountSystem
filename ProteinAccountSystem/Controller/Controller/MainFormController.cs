@@ -181,9 +181,9 @@ namespace Controller.Controller
                 OrderCreateTime = saleTime,
                 Account = customerName,
             };
-            //TODO:為什麼本來是3
-            model.OrderState = 0;
 
+            model.OrderState = OrderState.完成;
+            
             AddDBlientPhuraseRecord(new List<PhuraseDetailModel>() { model });
             UpdateDBStorage(new List<PhuraseDetailModel>() { model });
         }
