@@ -292,15 +292,19 @@ namespace View
         private void btnUpdateItem_Click(object sender, EventArgs e)
         {
             var list = (List<ItemViewModel>)dgvStorage.DataSource;
-            try
+              try
             {
-                _controller.UpdateDBItems(list);
+                if (_controller.UpdateDBItems(list))
+                    MessageBox.Show("更新完成!");
+                else
+                    MessageBox.Show("更新失敗!");
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
+                MessageBox.Show("更新失敗!");
             }
-            MessageBox.Show("更新完成!");
+
         }
 
         private void ckbEnableChange_CheckedChanged(object sender, EventArgs e)
