@@ -64,8 +64,7 @@ namespace CodeFirstORM.Entity
         /// <summary>
         /// 保存期限
         /// </summary>
-        [Required, DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime ExpiredDate { get; set; }
+        public DateTime? ExpiredDate { get; set; }
 
         /// <summary>
         /// 商品細項分類
