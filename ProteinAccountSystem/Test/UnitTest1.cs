@@ -69,8 +69,8 @@ namespace Test
             //    ItemCode = "110022",
             //    ExpiredDate = new DateTime(2020, 04, 30)
             //});
-            var orderState = (OrderState)"待出貨".ConvertDescriptionToEnum(OrderState.Shipping);
-            Assert.AreEqual(OrderState.WaitingForShipment, orderState);
+            //var orderState = (OrderState)"待出貨".ConvertDescriptionToEnum(OrderState.Shipping);
+            //Assert.AreEqual(OrderState.WaitingForShipment, orderState);
         }
 
         [TestMethod]

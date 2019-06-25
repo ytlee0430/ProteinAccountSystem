@@ -84,6 +84,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnCreateSaleRecord = new System.Windows.Forms.Button();
             this.tabClassEnum = new System.Windows.Forms.TabPage();
+            this.cbxAddType = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.tbxAddEnumKeyWord = new System.Windows.Forms.TextBox();
@@ -124,7 +125,6 @@
             this.label23 = new System.Windows.Forms.Label();
             this.tbxInvoiceNumber = new System.Windows.Forms.TextBox();
             this.tbxCompanyName = new System.Windows.Forms.TextBox();
-            this.cbxAddType = new System.Windows.Forms.ComboBox();
             this.tabStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
             this.tabFunction.SuspendLayout();
@@ -162,7 +162,7 @@
             this.tabStorage.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabStorage.Location = new System.Drawing.Point(4, 26);
             this.tabStorage.Name = "tabStorage";
-            this.tabStorage.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabStorage.Padding = new System.Windows.Forms.Padding(3);
             this.tabStorage.Size = new System.Drawing.Size(1601, 716);
             this.tabStorage.TabIndex = 1;
             this.tabStorage.Text = "庫存";
@@ -210,7 +210,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(673, 677);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(93, 23);
             this.button2.TabIndex = 59;
@@ -220,7 +220,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(528, 677);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(101, 23);
             this.button3.TabIndex = 58;
@@ -334,7 +334,7 @@
             this.tabFunction.Controls.Add(this.btnImportExcel);
             this.tabFunction.Location = new System.Drawing.Point(4, 26);
             this.tabFunction.Name = "tabFunction";
-            this.tabFunction.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabFunction.Padding = new System.Windows.Forms.Padding(3);
             this.tabFunction.Size = new System.Drawing.Size(1601, 716);
             this.tabFunction.TabIndex = 0;
             this.tabFunction.Text = "首頁";
@@ -403,7 +403,7 @@
             // 
             this.btnDeleteItem.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnDeleteItem.Location = new System.Drawing.Point(935, 14);
-            this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDeleteItem.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeleteItem.Name = "btnDeleteItem";
             this.btnDeleteItem.Size = new System.Drawing.Size(264, 40);
             this.btnDeleteItem.TabIndex = 64;
@@ -415,7 +415,7 @@
             // 
             this.txtCustomerName.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.txtCustomerName.Location = new System.Drawing.Point(708, 18);
-            this.txtCustomerName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCustomerName.Margin = new System.Windows.Forms.Padding(2);
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.Size = new System.Drawing.Size(205, 39);
             this.txtCustomerName.TabIndex = 52;
@@ -454,7 +454,7 @@
             // 
             this.btnCreateSale.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnCreateSale.Location = new System.Drawing.Point(1310, 667);
-            this.btnCreateSale.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCreateSale.Margin = new System.Windows.Forms.Padding(2);
             this.btnCreateSale.Name = "btnCreateSale";
             this.btnCreateSale.Size = new System.Drawing.Size(248, 47);
             this.btnCreateSale.TabIndex = 7;
@@ -477,7 +477,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button1.Location = new System.Drawing.Point(7, 18);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(264, 40);
             this.button1.TabIndex = 5;
@@ -534,7 +534,7 @@
             // 
             this.cbxIsSearchWriteOffMoneyTime.AutoSize = true;
             this.cbxIsSearchWriteOffMoneyTime.Location = new System.Drawing.Point(229, 71);
-            this.cbxIsSearchWriteOffMoneyTime.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxIsSearchWriteOffMoneyTime.Margin = new System.Windows.Forms.Padding(2);
             this.cbxIsSearchWriteOffMoneyTime.Name = "cbxIsSearchWriteOffMoneyTime";
             this.cbxIsSearchWriteOffMoneyTime.Size = new System.Drawing.Size(123, 20);
             this.cbxIsSearchWriteOffMoneyTime.TabIndex = 63;
@@ -636,7 +636,7 @@
             // btnNextPage
             // 
             this.btnNextPage.Location = new System.Drawing.Point(727, 683);
-            this.btnNextPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(93, 23);
             this.btnNextPage.TabIndex = 53;
@@ -647,7 +647,7 @@
             // btnPreviousPage
             // 
             this.btnPreviousPage.Location = new System.Drawing.Point(582, 683);
-            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(2);
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(101, 23);
             this.btnPreviousPage.TabIndex = 52;
@@ -664,7 +664,7 @@
             "未銷帳",
             "已銷帳"});
             this.cbxIsWriteOffMoney.Location = new System.Drawing.Point(689, 17);
-            this.cbxIsWriteOffMoney.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxIsWriteOffMoney.Margin = new System.Windows.Forms.Padding(2);
             this.cbxIsWriteOffMoney.Name = "cbxIsWriteOffMoney";
             this.cbxIsWriteOffMoney.Size = new System.Drawing.Size(94, 35);
             this.cbxIsWriteOffMoney.TabIndex = 48;
@@ -673,7 +673,7 @@
             // 
             this.btnUpdateSalesRecords.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btnUpdateSalesRecords.Location = new System.Drawing.Point(1404, 14);
-            this.btnUpdateSalesRecords.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUpdateSalesRecords.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateSalesRecords.Name = "btnUpdateSalesRecords";
             this.btnUpdateSalesRecords.Size = new System.Drawing.Size(196, 37);
             this.btnUpdateSalesRecords.TabIndex = 51;
@@ -803,6 +803,16 @@
             this.tabClassEnum.Text = "管理分類";
             this.tabClassEnum.UseVisualStyleBackColor = true;
             // 
+            // cbxAddType
+            // 
+            this.cbxAddType.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.cbxAddType.FormattingEnabled = true;
+            this.cbxAddType.Location = new System.Drawing.Point(949, 21);
+            this.cbxAddType.Margin = new System.Windows.Forms.Padding(2);
+            this.cbxAddType.Name = "cbxAddType";
+            this.cbxAddType.Size = new System.Drawing.Size(197, 35);
+            this.cbxAddType.TabIndex = 55;
+            // 
             // label21
             // 
             this.label21.AutoSize = true;
@@ -829,7 +839,7 @@
             // 
             this.tbxAddEnumKeyWord.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbxAddEnumKeyWord.Location = new System.Drawing.Point(673, 17);
-            this.tbxAddEnumKeyWord.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxAddEnumKeyWord.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAddEnumKeyWord.Name = "tbxAddEnumKeyWord";
             this.tbxAddEnumKeyWord.Size = new System.Drawing.Size(120, 39);
             this.tbxAddEnumKeyWord.TabIndex = 53;
@@ -860,7 +870,7 @@
             // 
             this.tbxAddEnumDes.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbxAddEnumDes.Location = new System.Drawing.Point(438, 17);
-            this.tbxAddEnumDes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxAddEnumDes.Margin = new System.Windows.Forms.Padding(2);
             this.tbxAddEnumDes.Name = "tbxAddEnumDes";
             this.tbxAddEnumDes.Size = new System.Drawing.Size(120, 39);
             this.tbxAddEnumDes.TabIndex = 48;
@@ -881,7 +891,7 @@
             this.cbxClassEnum.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbxClassEnum.FormattingEnabled = true;
             this.cbxClassEnum.Location = new System.Drawing.Point(110, 21);
-            this.cbxClassEnum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxClassEnum.Margin = new System.Windows.Forms.Padding(2);
             this.cbxClassEnum.Name = "cbxClassEnum";
             this.cbxClassEnum.Size = new System.Drawing.Size(179, 35);
             this.cbxClassEnum.TabIndex = 48;
@@ -915,7 +925,7 @@
             // 
             this.tbxReceiptNumber.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbxReceiptNumber.Location = new System.Drawing.Point(18, 132);
-            this.tbxReceiptNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxReceiptNumber.Margin = new System.Windows.Forms.Padding(2);
             this.tbxReceiptNumber.Name = "tbxReceiptNumber";
             this.tbxReceiptNumber.Size = new System.Drawing.Size(120, 39);
             this.tbxReceiptNumber.TabIndex = 36;
@@ -924,7 +934,7 @@
             // 
             this.tbxShippingFee.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbxShippingFee.Location = new System.Drawing.Point(328, 132);
-            this.tbxShippingFee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxShippingFee.Margin = new System.Windows.Forms.Padding(2);
             this.tbxShippingFee.Name = "tbxShippingFee";
             this.tbxShippingFee.Size = new System.Drawing.Size(120, 39);
             this.tbxShippingFee.TabIndex = 38;
@@ -946,7 +956,7 @@
             this.cbxSaleWays.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbxSaleWays.FormattingEnabled = true;
             this.cbxSaleWays.Location = new System.Drawing.Point(173, 136);
-            this.cbxSaleWays.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxSaleWays.Margin = new System.Windows.Forms.Padding(2);
             this.cbxSaleWays.Name = "cbxSaleWays";
             this.cbxSaleWays.Size = new System.Drawing.Size(120, 35);
             this.cbxSaleWays.TabIndex = 35;
@@ -1021,7 +1031,7 @@
             // 
             this.tbxSalePrice.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbxSalePrice.Location = new System.Drawing.Point(1203, 45);
-            this.tbxSalePrice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxSalePrice.Margin = new System.Windows.Forms.Padding(2);
             this.tbxSalePrice.Name = "tbxSalePrice";
             this.tbxSalePrice.Size = new System.Drawing.Size(163, 39);
             this.tbxSalePrice.TabIndex = 24;
@@ -1031,7 +1041,7 @@
             this.cbxPackages.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbxPackages.FormattingEnabled = true;
             this.cbxPackages.Location = new System.Drawing.Point(638, 42);
-            this.cbxPackages.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxPackages.Margin = new System.Windows.Forms.Padding(2);
             this.cbxPackages.Name = "cbxPackages";
             this.cbxPackages.Size = new System.Drawing.Size(120, 35);
             this.cbxPackages.TabIndex = 23;
@@ -1041,7 +1051,7 @@
             this.cbxFlavors.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbxFlavors.FormattingEnabled = true;
             this.cbxFlavors.Location = new System.Drawing.Point(795, 42);
-            this.cbxFlavors.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxFlavors.Margin = new System.Windows.Forms.Padding(2);
             this.cbxFlavors.Name = "cbxFlavors";
             this.cbxFlavors.Size = new System.Drawing.Size(188, 35);
             this.cbxFlavors.TabIndex = 22;
@@ -1051,7 +1061,7 @@
             this.cbxBrands.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbxBrands.FormattingEnabled = true;
             this.cbxBrands.Location = new System.Drawing.Point(18, 45);
-            this.cbxBrands.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxBrands.Margin = new System.Windows.Forms.Padding(2);
             this.cbxBrands.Name = "cbxBrands";
             this.cbxBrands.Size = new System.Drawing.Size(120, 35);
             this.cbxBrands.TabIndex = 21;
@@ -1072,7 +1082,7 @@
             this.cbxProductDetail.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbxProductDetail.FormattingEnabled = true;
             this.cbxProductDetail.Location = new System.Drawing.Point(396, 45);
-            this.cbxProductDetail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxProductDetail.Margin = new System.Windows.Forms.Padding(2);
             this.cbxProductDetail.Name = "cbxProductDetail";
             this.cbxProductDetail.Size = new System.Drawing.Size(191, 35);
             this.cbxProductDetail.TabIndex = 39;
@@ -1093,7 +1103,7 @@
             this.cbxType.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.cbxType.FormattingEnabled = true;
             this.cbxType.Location = new System.Drawing.Point(171, 45);
-            this.cbxType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxType.Margin = new System.Windows.Forms.Padding(2);
             this.cbxType.Name = "cbxType";
             this.cbxType.Size = new System.Drawing.Size(197, 35);
             this.cbxType.TabIndex = 41;
@@ -1121,7 +1131,7 @@
             // 
             this.tbxDiscount.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbxDiscount.Location = new System.Drawing.Point(483, 132);
-            this.tbxDiscount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxDiscount.Margin = new System.Windows.Forms.Padding(2);
             this.tbxDiscount.Name = "tbxDiscount";
             this.tbxDiscount.Size = new System.Drawing.Size(120, 39);
             this.tbxDiscount.TabIndex = 30;
@@ -1142,7 +1152,7 @@
             // 
             this.tbxCost.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbxCost.Location = new System.Drawing.Point(638, 132);
-            this.tbxCost.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxCost.Margin = new System.Windows.Forms.Padding(2);
             this.tbxCost.Name = "tbxCost";
             this.tbxCost.Size = new System.Drawing.Size(120, 39);
             this.tbxCost.TabIndex = 32;
@@ -1162,7 +1172,7 @@
             // 
             this.dtpExpireDate.Font = new System.Drawing.Font("新細明體", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.dtpExpireDate.Location = new System.Drawing.Point(1219, 129);
-            this.dtpExpireDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpExpireDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpExpireDate.Name = "dtpExpireDate";
             this.dtpExpireDate.Size = new System.Drawing.Size(298, 36);
             this.dtpExpireDate.TabIndex = 47;
@@ -1194,7 +1204,7 @@
             // 
             this.tbxInvoiceNumber.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbxInvoiceNumber.Location = new System.Drawing.Point(1024, 129);
-            this.tbxInvoiceNumber.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxInvoiceNumber.Margin = new System.Windows.Forms.Padding(2);
             this.tbxInvoiceNumber.Name = "tbxInvoiceNumber";
             this.tbxInvoiceNumber.Size = new System.Drawing.Size(179, 39);
             this.tbxInvoiceNumber.TabIndex = 50;
@@ -1203,20 +1213,10 @@
             // 
             this.tbxCompanyName.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tbxCompanyName.Location = new System.Drawing.Point(795, 131);
-            this.tbxCompanyName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxCompanyName.Margin = new System.Windows.Forms.Padding(2);
             this.tbxCompanyName.Name = "tbxCompanyName";
             this.tbxCompanyName.Size = new System.Drawing.Size(205, 39);
             this.tbxCompanyName.TabIndex = 51;
-            // 
-            // cbxAddType
-            // 
-            this.cbxAddType.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.cbxAddType.FormattingEnabled = true;
-            this.cbxAddType.Location = new System.Drawing.Point(949, 21);
-            this.cbxAddType.Margin = new System.Windows.Forms.Padding(2);
-            this.cbxAddType.Name = "cbxAddType";
-            this.cbxAddType.Size = new System.Drawing.Size(197, 35);
-            this.cbxAddType.TabIndex = 55;
             // 
             // MainForm
             // 
@@ -1255,7 +1255,7 @@
             this.Controls.Add(this.cbxFlavors);
             this.Controls.Add(this.cbxBrands);
             this.Controls.Add(this.tabController);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainForm";
             this.Text = "台肌店乳清進銷存";
             this.tabStorage.ResumeLayout(false);

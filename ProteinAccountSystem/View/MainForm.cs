@@ -87,6 +87,46 @@ namespace View
         {
             try
             {
+                #region check Input
+
+                if (cbxBrands.SelectedIndex == 0)
+                {
+                    MessageBox.Show("輸入品牌有誤，請重新確認", "新增銷售項目");
+                    return;
+                }
+
+                if (cbxType.SelectedIndex == 0)
+                {
+                    MessageBox.Show("輸入商品分類，請重新確認", "新增銷售項目");
+                    return;
+                }
+
+                if (cbxProductDetail.SelectedIndex == 0)
+                {
+                    MessageBox.Show("輸入商品細項，請重新確認", "新增銷售項目");
+                    return;
+                }
+
+                if (cbxFlavors.SelectedIndex == 0)
+                {
+                    MessageBox.Show("輸入口味有誤，請重新確認", "新增銷售項目");
+                    return;
+                }
+
+                if (nudCount.Value == 0)
+                {
+                    MessageBox.Show("輸入數量為 0，請重新確認", "新增銷售項目");
+                    return;
+                }
+
+                if (String.IsNullOrEmpty(tbxSalePrice.Text))
+                {
+                    MessageBox.Show("輸入金額為 0，請重新確認", "新增銷售項目");
+                    return;
+                }
+
+                #endregion
+
                 var item = new Item
                 {
                     Brand = cbxBrands.SelectedIndex,
@@ -96,6 +136,12 @@ namespace View
                     ProductionDetailType = cbxProductDetail.SelectedIndex,
                 };
                 item.ItemCode = ProductUtilities.GetItemCodes(item);
+
+                if (item.ItemCode == "0000000000")
+                {
+                    MessageBox.Show("輸入參數有錯，請重新確認", "新增銷售項目");
+                    return;
+                }
 
                 var name = Enums.BrandEnum[item.Brand].Description + " " + Enums.ProductionEnum[item.ProductionType].Description + " " + Enums.ProductionDetailEnum[item.ProductionDetailType].Description + " " + Enums.FlavorEnum[item.Flavor].Description + " " + Enums.PackageEnum[item.Package].Description;
                 _phurases.Add(new PhuraseProductModel()
@@ -128,17 +174,23 @@ namespace View
             }
             catch (Exception ex)
             {
-                MessageBox.Show("輸入參數有錯，請重新確認");
+                MessageBox.Show("輸入參數有錯，請重新確認", "新增銷售項目");
             }
         }
 
         private void btnCreateSale_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("是否確認新增訂單? ", "", MessageBoxButtons.YesNo);
+            var result = MessageBox.Show("是否確認新增訂單? ", "新增訂單", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
                 var time = dtpSaleTime.Value.Date == DateTime.Now ? DateTime.Now : dtpSaleTime.Value.Date;
+
+                if (_phurases.Count == 0)
+                {
+                    MessageBox.Show("尚未新增銷售項目，請再次確認", "新增訂單");
+                    return;
+                }
 
                 _controller.CreateSale(Convert.ToInt32(tbxShippingFee.Text), tbxReceiptNumber.Text, cbxSaleWays.SelectedIndex,
                     tbxCompanyName.Text, tbxInvoiceNumber.Text, time, txtCustomerName.Text, _phurases);
@@ -164,7 +216,7 @@ namespace View
             var showZero = ckbShowCountZero.Checked;
             var storages = _controller.GetStorage(brand, flavor, package, productionType, productionDetailType, showZero);
             var result = _controller.ExportStockExcel(storages, path);
-            MessageBox.Show(!result ? "匯出失敗!" : "匯出成功!");
+            MessageBox.Show(!result ? "匯出失敗!" : "匯出成功!", "匯出庫存結果");
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -292,7 +344,7 @@ namespace View
         private void btnUpdateItem_Click(object sender, EventArgs e)
         {
             var list = (List<ItemViewModel>)dgvStorage.DataSource;
-              try
+            try
             {
                 if (_controller.UpdateDBItems(list))
                     MessageBox.Show("更新完成!");
@@ -380,36 +432,45 @@ namespace View
 
         private void btnBulkStorage_Click(object sender, EventArgs e)
         {
-            var brand = cbxBrands.SelectedIndex;
-            var package = cbxPackages.SelectedIndex;
-            var productionType = cbxType.SelectedIndex;
-            var productionDetailType = cbxProductDetail.SelectedIndex;
-            var count = (int)nudCount.Value;
-            var price = Convert.ToInt32(tbxSalePrice.Text);
-            var discount = Convert.ToDouble(tbxDiscount.Text);
-            var cost = Convert.ToInt32(tbxCost.Text);
-            var expireDate = dtpExpireDate.Value;
-            var list = new List<Item>();
-            foreach (var flavor in Enums.FlavorEnum.Where(x => x.Value.ParentType == 1))
+            try
             {
-                var item = new Item
+                var brand = cbxBrands.SelectedIndex;
+                var package = cbxPackages.SelectedIndex;
+                var productionType = cbxType.SelectedIndex;
+                var productionDetailType = cbxProductDetail.SelectedIndex;
+                var count = (int)nudCount.Value;
+                var price = Convert.ToInt32(tbxSalePrice.Text);
+                var discount = Convert.ToDouble(tbxDiscount.Text);
+                var cost = Convert.ToInt32(tbxCost.Text);
+                var expireDate = dtpExpireDate.Value;
+                var list = new List<Item>();
+                foreach (var flavor in Enums.FlavorEnum.Where(x => x.Value.ParentType == 1))
                 {
-                    Brand = brand,
-                    Flavor = flavor.Key,
-                    Package = package,
-                    ProductionType = productionType,
-                    ProductionDetailType = productionDetailType,
-                    Storage = count,
-                    NetPrice = price,
-                    Discount = discount,
-                    Cost = cost,
-                    ExpiredDate = expireDate,
-                };
-                item.ItemCode = ProductUtilities.GetItemCodes(item);
-                list.Add(item);
+                    var item = new Item
+                    {
+                        Brand = brand,
+                        Flavor = flavor.Key,
+                        Package = package,
+                        ProductionType = productionType,
+                        ProductionDetailType = productionDetailType,
+                        Storage = count,
+                        NetPrice = price,
+                        Discount = discount,
+                        Cost = cost,
+                        ExpiredDate = expireDate,
+                    };
+                    item.ItemCode = ProductUtilities.GetItemCodes(item);
+                    list.Add(item);
+                }
+                _controller.AddDBStorages(list);
+                MessageBox.Show("更新完成", "批量更新結果");
             }
-            _controller.AddDBStorages(list);
-            MessageBox.Show("更新完成!");
+            catch (Exception ex)
+            {
+                MessageBox.Show("更新失敗", "批量更新結果");
+                MessageBox.Show(ex.ToString());
+            }
+
         }
 
         private void btnNextPage_Click(object sender, EventArgs e)
@@ -603,5 +664,7 @@ namespace View
 
             dgvSaleRecords.DataSource = datas.ToList();
         }
+
+
     }
 }
