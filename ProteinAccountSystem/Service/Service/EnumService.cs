@@ -78,6 +78,7 @@ namespace Service.Service
                                 case FlavorEnum.Strawberry:
                                 case FlavorEnum.Coffee:
                                 case FlavorEnum.Chocalate:
+                                case FlavorEnum.Peanut:
                                     item.ParentType = 1;
                                     break;
 
