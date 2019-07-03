@@ -57,6 +57,7 @@ namespace Setup
         private static void ConfigureServices()
         {
             var services = new ServiceCollection();
+            services.AddTransient<IDataAnalyzeService, DataAnalyzeService>();
             services.AddTransient<IAnalyzeExcelService, AnalyzeShopeeExcelSevice>();
             services.AddTransient<IStockService, StockServiceService>();
             services.AddTransient<IShippmentService, ShippmentService>();

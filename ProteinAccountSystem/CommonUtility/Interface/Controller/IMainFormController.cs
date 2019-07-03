@@ -2,6 +2,7 @@
 using Common.Entity.Dto;
 using System;
 using System.Collections.Generic;
+using Common.Enum;
 
 namespace Common.Interface.Controller
 {
@@ -53,5 +54,7 @@ namespace Common.Interface.Controller
             DateTime saleTime, string customerName, List<PhuraseProductModel> phurases);
 
         bool DeleteSale(List<int> deleteIndexes);
+
+        List<PhuraseProductViewModel> AnalyzeSaleRecord(AnalyzeType flavorOnly, DateTime startDate, DateTime endDate);
     }
 }

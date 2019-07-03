@@ -1,4 +1,5 @@
-﻿using Common.Entity;
+﻿using System;
+using Common.Entity;
 using Common.Entity.Dto;
 using System.Collections.Generic;
 
@@ -27,5 +28,7 @@ namespace Common.Interface.Service
         List<PhuraseDetailModel> AddSalesRecordIfNotExist(List<PhuraseDetailModel> phuraseDetailModels);
 
         bool DeleteSale(List<int> deleteIndexes);
+
+        List<PhuraseProductModel> GetSaleProducts(DateTime startDate, DateTime endDate);
     }
 }
