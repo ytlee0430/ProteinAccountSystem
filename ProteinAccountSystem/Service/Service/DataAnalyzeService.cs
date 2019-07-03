@@ -10,6 +10,7 @@ using Common.Interface.Service;
 
 namespace Service.Service
 {
+    //TODO:where brand,ProductionDetailType etc
     public class DataAnalyzeService : IDataAnalyzeService
     {
         public List<PhuraseProductViewModel> AnalyzeFlavor(List<PhuraseProductModel> list)
@@ -25,7 +26,7 @@ namespace Service.Service
 
         public List<PhuraseProductViewModel> AnalyzeFlavorAndPackage(List<PhuraseProductModel> list)
         {
-            var result = list.GroupBy(l => new { l.Package, l.Flavor }).Select(g => new PhuraseProductModel
+            var result = list.Where(l => l.ProductionDetailType == 1).GroupBy(l => new { l.Package, l.Flavor }).Select(g => new PhuraseProductModel
             {
                 Flavor = g.Key.Flavor,
                 Package = g.Key.Package,
