@@ -31,6 +31,7 @@ namespace Service.Service
             var productPriceIndex = 0;
             var productSalePriceIndex = 0;
             var orderStataIndex = 0;
+            var receiptNameIndex = 0;
             for (int i = 0; i < sheet.Rows[0].Cells.Count(); i++)
             {
                 if (sheet.Rows[0].Cells[i].DisplayedText == "數量")
@@ -52,6 +53,9 @@ namespace Service.Service
 
                 if (sheet.Rows[0].Cells[i].DisplayedText == "訂單狀態 (單)")
                     orderStataIndex = i;
+
+                if (sheet.Rows[0].Cells[i].DisplayedText == "收件者姓名 (單)")
+                    receiptNameIndex = i;
             }
 
             for (int i = 1; i < sheet.Rows.Count(); i++)
@@ -88,9 +92,12 @@ namespace Service.Service
                         ProductMoneyWithoutTax=Convert.ToInt32( Convert.ToDouble( productPrice)/1.05),
                     } };
                     data.DeliveryNumber = cells[deliveryIndex].DisplayedText;
+                    data.RecipientName = cells[receiptNameIndex].DisplayedText;
+
                     var remark = string.IsNullOrEmpty(cells[44].DisplayedText) ? string.Empty : $"買家:{cells[44].DisplayedText} ;";
                     remark = string.IsNullOrEmpty(cells[45].DisplayedText) ? remark : $"{remark}賣家:{cells[45].DisplayedText}";
                     data.Remark = remark;
+
                     result.Add(data.OrderNumber, data);
                 }
                 else

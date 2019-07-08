@@ -135,6 +135,10 @@
     <Compile Include="Migrations\201906241632313_expireadate1.Designer.cs">
       <DependentUpon>201906241632313_expireadate1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906280320335_name.cs" />
+    <Compile Include="Migrations\201906280320335_name.Designer.cs">
+      <DependentUpon>201906280320335_name.cs</DependentUpon>
+    </Compile>
     <Compile Include="RepositoryBase\IDatabaseContext.cs" />
     <Compile Include="RepositoryBase\IEntity.cs" />
     <Compile Include="RepositoryBase\RepositoryBase.cs" />
@@ -284,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906241632313_expireadate1.resx">
       <DependentUpon>201906241632313_expireadate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906280320335_name.resx">
+      <DependentUpon>201906280320335_name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

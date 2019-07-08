@@ -86,6 +86,12 @@ namespace Common.Entity
         /// </summary>
         [DisplayName("發票號碼")]
         public string ReceiptNumber { get; set; }
+        
+        /// <summary>
+        /// 收件人姓名
+        /// </summary>
+        [DisplayName("收件人姓名")]
+        public string RecipientName { get; set; }
 
         /// <summary>
         /// 是否銷帳

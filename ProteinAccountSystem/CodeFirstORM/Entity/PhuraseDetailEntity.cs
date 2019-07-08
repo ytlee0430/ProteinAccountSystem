@@ -29,7 +29,12 @@ namespace CodeFirstORM.Entity
         /// 寄送編號
         /// </summary>
         public string DeliveryNumber { get; set; }
-
+        
+        /// <summary>
+        /// 收件人姓名
+        /// </summary>
+        public string RecipientName { get; set; }
+        
         /// <summary>
         /// 運費(含稅)
         /// </summary>
