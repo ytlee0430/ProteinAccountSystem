@@ -19,11 +19,12 @@ namespace Controller.Controller
         private List<PhuraseDetailModel> _phuraseDetailModels = new List<PhuraseDetailModel>();
         private readonly IShippmentService _shippmentService;
         private readonly IStockService _stockService;
+        private readonly IDataAnalyzeService _dataAnalyzeService;
 
         public MainFormController(IAnalyzeExcelService analyzeExcelService,
             IStockService stockService, IShippmentService shippmentService,
             IAccountingService accountingService,
-            IExcelExportService excelExportService, IEnumService enumService)
+            IExcelExportService excelExportService, IEnumService enumService, IDataAnalyzeService dataAnalyzeService)
         {
             _analyzeExcelService = analyzeExcelService;
             _stockService = stockService;
@@ -31,6 +32,7 @@ namespace Controller.Controller
             _accountingService = accountingService;
             _excelExportService = excelExportService;
             _enumService = enumService;
+            _dataAnalyzeService = dataAnalyzeService;
         }
 
         public bool AddDBlientPhuraseRecord(List<PhuraseDetailModel> stockData)
@@ -183,7 +185,7 @@ namespace Controller.Controller
             };
 
             model.OrderState = OrderState.完成;
-            
+
             AddDBlientPhuraseRecord(new List<PhuraseDetailModel>() { model });
             UpdateDBStorage(new List<PhuraseDetailModel>() { model });
         }
@@ -191,6 +193,22 @@ namespace Controller.Controller
         public bool DeleteSale(List<int> deleteIndexes)
         {
             return _stockService.DeleteSale(deleteIndexes);
+        }
+
+        public List<PhuraseProductViewModel> AnalyzeSaleRecord(AnalyzeType flavorOnly, DateTime startDate, DateTime endDate)
+        {
+            List<PhuraseProductModel> records = _stockService.GetSaleProducts(startDate, endDate);
+            switch (flavorOnly)
+            {
+                case AnalyzeType.FlavorOnly:
+                    return _dataAnalyzeService.AnalyzeFlavor(records);
+
+                case AnalyzeType.FlavorAndPackage:
+                    return _dataAnalyzeService.AnalyzeFlavorAndPackage(records);
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(flavorOnly), flavorOnly, null);
+            }
         }
 
         /// <summary>

@@ -56,6 +56,7 @@
     <Compile Include="Entity\ItemViewModel.cs" />
     <Compile Include="Entity\OrderDisplayItem.cs" />
     <Compile Include="Entity\PhuraseDetailModel.cs" />
+    <Compile Include="Entity\PhuraseProductViewModel.cs" />
     <Compile Include="Entity\PhuraseProductModel.cs" />
     <Compile Include="Entity\SearchModel.cs" />
     <Compile Include="Enum\BrandEnum.cs" />
@@ -65,11 +66,13 @@
     <Compile Include="Enum\PlatEnum.cs" />
     <Compile Include="Enum\ProductionDetail.cs" />
     <Compile Include="Enum\OrderState.cs" />
+    <Compile Include="Enum\AnalyzeType.cs" />
     <Compile Include="Enum\ProductionType.cs" />
     <Compile Include="Interface\Controller\IMainFormController.cs" />
     <Compile Include="Interface\Service\IExcelExportService.cs" />
     <Compile Include="Interface\Service\IAccountingService.cs" />
     <Compile Include="Interface\Service\IAnalyzeExcelService.cs" />
+    <Compile Include="Interface\Service\IDataAnalyzeService.cs" />
     <Compile Include="Interface\Service\IShippmentService.cs" />
     <Compile Include="Interface\Service\IEnumService.cs" />
     <Compile Include="Interface\Service\IStockService.cs" />

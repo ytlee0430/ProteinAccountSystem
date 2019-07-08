@@ -125,6 +125,14 @@
             this.label23 = new System.Windows.Forms.Label();
             this.tbxInvoiceNumber = new System.Windows.Forms.TextBox();
             this.tbxCompanyName = new System.Windows.Forms.TextBox();
+            this.tabDataAnalyze = new System.Windows.Forms.TabPage();
+            this.dgvDataAnalyze = new System.Windows.Forms.DataGridView();
+            this.label31 = new System.Windows.Forms.Label();
+            this.dtpAnalyzeEnd = new System.Windows.Forms.DateTimePicker();
+            this.dtpAnalyzeStart = new System.Windows.Forms.DateTimePicker();
+            this.label34 = new System.Windows.Forms.Label();
+            this.btnAnalyzeFlavor = new System.Windows.Forms.Button();
+            this.btnAnalyzePackageAndFlavor = new System.Windows.Forms.Button();
             this.tabStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStorage)).BeginInit();
             this.tabFunction.SuspendLayout();
@@ -136,6 +144,8 @@
             this.tabClassEnum.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEnums)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCount)).BeginInit();
+            this.tabDataAnalyze.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDataAnalyze)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -373,6 +383,7 @@
             this.tabController.Controls.Add(this.tabStorage);
             this.tabController.Controls.Add(this.tabAddOrder);
             this.tabController.Controls.Add(this.tabSaleRecord);
+            this.tabController.Controls.Add(this.tabDataAnalyze);
             this.tabController.Controls.Add(this.tabClassEnum);
             this.tabController.Font = new System.Drawing.Font("新細明體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabController.Location = new System.Drawing.Point(0, 180);
@@ -1218,6 +1229,95 @@
             this.tbxCompanyName.Size = new System.Drawing.Size(205, 39);
             this.tbxCompanyName.TabIndex = 51;
             // 
+            // tabDataAnalyze
+            // 
+            this.tabDataAnalyze.Controls.Add(this.btnAnalyzePackageAndFlavor);
+            this.tabDataAnalyze.Controls.Add(this.label31);
+            this.tabDataAnalyze.Controls.Add(this.dtpAnalyzeEnd);
+            this.tabDataAnalyze.Controls.Add(this.dtpAnalyzeStart);
+            this.tabDataAnalyze.Controls.Add(this.label34);
+            this.tabDataAnalyze.Controls.Add(this.btnAnalyzeFlavor);
+            this.tabDataAnalyze.Controls.Add(this.dgvDataAnalyze);
+            this.tabDataAnalyze.Location = new System.Drawing.Point(4, 26);
+            this.tabDataAnalyze.Name = "tabDataAnalyze";
+            this.tabDataAnalyze.Size = new System.Drawing.Size(1601, 716);
+            this.tabDataAnalyze.TabIndex = 6;
+            this.tabDataAnalyze.Text = "資料分析";
+            this.tabDataAnalyze.UseVisualStyleBackColor = true;
+            // 
+            // dgvDataAnalyze
+            // 
+            this.dgvDataAnalyze.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvDataAnalyze.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvDataAnalyze.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDataAnalyze.Location = new System.Drawing.Point(15, 93);
+            this.dgvDataAnalyze.Name = "dgvDataAnalyze";
+            this.dgvDataAnalyze.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgvDataAnalyze.RowTemplate.Height = 24;
+            this.dgvDataAnalyze.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvDataAnalyze.Size = new System.Drawing.Size(1570, 575);
+            this.dgvDataAnalyze.TabIndex = 51;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("新細明體", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label31.Location = new System.Drawing.Point(281, 32);
+            this.label31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(20, 27);
+            this.label31.TabIndex = 56;
+            this.label31.Text = "-";
+            // 
+            // dtpAnalyzeEnd
+            // 
+            this.dtpAnalyzeEnd.Location = new System.Drawing.Point(306, 32);
+            this.dtpAnalyzeEnd.Name = "dtpAnalyzeEnd";
+            this.dtpAnalyzeEnd.Size = new System.Drawing.Size(144, 27);
+            this.dtpAnalyzeEnd.TabIndex = 55;
+            this.dtpAnalyzeEnd.Value = new System.DateTime(2019, 6, 4, 0, 0, 0, 0);
+            // 
+            // dtpAnalyzeStart
+            // 
+            this.dtpAnalyzeStart.Location = new System.Drawing.Point(129, 32);
+            this.dtpAnalyzeStart.Name = "dtpAnalyzeStart";
+            this.dtpAnalyzeStart.Size = new System.Drawing.Size(144, 27);
+            this.dtpAnalyzeStart.TabIndex = 54;
+            this.dtpAnalyzeStart.Value = new System.DateTime(2019, 6, 4, 0, 7, 13, 0);
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label34.Location = new System.Drawing.Point(17, 33);
+            this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(104, 21);
+            this.label34.TabIndex = 53;
+            this.label34.Text = "銷售時間 :";
+            // 
+            // btnAnalyzeFlavor
+            // 
+            this.btnAnalyzeFlavor.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnAnalyzeFlavor.Location = new System.Drawing.Point(479, 27);
+            this.btnAnalyzeFlavor.Name = "btnAnalyzeFlavor";
+            this.btnAnalyzeFlavor.Size = new System.Drawing.Size(243, 37);
+            this.btnAnalyzeFlavor.TabIndex = 52;
+            this.btnAnalyzeFlavor.Text = "統計口味(不分包裝)";
+            this.btnAnalyzeFlavor.UseVisualStyleBackColor = true;
+            this.btnAnalyzeFlavor.Click += new System.EventHandler(this.btnAnalyzeFlavor_Click);
+            // 
+            // btnAnalyzePackageAndFlavor
+            // 
+            this.btnAnalyzePackageAndFlavor.Font = new System.Drawing.Font("新細明體", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btnAnalyzePackageAndFlavor.Location = new System.Drawing.Point(738, 29);
+            this.btnAnalyzePackageAndFlavor.Name = "btnAnalyzePackageAndFlavor";
+            this.btnAnalyzePackageAndFlavor.Size = new System.Drawing.Size(243, 37);
+            this.btnAnalyzePackageAndFlavor.TabIndex = 57;
+            this.btnAnalyzePackageAndFlavor.Text = "統計口味";
+            this.btnAnalyzePackageAndFlavor.UseVisualStyleBackColor = true;
+            this.btnAnalyzePackageAndFlavor.Click += new System.EventHandler(this.btnAnalyzePackageAndFlavor_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1273,6 +1373,9 @@
             this.tabClassEnum.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEnums)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCount)).EndInit();
+            this.tabDataAnalyze.ResumeLayout(false);
+            this.tabDataAnalyze.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDataAnalyze)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1376,6 +1479,14 @@
         private System.Windows.Forms.CheckBox cbxIsSearchWriteOffMoneyTime;
         private System.Windows.Forms.Button btnDeleteSale;
         private System.Windows.Forms.ComboBox cbxAddType;
+        private System.Windows.Forms.TabPage tabDataAnalyze;
+        private System.Windows.Forms.Button btnAnalyzePackageAndFlavor;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.DateTimePicker dtpAnalyzeEnd;
+        private System.Windows.Forms.DateTimePicker dtpAnalyzeStart;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Button btnAnalyzeFlavor;
+        private System.Windows.Forms.DataGridView dgvDataAnalyze;
     }
 }
 

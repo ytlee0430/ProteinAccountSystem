@@ -37,6 +37,7 @@ namespace Service.Service
             return repo.Add(Mapper.Map<List<ItemEntity>>(list));
         }
 
+        //TODO:方法裡做太多事，而已不只add
         public List<PhuraseDetailModel> AddSalesRecordIfNotExist(List<PhuraseDetailModel> phuraseDetailModels)
         {
             var repo = new PhuraseDetailRepository();
@@ -52,8 +53,16 @@ namespace Service.Service
         public bool DeleteSale(List<int> deleteIndexes)
         {
             var repo = new PhuraseDetailRepository();
-           
+
             return repo.Remove(r => deleteIndexes.Contains(r.Key));
+        }
+
+        public List<PhuraseProductModel> GetSaleProducts(DateTime startDate, DateTime endDate)
+        {
+            var repo = new PhuraseProductRepository();
+
+            return Mapper.Map<List<PhuraseProductModel>>(repo.Get(r =>
+                r.PhuraseDetail.OrderCreateTime > startDate && r.PhuraseDetail.OrderCreateTime < endDate));
         }
 
         public void GenerateProductItemCode(List<PhuraseDetailModel> models)
@@ -70,6 +79,7 @@ namespace Service.Service
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
+                            item.ProductionType = pair.Key;
                             itemcode += pair.Key.ToString("00");
                             productName += pair.Value.Description + "-";
                             break;
@@ -88,6 +98,7 @@ namespace Service.Service
                     {
                         if (name.Contains(pair.Value.KeyWord.ToLower()))
                         {
+                            item.Brand = pair.Key;
                             itemcode += pair.Key.ToString("00");
                             productName += pair.Value.Description + "-";
                             break;
@@ -100,6 +111,7 @@ namespace Service.Service
                             continue;
                         if (name.Contains(pair.Value.KeyWord))
                         {
+                            item.ProductionDetailType = pair.Key;
                             itemcode += pair.Key.ToString("00");
                             productName += pair.Value.Description + "-";
                             break;
@@ -110,6 +122,7 @@ namespace Service.Service
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
+                            item.Package = pair.Key;
                             itemcode += pair.Key.ToString("00");
                             productName += pair.Value.Description + "-";
                             break;
@@ -120,6 +133,7 @@ namespace Service.Service
                     {
                         if (name.Contains(pair.Value.KeyWord))
                         {
+                            item.Flavor = pair.Key;
                             itemcode += pair.Key.ToString("00");
                             productName += pair.Value.Description;
                             break;

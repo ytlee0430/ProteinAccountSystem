@@ -71,10 +71,12 @@
     <Compile Include="AutoMapper\ItemProfile.cs" />
     <Compile Include="AutoMapper\PhuraseDetailEntityProfile.cs" />
     <Compile Include="AutoMapper\EnumProfile.cs" />
+    <Compile Include="AutoMapper\PhuraseViewModelProfile.cs" />
     <Compile Include="AutoMapper\PhuraseModelEntityProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\AccountingService.cs" />
     <Compile Include="DataBaseInitializer.cs" />
+    <Compile Include="Service\DataAnalyzeService.cs" />
     <Compile Include="Service\EnumService.cs" />
     <Compile Include="Service\AnalyzeShopeeExcelSevice.cs" />
     <Compile Include="Service\ExcelExportService.cs" />

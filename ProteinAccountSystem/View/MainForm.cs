@@ -43,6 +43,9 @@ namespace View
             dgvck.FalseValue = false;
 
             dgvNewOrder.Columns.Add(dgvck);
+
+            dtpAnalyzeStart.Value = DateTime.Now.AddMonths(-1);
+            dtpAnalyzeEnd.Value = DateTime.Now;
         }
 
         private void DgvNewOrder_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -125,7 +128,7 @@ namespace View
                     return;
                 }
 
-                #endregion
+                #endregion check Input
 
                 var item = new Item
                 {
@@ -356,7 +359,6 @@ namespace View
                 MessageBox.Show(exception.Message);
                 MessageBox.Show("更新失敗!");
             }
-
         }
 
         private void ckbEnableChange_CheckedChanged(object sender, EventArgs e)
@@ -470,7 +472,6 @@ namespace View
                 MessageBox.Show("更新失敗", "批量更新結果");
                 MessageBox.Show(ex.ToString());
             }
-
         }
 
         private void btnNextPage_Click(object sender, EventArgs e)
@@ -665,6 +666,24 @@ namespace View
             dgvSaleRecords.DataSource = datas.ToList();
         }
 
+        private void btnAnalyzeFlavor_Click(object sender, EventArgs e)
+        {
+            var startDate = dtpAnalyzeStart.Value;
+            var endDate = dtpAnalyzeEnd.Value;
 
+            List<PhuraseProductViewModel> result = _controller.AnalyzeSaleRecord(AnalyzeType.FlavorOnly, startDate, endDate);
+
+            dgvDataAnalyze.DataSource = result;
+        }
+
+        private void btnAnalyzePackageAndFlavor_Click(object sender, EventArgs e)
+        {
+            var startDate = dtpAnalyzeStart.Value;
+            var endDate = dtpAnalyzeEnd.Value;
+
+            List<PhuraseProductViewModel> result = _controller.AnalyzeSaleRecord(AnalyzeType.FlavorAndPackage, startDate, endDate);
+
+            dgvDataAnalyze.DataSource = result;
+        }
     }
 }
