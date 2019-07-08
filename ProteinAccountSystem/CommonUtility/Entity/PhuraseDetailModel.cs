@@ -70,12 +70,6 @@ namespace Common.Entity
         public int TotalMoney { get; set; }
 
         /// <summary>
-        /// 購買平台
-        /// </summary>
-        [DisplayName("購買平台")]
-        public PlatEnum Plat { get; set; } = PlatEnum.蝦皮拍賣;
-
-        /// <summary>
         /// 備註
         /// </summary>
         [DisplayName("備註")]
@@ -92,6 +86,12 @@ namespace Common.Entity
         /// </summary>
         [DisplayName("收件人姓名")]
         public string RecipientName { get; set; }
+     
+        /// <summary>
+        /// 購買平台
+        /// </summary>
+        [DisplayName("購買平台")]
+        public PlatEnum Plat { get; set; } = PlatEnum.蝦皮拍賣;
 
         /// <summary>
         /// 是否銷帳
