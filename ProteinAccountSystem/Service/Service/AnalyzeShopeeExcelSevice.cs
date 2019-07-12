@@ -57,10 +57,10 @@ namespace Service.Service
                     case "買家支付的運費 (單)":
                         shippingfFeeIndex = i;
                         break;
-                    case "訂單小計(單)":
+                    case "訂單小計 (單)":
                         orderCostIndex = i;
                         break;
-                    case "訂單總金額(單)":
+                    case "訂單總金額 (單)":
                         orderCostWithEventIndex = i;
                         break;
                     case "數量":
