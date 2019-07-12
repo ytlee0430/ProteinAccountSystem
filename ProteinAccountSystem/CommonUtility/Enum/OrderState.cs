@@ -15,5 +15,8 @@ namespace Common.Enum
 
         [Description("已取消")]
         已取消 = 03,
+
+        [Description("尚未付款")]
+        尚未付款 = 04,
     }
 }
