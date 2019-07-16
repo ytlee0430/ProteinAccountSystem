@@ -48,7 +48,7 @@ namespace Service.Service
                     case "訂單編號 (單)":
                         orderNumberIndex = i;
                         break;
-                    case "買家帳號(單)":
+                    case "買家帳號 (單)":
                         accountIndex = i;
                         break;
                     case "訂單成立時間 (單)":
