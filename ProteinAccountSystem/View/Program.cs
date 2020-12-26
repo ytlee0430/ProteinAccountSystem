@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace View
+namespace ProteinSystem.StockView
 {
     internal static class Program
     {

@@ -1,7 +1,7 @@
-﻿using Common.Entity;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ProteinSystem.Entity;
 
-namespace Common.Enum
+namespace ProteinSystem.Enum
 {
     public class Enums
     {

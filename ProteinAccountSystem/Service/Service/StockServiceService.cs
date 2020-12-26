@@ -1,16 +1,16 @@
-﻿using AutoMapper;
-using CodeFirstORM.DBLayer;
-using CodeFirstORM.Entity;
-using Common.Entity;
-using Common.Entity.Dto;
-using Common.Interface.Service;
-using Common.Constants;
-using Common.Enum;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
+using ProteinSystem.Constants;
+using ProteinSystem.Entity;
+using ProteinSystem.Entity.Dto;
+using ProteinSystem.Enum;
+using ProteinSystem.Interface.Service;
+using ProteinSystem.Repository.DBLayer;
+using ProteinSystem.Repository.Entity;
 
-namespace Service.Service
+namespace ProteinSystem.Service.Service
 {
     public class StockServiceService : IStockService
     {

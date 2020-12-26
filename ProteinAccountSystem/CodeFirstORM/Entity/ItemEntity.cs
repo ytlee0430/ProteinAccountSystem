@@ -1,9 +1,8 @@
-﻿using CodeFirstORM.RepositoryBase;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using ProteinSystem.Repository.RepositoryBase;
 
-namespace CodeFirstORM.Entity
+namespace ProteinSystem.Repository.Entity
 {
     public class ItemEntity : IEntity
     {

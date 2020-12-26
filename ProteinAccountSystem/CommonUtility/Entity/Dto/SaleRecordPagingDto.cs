@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Common.Entity.Dto
+namespace ProteinSystem.Entity.Dto
 {
     public class SaleRecordPagingDto
     {

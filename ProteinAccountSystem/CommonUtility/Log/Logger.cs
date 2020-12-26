@@ -1,6 +1,6 @@
 ﻿using NLog;
 
-namespace Common.Log
+namespace ProteinSystem.Log
 {
     public class NLogger : ILogger
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Common.Enum
+namespace ProteinSystem.Enum
 {
     public enum BrandEnum
     {

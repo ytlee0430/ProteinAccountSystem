@@ -1,7 +1,7 @@
-﻿using CodeFirstORM.RepositoryBase;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using ProteinSystem.Repository.RepositoryBase;
 
-namespace CodeFirstORM.Entity
+namespace ProteinSystem.Repository.Entity
 {
     public class PhuraseProductEntity : IEntity
     {

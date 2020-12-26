@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Entity
+namespace ProteinSystem.Entity
 {
     public class SearchModel
     {

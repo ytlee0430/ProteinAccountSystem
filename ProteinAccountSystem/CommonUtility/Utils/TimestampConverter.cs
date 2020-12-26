@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Common.Utils
+namespace ProteinSystem.Utils
 {
     public class TimestampConverter
     {

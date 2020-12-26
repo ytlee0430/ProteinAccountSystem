@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace CodeFirstORM.Utils
+namespace ProteinSystem.Repository.Utils
 {
     internal class ReplaceExpressionVisitor : ExpressionVisitor
     {

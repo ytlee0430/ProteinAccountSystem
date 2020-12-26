@@ -1,15 +1,15 @@
-﻿using AutoMapper;
-using CodeFirstORM.DBLayer;
-using CodeFirstORM.Entity;
-using Common.Entity;
-using Common.Enum;
-using Common.Interface.Service;
-using Common.Log;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
+using ProteinSystem.Entity;
+using ProteinSystem.Enum;
+using ProteinSystem.Interface.Service;
+using ProteinSystem.Log;
+using ProteinSystem.Repository.DBLayer;
+using ProteinSystem.Repository.Entity;
 
-namespace Service.Service
+namespace ProteinSystem.Service.Service
 {
     public class EnumService : IEnumService
     {

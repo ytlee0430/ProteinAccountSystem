@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{39CAD8BE-A7B8-446C-8392-175303A8E78E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProteinSystem.Repository</RootNamespace>
+    <AssemblyName>ProteinSystem.Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Z.EntityFramework.Plus.EF6, Version=1.9.0.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Plus.EF6.1.9.0\lib\net45\Z.EntityFramework.Plus.EF6.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\EnumEntityMapping.cs" />
+    <Compile Include="Config\PhuraseDetailEntityMapping.cs" />
+    <Compile Include="DBLayer\EnumClassRepository.cs" />
+    <Compile Include="DBLayer\EnumRepository.cs" />
+    <Compile Include="DBLayer\PhuraseProductRepository.cs" />
+    <Compile Include="DBLayer\PhuraseDetailRepository.cs" />
+    <Compile Include="DBLayer\ItemRepository.cs" />
+    <Compile Include="Entity\EnumClassEntity.cs" />
+    <Compile Include="Entity\EnumEntity.cs" />
+    <Compile Include="Migrations\201905311525564_addenum.cs" />
+    <Compile Include="Migrations\201905311525564_addenum.Designer.cs">
+      <DependentUpon>201905311525564_addenum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311559199_enum class mapping.cs" />
+    <Compile Include="Migrations\201905311559199_enum class mapping.Designer.cs">
+      <DependentUpon>201905311559199_enum class mapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311728047_change property.cs" />
+    <Compile Include="Migrations\201905311728047_change property.Designer.cs">
+      <DependentUpon>201905311728047_change property.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905311731058_change forignkey .cs" />
+    <Compile Include="Migrations\201905311731058_change forignkey .Designer.cs">
+      <DependentUpon>201905311731058_change forignkey .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906021631289_SetDateDefault.cs" />
+    <Compile Include="Migrations\201906021631289_SetDateDefault.Designer.cs">
+      <DependentUpon>201906021631289_SetDateDefault.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906021742509_setInt.cs" />
+    <Compile Include="Migrations\201906021742509_setInt.Designer.cs">
+      <DependentUpon>201906021742509_setInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906021743454_removeIdentity.cs" />
+    <Compile Include="Migrations\201906021743454_removeIdentity.Designer.cs">
+      <DependentUpon>201906021743454_removeIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906021754187_setDBdatetime.cs" />
+    <Compile Include="Migrations\201906021754187_setDBdatetime.Designer.cs">
+      <DependentUpon>201906021754187_setDBdatetime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906030407537_AddParentType.cs" />
+    <Compile Include="Migrations\201906030407537_AddParentType.Designer.cs">
+      <DependentUpon>201906030407537_AddParentType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906031707140_remove-auto-getdate.cs" />
+    <Compile Include="Migrations\201906031707140_remove-auto-getdate.Designer.cs">
+      <DependentUpon>201906031707140_remove-auto-getdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906100730538_addSubMoney.cs" />
+    <Compile Include="Migrations\201906100730538_addSubMoney.Designer.cs">
+      <DependentUpon>201906100730538_addSubMoney.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906100603398_ForeignKey-nullable.cs" />
+    <Compile Include="Migrations\201906100603398_ForeignKey-nullable.Designer.cs">
+      <DependentUpon>201906100603398_ForeignKey-nullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906101719393_a.cs" />
+    <Compile Include="Migrations\201906101719393_a.Designer.cs">
+      <DependentUpon>201906101719393_a.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906101803359_addRequire.cs" />
+    <Compile Include="Migrations\201906101803359_addRequire.Designer.cs">
+      <DependentUpon>201906101803359_addRequire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906190536118_time.cs" />
+    <Compile Include="Migrations\201906190536118_time.Designer.cs">
+      <DependentUpon>201906190536118_time.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906200549531_time1.cs" />
+    <Compile Include="Migrations\201906200549531_time1.Designer.cs">
+      <DependentUpon>201906200549531_time1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906221204520_OrderState.cs" />
+    <Compile Include="Migrations\201906221204520_OrderState.Designer.cs">
+      <DependentUpon>201906221204520_OrderState.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906241632313_expireadate1.cs" />
+    <Compile Include="Migrations\201906241632313_expireadate1.Designer.cs">
+      <DependentUpon>201906241632313_expireadate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906280320335_name.cs" />
+    <Compile Include="Migrations\201906280320335_name.Designer.cs">
+      <DependentUpon>201906280320335_name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepositoryBase\IDatabaseContext.cs" />
+    <Compile Include="RepositoryBase\IEntity.cs" />
+    <Compile Include="RepositoryBase\RepositoryBase.cs" />
+    <Compile Include="Entity\ItemEntity.cs" />
+    <Compile Include="Entity\PhuraseDetailEntity.cs" />
+    <Compile Include="Entity\PhuraseProductEntity.cs" />
+    <Compile Include="Migrations\201905250950597_add new db.cs" />
+    <Compile Include="Migrations\201905250950597_add new db.Designer.cs">
+      <DependentUpon>201905250950597_add new db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905251129458_update d.cs" />
+    <Compile Include="Migrations\201905251129458_update d.Designer.cs">
+      <DependentUpon>201905251129458_update d.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905261255201_add column.cs" />
+    <Compile Include="Migrations\201905261255201_add column.Designer.cs">
+      <DependentUpon>201905261255201_add column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905261722334_change itemcode type.cs" />
+    <Compile Include="Migrations\201905261722334_change itemcode type.Designer.cs">
+      <DependentUpon>201905261722334_change itemcode type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905271417499_add expireddate.cs" />
+    <Compile Include="Migrations\201905271417499_add expireddate.Designer.cs">
+      <DependentUpon>201905271417499_add expireddate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905271802121_add item detia .cs" />
+    <Compile Include="Migrations\201905271802121_add item detia .Designer.cs">
+      <DependentUpon>201905271802121_add item detia .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905281401043_AddUrl.cs" />
+    <Compile Include="Migrations\201905281401043_AddUrl.Designer.cs">
+      <DependentUpon>201905281401043_AddUrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905281438031_AddUrl1.cs" />
+    <Compile Include="Migrations\201905281438031_AddUrl1.Designer.cs">
+      <DependentUpon>201905281438031_AddUrl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905281447465_Addcompanydata.cs" />
+    <Compile Include="Migrations\201905281447465_Addcompanydata.Designer.cs">
+      <DependentUpon>201905281447465_Addcompanydata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905291650496_delete-DB.cs" />
+    <Compile Include="Migrations\201905291650496_delete-DB.Designer.cs">
+      <DependentUpon>201905291650496_delete-DB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905300646584_add-mapping detail-product.cs" />
+    <Compile Include="Migrations\201905300646584_add-mapping detail-product.Designer.cs">
+      <DependentUpon>201905300646584_add-mapping detail-product.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ProteinDB.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Utils\ReplaceExpressionVisitor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201905250950597_add new db.resx">
+      <DependentUpon>201905250950597_add new db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905251129458_update d.resx">
+      <DependentUpon>201905251129458_update d.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905261255201_add column.resx">
+      <DependentUpon>201905261255201_add column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905261722334_change itemcode type.resx">
+      <DependentUpon>201905261722334_change itemcode type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905271417499_add expireddate.resx">
+      <DependentUpon>201905271417499_add expireddate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905271802121_add item detia .resx">
+      <DependentUpon>201905271802121_add item detia .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905281401043_AddUrl.resx">
+      <DependentUpon>201905281401043_AddUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905281438031_AddUrl1.resx">
+      <DependentUpon>201905281438031_AddUrl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905281447465_Addcompanydata.resx">
+      <DependentUpon>201905281447465_Addcompanydata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905291650496_delete-DB.resx">
+      <DependentUpon>201905291650496_delete-DB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905300646584_add-mapping detail-product.resx">
+      <DependentUpon>201905300646584_add-mapping detail-product.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311525564_addenum.resx">
+      <DependentUpon>201905311525564_addenum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311559199_enum class mapping.resx">
+      <DependentUpon>201905311559199_enum class mapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311728047_change property.resx">
+      <DependentUpon>201905311728047_change property.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905311731058_change forignkey .resx">
+      <DependentUpon>201905311731058_change forignkey .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021631289_SetDateDefault.resx">
+      <DependentUpon>201906021631289_SetDateDefault.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021742509_setInt.resx">
+      <DependentUpon>201906021742509_setInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021743454_removeIdentity.resx">
+      <DependentUpon>201906021743454_removeIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906021754187_setDBdatetime.resx">
+      <DependentUpon>201906021754187_setDBdatetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906030407537_AddParentType.resx">
+      <DependentUpon>201906030407537_AddParentType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906031707140_remove-auto-getdate.resx">
+      <DependentUpon>201906031707140_remove-auto-getdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906100730538_addSubMoney.resx">
+      <DependentUpon>201906100730538_addSubMoney.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906100603398_ForeignKey-nullable.resx">
+      <DependentUpon>201906100603398_ForeignKey-nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101719393_a.resx">
+      <DependentUpon>201906101719393_a.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101803359_addRequire.resx">
+      <DependentUpon>201906101803359_addRequire.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906190536118_time.resx">
+      <DependentUpon>201906190536118_time.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906200549531_time1.resx">
+      <DependentUpon>201906200549531_time1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906221204520_OrderState.resx">
+      <DependentUpon>201906221204520_OrderState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906241632313_expireadate1.resx">
+      <DependentUpon>201906241632313_expireadate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906280320335_name.resx">
+      <DependentUpon>201906280320335_name.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

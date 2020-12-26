@@ -1,8 +1,8 @@
-﻿using CodeFirstORM.Entity;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using ProteinSystem.Repository.Entity;
 
-namespace CodeFirstORM.RepositoryBase
+namespace ProteinSystem.Repository.RepositoryBase
 {
     public interface IDatabaseContext
     {

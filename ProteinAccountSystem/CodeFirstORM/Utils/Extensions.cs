@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace CodeFirstORM.Utils
+namespace ProteinSystem.Repository.Utils
 {
     internal static class Extensions
     {

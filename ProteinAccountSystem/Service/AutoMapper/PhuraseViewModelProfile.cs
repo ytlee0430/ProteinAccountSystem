@@ -1,10 +1,8 @@
-﻿using System.Linq;
-using AutoMapper;
-using CodeFirstORM.Entity;
-using Common.Entity;
-using Common.Enum;
+﻿using AutoMapper;
+using ProteinSystem.Entity;
+using ProteinSystem.Enum;
 
-namespace Service.AutoMapper
+namespace ProteinSystem.Service.AutoMapper
 {
     public class PhuraseViewModelProfile : Profile
     {

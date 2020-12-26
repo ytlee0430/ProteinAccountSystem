@@ -1,9 +1,9 @@
 ﻿using System;
-using Common.Entity;
-using Common.Entity.Dto;
 using System.Collections.Generic;
+using ProteinSystem.Entity;
+using ProteinSystem.Entity.Dto;
 
-namespace Common.Interface.Service
+namespace ProteinSystem.Interface.Service
 {
     public interface IStockService
     {

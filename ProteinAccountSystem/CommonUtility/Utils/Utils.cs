@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Reflection;
 using System.Threading.Tasks;
-using Common.Log;
+using ProteinSystem.Log;
 
-namespace Common.Utils
+namespace ProteinSystem.Utils
 {
     public static class Utils
     {

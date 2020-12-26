@@ -1,14 +1,13 @@
-﻿using Common.Interface.Service;
-using Common.Log;
-using Service.AutoMapper;
-using Service.Service;
-using System;
+﻿using System;
 using System.Windows.Forms;
-using Common.Interface.Controller;
-using Common.Interface.View;
-using Controller.Controller;
 using Microsoft.Extensions.DependencyInjection;
-using Service;
+using ProteinSystem.Interface.Controller;
+using ProteinSystem.Interface.Service;
+using ProteinSystem.Interface.View;
+using ProteinSystem.Log;
+using ProteinSystem.Service.AutoMapper;
+using ProteinSystem.Service.Service;
+using ProteinSystem.StockController.Controller;
 using View;
 
 namespace Setup

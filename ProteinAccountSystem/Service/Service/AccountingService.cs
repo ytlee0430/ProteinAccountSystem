@@ -1,11 +1,11 @@
-﻿using AutoMapper;
-using CodeFirstORM.DBLayer;
-using CodeFirstORM.Entity;
-using Common.Entity;
-using Common.Interface.Service;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using AutoMapper;
+using ProteinSystem.Entity;
+using ProteinSystem.Interface.Service;
+using ProteinSystem.Repository.DBLayer;
+using ProteinSystem.Repository.Entity;
 
-namespace Service.Service
+namespace ProteinSystem.Service.Service
 {
     public class AccountingService : IAccountingService
     {

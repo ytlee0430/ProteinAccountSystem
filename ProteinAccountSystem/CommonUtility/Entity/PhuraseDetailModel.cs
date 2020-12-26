@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Common.Enum;
+using ProteinSystem.Enum;
 
-namespace Common.Entity
+namespace ProteinSystem.Entity
 {
     public class PhuraseDetailModel
     {

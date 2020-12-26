@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Common.Entity;
-using Common.Interface.Controller;
-using Common.Interface.View;
-using Common.Utils;
-using Common.Constants;
-using Common.Enum;
+using ProteinSystem.Constants;
+using ProteinSystem.Entity;
+using ProteinSystem.Enum;
+using ProteinSystem.Interface.Controller;
+using ProteinSystem.Interface.View;
+using ProteinSystem.Utils;
 
 namespace View
 {

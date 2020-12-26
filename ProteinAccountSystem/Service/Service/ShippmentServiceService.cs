@@ -1,13 +1,12 @@
-﻿using Common.Entity;
-using Common.Interface.Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Common.Log;
+using ProteinSystem.Entity;
+using ProteinSystem.Interface.Service;
+using ProteinSystem.Log;
 using MSWord = Microsoft.Office.Interop.Word;
-using System.Linq;
 
-namespace Service.Service
+namespace ProteinSystem.Service.Service
 {
     public class ShippmentService : IShippmentService
     {

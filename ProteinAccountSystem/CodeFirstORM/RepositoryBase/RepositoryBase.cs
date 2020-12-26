@@ -1,12 +1,11 @@
-﻿using CodeFirstORM.RepositoryBase;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using Z.EntityFramework.Plus;
 
-namespace CodeFirstORM.DBLayer
+namespace ProteinSystem.Repository.RepositoryBase
 {
     public class RepositoryBase<T> where T : class, IEntity
     {

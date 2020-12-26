@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Entity;
-using Common.Entity.Dto;
-using Common.Enum;
-using Common.Interface.Controller;
-using Common.Interface.Service;
-using Common.Log;
+using ProteinSystem.Entity;
+using ProteinSystem.Entity.Dto;
+using ProteinSystem.Enum;
+using ProteinSystem.Interface.Controller;
+using ProteinSystem.Interface.Service;
+using ProteinSystem.Log;
 
-namespace Controller.Controller
+namespace ProteinSystem.StockController.Controller
 {
     public class MainFormController : IMainFormController
     {

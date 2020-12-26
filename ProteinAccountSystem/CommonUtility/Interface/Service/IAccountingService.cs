@@ -1,7 +1,7 @@
-﻿using Common.Entity;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ProteinSystem.Entity;
 
-namespace Common.Interface.Service
+namespace ProteinSystem.Interface.Service
 {
     public interface IAccountingService
     {

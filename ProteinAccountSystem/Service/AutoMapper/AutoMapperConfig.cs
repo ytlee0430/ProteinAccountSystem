@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace Service.AutoMapper
+namespace ProteinSystem.Service.AutoMapper
 {
     public class AutoMapperConfig
     {

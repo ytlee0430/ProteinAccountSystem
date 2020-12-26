@@ -1,7 +1,7 @@
-﻿using CodeFirstORM.Entity;
-using System.Data.Entity.ModelConfiguration;
+﻿using System.Data.Entity.ModelConfiguration;
+using ProteinSystem.Repository.Entity;
 
-namespace CodeFirstORM.Config
+namespace ProteinSystem.Repository.Config
 {
     public class EnumEntityMapping : EntityTypeConfiguration<EnumEntity>
     {

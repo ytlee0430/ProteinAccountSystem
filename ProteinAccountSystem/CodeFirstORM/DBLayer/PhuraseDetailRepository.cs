@@ -1,12 +1,11 @@
-﻿using CodeFirstORM.Entity;
-using CodeFirstORM.Utils;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using ProteinSystem.Repository.Entity;
+using ProteinSystem.Repository.RepositoryBase;
+using ProteinSystem.Repository.Utils;
 
-namespace CodeFirstORM.DBLayer
+namespace ProteinSystem.Repository.DBLayer
 {
     public class PhuraseDetailRepository : RepositoryBase<PhuraseDetailEntity>
     {
@@ -23,7 +22,7 @@ namespace CodeFirstORM.DBLayer
 
             if (brand > 0)
             {
-                itemWhere = itemWhere.AndAlso(c => c.Products.Any(x => x.Brand == brand));
+                itemWhere = itemWhere.AndAlso(c => Enumerable.Any<PhuraseProductEntity>(c.Products, x => x.Brand == brand));
             }
             if (flavor > 0)
             {

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
-using Common.Entity;
-using Common.Enum;
-using Common.Interface.Service;
+using ProteinSystem.Entity;
+using ProteinSystem.Interface.Service;
 
-namespace Service.Service
+namespace ProteinSystem.Service.Service
 {
     //TODO:where brand,ProductionDetailType etc
     public class DataAnalyzeService : IDataAnalyzeService

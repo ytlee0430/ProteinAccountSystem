@@ -1,12 +1,7 @@
-﻿using CodeFirstORM.Entity;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using ProteinSystem.Repository.Entity;
+using ProteinSystem.Repository.RepositoryBase;
 
-namespace CodeFirstORM.DBLayer
+namespace ProteinSystem.Repository.DBLayer
 {
     public class EnumClassRepository : RepositoryBase<EnumClassEntity>
     {

@@ -1,9 +1,10 @@
-﻿using CodeFirstORM.Entity;
-using CodeFirstORM.Utils;
-using System;
+﻿using System;
 using System.Linq.Expressions;
+using ProteinSystem.Repository.Entity;
+using ProteinSystem.Repository.RepositoryBase;
+using ProteinSystem.Repository.Utils;
 
-namespace CodeFirstORM.DBLayer
+namespace ProteinSystem.Repository.DBLayer
 {
     public class ItemRepository : RepositoryBase<ItemEntity>
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Common.Interface.Service
+namespace ProteinSystem.Interface.Service
 {
     public interface IExcelExportService
     {

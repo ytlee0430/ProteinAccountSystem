@@ -1,4 +1,4 @@
-﻿namespace CodeFirstORM.RepositoryBase
+﻿namespace ProteinSystem.Repository.RepositoryBase
 {
     public interface IEntity
     {

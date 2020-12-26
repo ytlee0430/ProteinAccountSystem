@@ -1,6 +1,6 @@
-﻿using Common.Entity;
+﻿using ProteinSystem.Entity;
 
-namespace Common.Utils
+namespace ProteinSystem.Utils
 {
     public static class ProductUtilities
     {

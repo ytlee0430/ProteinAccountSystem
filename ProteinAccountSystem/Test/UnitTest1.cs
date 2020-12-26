@@ -1,13 +1,11 @@
 ﻿using AutoMapper;
-using CodeFirstORM.Entity;
-using Common.Entity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Service.AutoMapper;
-using Service.Service;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Enum;
-using Common.Utils;
+using ProteinSystem.Entity;
+using ProteinSystem.Repository.Entity;
+using ProteinSystem.Service.AutoMapper;
+using ProteinSystem.Service.Service;
 
 namespace Test
 {

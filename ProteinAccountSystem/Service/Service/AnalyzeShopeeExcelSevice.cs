@@ -1,13 +1,13 @@
-﻿using Common.Entity;
-using Common.Interface.Service;
-using Spire.Xls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Enum;
-using Common.Utils;
+using ProteinSystem.Entity;
+using ProteinSystem.Enum;
+using ProteinSystem.Interface.Service;
+using ProteinSystem.Utils;
+using Spire.Xls;
 
-namespace Service.Service
+namespace ProteinSystem.Service.Service
 {
     public class AnalyzeShopeeExcelSevice : IAnalyzeExcelService
     {

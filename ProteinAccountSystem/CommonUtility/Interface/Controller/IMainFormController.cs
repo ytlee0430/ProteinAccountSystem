@@ -1,10 +1,10 @@
-﻿using Common.Entity;
-using Common.Entity.Dto;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Common.Enum;
+using ProteinSystem.Entity;
+using ProteinSystem.Entity.Dto;
+using ProteinSystem.Enum;
 
-namespace Common.Interface.Controller
+namespace ProteinSystem.Interface.Controller
 {
     public interface IMainFormController
     {

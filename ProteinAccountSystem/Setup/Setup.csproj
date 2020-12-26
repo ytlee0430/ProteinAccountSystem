@@ -85,21 +85,21 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommonUtility\Common.csproj">
+    <ProjectReference Include="..\CommonUtility\ProteinSystem.csproj">
       <Project>{DD1F06DC-0FBA-40DB-BB49-FAB46E74EC22}</Project>
-      <Name>Common</Name>
+      <Name>ProteinSystem</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Controller\Controller.csproj">
+    <ProjectReference Include="..\Controller\ProteinSystem.StockController.csproj">
       <Project>{8281E164-F60B-43DD-A01D-1CEA072D8C8E}</Project>
-      <Name>Controller</Name>
+      <Name>ProteinSystem.StockController</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Service\Service.csproj">
+    <ProjectReference Include="..\Service\PorteinSystem.Service.csproj">
       <Project>{AFA94511-B5A8-46FA-B591-F8D399DFAFF3}</Project>
-      <Name>Service</Name>
+      <Name>PorteinSystem.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\View\View.csproj">
+    <ProjectReference Include="..\View\ProteinSystem.StockView.csproj">
       <Project>{8A4B1C9C-39B9-40B0-993F-245C0675C1EC}</Project>
-      <Name>View</Name>
+      <Name>ProteinSystem.StockView</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

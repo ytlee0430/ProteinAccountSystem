@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Common.Entity
+namespace ProteinSystem.Entity
 {
     public class EnumModel
     {

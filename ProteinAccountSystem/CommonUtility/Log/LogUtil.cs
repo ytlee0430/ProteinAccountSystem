@@ -1,4 +1,4 @@
-﻿namespace Common.Log
+﻿namespace ProteinSystem.Log
 {
     public static class LogUtil
     {

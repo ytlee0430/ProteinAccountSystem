@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Common.Utils
+namespace ProteinSystem.Utils
 {
     public static class Extensions
     {

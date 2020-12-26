@@ -1,14 +1,14 @@
-﻿using CodeFirstORM.RepositoryBase;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ProteinSystem.Repository.RepositoryBase;
 
-namespace CodeFirstORM.Entity
+namespace ProteinSystem.Repository.Entity
 {
     public class EnumClassEntity : IEntity
     {
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Key { get; set; }
 
         [Required]

@@ -1,14 +1,13 @@
-﻿using CodeFirstORM.Entity;
+﻿using System;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration;
+using System.Linq;
+using System.Reflection;
+using ProteinSystem.Repository.Entity;
+using ProteinSystem.Repository.RepositoryBase;
 
-namespace CodeFirstORM
+namespace ProteinSystem.Repository
 {
-    using CodeFirstORM.RepositoryBase;
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.ModelConfiguration;
-    using System.Linq;
-    using System.Reflection;
-
     public class ProteinDB : DbContext, IDatabaseContext
     {
         public ProteinDB()

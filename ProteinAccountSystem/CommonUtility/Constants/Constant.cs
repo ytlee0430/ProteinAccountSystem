@@ -1,4 +1,4 @@
-﻿namespace Common.Constants
+﻿namespace ProteinSystem.Constants
 {
     public static class Constant
     {

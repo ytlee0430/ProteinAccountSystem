@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using CodeFirstORM.Entity;
-using Common.Entity;
+using ProteinSystem.Entity;
+using ProteinSystem.Repository.Entity;
 
-namespace Service.AutoMapper
+namespace ProteinSystem.Service.AutoMapper
 {
     public class EnumProfile : Profile
     {

@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using CodeFirstORM.Entity;
-using Common.Entity;
-using Common.Enum;
+using ProteinSystem.Entity;
+using ProteinSystem.Enum;
+using ProteinSystem.Repository.Entity;
 
-namespace Service.AutoMapper
+namespace ProteinSystem.Service.AutoMapper
 {
     public class ItemViewProfile : Profile
     {
