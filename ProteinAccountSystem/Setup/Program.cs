@@ -7,6 +7,7 @@ using ProteinSystem.Interface.View;
 using ProteinSystem.Log;
 using ProteinSystem.Service.AutoMapper;
 using ProteinSystem.Service.Service;
+using ProteinSystem.Service.Service.ExportSheetService;
 using ProteinSystem.StockController.Controller;
 using View;
 
@@ -61,7 +62,7 @@ namespace Setup
             services.AddTransient<IStockService, StockServiceService>();
             services.AddTransient<IShippmentService, ShippmentService>();
             services.AddTransient<IAccountingService, AccountingService>();
-            services.AddTransient<IExcelExportService, ExcelExportService>();
+            services.AddTransient<IExportSheetService, GoogleSheetExportSheetService>();
             services.AddTransient<IEnumService, EnumService>();
             services.AddTransient<IMainFormController, MainFormController>();
             services.AddTransient<IMainForm, MainForm>();

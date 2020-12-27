@@ -5,9 +5,9 @@ using ProteinSystem.Log;
 using ProteinSystem.Utils;
 using Spire.Xls;
 
-namespace ProteinSystem.Service.Service
+namespace ProteinSystem.Service.Service.ExportSheetService
 {
-    public class ExcelExportService : IExcelExportService
+    public class ExportSheetService : IExportSheetService
     {
         public bool ExportExcel<T>(IEnumerable<T> list, string path) where T : class
         {

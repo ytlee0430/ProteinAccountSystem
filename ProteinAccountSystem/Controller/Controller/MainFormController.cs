@@ -15,7 +15,7 @@ namespace ProteinSystem.StockController.Controller
         private readonly IAccountingService _accountingService;
         private readonly IAnalyzeExcelService _analyzeExcelService;
         private readonly IEnumService _enumService;
-        private readonly IExcelExportService _excelExportService;
+        private readonly IExportSheetService _exportSheetService;
         private List<PhuraseDetailModel> _phuraseDetailModels = new List<PhuraseDetailModel>();
         private readonly IShippmentService _shippmentService;
         private readonly IStockService _stockService;
@@ -24,13 +24,13 @@ namespace ProteinSystem.StockController.Controller
         public MainFormController(IAnalyzeExcelService analyzeExcelService,
             IStockService stockService, IShippmentService shippmentService,
             IAccountingService accountingService,
-            IExcelExportService excelExportService, IEnumService enumService, IDataAnalyzeService dataAnalyzeService)
+            IExportSheetService exportSheetService, IEnumService enumService, IDataAnalyzeService dataAnalyzeService)
         {
             _analyzeExcelService = analyzeExcelService;
             _stockService = stockService;
             _shippmentService = shippmentService;
             _accountingService = accountingService;
-            _excelExportService = excelExportService;
+            _exportSheetService = exportSheetService;
             _enumService = enumService;
             _dataAnalyzeService = dataAnalyzeService;
         }
@@ -83,12 +83,12 @@ namespace ProteinSystem.StockController.Controller
 
         public bool ExportSaleRecordExcel(List<PhuraseDetailModel> list, string path)
         {
-            return _excelExportService.ExportExcel(list, path);
+            return _exportSheetService.ExportExcel(list, path);
         }
 
         public bool ExportStockExcel(List<ItemViewModel> storages, string path)
         {
-            return _excelExportService.ExportExcel(storages, path);
+            return _exportSheetService.ExportExcel(storages, path);
         }
 
         public List<EnumModel> GetEnums(int selectedIndex)
