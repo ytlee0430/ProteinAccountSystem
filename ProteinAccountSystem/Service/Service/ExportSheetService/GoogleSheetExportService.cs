@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Threading;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Services;
@@ -11,6 +9,8 @@ using Google.Apis.Sheets.v4.Data;
 using Google.Apis.Util.Store;
 using ProteinSystem.Interface.Service;
 using ProteinSystem.Log;
+using ProteinSystem.Utils;
+
 
 namespace ProteinSystem.Service.Service.ExportSheetService
 {
@@ -49,12 +49,17 @@ namespace ProteinSystem.Service.Service.ExportSheetService
                     ApplicationName = ApplicationName,
                 });
 
+                var myNewSheet = new Spreadsheet();
+                myNewSheet.Properties = new SpreadsheetProperties();
+                myNewSheet.Properties.Title = $"New Sheet";
+                var googleNewSheet = service.Spreadsheets.Create(myNewSheet).Execute();
+
                 // Define request parameters.
-                String spreadsheetId = "1ohQWljq175WZkIDZrb8F5xsaEZNJvIgELIv7rVVi3yQ";
-                String range = "test1!A:E";
-  
+                String spreadsheetId = googleNewSheet.SpreadsheetId;
+                String range = $"A:Z";
+
                 SpreadsheetsResource.ValuesResource.AppendRequest request =
-                    service.Spreadsheets.Values.Append(new ValueRange() { Values = GenerateData(list) }, spreadsheetId, range);
+                    service.Spreadsheets.Values.Append(new ValueRange() { Values = list.ToDisplayDataList() }, spreadsheetId, range);
                 request.InsertDataOption = SpreadsheetsResource.ValuesResource.AppendRequest.InsertDataOptionEnum.INSERTROWS;
                 request.ValueInputOption = SpreadsheetsResource.ValuesResource.AppendRequest.ValueInputOptionEnum.RAW;
                 var response = request.Execute();
@@ -67,36 +72,6 @@ namespace ProteinSystem.Service.Service.ExportSheetService
                 return false;
             }
             return true;
-        }
-
-        private static IList<IList<Object>> GenerateData(IEnumerable list)
-        {
-            List<IList<Object>> objNewRecords = new List<IList<Object>>();
-          
-            foreach (var l in list)
-            {
-                IList<Object> obj = new List<Object>();
-                foreach (var pro in l.GetType().GetProperties())
-                {
-                    obj.Add(pro.Name);
-                }
-                objNewRecords.Add(obj);
-                break;
-            }
-
-            foreach (var l in list)
-            {
-                IList<Object> obj = new List<Object>();
-                foreach (PropertyInfo pro in l.GetType().GetProperties())
-                {
-                    var Key = pro.Name;
-                    var Value = pro.GetValue(l, null);
-                    obj.Add(Value.ToString());
-                }
-                objNewRecords.Add(obj);
-            }
-
-            return objNewRecords;
         }
     }
 }

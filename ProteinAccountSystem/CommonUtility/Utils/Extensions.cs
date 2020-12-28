@@ -77,6 +77,41 @@ namespace ProteinSystem.Utils
             return tb;
         }
 
+        public static IList<IList<Object>> ToDisplayDataList<T>(this IEnumerable<T> list)
+        {
+            List<IList<Object>> objNewRecords = new List<IList<Object>>();
+            PropertyInfo[] props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            foreach (var prop in props)
+            {
+                IList<Object> obj = new List<Object>();
+                var attributes = prop.GetCustomAttributes(typeof(DisplayNameAttribute), true);
+                if (!attributes.Any())
+                    obj.Add(prop.Name);
+                else
+                {
+                    var displayName = attributes.Cast<DisplayNameAttribute>().Single().DisplayName;
+                    obj.Add(String.IsNullOrEmpty(displayName) ? prop.Name : displayName);
+                }
+                objNewRecords.Add(obj);
+
+            }
+
+            foreach (var l in list)
+            {
+                IList<Object> obj = new List<Object>();
+                foreach (PropertyInfo pro in l.GetType().GetProperties())
+                {
+                    var Value = pro.GetValue(l, null);
+                    obj.Add(Value.ToString());
+                }
+                objNewRecords.Add(obj);
+            }
+
+            return objNewRecords;
+        }
+
+
         private static string IEnumerableToString(IEnumerable items)
         {
             var sb = new StringBuilder();
