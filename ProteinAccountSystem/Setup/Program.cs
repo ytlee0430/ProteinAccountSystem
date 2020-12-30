@@ -5,6 +5,7 @@ using ProteinSystem.Interface.Controller;
 using ProteinSystem.Interface.Service;
 using ProteinSystem.Interface.View;
 using ProteinSystem.Log;
+using ProteinSystem.Service;
 using ProteinSystem.Service.AutoMapper;
 using ProteinSystem.Service.Service;
 using ProteinSystem.Service.Service.ExportSheetService;
@@ -29,15 +30,15 @@ namespace Setup
             AutoMapperConfig.Configure();
 
             //first run
-            //DataBaseInitializer.InitailizeEnumDatabase();
+            DataBaseInitializer.InitailizeEnumDatabase();
 
             EnumService.EnumInitialize();
 
             //first run
-            //DataBaseInitializer.InitializeItemsDataBase();
+            DataBaseInitializer.InitializeItemsDataBase();
 
             //first run
-            //EnumService.EnumParentTypeInitail();
+            EnumService.EnumParentTypeInitail();
 
             ConfigureServices();
 
@@ -66,6 +67,16 @@ namespace Setup
             services.AddTransient<IEnumService, EnumService>();
             services.AddTransient<IMainFormController, MainFormController>();
             services.AddTransient<IMainForm, MainForm>();
+
+            services.AddSingleton<ExportSheetServiceResolver>((ExportSheetType type) => {
+                return type switch
+                {
+                    ExportSheetType.Excel => new ExportExcelService(),
+                    ExportSheetType.GoogleSheet => new GoogleSheetExportSheetService(),
+                    _ => throw new ArgumentOutOfRangeException(type.ToString()),
+                };
+            });
+
             ServiceProvider = services.BuildServiceProvider();
         }
     }

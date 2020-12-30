@@ -7,6 +7,7 @@ using ProteinSystem.Enum;
 using ProteinSystem.Interface.Controller;
 using ProteinSystem.Interface.Service;
 using ProteinSystem.Log;
+using ProteinSystem.Resolver;
 
 namespace ProteinSystem.StockController.Controller
 {
@@ -15,7 +16,7 @@ namespace ProteinSystem.StockController.Controller
         private readonly IAccountingService _accountingService;
         private readonly IAnalyzeExcelService _analyzeExcelService;
         private readonly IEnumService _enumService;
-        private readonly IExportSheetService _exportSheetService;
+        private readonly ExportSheetServiceResolver _exportSheetServiceResolver;
         private List<PhuraseDetailModel> _phuraseDetailModels = new List<PhuraseDetailModel>();
         private readonly IShippmentService _shippmentService;
         private readonly IStockService _stockService;
@@ -24,13 +25,13 @@ namespace ProteinSystem.StockController.Controller
         public MainFormController(IAnalyzeExcelService analyzeExcelService,
             IStockService stockService, IShippmentService shippmentService,
             IAccountingService accountingService,
-            IExportSheetService exportSheetService, IEnumService enumService, IDataAnalyzeService dataAnalyzeService)
+            ExportSheetServiceResolver exportSheetServiceResolver, IEnumService enumService, IDataAnalyzeService dataAnalyzeService)
         {
             _analyzeExcelService = analyzeExcelService;
             _stockService = stockService;
             _shippmentService = shippmentService;
             _accountingService = accountingService;
-            _exportSheetService = exportSheetService;
+            _exportSheetServiceResolver = exportSheetServiceResolver;
             _enumService = enumService;
             _dataAnalyzeService = dataAnalyzeService;
         }
@@ -81,14 +82,9 @@ namespace ProteinSystem.StockController.Controller
             return result;
         }
 
-        public bool ExportSaleRecordExcel(List<PhuraseDetailModel> list, string path)
+        public bool ExportSheet<T>(IEnumerable<T> list, ExportSheetType type, string path) where T : class
         {
-            return _exportSheetService.ExportExcel(list, path);
-        }
-
-        public bool ExportStockExcel(List<ItemViewModel> storages, string path)
-        {
-            return _exportSheetService.ExportExcel(storages, path);
+            return _exportSheetServiceResolver(type).ExportExcel(list, path);
         }
 
         public List<EnumModel> GetEnums(int selectedIndex)

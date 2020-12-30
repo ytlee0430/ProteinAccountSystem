@@ -28,9 +28,7 @@ namespace ProteinSystem.Interface.Controller
 
         bool CreateShippmentTickets(string path);
 
-        bool ExportSaleRecordExcel(List<PhuraseDetailModel> list, string path);
-
-        bool ExportStockExcel(List<ItemViewModel> storages, string path);
+        bool ExportSheet<T>(IEnumerable<T> list, ExportSheetType type, string path);
 
         List<EnumModel> GetEnums(int selectedIndex);
 

@@ -208,6 +208,7 @@ namespace View
 
         private void btnExportStockExcel_Click(object sender, EventArgs e)
         {
+            //TODO: implement UI to select export type.
             saveFileDialog1.ShowDialog();
             //var path = saveFileDialog1.FileName;
 
@@ -218,7 +219,7 @@ namespace View
             var productionDetailType = cbxProductDetail.SelectedIndex;
             var showZero = ckbShowCountZero.Checked;
             var storages = _controller.GetStorage(brand, flavor, package, productionType, productionDetailType, showZero);
-            var result = _controller.ExportStockExcel(storages, "");
+            var result = _controller.ExportSheet<ItemViewModel>(storages, "");
             MessageBox.Show(!result ? "匯出失敗!" : "匯出成功!", "匯出庫存結果");
         }
 
@@ -417,6 +418,7 @@ namespace View
         {
             saveFileDialog1.ShowDialog();
             //var path = saveFileDialog1.FileName;
+            //TODO: implement UI to select export type.
 
             SearchModel searchModel = new SearchModel();
             searchModel.KeyWord = txtKeyWord.Text;
@@ -428,7 +430,7 @@ namespace View
             searchModel.ProductionType = cbxType.SelectedIndex;
             searchModel.ProductionDetailType = cbxProductDetail.SelectedIndex;
             var list = _controller.GetSalesRecords(searchModel);
-            var result = _controller.ExportSaleRecordExcel(list, "");
+            var result = _controller.ExportSheet<PhuraseDetailModel>(list, "");
             MessageBox.Show(!result ? "匯出失敗!" : "匯出成功!");
         }
 

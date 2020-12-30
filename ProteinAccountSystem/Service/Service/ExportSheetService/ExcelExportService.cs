@@ -7,7 +7,7 @@ using Spire.Xls;
 
 namespace ProteinSystem.Service.Service.ExportSheetService
 {
-    public class ExportSheetService : IExportSheetService
+    public class ExportExcelService : IExportSheetService
     {
         public bool ExportExcel<T>(IEnumerable<T> list, string path) where T : class
         {
